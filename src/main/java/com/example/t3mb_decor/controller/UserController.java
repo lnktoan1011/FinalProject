@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class UserController {
+
     String id;
     String name;
 }

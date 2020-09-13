@@ -25,12 +25,11 @@ public class Category {
 
         @CreationTimestamp
         @Temporal(TemporalType.TIMESTAMP)
-        @Column(name = "update_at")
-        private Date updateAt;
+        @Column(name = "updated_at")
+        private Date updatedAt;
 
-        @OneToMany(targetEntity = Category.class,cascade = CascadeType.ALL)
-        @JoinColumn(name = "categoryId", referencedColumnName = "id")
-        private List<SubCategory> sub = new ArrayList<>();
+        @OneToMany(mappedBy = "category",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+        private List<SubCategory> sub ;
 
         public long getId() {
             return id;
@@ -56,12 +55,12 @@ public class Category {
             this.createdAt = createdAt;
         }
 
-        public Date getUpdateAt() {
-            return updateAt;
+        public Date getUpdatedAt() {
+            return updatedAt;
         }
 
-        public void setUpdateAt(Date updateAt) {
-            this.updateAt = updateAt;
+        public void setUpdatedAt(Date updatedAt) {
+            this.updatedAt = updatedAt;
         }
 
         public List<SubCategory> getSub() {

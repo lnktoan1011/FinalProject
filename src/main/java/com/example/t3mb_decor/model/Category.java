@@ -28,8 +28,9 @@ public class Category {
         @Column(name = "updated_at")
         private Date updatedAt;
 
-        @OneToMany(mappedBy = "category",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-        private List<SubCategory> sub ;
+        @OneToMany(targetEntity = SubCategory.class,cascade = CascadeType.ALL)
+        @JoinColumn(name = "category_id", referencedColumnName = "id")
+        private List<SubCategory> sub = new ArrayList<>() ;
 
         public long getId() {
             return id;

@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Entity
+@Table(name = "sub_category")
 public class SubCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "categoryId")
-    private long categoryId;
 
     @Column(name = "name")
     private String name;
@@ -29,9 +29,6 @@ public class SubCategory {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "categoryId", referencedColumnName = "id")
-    private Category sub ;
 
     public long getId() {
         return id;
@@ -39,14 +36,6 @@ public class SubCategory {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(long categoryId) {
-        this.categoryId = categoryId;
     }
 
     public String getName() {
@@ -65,8 +54,6 @@ public class SubCategory {
         this.createdAt = createdAt;
     }
 
-
-
     public Date getUpdatedAt() {
         return updatedAt;
     }
@@ -75,11 +62,4 @@ public class SubCategory {
         this.updatedAt = updatedAt;
     }
 
-    public Category getSub() {
-        return sub;
-    }
-
-    public void setSub(Category sub) {
-        this.sub = sub;
-    }
 }

@@ -12,20 +12,19 @@ import java.util.List;
 public class SubCategory {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
 
     @Column(name = "name")
     private String name;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "category_id")
+//    private Category category;
 
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
     private Date createdAt;
 
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at")
     private Date updatedAt;
 
@@ -46,6 +45,14 @@ public class SubCategory {
         this.name = name;
     }
 
+//    public Category getCategory() {
+//        return category;
+//    }
+//
+//    public void setCategory(Category category) {
+//        this.category = category;
+//    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -61,5 +68,6 @@ public class SubCategory {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
+
 
 }

@@ -28,13 +28,9 @@ public class Customer {
     @Column(name = "phone")
     private String phone;
 
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_at")
     private Date createAt;
 
-    @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "update_at")
     private Date updateAt;
 

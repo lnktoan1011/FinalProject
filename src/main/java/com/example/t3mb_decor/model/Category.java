@@ -1,7 +1,9 @@
 package com.example.t3mb_decor.model;
 
 
+import com.sun.istack.Nullable;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,7 +14,7 @@ import java.util.List;
 @Table(name = "category")
 public class Category {
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private long id;
 
         @Column(name = "name")
@@ -23,12 +25,12 @@ public class Category {
         @Column(name = "created_at")
         private Date createdAt;
 
-        @CreationTimestamp
+        @UpdateTimestamp
         @Temporal(TemporalType.TIMESTAMP)
         @Column(name = "updated_at")
         private Date updatedAt;
 
-        @OneToMany(targetEntity = SubCategory.class,cascade = CascadeType.ALL)
+        @OneToMany(cascade = CascadeType.ALL)
         @JoinColumn(name = "category_id", referencedColumnName = "id")
         private List<SubCategory> sub = new ArrayList<>() ;
 
@@ -65,8 +67,8 @@ public class Category {
         }
 
         public List<SubCategory> getSub() {
-            return sub;
-        }
+                return sub;
+            }
 
         public void setSub(List<SubCategory> sub) {
             this.sub = sub;

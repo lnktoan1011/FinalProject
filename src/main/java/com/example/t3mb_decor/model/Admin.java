@@ -23,7 +23,7 @@ public class Admin {
     private String password;
 
     @Column(name = "address")
-    private String addpress;
+    private String address;
 
     @Column(name = "phone")
     private String phone;
@@ -31,15 +31,11 @@ public class Admin {
     @Column(name = "permission")
     private  Integer permission;
 
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_at")
-    private Date createdAt;
+    private String createdAt;
 
-    @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "update_at")
-    private Date updatedAt;
+    private String updatedAt;
 
     public long getId() {
         return id;
@@ -73,12 +69,12 @@ public class Admin {
         this.password = password;
     }
 
-    public String getAddpress() {
-        return addpress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddpress(String addpress) {
-        this.addpress = addpress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPhone() {
@@ -97,19 +93,19 @@ public class Admin {
         this.permission = permission;
     }
 
-    public Date getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public String getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
 }

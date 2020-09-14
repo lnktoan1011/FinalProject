@@ -33,8 +33,7 @@ public class CategoryController {
     @PostMapping("/category")
     public Category saveEmployee(Category category){
 
-        category = new Category();
-        category.setName("Bao");
+        category = cate.findById((long) 4).get();
         SubCategory subCategory = new SubCategory();
         subCategory.setName("Medium Glass");
         //subCategoryRepository.save(subCategory);

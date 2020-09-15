@@ -1,6 +1,7 @@
 package com.example.t3mb_decor.model;
 
 
+import com.sun.istack.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -14,25 +15,47 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
     @Column(name = "name")
+    @NotNull
     private String name;
 
     @Column(name = "email")
+    @NotNull
     private String email;
 
     @Column(name = "password")
+    @NotNull
     private String password;
 
     @Column(name = "address")
     private String address;
 
     @Column(name = "phone")
+    @NotNull
     private String phone;
 
-    @Column(name = "create_at")
-    private Date createAt;
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
+    private Date createdAt;
 
-    @Column(name = "update_at")
-    private Date updateAt;
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
+    public Customer(long id, String name, String email, String password, String address, String phone, Date createdAt, Date updatedAt) {
+        Id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.phone = phone;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public Customer() {
+    }
 
     public long getId() {
         return Id;
@@ -82,19 +105,19 @@ public class Customer {
         this.phone = phone;
     }
 
-    public Date getCreateAt() {
-        return createAt;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Date getUpdateAt() {
-        return updateAt;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdateAt(Date updateAt) {
-        this.updateAt = updateAt;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

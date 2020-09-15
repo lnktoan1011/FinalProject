@@ -1,5 +1,6 @@
 package com.example.t3mb_decor.model;
 
+import com.sun.istack.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -14,21 +15,26 @@ public class Admin {
     private long id;
 
     @Column(name = "name")
+    @NotNull
     private String name;
 
     @Column(name = "email")
+    @NotNull
     private  String email;
 
     @Column(name = "password")
+    @NotNull
     private String password;
 
     @Column(name = "address")
     private String address;
 
     @Column(name = "phone")
+    @NotNull
     private String phone;
 
     @Column(name = "permission")
+    @NotNull
     private  Integer permission;
 
     @Column(name = "create_at")
@@ -36,6 +42,21 @@ public class Admin {
 
     @Column(name = "update_at")
     private String updatedAt;
+
+    public Admin(long id, String name, String email, String password, String address, String phone, Integer permission, String createdAt, String updatedAt) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.phone = phone;
+        this.permission = permission;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public Admin() {
+    }
 
     public long getId() {
         return id;

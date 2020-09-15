@@ -36,7 +36,6 @@ public class CategoryController {
         category = cate.findById((long) 4).get();
         SubCategory subCategory = new SubCategory();
         subCategory.setName("Medium Glass");
-        //subCategoryRepository.save(subCategory);
         category.getSub().add(subCategory);
         cate.save(category);
         return category;

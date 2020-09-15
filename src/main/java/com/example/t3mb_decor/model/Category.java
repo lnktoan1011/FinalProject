@@ -1,6 +1,7 @@
 package com.example.t3mb_decor.model;
 
 
+import com.sun.istack.NotNull;
 import com.sun.istack.Nullable;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -18,6 +19,7 @@ public class Category {
         private long id;
 
         @Column(name = "name")
+        @NotNull
         private String name;
 
         @CreationTimestamp
@@ -33,6 +35,17 @@ public class Category {
         @OneToMany(cascade = CascadeType.ALL)
         @JoinColumn(name = "category_id", referencedColumnName = "id")
         private List<SubCategory> sub = new ArrayList<>() ;
+
+        public Category(long id, String name, Date createdAt, Date updatedAt, List<SubCategory> sub) {
+            this.id = id;
+            this.name = name;
+            this.createdAt = createdAt;
+            this.updatedAt = updatedAt;
+            this.sub = sub;
+        }
+
+        public Category() {
+        }
 
         public long getId() {
             return id;

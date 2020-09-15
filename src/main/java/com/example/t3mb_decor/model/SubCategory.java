@@ -1,5 +1,6 @@
 package com.example.t3mb_decor.model;
 
+import com.sun.istack.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -18,10 +19,8 @@ public class SubCategory {
 
 
     @Column(name = "name")
+    @NotNull
     private String name;
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "category_id")
-//    private Category category;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -33,6 +32,15 @@ public class SubCategory {
     @Column(name = "updated_at")
     private Date updatedAt;
 
+    public SubCategory(long id, String name, Date createdAt, Date updatedAt) {
+        this.id = id;
+        this.name = name;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public SubCategory() {
+    }
 
     public long getId() {
         return id;

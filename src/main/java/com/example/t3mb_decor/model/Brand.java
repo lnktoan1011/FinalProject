@@ -1,6 +1,5 @@
 package com.example.t3mb_decor.model;
 
-import com.sun.istack.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -10,9 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "sub_category")
-public class SubCategory {
-
+@Table(name = "brand")
+public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -21,7 +19,7 @@ public class SubCategory {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "subcate_id", referencedColumnName = "id")
+    @JoinColumn(name = "brand_id", referencedColumnName = "id")
     private List<Product> products = new ArrayList<>() ;
 
     @CreationTimestamp
@@ -34,14 +32,13 @@ public class SubCategory {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public SubCategory(long id, String name, Date createdAt, Date updatedAt) {
+    public Brand(long id, String name, List<Product> products) {
         this.id = id;
         this.name = name;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.products = products;
     }
 
-    public SubCategory() {
+    public Brand() {
     }
 
     public long getId() {
@@ -83,6 +80,4 @@ public class SubCategory {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-
 }

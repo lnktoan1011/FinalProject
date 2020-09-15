@@ -18,8 +18,7 @@ public class Category {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private long id;
 
-        @Column(name = "name")
-        @NotNull
+        @Column(name = "name",nullable = false)
         private String name;
 
         @CreationTimestamp

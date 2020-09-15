@@ -14,27 +14,22 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "name")
-    @NotNull
+    @Column(name = "name",nullable = false)
     private String name;
 
-    @Column(name = "email")
-    @NotNull
+    @Column(name = "email",nullable = false)
     private  String email;
 
-    @Column(name = "password")
-    @NotNull
+    @Column(name = "password",nullable = false)
     private String password;
 
     @Column(name = "address")
     private String address;
 
-    @Column(name = "phone")
-    @NotNull
+    @Column(name = "phone",nullable = false)
     private String phone;
 
-    @Column(name = "permission")
-    @NotNull
+    @Column(name = "permission",nullable = false)
     private  Integer permission;
 
     @Column(name = "create_at")

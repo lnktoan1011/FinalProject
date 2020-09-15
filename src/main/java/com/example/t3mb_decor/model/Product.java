@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.w3c.dom.Text;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "products")
+@Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,17 +32,16 @@ public class Product {
     private String image;
     @Column(name = "height",nullable = false)
     private int height;
-    @Column(name = "lenght",nullable = false)
-    private int lenght;
+    @Column(name = "length",nullable = false)
+    private int length;
     @Column(name = "width",nullable = false)
     private int width;
-    @Column(name = "sale_status")
-    @Value("0")
+    @Column(name = "sale_status", columnDefinition = "integer default 0")
     private int sale_status;
-    @Column(name = "status")
-    @Value("0")
+    @Column(name = "status", columnDefinition = "integer default 0")
     private int status;
-
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "products")
+    private List<Customer> customers= new ArrayList<>();
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -55,7 +56,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(long id, String name, int price, String description, int quantity, String material, String image, int height, int lenght, int width, int sale_status, int status, Date createdAt, Date updatedAt) {
+    public Product(long id, String name, int price, String description, int quantity, String material, String image, int height, int length, int width, int sale_status, int status, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -64,7 +65,7 @@ public class Product {
         this.material = material;
         this.image = image;
         this.height = height;
-        this.lenght = lenght;
+        this.length = length;
         this.width = width;
         this.sale_status = sale_status;
         this.status = status;
@@ -129,13 +130,12 @@ public class Product {
     }
 
 
-
-    public int getLenght() {
-        return lenght;
+    public int getLength() {
+        return length;
     }
 
-    public void setLenght(int lenght) {
-        this.lenght = lenght;
+    public void setLength(int length) {
+        this.length = length;
     }
 
     public int getWidth() {
@@ -145,8 +145,6 @@ public class Product {
     public void setWidth(int width) {
         this.width = width;
     }
-
-
     public int getSale_status() {
         return sale_status;
     }
@@ -163,6 +161,19 @@ public class Product {
         this.status = status;
     }
 
+    public int getHeight() {
+        return height;
+    }
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
     public Date getCreatedAt() {
         return createdAt;
     }

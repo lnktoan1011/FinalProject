@@ -6,7 +6,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "customer")
@@ -14,24 +16,27 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
-    @Column(name = "name")
-    @NotNull
+    @Column(name = "name",nullable = false)
     private String name;
 
-    @Column(name = "email")
-    @NotNull
+    @Column(name = "email",nullable = false)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password",nullable = false)
     @NotNull
     private String password;
 
     @Column(name = "address")
     private String address;
 
-    @Column(name = "phone")
-    @NotNull
+    @Column(name = "phone",nullable = false)
     private String phone;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "wishlist",
+        joinColumns = {@JoinColumn(name = "customer_id")},
+        inverseJoinColumns = {@JoinColumn(name = "product_id")})
+    private List<Product> products = new ArrayList<>();
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -103,6 +108,14 @@ public class Customer {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public Date getCreatedAt() {

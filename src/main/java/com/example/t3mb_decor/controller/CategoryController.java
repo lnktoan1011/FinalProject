@@ -28,6 +28,7 @@ public class CategoryController {
 
     @GetMapping("/category")
     public List<Category> viewCategory(){
+        System.out.println("hello");
         return cate.findAll();
     }
     @PostMapping("/category")

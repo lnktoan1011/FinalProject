@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "customers")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,7 +33,7 @@ public class Customer {
     private String phone;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "wishlist",
+    @JoinTable(name = "wishlists",
         joinColumns = {@JoinColumn(name = "customer_id")},
         inverseJoinColumns = {@JoinColumn(name = "product_id")})
     private List<Product> product_wishlist = new ArrayList<>();

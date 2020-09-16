@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "category")
+@Table(name = "categorys")
 public class Category {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)

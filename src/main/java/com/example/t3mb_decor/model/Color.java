@@ -20,7 +20,7 @@ public class Color {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "color_id", referencedColumnName = "id")
-    private List<Product> products = new ArrayList<>() ;
+    private List<Product> product_color = new ArrayList<>() ;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -32,10 +32,12 @@ public class Color {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Color(long id, String name, List<Product> products) {
+    public Color(long id, String name, List<Product> product_color, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
-        this.products = products;
+        this.product_color = product_color;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public Color() {
@@ -57,12 +59,12 @@ public class Color {
         this.name = name;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Product> getProduct_color() {
+        return product_color;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProduct_color(List<Product> product_color) {
+        this.product_color = product_color;
     }
 
     public Date getCreatedAt() {

@@ -36,7 +36,7 @@ public class Customer {
     @JoinTable(name = "wishlist",
         joinColumns = {@JoinColumn(name = "customer_id")},
         inverseJoinColumns = {@JoinColumn(name = "product_id")})
-    private List<Product> products = new ArrayList<>();
+    private List<Product> product_wishlist = new ArrayList<>();
 
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -53,13 +53,15 @@ public class Customer {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Customer(long id, String name, String email, String password, String address, String phone, Date createdAt, Date updatedAt) {
+    public Customer(long id, String name, String email, String password, String address, String phone, List<Product> product_wishlist, List<Order> order_customer, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.address = address;
         this.phone = phone;
+        this.product_wishlist = product_wishlist;
+        this.order_customer = order_customer;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -115,14 +117,21 @@ public class Customer {
         this.phone = phone;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Product> getProduct_wishlist() {
+        return product_wishlist;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProduct_wishlist(List<Product> product_wishlist) {
+        this.product_wishlist = product_wishlist;
     }
 
+    public List<Order> getOrder_customer() {
+        return order_customer;
+    }
+
+    public void setOrder_customer(List<Order> order_customer) {
+        this.order_customer = order_customer;
+    }
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -139,12 +148,4 @@ public class Customer {
         this.updatedAt = updatedAt;
     }
 
-
-    public List<Order> getOrder_customer() {
-        return order_customer;
-    }
-
-    public void setOrder_customer(List<Order> order_customer) {
-        this.order_customer = order_customer;
-    }
 }

@@ -21,10 +21,10 @@ public class Order {
     private int total;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "order_product")
-    private List<Product> products= new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @Column(name = "discount_id")
+    @JoinColumn(name = "discount_id")
     private Discount discount;
 
     @CreationTimestamp

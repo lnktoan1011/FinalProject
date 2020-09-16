@@ -37,17 +37,17 @@ public class Product {
     @Column(name = "width",nullable = false)
     private int width;
 
-    @Column(name = "status", columnDefinition = "integer default 0")
-    private int status;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "products")
-    private List<Customer> customers= new ArrayList<>();
-
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "order_pro",
-            joinColumns = {@JoinColumn(name = "order_id")},
-            inverseJoinColumns = {@JoinColumn(name = "product_id")})
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "order_id")})
     private List<Order> order_product = new ArrayList<>();
 
+    @Column(name = "status", columnDefinition = "integer default 0")
+    private int status;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product_wishlist")
+    private List<Customer> customers= new ArrayList<>();
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -62,7 +62,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(long id, String name, int price, String description, int quantity, String material, String image, int height, int length, int width, int status, Date createdAt, Date updatedAt) {
+    public Product(long id, String name, int price, String description, int quantity, String material, String image, int height, int length, int width, List<Order> order_product, int status, List<Customer> customers, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -73,7 +73,9 @@ public class Product {
         this.height = height;
         this.length = length;
         this.width = width;
+        this.order_product = order_product;
         this.status = status;
+        this.customers = customers;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }

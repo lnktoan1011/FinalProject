@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Orders {
 
     @Id
@@ -21,10 +21,10 @@ public class Orders {
     private int total;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "order_product")
-    private List<Product> products= new ArrayList<>();
+    private List<Product> order_product= new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @Column(name = "discount_id")
+    @JoinColumn(name = "discount_id")
     private Discount discount;
 
     @CreationTimestamp
@@ -37,12 +37,6 @@ public class Orders {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "order_product")
-    private List<Product> products= new ArrayList<>();
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "discount_id")
-    private Discount discount;
 
     public Orders() {
     }
@@ -70,12 +64,12 @@ public class Orders {
         this.total = total;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Product> getOrder_product() {
+        return order_product;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setOrder_product(List<Product> order_product) {
+        this.order_product = order_product;
     }
 
     public Discount getDiscount() {

@@ -32,7 +32,7 @@ public class Brand {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Brand(long id, String name, List<Product> product_brand, Date createdAt, Date updatedAt) {
+    public Brand(long id, String name, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
         this.product_brand = product_brand;

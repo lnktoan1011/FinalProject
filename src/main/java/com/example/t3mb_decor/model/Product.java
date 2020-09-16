@@ -46,7 +46,7 @@ public class Product {
     @JoinTable(name = "order_pro",
             joinColumns = {@JoinColumn(name = "order_id")},
             inverseJoinColumns = {@JoinColumn(name = "product_id")})
-    private List<Order> orders = new ArrayList<>();
+    private List<Order> order_product = new ArrayList<>();
 
 
     @CreationTimestamp
@@ -188,11 +188,11 @@ public class Product {
         this.updatedAt = updatedAt;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public List<Order> getOrder_product() {
+        return order_product;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public void setOrder_product(List<Order> order_product) {
+        this.order_product = order_product;
     }
 }

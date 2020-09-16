@@ -20,7 +20,7 @@ public class Order {
     @Column(name = "total",columnDefinition = "integer default 0",length = 100)
     private int total;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "orders")
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "order_product")
     private List<Product> products= new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

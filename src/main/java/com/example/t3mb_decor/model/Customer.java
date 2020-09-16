@@ -15,7 +15,7 @@ import java.util.List;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long Id;
+    private long id;
     @Column(name = "name",nullable = false)
     private String name;
 
@@ -41,7 +41,7 @@ public class Customer {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id",referencedColumnName = "id")
-    private List<Order> orderss = new ArrayList<>();
+    private List<Order> order_customer = new ArrayList<>();
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -54,7 +54,7 @@ public class Customer {
     private Date updatedAt;
 
     public Customer(long id, String name, String email, String password, String address, String phone, Date createdAt, Date updatedAt) {
-        Id = id;
+        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
@@ -68,11 +68,11 @@ public class Customer {
     }
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
@@ -139,11 +139,12 @@ public class Customer {
         this.updatedAt = updatedAt;
     }
 
-    public List<Order> getOrderss() {
-        return orderss;
+
+    public List<Order> getOrder_customer() {
+        return order_customer;
     }
 
-    public void setOrderss(List<Order> orderss) {
-        this.orderss = orderss;
+    public void setOrder_customer(List<Order> order_customer) {
+        this.order_customer = order_customer;
     }
 }

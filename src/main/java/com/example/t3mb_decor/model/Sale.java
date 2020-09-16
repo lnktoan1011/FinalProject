@@ -21,7 +21,7 @@ public class Sale {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "sale_id",referencedColumnName = "id",columnDefinition = "bigint default 0")
-    private List<Product> product_sale = new ArrayList<>() ;
+    private List<Product> products = new ArrayList<>() ;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -36,10 +36,9 @@ public class Sale {
     public Sale() {
     }
 
-    public Sale(long id, int percent, List<Product> product_sale, Date createdAt, Date updatedAt) {
+    public Sale(long id, int percent, Date createdAt, Date updatedAt) {
         this.id = id;
         this.percent = percent;
-        this.product_sale = product_sale;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -60,12 +59,12 @@ public class Sale {
         this.percent = percent;
     }
 
-    public List<Product> getProduct_sale() {
-        return product_sale;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setProduct_sale(List<Product> product_sale) {
-        this.product_sale = product_sale;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public Date getCreatedAt() {

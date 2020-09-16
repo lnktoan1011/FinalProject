@@ -36,12 +36,12 @@ public class Customer {
     @JoinTable(name = "wishlist",
         joinColumns = {@JoinColumn(name = "customer_id")},
         inverseJoinColumns = {@JoinColumn(name = "product_id")})
-    private List<Product> product_wishlist = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
 
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id",referencedColumnName = "id")
-    private List<Order> order_customer = new ArrayList<>();
+    private List<Orders> order_customer = new ArrayList<>();
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -125,13 +125,10 @@ public class Customer {
         this.product_wishlist = product_wishlist;
     }
 
-    public List<Order> getOrder_customer() {
-        return order_customer;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
-    public void setOrder_customer(List<Order> order_customer) {
-        this.order_customer = order_customer;
-    }
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -148,4 +145,12 @@ public class Customer {
         this.updatedAt = updatedAt;
     }
 
+
+    public List<Order> getOrder_customer() {
+        return order_customer;
+    }
+
+    public void setOrder_customer(List<Order> order_customer) {
+        this.order_customer = order_customer;
+    }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "order")
-public class Order {
+public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,10 +21,10 @@ public class Order {
     private int total;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "order_product")
-    private List<Product> products = new ArrayList<>();
+    private List<Product> products= new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "discount_id")
+    @Column(name = "discount_id")
     private Discount discount;
 
     @CreationTimestamp
@@ -37,10 +37,17 @@ public class Order {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Order() {
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "order_product")
+    private List<Product> products= new ArrayList<>();
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "discount_id")
+    private Discount discount;
+
+    public Orders() {
     }
 
-    public Order(long id, int total, Date createdAt, Date updatedAt) {
+    public Orders(long id, int total, Date createdAt, Date updatedAt) {
         this.id = id;
         this.total = total;
         this.createdAt = createdAt;

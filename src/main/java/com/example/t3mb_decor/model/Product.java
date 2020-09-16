@@ -36,12 +36,18 @@ public class Product {
     private int length;
     @Column(name = "width",nullable = false)
     private int width;
-    @Column(name = "sale_status", columnDefinition = "integer default 0")
-    private int sale_status;
+
     @Column(name = "status", columnDefinition = "integer default 0")
     private int status;
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "products")
     private List<Customer> customers= new ArrayList<>();
+
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinTable(name = "order_pro",
+            joinColumns = {@JoinColumn(name = "order_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id")})
+    private List<Order> orders = new ArrayList<>();
+
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -56,7 +62,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(long id, String name, int price, String description, int quantity, String material, String image, int height, int length, int width, int sale_status, int status, Date createdAt, Date updatedAt) {
+    public Product(long id, String name, int price, String description, int quantity, String material, String image, int height, int length, int width, int status, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -67,7 +73,6 @@ public class Product {
         this.height = height;
         this.length = length;
         this.width = width;
-        this.sale_status = sale_status;
         this.status = status;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -145,13 +150,6 @@ public class Product {
     public void setWidth(int width) {
         this.width = width;
     }
-    public int getSale_status() {
-        return sale_status;
-    }
-
-    public void setSale_status(int sale_status) {
-        this.sale_status = sale_status;
-    }
 
     public int getStatus() {
         return status;
@@ -188,5 +186,13 @@ public class Product {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

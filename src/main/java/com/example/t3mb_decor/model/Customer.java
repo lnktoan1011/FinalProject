@@ -38,6 +38,11 @@ public class Customer {
         inverseJoinColumns = {@JoinColumn(name = "product_id")})
     private List<Product> products = new ArrayList<>();
 
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id",referencedColumnName = "id")
+    private List<Order> orderss = new ArrayList<>();
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
@@ -132,5 +137,13 @@ public class Customer {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<Order> getOrderss() {
+        return orderss;
+    }
+
+    public void setOrderss(List<Order> orderss) {
+        this.orderss = orderss;
     }
 }

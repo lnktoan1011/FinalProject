@@ -14,8 +14,9 @@ import java.util.List;
 @Table(name = "customer")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Column(name = "name",nullable = false)
     private String name;
 
@@ -41,7 +42,7 @@ public class Customer {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id",referencedColumnName = "id")
-    private List<Order> order_customer = new ArrayList<>();
+    private List<Orders> order_customer = new ArrayList<>();
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -139,12 +140,11 @@ public class Customer {
         this.updatedAt = updatedAt;
     }
 
-
-    public List<Order> getOrder_customer() {
+    public List<Orders> getOrder_customer() {
         return order_customer;
     }
 
-    public void setOrder_customer(List<Order> order_customer) {
+    public void setOrder_customer(List<Orders> order_customer) {
         this.order_customer = order_customer;
     }
 }

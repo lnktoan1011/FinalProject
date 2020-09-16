@@ -1,6 +1,5 @@
 package com.example.t3mb_decor.model;
 
-
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -10,22 +9,14 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
-public class Order {
-
+@Table(name = "orders")
+public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "total",columnDefinition = "integer default 0",length = 100)
+    @Column(name = "total",columnDefinition = "integer default 0",length = 50)
     private int total;
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "order_product")
-    private List<Product> products= new ArrayList<>();
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @Column(name = "discount_id")
-    private Discount discount;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -37,10 +28,17 @@ public class Order {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Order() {
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "order_product")
+    private List<Product> products= new ArrayList<>();
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "discount_id")
+    private Discount discount;
+
+    public Orders() {
     }
 
-    public Order(long id, int total, Date createdAt, Date updatedAt) {
+    public Orders(long id, int total, Date createdAt, Date updatedAt) {
         this.id = id;
         this.total = total;
         this.createdAt = createdAt;
@@ -63,22 +61,6 @@ public class Order {
         this.total = total;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
-    public Discount getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(Discount discount) {
-        this.discount = discount;
-    }
-
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -95,5 +77,19 @@ public class Order {
         this.updatedAt = updatedAt;
     }
 
+    public List<Product> getProducts() {
+        return products;
+    }
 
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public Discount getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
+    }
 }

@@ -44,9 +44,9 @@ public class Product {
 
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "order_pro",
-            joinColumns = {@JoinColumn(name = "order_id")},
-            inverseJoinColumns = {@JoinColumn(name = "product_id")})
-    private List<Order> order_product = new ArrayList<>();
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "order_id")})
+    private List<Orders> order_product = new ArrayList<>();
 
 
     @CreationTimestamp
@@ -188,11 +188,11 @@ public class Product {
         this.updatedAt = updatedAt;
     }
 
-    public List<Order> getOrder_product() {
+    public List<Orders> getOrder_product() {
         return order_product;
     }
 
-    public void setOrder_product(List<Order> order_product) {
+    public void setOrder_product(List<Orders> order_product) {
         this.order_product = order_product;
     }
 }

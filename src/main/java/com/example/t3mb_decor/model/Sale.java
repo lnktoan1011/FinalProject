@@ -20,7 +20,7 @@ public class Sale {
     private int percent;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "sale_id",referencedColumnName = "id",columnDefinition = "integer default 0")
+    @JoinColumn(name = "sale_id",referencedColumnName = "id",columnDefinition = "bigint default 0")
     private List<Product> products = new ArrayList<>() ;
 
     @CreationTimestamp

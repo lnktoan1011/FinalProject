@@ -9,7 +9,6 @@ import com.example.t3mb_decor.repository.SubCategoryRepository;
 import com.example.t3mb_decor.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -18,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+@RequestMapping("/category")
 @RestController
 public class CategoryController {
 
@@ -26,35 +25,35 @@ public class CategoryController {
     private CategoryService categoryService;
 
 
-    @GetMapping("/category")
+    @GetMapping
     public List<Category> viewCategory(){
         return categoryService.getAllCategories();
     }
-//    @PostMapping("/category")
-//    public Category saveEmployee(@ModelAttribute Category category, Model model) {
-//        model.addAttribute("category", category);
-//        return category;
-//    }
-    @PostMapping("/category")
-    public Category saveEmployee(@RequestBody Category category){
-
-////        category = cate.findById((long) 1).get();
-////        List<SubCategory> subCategory;
-////        subCategory = category.getSub();
-////        for (SubCategory value : subCategory) {
-////            if (value.getName().equals("Short-Table")) {
-////                value.setName("Short Table");
-////            }
-////            if (value.getName().equals("Long-Table")) {
-////                value.setName("Long Table");
-////            }
-////            if (value.getName().equals("Medium-Table")) {
-////                value.setName("Medium Table");
-////            }
-////        }
-//        //category.setSub(subCategory);
-//        //cate.save(category);
-//        //categoryService.saveCategory(category);
+    @PostMapping
+    public Category saveCategory(@RequestBody Category category){
+//        category = cate.findById((long) 1).get();
+//        List<SubCategory> subCategory;
+//        subCategory = category.getSub();
+//        for (SubCategory value : subCategory) {
+//            if (value.getName().equals("Short-Table")) {
+//                value.setName("Short Table");
+//            }
+//            if (value.getName().equals("Long-Table")) {
+//                value.setName("Long Table");
+//            }
+//            if (value.getName().equals("Medium-Table")) {
+//                value.setName("Medium Table");
+//            }
+//        }
+        //category.setSub(subCategory);
+        //cate.save(category);
+        categoryService.saveCategory(category);
         return category;
+    }
+
+    @PostMapping(path = "{id}")
+    public Category editCategory(@PathVariable("id") long id, @RequestBody Category categoryUpdate){
+        categoryService.updateCategory(id, categoryUpdate);
+        return categoryUpdate;
     }
 }

@@ -9,6 +9,7 @@ import com.example.t3mb_decor.repository.SubCategoryRepository;
 import com.example.t3mb_decor.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -18,19 +19,25 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 @RequestMapping("/category")
-@RestController
+@Controller
 public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
 
-
     @GetMapping
-    public List<Category> viewCategory(){
-        return categoryService.getAllCategories();
+    public String viewAllCategory(Model model){
+        List<Category> listCate =  categoryService.getAllCategories();
+        model.addAttribute( "listCategories",listCate);
+        return "index";
     }
-    @PostMapping
-    public Category saveCategory(@RequestBody Category category){
+    @GetMapping("add")
+    public String viewCategory(Model model){
+        model.addAttribute("cate", new Category());
+        return "bin";
+    }
+    @PostMapping("add")
+    public String saveCategory(@ModelAttribute("cate") Category category){
 //        category = cate.findById((long) 1).get();
 //        List<SubCategory> subCategory;
 //        subCategory = category.getSub();
@@ -48,12 +55,12 @@ public class CategoryController {
         //category.setSub(subCategory);
         //cate.save(category);
         categoryService.saveCategory(category);
-        return category;
+        return "redirect:";
     }
 
-    @PostMapping(path = "{id}")
-    public Category editCategory(@PathVariable("id") long id, @RequestBody Category categoryUpdate){
-        categoryService.updateCategory(id, categoryUpdate);
-        return categoryUpdate;
-    }
+//    @PostMapping(path = "{id}")
+//    public Category editCategory(@PathVariable("id") long id, @RequestBody Category categoryUpdate){
+//        categoryService.updateCategory(id, categoryUpdate);
+//        return categoryUpdate;
+//    }
 }

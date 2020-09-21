@@ -14,10 +14,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each ="employee : ${list}">
-        <td th:text="${employee.id}"></td>
-        <td th:text="${employee.name}"></td>
-        <td th:text="${employee.emailID}"></td>
+    <tr th:each ="cate : ${listCategories}">
+        <td th:text="${cate.getId()}"></td>
+        <td th:text="${cate.getName()}"></td>
+        <td th:text="${cate.getCreatedAt()}"></td>
     </tr>
     </tbody>
 </table>

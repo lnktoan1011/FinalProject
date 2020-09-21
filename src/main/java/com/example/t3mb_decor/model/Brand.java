@@ -32,12 +32,8 @@ public class Brand {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Brand(long id, String name, Date createdAt, Date updatedAt) {
-        this.id = id;
+    public Brand(String name) {
         this.name = name;
-        this.product_brand = product_brand;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     public Brand() {

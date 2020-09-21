@@ -41,7 +41,7 @@ public class Orders {
     public Orders() {
     }
 
-    public Orders(long id, int total, Date createdAt, Date updatedAt) {
+    public Orders(int total) {
         this.id = id;
         this.total = total;
         this.createdAt = createdAt;

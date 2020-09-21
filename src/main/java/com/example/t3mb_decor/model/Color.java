@@ -32,12 +32,8 @@ public class Color {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Color(long id, String name, Date createdAt, Date updatedAt) {
-        this.id = id;
+    public Color(String name) {
         this.name = name;
-        this.product_color = product_color;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     public Color() {

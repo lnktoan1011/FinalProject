@@ -36,7 +36,6 @@ public class Product {
     private int length;
     @Column(name = "width",nullable = false)
     private int width;
-
     @Column(name = "status", columnDefinition = "integer default 0")
     private int status;
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product_wishlist")
@@ -47,7 +46,6 @@ public class Product {
             joinColumns = {@JoinColumn(name = "product_id")},
             inverseJoinColumns = {@JoinColumn(name = "order_id")})
     private List<Orders> order_product = new ArrayList<>();
-
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -62,8 +60,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(long id, String name, int price, String description, int quantity, String material, String image, int height, int length, int width, int status, Date createdAt, Date updatedAt) {
-        this.id = id;
+    public Product(String name, int price, String description, int quantity, String material, String image, int height, int length, int width) {
         this.name = name;
         this.price = price;
         this.description = description;
@@ -73,9 +70,6 @@ public class Product {
         this.height = height;
         this.length = length;
         this.width = width;
-        this.status = status;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     public long getId() {

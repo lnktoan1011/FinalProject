@@ -34,11 +34,8 @@ public class SubCategory {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public SubCategory(long id, String name, Date createdAt, Date updatedAt) {
-        this.id = id;
+    public SubCategory(String name) {
         this.name = name;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     public SubCategory() {

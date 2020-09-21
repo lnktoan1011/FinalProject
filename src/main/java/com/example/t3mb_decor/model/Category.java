@@ -35,12 +35,8 @@ public class Category {
         @JoinColumn(name = "category_id", referencedColumnName = "id")
         private List<SubCategory> sub = new ArrayList<>() ;
 
-        public Category(long id, String name, Date createdAt, Date updatedAt) {
-            this.id = id;
+        public Category(String name) {
             this.name = name;
-            this.createdAt = createdAt;
-            this.updatedAt = updatedAt;
-            this.sub = sub;
         }
 
         public Category() {

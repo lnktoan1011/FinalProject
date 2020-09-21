@@ -41,13 +41,11 @@ public class Discount {
     public Discount() {
     }
 
-    public Discount(long id, String name, int percent, int status, Date createdAt, Date updatedAt) {
-        this.id = id;
+    public Discount(String name, int percent, int status) {
         this.name = name;
         this.percent = percent;
         this.status = status;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+
     }
 
     public long getId() {

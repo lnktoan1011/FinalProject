@@ -38,16 +38,13 @@ public class Admin {
     @Column(name = "update_at")
     private String updatedAt;
 
-    public Admin(long id, String name, String email, String password, String address, String phone, Integer permission, String createdAt, String updatedAt) {
-        this.id = id;
+    public Admin(String name, String email, String password, String address, String phone, Integer permission) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.address = address;
         this.phone = phone;
         this.permission = permission;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     public Admin() {

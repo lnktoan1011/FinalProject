@@ -53,15 +53,12 @@ public class Customer {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Customer(long id, String name, String email, String password, String address, String phone, Date createdAt, Date updatedAt) {
-        this.id = id;
+    public Customer(String name, String email, String password, String address, String phone) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.address = address;
         this.phone = phone;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     public Customer() {

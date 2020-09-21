@@ -36,11 +36,8 @@ public class Sale {
     public Sale() {
     }
 
-    public Sale(long id, int percent, Date createdAt, Date updatedAt) {
-        this.id = id;
+    public Sale(int percent) {
         this.percent = percent;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     public long getId() {

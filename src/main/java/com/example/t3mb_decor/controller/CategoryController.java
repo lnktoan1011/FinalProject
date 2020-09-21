@@ -9,10 +9,7 @@ import com.example.t3mb_decor.repository.SubCategoryRepository;
 import com.example.t3mb_decor.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.io.Console;
@@ -20,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+@RequestMapping("/category")
 @RestController
 public class CategoryController {
 
@@ -28,13 +25,12 @@ public class CategoryController {
     private CategoryService categoryService;
 
 
-    @GetMapping("/category")
+    @GetMapping
     public List<Category> viewCategory(){
         return categoryService.getAllCategories();
     }
-    @PostMapping("/category")
-    public Category saveEmployee(@RequestBody Category category){
-
+    @PostMapping
+    public Category saveCategory(@RequestBody Category category){
 //        category = cate.findById((long) 1).get();
 //        List<SubCategory> subCategory;
 //        subCategory = category.getSub();
@@ -51,7 +47,13 @@ public class CategoryController {
 //        }
         //category.setSub(subCategory);
         //cate.save(category);
-        //categoryService.saveCategory(category);
+        categoryService.saveCategory(category);
         return category;
+    }
+
+    @PostMapping(path = "{id}")
+    public Category editCategory(@PathVariable("id") long id, @RequestBody Category categoryUpdate){
+        categoryService.updateCategory(id, categoryUpdate);
+        return categoryUpdate;
     }
 }

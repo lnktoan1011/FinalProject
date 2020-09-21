@@ -23,11 +23,18 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category getCategory(long id) {
-        return null;
+        return this.categoryRepository.findById(id).get();
     }
 
     @Override
     public void deleteCategory(long id) {
 
+    }
+
+    @Override
+    public void updateCategory(long id, Category category) {
+        Category categoryUpdate = this.getCategory(id);
+        categoryUpdate.setName(category.getName());
+        this.categoryRepository.save(categoryUpdate);
     }
 }

@@ -31,8 +31,13 @@ public class CategoryController {
         model.addAttribute( "listCategories",listCate);
         return "index";
     }
+    @GetMapping("delete/{id}")
+     public String deleteCategory(@PathVariable("id") long id){
+        categoryService.deleteCategory(id);
+        return "redirect:/category";
+    }
     @GetMapping("add")
-    public String viewCategory(Model model){
+    public String viewNewCategory(Model model){
         model.addAttribute("cate", new Category());
         return "bin";
     }
@@ -54,13 +59,21 @@ public class CategoryController {
 //        }
         //category.setSub(subCategory);
         //cate.save(category);
+
+        //Save cate create date.Because when update the cate create date not save.
+        if(category.getId() != 0) {
+            Date createDate = categoryService.getCategory(category.getId()).getCreatedAt();
+            category.setCreatedAt(createDate);
+        }
         categoryService.saveCategory(category);
         return "redirect:";
     }
+    @GetMapping("update/{id}")
+    public String viewUpdateCategory(@PathVariable("id") long id, Model model){
+        Category categoryUpdate = categoryService.getCategory(id);
+        model.addAttribute("cate", categoryUpdate);
+        return "bin";
+    }
 
-//    @PostMapping(path = "{id}")
-//    public Category editCategory(@PathVariable("id") long id, @RequestBody Category categoryUpdate){
-//        categoryService.updateCategory(id, categoryUpdate);
-//        return categoryUpdate;
-//    }
+
 }

@@ -10,7 +10,9 @@
     <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>EmailID</th>
+        <th>Create At</th>
+        <th>Update At</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -18,8 +20,15 @@
         <td th:text="${cate.getId()}"></td>
         <td th:text="${cate.getName()}"></td>
         <td th:text="${cate.getCreatedAt()}"></td>
+        <td th:text="${cate.getUpdatedAt()}"></td>
+        <td>
+            <a th:href="@{/category/update/{id}(id = ${cate.id})}" class ="btn btn-primary">Update</a>
+            <a th:href="@{/category/delete/{id}(id = ${cate.id})}" class ="btn btn-danger">Delete</a>
+        </td>
     </tr>
     </tbody>
+
 </table>
+<a th:href="@{/category/add}" class ="btn btn-primary">Add</a>
 </body>
 </html>

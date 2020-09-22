@@ -75,5 +75,20 @@ public class CategoryController {
         return "bin";
     }
 
+    @GetMapping("add-sub/{id}")
+    public String viewNewSubCategory(@PathVariable("id") long id, Model model){
+        model.addAttribute("subCate", new SubCategory());
+        model.addAttribute("cate_id", id);
+        return "bin";
+    }
+    @PostMapping("add-sub/{id}")
+    public String addSubCategory(@PathVariable("id") long id,@ModelAttribute("subCate") SubCategory sub){
+        Category category = categoryService.getCategory(id) ;
+        category.getSub().add(sub);
+        categoryService.saveCategory(category);
+        return "redirect:/category";
+
+    }
+
 
 }

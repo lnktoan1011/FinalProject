@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "sub_categorys")
+@Table(name = "sub_categories")
 public class SubCategory {
 
     @Id

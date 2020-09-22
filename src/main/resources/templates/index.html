@@ -12,15 +12,17 @@
         <th>Name</th>
         <th>Create At</th>
         <th>Update At</th>
+        <th>SubCate</th>
         <th>Action</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each ="cate : ${listCategories}">
         <td th:text="${cate.getId()}"></td>
-        <td th:text="${cate.getName()}"></td>
+        <td > <a th:href="@{/category/add-sub/{id}(id = ${cate.id})}" >  <span th:text="${cate.getName()}"></span> </a> </td>
         <td th:text="${cate.getCreatedAt()}"></td>
         <td th:text="${cate.getUpdatedAt()}"></td>
+        <td th:text="${cate.getSub()}"></td>
         <td>
             <a th:href="@{/category/update/{id}(id = ${cate.id})}" class ="btn btn-primary">Update</a>
             <a th:href="@{/category/delete/{id}(id = ${cate.id})}" class ="btn btn-danger">Delete</a>
@@ -29,6 +31,8 @@
     </tbody>
 
 </table>
+
+
 <a th:href="@{/category/add}" class ="btn btn-primary">Add</a>
 </body>
 </html>

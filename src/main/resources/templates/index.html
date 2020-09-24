@@ -1,38 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Hello Word</title>
-</head>
-<body>
-<table border="1" class="table table-striped table-responsive-md">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Create At</th>
-        <th>Update At</th>
-        <th>SubCate</th>
-        <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each ="cate : ${listCategories}">
-        <td th:text="${cate.getId()}"></td>
-        <td > <a th:href="@{/category/add-sub/{id}(id = ${cate.id})}" >  <span th:text="${cate.getName()}"></span> </a> </td>
-        <td th:text="${cate.getCreatedAt()}"></td>
-        <td th:text="${cate.getUpdatedAt()}"></td>
-        <td th:text="${cate.getSub()}"></td>
-        <td>
-            <a th:href="@{/category/update/{id}(id = ${cate.id})}" class ="btn btn-primary">Update</a>
-            <a th:href="@{/category/delete/{id}(id = ${cate.id})}" class ="btn btn-danger">Delete</a>
-        </td>
-    </tr>
-    </tbody>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+                layout:decorate="~{layouts/layout}">
+    <head>
+        <title>List Categories</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="row">
+                <div class="col-6">
+                    <ul th:each ="cate : ${listCategories}">
+                        <li > <a th:href="@{/category/add-sub/{id}(id = ${cate.id})}" >  <span th:text="${cate.getName()}"></span> </a>
+                            <ul th:each="subcate :${cate.getSub()}">
+                                <li th:text="${subcate.name}"> </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a th:href="@{/category/update/{id}(id = ${cate.id})}" class ="btn btn-primary">Update</a>
+                            <a th:href="@{/category/delete/{id}(id = ${cate.id})}" class ="btn btn-danger">Delete</a>
+                        </li>
+                    </ul>
 
-</table>
-
-
-<a th:href="@{/category/add}" class ="btn btn-primary">Add</a>
-</body>
+                    <a th:href="@{/category/add}" class ="btn btn-primary">Add</a>
+                </div>
+                <div class="col-6">
+                    <th:block th:if="${flag == null}">
+                        <th:block th:if="${cate_id == null}">
+                            <form action="#" th:action="@{/category/add}" th:object="${cate}" method="post">
+                                <label>Name:</label>
+                                <input type="hidden" th:field="*{id} " /><br>
+                                <input type="text" th:field="*{name} " /><br>
+                                <button type="submit">Submit</button>
+                            </form>
+                        </th:block>
+                        <th:block th:unless="${cate_id == null}">
+                            <form action="#" th:action="@{/category/add-sub/{id}(id = ${cate_id})}" th:object="${subCate}" method="post">
+                                <label>Name:</label>
+                                <input type="hidden" th:field="*{id} " /><br>
+                                <input type="text" th:field="*{name} " /><br>
+                                <button type="submit">Submit</button>
+                            </form>
+                        </th:block>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Times New Roman', Times, serif;
+    color:red;
 }
 body {
     background: #000;
@@ -109,4 +110,13 @@ header.sticky .login:hover {
 .modal-body .search:focus {
     width: 600px;
 }
-    
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+}

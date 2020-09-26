@@ -2,10 +2,7 @@ package com.example.t3mb_decor.controller;
 
 
 import com.example.t3mb_decor.model.Category;
-import com.example.t3mb_decor.model.Customer;
 import com.example.t3mb_decor.model.SubCategory;
-import com.example.t3mb_decor.repository.CategoryRepository;
-import com.example.t3mb_decor.repository.SubCategoryRepository;
 import com.example.t3mb_decor.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.io.Console;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 @RequestMapping("/category")
@@ -99,6 +93,4 @@ public class CategoryController {
         categoryService.saveCategory(category);
         return "redirect:/category";
     }
-
-
 }

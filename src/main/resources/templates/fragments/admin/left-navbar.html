@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="left-nav" th:fragment="left-nav">
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="index.html" class="brand-link">
+            <img th:src="@{/admin/dist/img/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                 style="opacity: .8">
+            <span class="brand-text font-weight-light">Admin T3MB</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img th:src="@{/admin/dist/img/user2-160x160.jpg}" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block">Thanh nguyen</a>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-desktop"></i>
+                            <p>
+                                DashBoard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview menu-open" >
+                        <a href="#" class="nav-link order_click">
+                            <i class="nav-icon fas fa-desktop"></i>
+                            <p>
+                                My Sales
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a th:href="@{../category/test}" class="nav-link order_click">
+                                    <i class="far fa-list-alt nav-icon"></i>
+                                    <p>Orders</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a th:href="@{./customer.html}" class="nav-link customer_click">
+                                    <i class="far fa-user nav-icon"></i>
+                                    <p>Customers</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-address-book"></i>
+                            <p>
+                                Catalog
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="pages/catalog/product.html" class="nav-link">
+                                    <i class="fas fa-barcode nav-icon"></i>
+                                    <p>Product</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a th:href="@{../templates/content/admin/categories.html}" class="nav-link">
+                                    <i class="fas fa-align-center nav-icon"></i>
+                                    <p>Categories</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/catalog/promotion.html" class="nav-link">
+                                    <i class="fas fa-ticket-alt nav-icon"></i>
+                                    <p>Promotion</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/catalog/sale.html" class="nav-link">
+                                    <i class="fas fa-percent nav-icon"></i>
+                                    <p>Sale</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+</div>
+</body>
+</html>

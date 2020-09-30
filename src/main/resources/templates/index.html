@@ -8,13 +8,13 @@
     <body>
         <div layout:fragment="content">
             <a th:href="@{/category/add}" class ="btn btn-primary">Add Category</a>
-            <th:block th:if="${cate_id != null}">
-                <a th:href="@{/category/update/{id}(id = ${cate.id})}" class ="btn btn-primary">Add Sub-Category</a>
+
+            <th:block th:if="${addsub_cate_id != null}">
+                <a th:href="@{/category/add-sub/{id}(id = ${cate.id})}" class ="btn btn-primary">Add Sub-Category</a>
             </th:block>
             <div class="row">
                 <div class="col-6">
                     <ul th:each ="cate : ${listCategories}">
-
                         <li > <a th:href="@{/category/update/{id}(id = ${cate.id})}"> <span th:text="${cate.getName()}"></span> </a>
                             <ul th:each="subcate :${cate.getSub()}">
                                 <li th:text="${subcate.name}"> </li>

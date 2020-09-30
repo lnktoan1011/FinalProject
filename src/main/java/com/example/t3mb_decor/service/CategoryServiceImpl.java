@@ -1,10 +1,12 @@
 package com.example.t3mb_decor.service;
 
 import com.example.t3mb_decor.model.Category;
+import com.example.t3mb_decor.model.SubCategory;
 import com.example.t3mb_decor.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -35,7 +37,12 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void updateCategory(long id, Category category) {
         Category categoryUpdate = this.getCategory(id);
+        Date createDate = categoryUpdate.getCreatedAt();
+        List<SubCategory> subCategoryList = categoryUpdate.getSub();
+
         categoryUpdate.setName(category.getName());
+        category.setCreatedAt(createDate);
+        category.setSub(subCategoryList);
         this.categoryRepository.save(categoryUpdate);
     }
 }

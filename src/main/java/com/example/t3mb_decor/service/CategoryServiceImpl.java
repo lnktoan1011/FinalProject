@@ -33,6 +33,10 @@ public class CategoryServiceImpl implements CategoryService {
         Category categoryDelete = this.getCategory(id);
         this.categoryRepository.delete(categoryDelete);
     }
+    @Override
+    public void deleteAllOfCategory() {
+        this.categoryRepository.deleteAll();
+    }
 
     @Override
     public void updateCategory(long id, Category category) {

@@ -30,7 +30,7 @@ public class SubCategoryServiceImpl implements SubCategoryService{
 
     @Override
     public void deleteSubCategory(long id) {
-
+        subCategoryRepository.delete(this.getSubCategory(id));
     }
 
     @Override

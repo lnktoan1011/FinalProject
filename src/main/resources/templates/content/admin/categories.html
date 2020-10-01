@@ -9,24 +9,26 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <a th:href="@{/category/add}" class ="btn btn-primary">Add Category</a>
+    <a th:href="@{/category/add}" class ="btn btn-primary m-2">Add Category</a>
 
     <th:block th:if="${addsub_cate_id != null}">
-        <a th:href="@{/category/add-sub/{id}(id = ${cate.id})}" class ="btn btn-primary">Add Sub-Category</a>
+        <a th:href="@{/category/add-sub/{id}(id = ${cate.id})}" class ="btn btn-primary m-2">Add Sub-Category</a>
     </th:block>
     <div class="row">
         <div class="col-6">
-            <ul th:each ="cate : ${listCategories}">
-                <li > <a th:href="@{/category/update/{id}(id = ${cate.id})}"> <span th:text="${cate.getName()}"></span> </a>
-                    <ul th:each="subcate :${cate.getSub()}">
-                        <li> <a th:href="@{/category/update-sub/{id}(id = ${subcate.id})}"> <span th:text="${subcate.getName()}"></span> </a> </li>
+            <ul th:each ="cate : ${listCategories}" class="list-unstyled ml-4">
+                <li > <a th:href="@{/category/update/{id}(id = ${cate.id})}"> <span th:text="${cate.getName()}"> </span> </a>
+                    <a th:href="@{/category/delete/{id}(id = ${cate.id})}" style="color: red;"> Delete</a>
+                    <ul th:each="subcate :${cate.getSub()}" class="list-unstyled ml-2">
+                        <li> <a th:href="@{/category/update-sub/{id}(id = ${subcate.id})}"> <span th:text="${subcate.getName()}"></span> </a>
+                            <a th:href="@{/category/deleteSub/{id}(id = ${subcate.id})}" style="color: red;"> Delete</a>
+                        </li>
                     </ul>
                 </li>
-                <li>
-                    <a th:href="@{/category/delete/{id}(id = ${cate.id})}" class ="btn btn-danger">Delete</a>
-                </li>
             </ul>
+            <a th:href="@{/category/delete}" class ="btn btn-danger m-2">Delete All</a>
         </div>
+
         <div class="col-6">
             <th:block th:if="${flag == null}">
                 <th:block th:if="${cate_id == null}">

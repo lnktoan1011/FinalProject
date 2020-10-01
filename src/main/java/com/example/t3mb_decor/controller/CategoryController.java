@@ -33,6 +33,16 @@ public class CategoryController {
         categoryService.deleteCategory(id);
         return "redirect:/category";
     }
+    @GetMapping("delete")
+    public String deleteCategory(){
+        categoryService.deleteAllOfCategory();
+        return "redirect:/category";
+    }
+    @GetMapping("/deleteSub/{id}")
+    public String deleteSub(@PathVariable("id") long id){
+        subCategoryService.deleteSubCategory(id);
+        return "redirect:/category";
+    }
     @GetMapping("add")
     public String viewNewCategory(Model model){
         List<Category> listCate =  categoryService.getAllCategories();

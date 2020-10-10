@@ -325,24 +325,35 @@ button{
 .cont .img-btn .m-in {
     opacity: 0;
 }
-/*.alert {*/
-/*    padding: 20px;*/
-/*    background-color: #b3ffff;*/
-/*    color: white;*/
-/*    opacity: 1;*/
-/*    transition: opacity 0.6s;*/
-/*    margin-bottom: 15px;*/
-/*}*/
-/*.closebtn {*/
-/*    margin-left: 15px;*/
-/*    color: white;*/
-/*    font-weight: bold;*/
-/*    float: right;*/
-/*    font-size: 22px;*/
-/*    line-height: 20px;*/
-/*    cursor: pointer;*/
-/*    transition: 0.3s;*/
-/*}*/
-/*.closebtn:hover {*/
-/*    color: black;*/
-/*}*/
+.alert-error {
+    padding: 20px;
+    background-color: red;
+    width: 650px;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+}
+.alert-success,.alert-logout{
+    padding: 20px;
+    background: -webkit-linear-gradient(left,#7579ff,#b224ef);
+    width: 650px;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+}
+
+span.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+span.closebtn:hover {
+    color: black;
+}

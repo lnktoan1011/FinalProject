@@ -6,8 +6,8 @@
     <title> Login and Registration Form</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <base href="/">
-    <link rel="stylesheet" type="text/css" th:href="@{login/login_style.css}">
+<!--    <base href="/">-->
+    <link rel="stylesheet" type="text/css" th:href="@{/login/login_style.css}">
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
 
 </head>
@@ -17,28 +17,22 @@
 <!--<th:block th:if="${param.registration}"><div class="cont s-signup"></th:block>-->
 <!--<th:block th:unless="${param.registration}"><div class="cont"></th:block>-->
     <div th:if ="${param.success}">
-        <div class="alert" style=" padding: 20px;background:-webkit-linear-gradient(left,#7579ff,#b224ef);color: white;opacity: 1;
-        transition: opacity 0.6s; text-align: center;width: 640px;">
-            <span class="closebtn" style="margin-left: 15px;color: white;font-weight: bold;
-            float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;"
+        <div class="alert-success" >
+            <span class="closebtn"
                   onclick="this.parentElement.style.display='none';">&times;</span>
             You've successfully registerd!!!
         </div>
     </div>
     <div th:if ="${param.error}">
-        <div class="alert" style=" padding: 20px;background:#ff0000;color: white;opacity: 1;
-        transition: opacity 0.6s; text-align: center;width: 640px;">
-            <span class="closebtn" style="margin-left: 15px;color: white;font-weight: bold;
-            float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;"
-                  onclick="this.parentElement.style.display='none';">&times;</span>
+        <div class="alert-error" >
             Invalid username or password!!!
+            <span class="closebtn"
+                  onclick="this.parentElement.style.display='none';">&times;</span>
         </div>
     </div>
     <div th:if ="${param.logout}">
-        <div class="alert" style=" padding: 20px;background:-webkit-linear-gradient(left,#7579ff,#b224ef);color: white;opacity: 1;
-        transition: opacity 0.6s; text-align: center;width: 640px;">
-            <span class="closebtn" style="margin-left: 15px;color: white;font-weight: bold;
-            float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;"
+        <div class="alert-logout" >
+            <span class="closebtn"
                   onclick="this.parentElement.style.display='none';">&times;</span>
             You have been logged out!!!
         </div>

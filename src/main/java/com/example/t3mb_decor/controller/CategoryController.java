@@ -21,6 +21,8 @@ public class CategoryController {
     private CategoryService categoryService;
     @Autowired
     private SubCategoryService subCategoryService;
+
+
     @GetMapping
     public String viewAllCategory(Model model){
         List<Category> listCate =  categoryService.getAllCategories();

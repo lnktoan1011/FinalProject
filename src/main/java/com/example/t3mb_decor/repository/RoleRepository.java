@@ -1,10 +1,9 @@
 package com.example.t3mb_decor.repository;
 
-import com.example.t3mb_decor.model.Category;
-import com.example.t3mb_decor.model.Customer;
+import com.example.t3mb_decor.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer,Long> {
+public interface RoleRepository extends JpaRepository<Role,Long> {
 }

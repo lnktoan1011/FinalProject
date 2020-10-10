@@ -39,7 +39,7 @@ public class Product {
     @Column(name = "status", columnDefinition = "integer default 0")
     private int status;
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product_wishlist")
-    private List<Customer> customer_wishlist= new ArrayList<>();
+    private List<User> customer_wishlist= new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "order_products",
@@ -159,11 +159,11 @@ public class Product {
         this.height = height;
     }
 
-    public List<Customer> getCustomer_wishlist() {
+    public List<User> getCustomer_wishlist() {
         return customer_wishlist;
     }
 
-    public void setCustomer_wishlist(List<Customer> customer_wishlist) {
+    public void setCustomer_wishlist(List<User> customer_wishlist) {
         this.customer_wishlist = customer_wishlist;
     }
     public Date getCreatedAt() {

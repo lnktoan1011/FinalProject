@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,60 +10,70 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
+<!--    <link rel="stylesheet" href="style.css">-->
 </head>
 <body>
-  <header>
-    <a href="#" class="nav-logo">
-      <img src="logo.png" class="nav-logo-img" alt="Logo">
-    </a>
-    <ul>
-      <li>
-        <a href="#">HOME</a>
-      </li>
-      <li>
-        <a href="#">PRODUCT</a>
-      </li>
-      <li>
-        <a href="#">INTRODUCTION</a>
-      </li>
-      <li>
-        <a href="#">CONTACT</a>
-      </li>
-    </ul>
-    <span>
-      <i class="fas fa-search search-icon mr-4" data-toggle="modal" data-target=".bd-example-modal-lg"></i>
-      <i class="fa fa-shopping-cart cart mr-1"></i>
-      <span class="nav-icon-cart-quantity">&nbsp;23&nbsp;</span>
-    </span>
-    <a href="#">
-      <button class="btn login">Sign in</button>
-    </a>
-  </header>
-  <section class="nav-banner"></section>
 
-  <form action="#">
-    <input class="form-control search" type="search" placeholder="Search" aria-label="Search">
-  </form>
-  <!-- start modal -->
-  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-        </div>
-        <div class="modal-body"> 
-          <form action="#">
-            <input class="form-control search" type="search" placeholder="Search" aria-label="Search">
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary">Search</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- end modal -->
-<script src="nav.js"></script>
+<div class="container">
+    <p>Welcome <span sec:authentication="principal.username">User</span></p><br>
+    &nbsp;
+    <span sec:authentication="principal.authorities">Roles</span>
+
+  <div sec:authorize="isAuthenticated()"> <a th:href="@{/logout}">Logout</a></div>
+</div>
+<!--  <header>-->
+<!--    <a href="#" class="nav-logo">-->
+<!--      <img src="logo.png" class="nav-logo-img" alt="Logo">-->
+<!--    </a>-->
+<!--    <ul>-->
+<!--      <li>-->
+<!--        <a href="#">HOME</a>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <a href="#">PRODUCT</a>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <a href="#">INTRODUCTION</a>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <a href="#">CONTACT</a>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--    <span>-->
+<!--      <i class="fas fa-search search-icon mr-4" data-toggle="modal" data-target=".bd-example-modal-lg"></i>-->
+<!--      <i class="fa fa-shopping-cart cart mr-1"></i>-->
+<!--      <span class="nav-icon-cart-quantity">&nbsp;23&nbsp;</span>-->
+<!--    </span>-->
+<!--    <a href="#">-->
+<!--      <button class="btn login">Sign in</button>-->
+<!--    </a>-->
+<!--    -->
+
+<!--  </header>-->
+<!--  <section class="nav-banner"></section>-->
+
+<!--  <form action="#">-->
+<!--    <input class="form-control search" type="search" placeholder="Search" aria-label="Search">-->
+<!--  </form>-->
+<!--  &lt;!&ndash; start modal &ndash;&gt;-->
+<!--  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-lg modal-dialog-centered">-->
+<!--      <div class="modal-content">-->
+<!--        <div class="modal-header">-->
+<!--          <h5 class="modal-title" id="exampleModalLabel">New message</h5>-->
+<!--        </div>-->
+<!--        <div class="modal-body"> -->
+<!--          <form action="#">-->
+<!--            <input class="form-control search" type="search" placeholder="Search" aria-label="Search">-->
+<!--          </form>-->
+<!--        </div>-->
+<!--        <div class="modal-footer">-->
+<!--          <button type="button" class="btn btn-secondary">Search</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  &lt;!&ndash; end modal &ndash;&gt;-->
+<!--<script src="nav.js"></script>-->
 </body>
 </html>

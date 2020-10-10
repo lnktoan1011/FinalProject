@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeMB DECOR</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="profile.css">
+
+</head>
+<body>
+<section class="Form my-4 mx-5">
+    <div class="container">
+        <h3 class="font-weight-bold py-3 mt-5 pro-title">Your Profile</h3>
+        <div class="row no-gutters mt-2">
+            <div class="col-lg-5" style="text-align: center;">
+                <img class="img-fluid mt-4 mb-3" src="https://static2.yan.vn/YanNews/2167221/202003/dan-mang-du-trend-thiet-ke-avatar-du-kieu-day-mau-sac-tu-anh-mac-dinh-b0de2bad.jpg" alt="picture">
+                <a href="#">Edit a photo</a>
+            </div>
+            <div class="col-lg-7 px-5 pt-5">
+                <form id="pro-form" >
+                    <div class="form-group">
+                        <label for="pro-name"> Your Name:</label>
+                        <input type="text" class="form-control" id="pro-name" name="name" placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="pro-email"> Your Email:</label>
+                        <input type="email" class="form-control" id="pro-email" name="email" placeholder="Your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="pro-phone"> Your Phone:</label>
+                        <input type="text" class="form-control" id="pro-phone" name="phone" placeholder="Your phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="pro-address"> Your Address:</label>
+                        <input type="text" class="form-control" id="pro-address" name="address" placeholder="Your address">
+                    </div>
+
+                    <button type="button" class="login-btn mt-3 mb-5">Update profile</button>
+                </form>
+            </div>
+        </div>
+        <h3 class="font-weight-bold py-3 mt-5 pro-title">Your Password</h3>
+        <div class="row no-gutters mt-2">
+            <div class="col-lg-7 px-5 pt-5">
+                <form id="pass-form">
+                    <div class="form-group">
+                        <label for="pass-old"> Old Password:</label>
+                        <input type="password" class="form-control" id="pass-old" name="oldpass" placeholder="Old passowrd">
+                    </div>
+                    <div class="form-group">
+                        <label for="pass-new"> New Password:</label>
+                        <input type="password" class="form-control" id="pass-new" name="newpass" placeholder="New password">
+                    </div>
+                    <div class="form-group">
+                        <label for="pass-confirm"> Confirm New Password:</label>
+                        <input type="password" class="form-control" id="pass-confirm" name="comfirmpass" placeholder="Confirm new password">
+                    </div>
+
+                    <button type="button" class="login-btn mt-3 mb-5">Update Password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="profile-validate.js"></script>
+</body>
+</html>

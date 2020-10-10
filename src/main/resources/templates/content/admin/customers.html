@@ -5,10 +5,81 @@
 <head>
     <meta charset="UTF-8">
     <title>Customers</title>
+    <style>
+        img{
+            border-radius: 50%;
+        }
+        #item{
+            list-style: none;
+            margin-bottom: 20px;
+            background-color: rgb(238, 238, 238);
+            border-radius: 100px 20px 20px 100px;
+        }
+        #btn_delete{
+            float: right;
+            font-size: 20px;
+            outline: none;
+            border: none;
+            color: red;
+            padding-top: 50%;
+            padding-right: 20px;
+        }
+        #btn_delete:hover{
+            cursor: pointer;
+            color: royalblue;
+        }
+        #cus_info{
+            padding-top: 20px;
+        }
+
+    </style>
 </head>
 <body>
     <div layout:fragment="content">
-        <p>Customer</p>
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">Customers</h1>
+                    </div>
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+
+        <!-- Main content -->
+        <div class="container">
+            <h5>Total: <span>3</span></h5>
+            <ul>
+                <li id="item">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <img src="dist/img/avatar.png" style="width: 200px;">
+                        </div>
+                        <div class="col-lg-7" id="cus_info">
+                            <h4>Name 1</h4>
+                            <span>customer</span>
+                        </div>
+                        <div class="col-lg-2">
+                            <a onclick="Delete()" id="btn_delete">Delete</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
+
+
+<script>
+    function Delete(){
+        var x = confirm("Are you sure you want to delete this user?");
+        var box = $("#item");
+        if (x == true){
+            alert("User is deleted.");
+        } else {
+            return false;
+        }
+        return x;
+    }
+</script>

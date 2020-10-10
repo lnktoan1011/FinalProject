@@ -77,10 +77,20 @@
 <script th:src="@{/admin/dist/js/demo.js}"></script>
 
 <!--CLICK-->
-<script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    var first = [[${first}]];
+    var second = [[${second}]];
+
     $(document).ready(function (){
-            $(".order_click").addClass("active");
+        $(first).addClass("active");
+        $(first).addClass("menu-open");
+        $(second).addClass("active");
+
     });
+
+    /*]]>*/
 </script>
 </body>
 </html>

@@ -6,11 +6,197 @@
 <head>
     <meta charset="UTF-8">
     <title>Order</title>
+    <style>
+        #button_info :hover{
+            cursor: pointer;
+        }
+        #left-order{
+            height: 400px;
+            width: 66%;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+    </style>
 </head>
 <body>
 <div layout:fragment="content">
-    <p>Order</p>
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Orders</h1>
+                </div>
+            </div><!-- /.row -->
+        </div>
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-4 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>150</h3>
+
+                            <p>New Orders</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>53</h3>
+
+                            <p>Total Orders</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>44</h3>
+
+                            <p>Total Customers</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+            <!-- Main row -->
+
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <div class="container-fluid">
+        <div class="col-sm-6">
+            <h3>List of orders</h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-7" id="left-order">
+                <div class="card">
+                    <div class="row">
+
+                        <div class="col-lg-11" style="padding: 10px; padding-left: 40px;">
+                            <h4 style="color: cornflowerblue;">Order: <span>123</span></h4>
+                            <br>
+                            <p>Address: <span><b>19 nguyen huu tho </b></span></p>
+                            <p>Customer: <span><b>Khanh Toan </b></span></p>
+                            <h5 style="float: right; padding-right: 10px;">Total: <span style="font-weight: bold;"><span>100.00</span> $</span></h5>
+                        </div>
+                        <div class="col-lg-1">
+                            <div class="small-box bg-info" id="button_info">
+                                <a class="small-box-footer" onclick="Open()"><i class="fas fa-arrow-circle-right" id="icon"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="row">
+
+                        <div class="col-lg-11" style="padding: 10px; padding-left: 40px;">
+                            <h4 style="color: cornflowerblue;">Order: <span>123</span></h4>
+                            <br>
+                            <p>Address: <span><b>19 nguyen huu tho </b></span></p>
+                            <p>Customer: <span><b>Khanh Toan </b></span></p>
+                            <h5 style="float: right; padding-right: 10px;">Total: <b>100.00</b> $</h5>
+                        </div>
+                        <div class="col-lg-1">
+                            <div class="small-box bg-info" id="button_info">
+                                <a class="small-box-footer" onclick="Open()"><i class="fas fa-arrow-circle-right" id="icon"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="row">
+
+                        <div class="col-lg-11" style="padding: 10px; padding-left: 40px;">
+                            <h4 style="color: cornflowerblue;">Order: <span>123</span></h4>
+                            <br>
+                            <p>Address: <span><b>19 nguyen huu tho </b></span></p>
+                            <p>Customer: <span><b>Khanh Toan </b></span></p>
+                            <h5 style="float: right; padding-right: 10px;">Total: <b>100.00</b> $</h5>
+                        </div>
+                        <div class="col-lg-1">
+                            <div class="small-box bg-info" id="button_info">
+                                <a class="small-box-footer" onclick="Open()"><i class="fas fa-arrow-circle-right" id="icon"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5" id="detail" style="display: none;">
+                <div class="card">
+                    <h5 style="text-align: center;">Detail</h5>
+                    <div class="row">
+                        <div class="col-lg-3" id="image">
+                            <img src="dist/img/user4-128x128.jpg" alt="" style="width: 100%; padding: 10px;">
+                        </div>
+                        <div class="col-lg-7">
+                            <p style="color: gray;">Name of product</p>
+                            <p style="float: right; font-weight: bold;">1000<span> $</span></p>
+                        </div>
+                        <div class="col-lg-2">
+                            <p style="color: transparent;"> .</p>
+                            <p style="text-align: center;"><span>x </span>8</p>
+                        </div>
+                    </div>
+                    <hr style="border-top: 1px solid gray;">
+
+                    <div class="row" id="total">
+                        <div class="col-lg-7"></div>
+                        <div class="col-lg-5">
+                            <p style="font-weight: bold;">Total: <span>10000</span> $</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>
 </html>
+
+<script>
+    function Open(){
+        var x = document.getElementById("detail");
+        var btn = $("#button_info");
+        var icon = $("#icon");
+        if (x.style.display === "none"){
+            x.style.display = "block";
+
+            btn.removeClass("bg-info");
+            btn.addClass("bg-danger");
+
+            icon.removeClass("fas fa-arrow-circle-right");
+            icon.addClass("fas fa-arrow-circle-left");
+        } else {
+            x.style.display = "none";
+
+            btn.removeClass("bg-danger");
+            btn.addClass("bg-info");
+
+            icon.removeClass("fas fa-arrow-circle-left");
+            icon.addClass("fas fa-arrow-circle-right");
+        }
+    }
+</script>

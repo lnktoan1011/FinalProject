@@ -148,18 +148,18 @@
 
                     <th:block th:if="${showCate!= null}">
                         <div class="col-lg-5" id="sub-cate">
-                            <a th:href="@{/category/add-sub/{id}(id = ${cate.id})}" class ="btn btn-primary m-2">Add Sub-Category</a>
+                            <a th:href="@{/category/add-sub/{id}(id = ${showCate.id})}" class ="btn btn-primary m-2">Add Sub-Category</a>
                             <span id="title" style="margin-left: 100px">Sub-Category</span>
                             <span class="btn " id="closeSub" style="float: right;">X</span>
                             <table class="table">
                                 <thead>
                                 <tr class="table-info">
-                                    <th th:text="${cate.getName()}" style="width: 50%;" scope="col">Name</th>
+                                    <th th:text="${showCate.getName()}" style="width: 50%;" scope="col">Name</th>
                                     <th style="width: 30%;" scope="col">&nbsp;</th>
                                 </tr>
                                 </thead>
 
-                                    <tbody th:each="subcate :${cate.getSub()}">
+                                    <tbody th:each="subcate :${showCate.getSub()}">
                                     <tr >
                                          <td id="openSub">
                                              <a th:href="@{/category/update-sub/{id}(id = ${subcate.id})}"  >

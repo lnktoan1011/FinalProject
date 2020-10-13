@@ -20,17 +20,14 @@ public class SubCategory {
     @Column(name = "name",nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cate_id")
     private Category category;
-
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "subCategory")
 //    @JoinColumn(name = "subcate_id", referencedColumnName = "id")
     private List<Product> products = new ArrayList<>() ;
-
-
 
 
 

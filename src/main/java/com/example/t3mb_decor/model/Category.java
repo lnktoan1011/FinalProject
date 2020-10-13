@@ -31,7 +31,7 @@ public class Category {
         @Column(name = "updated_at")
         private Date updatedAt;
 
-        @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+        @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
 //        @JoinColumn(name = "category_id")
         private List<SubCategory> sub = new ArrayList<>() ;
 

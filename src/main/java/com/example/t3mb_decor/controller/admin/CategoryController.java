@@ -88,22 +88,23 @@ public class CategoryController {
         model.addAttribute("cate_id", id);
         model.addAttribute( "flag", 1);
         Category categoryUpdate = categoryService.getCategory(id);
-//        model.addAttribute("showCate", categoryUpdate);
+        model.addAttribute("showCate", categoryUpdate);
         return "content/admin/categories";
     }
     @PostMapping("add-sub/{id}")
     public String addSubCategory(@PathVariable("id") long id,@ModelAttribute("subCate") SubCategory sub){
         Category category = categoryService.getCategory(id) ;
-        category.getSub().add(sub);
-
-        categoryService.saveCategory(category);
-        return "redirect:/category";
+        sub.setCategory(category);
+        subCategoryService.saveSubCategory(sub);
+        return "redirect:/category/add-sub/" + id ;
     }
 
     @GetMapping("update-sub/{id}")
     public String viewUpdateSubCategory(@PathVariable("id") long id, Model model){
 
         SubCategory subCategoryUpdate = subCategoryService.getSubCategory(id);
+        Category categoryUpdate = subCategoryUpdate.getCategory();
+        model.addAttribute("showCate", categoryUpdate);
         model.addAttribute("subCateUpdate", subCategoryUpdate);
         return "content/admin/categories";
     }

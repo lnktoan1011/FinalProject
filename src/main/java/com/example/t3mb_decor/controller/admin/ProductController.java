@@ -18,7 +18,12 @@ public class ProductController {
     }
 
     @GetMapping
-    public String viewtest(){
+    public String viewProduct(){
         return "content/admin/product";
+    }
+
+    @GetMapping("/add")
+    public String addProduct(){
+        return "content/admin/product_add";
     }
 }

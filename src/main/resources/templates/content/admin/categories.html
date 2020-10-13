@@ -30,62 +30,8 @@
     </style>
 
 </head>
-<body>
+<body >
 <div layout:fragment="content">
-
-    <a th:href="@{/category/add}" class ="btn btn-primary m-2">Add Category</a>
-
-    <th:block th:if="${addsub_cate_id != null}">
-        <a th:href="@{/category/add-sub/{id}(id = ${cate.id})}" class ="btn btn-primary m-2">Add Sub-Category</a>
-    </th:block>
-    <div class="row">
-        <div class="col-6">
-            <ul th:each ="cate : ${listCategories}" class="list-unstyled ml-4">
-                <li > <a th:href="@{/category/update/{id}(id = ${cate.id})}"> <span th:text="${cate.getName()}"> </span> </a>
-                    <a th:href="@{/category/delete/{id}(id = ${cate.id})}" style="color: red;"> Delete</a>
-                    <ul th:each="subcate :${cate.getSub()}" class="list-unstyled ml-2">
-                        <li> <a th:href="@{/category/update-sub/{id}(id = ${subcate.id})}"> <span th:text="${subcate.getName()}"></span> </a>
-                            <a th:href="@{/category/deleteSub/{id}(id = ${subcate.id})}" style="color: red;"> Delete</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <a th:href="@{/category/delete}" class ="btn btn-danger m-2">Delete All</a>
-        </div>
-
-        <div class="col-6">
-            <th:block th:if="${flag == null}">
-                <th:block th:if="${cate_id == null}">
-                    <form action="#" th:action="@{/category/add}" th:object="${cate}" method="post">
-                        <label>Name:</label>
-                        <input type="hidden" th:field="*{id} " /><br>
-                        <input type="text" th:field="*{name} " /><br>
-                        <button type="submit">Submit</button>
-                    </form>
-                </th:block>
-                <th:block th:unless="${cate_id == null}">
-                    <form action="#" th:action="@{/category/add-sub/{id}(id = ${cate_id})}" th:object="${subCate}" method="post">
-                        <label>Name:</label>
-                        <input type="hidden" th:field="*{id} " /><br>
-                        <input type="text" th:field="*{name} " /><br>
-                        <button type="submit">Submit</button>
-                    </form>
-                </th:block>
-            </th:block>
-
-            <th:block th:if="${flag == 2}">
-                    <form action="#" th:action="@{/category/update-sub/{id}(id = ${subCate_id})}" th:object="${subCateUpdate}" method="post">
-                        <label>Name:</label>
-                        <input type="hidden" th:field="*{id} " /><br>
-                        <input type="text" th:field="*{name} " /><br>
-                        <button type="submit">Submit</button>
-                    </form>
-            </th:block>
-        </div>
-    </div>
-
-
-
 <!--   Toan -->
 
         <!-- Content Header (Page header) -->
@@ -93,7 +39,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Categories</h1>
+                        <h1>Categories</h1> <a th:href="@{/category/add}" class ="btn btn-primary m-2">Add Category</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -103,19 +49,74 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="card card-info" id="card_info">
-                    <div class="card-header">
-                        <h3 class="card-title">New Category</h3>
-                    </div>
-                    <form role="form">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <div class="input-group-prepend">
-                                    <input type="text" class="form-control" placeholder="Enter name" required>
-                                    <button type="submit" class="btn btn-outline-success" onclick="Add()">Add</button>
-                                </div>
+                    <th:block th:if="${flag == 1}">
+                        <th:block th:if="${cate_id == null}">
+                            <div class="card-header">
+                                <h3 class="card-title">New Category</h3>
                             </div>
-                        </div>
-                    </form>
+                            <form action="#" th:action="@{/category/add}" th:object="${cate}" method="post">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="input-group-prepend">
+                                                <input type="hidden" th:field="*{id} " />
+                                                <input type="text" th:field="*{name} " class="form-control" placeholder="Enter Category" required />
+                                                <button type="submit" class="btn btn-outline-success" onclick="Add()">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </th:block>
+                        <th:block th:unless="${cate_id == null}">
+                            <div class="card-header">
+                                <h3 class="card-title">New Sub Category</h3>
+                            </div>
+                            <form action="#" th:action="@{/category/add-sub/{id}(id = ${cate_id})}" th:object="${subCate}" method="post">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="input-group-prepend">
+                                            <input type="hidden" th:field="*{id} " />
+                                            <input type="text" th:field="*{name} " class="form-control" placeholder="Enter Sub Category" required />
+                                            <button type="submit" class="btn btn-outline-success" onclick="Add()">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </th:block>
+                    </th:block>
+                    <th:block th:unless="${flag == 1}">
+                        <th:block th:if="${cate != null}">
+                            <div class="card-header">
+                                <h3 class="card-title">Update Category</h3>
+                            </div>
+                            <form action="#" th:action="@{/category/add}" th:object="${cate}" method="post">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="input-group-prepend">
+                                            <input type="hidden" th:field="*{id} " />
+                                            <input type="text" th:field="*{name} " class="form-control" required />
+                                            <button type="submit" class="btn btn-outline-success" onclick="Add()">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </th:block>
+                        <th:block th:if="${subCateUpdate != null}">
+                            <div class="card-header">
+                                <h3 class="card-title">Update Sub Category</h3>
+                            </div>
+                            <form action="#" th:action="@{/category/update-sub/{id}(id = ${subCateUpdate.id})}" th:object="${subCateUpdate}" method="post">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="input-group-prepend">
+                                            <input type="hidden" th:field="*{id} " />
+                                            <input type="text" th:field="*{name} " class="form-control" required />
+                                            <button type="submit" class="btn btn-outline-success" onclick="Add()">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </th:block>
+                    </th:block>
                 </div>
 
                 <div class="row">
@@ -129,10 +130,15 @@
                             </thead>
                             <tbody th:each ="cate : ${listCategories}">
                             <tr>
-                                <a th:href="@{/category/update/{id}(id = ${cate.id})}"><td th:text="${cate.getName()}" id="table-item">Table</td></a>
+                                <td id="table-item">
+                                    <a th:href="@{/category/update/{id}(id = ${cate.id})}"  >
+                                    <div th:text="${cate.getName()}"></div>
+                                    </a>
+                                </td>
                                 <td>
-                                    <button type="button" id="delete" class="btn btn-outline-danger">Delete</button>
-                                    <button type="button" id="sub" class="btn btn-outline-info" onclick="Open()">Sub</button>
+                                    <a th:href="@{/category/delete/{id}(id = ${cate.id})}" class="btn btn-outline-danger"> Delete</a>
+
+                                    <button type="button" id="sub" class="btn btn-outline-info" onclick="Open()"  >Sub</button>
                                 </td>
                             </tr>
 
@@ -140,29 +146,38 @@
                         </table>
                     </div>
 
+                    <th:block th:if="${showCate!= null}">
+                        <div class="col-lg-5" id="sub-cate">
+                            <a th:href="@{/category/add-sub/{id}(id = ${cate.id})}" class ="btn btn-primary m-2">Add Sub-Category</a>
+                            <span id="title" style="margin-left: 100px">Sub-Category</span>
+                            <span class="btn " id="closeSub" style="float: right;">X</span>
+                            <table class="table">
+                                <thead>
+                                <tr class="table-info">
+                                    <th th:text="${cate.getName()}" style="width: 50%;" scope="col">Name</th>
+                                    <th style="width: 30%;" scope="col">&nbsp;</th>
+                                </tr>
+                                </thead>
 
-                    <div class="col-lg-5" id="sub-cate">
-                        <p id="title">Sub-Category</p>
-                        <table class="table">
-                            <thead>
-                            <tr class="table-info">
-                                <th style="width: 50%;" scope="col">Name</th>
-                                <th style="width: 30%;" scope="col">&nbsp;</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Table</td>
-                                <td>
-                                    <button type="button" id="edit-sub" class="btn btn-outline-primary">Edit</button>
-                                    <button type="button" id="delete-sub" class="btn btn-outline-danger">Delete</button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <br>
-                        <button type="button" class="btn btn-danger" onclick="Close()" style="float: right;">Cancel</button>
-                    </div>
+                                    <tbody th:each="subcate :${cate.getSub()}">
+                                    <tr >
+                                         <td id="openSub">
+                                             <a th:href="@{/category/update-sub/{id}(id = ${subcate.id})}"  >
+                                             <div th:text="${subcate.getName()}"></div>
+                                             </a>
+                                         </td>
+                                        <td>
+                                            <button type="button" id="edit-sub" class="btn btn-outline-primary">Edit</button>
+                                            <a th:href="@{/category/deleteSub/{id}(id = ${subcate.id})}" class="btn btn-outline-danger" > Delete</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+
+                            </table>
+                            <br>
+
+                        </div>
+                    </th:block>
                 </div>
 
 
@@ -175,12 +190,17 @@
 </body>
 
 </html>
+
 <script>
-    var x = document.getElementById("sub-cate");
-    function Open(){
-        x.style.display = "block";
-    }
-    function Close(){
-        x.style.display = "none";
-    }
+    $(document).ready(function(){
+        if(document.getElementById("sub-cate") != null){
+            var x = document.getElementById("sub-cate");
+            x.style.display = "block";
+
+            $("#closeSub").click(function(){
+                x.style.display = "none";
+            });
+        }
+
+    });
 </script>

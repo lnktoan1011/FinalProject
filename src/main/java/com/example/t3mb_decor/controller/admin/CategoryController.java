@@ -39,9 +39,8 @@ public class CategoryController {
 
     @GetMapping
     public String viewAllCategory(Model model){
-//        List<Category> listCate =  categoryService.getAllCategories();
-//        model.addAttribute( "listCategories",listCate);
-        model.addAttribute( "flag",1);
+        model.addAttribute( "flag", 1);
+        model.addAttribute("cate", new Category());
         return "content/admin/categories";
     }
     @GetMapping("delete/{id}")
@@ -57,14 +56,11 @@ public class CategoryController {
     @GetMapping("/deleteSub/{id}")
     public String deleteSub(@PathVariable("id") long id){
         subCategoryService.deleteSubCategory(id);
-        return "redirect:/category";
+        return "redirect:/category/update-sub/" + id ;
     }
     @GetMapping("add")
     public String viewNewCategory(Model model){
-//        List<Category> listCate =  categoryService.getAllCategories();
-//        model.addAttribute( "listCategories",listCate);
-        model.addAttribute("cate", new Category());
-        return "content/admin/categories";
+        return "redirect:/category";
     }
     @PostMapping("add")
     public String saveCategory(@ModelAttribute("cate") Category category){
@@ -80,20 +76,19 @@ public class CategoryController {
     }
     @GetMapping("update/{id}")
     public String viewUpdateCategory(@PathVariable("id") long id, Model model){
-//        List<Category> listCate =  categoryService.getAllCategories();
-//        model.addAttribute( "listCategories",listCate);
         Category categoryUpdate = categoryService.getCategory(id);
         model.addAttribute("cate", categoryUpdate);
-        model.addAttribute("addsub_cate_id", id);
+        model.addAttribute("showCate", categoryUpdate);
         return "content/admin/categories";
     }
 
     @GetMapping("add-sub/{id}")
     public String viewNewSubCategory(@PathVariable("id") long id, Model model){
-//        List<Category> listCate =  categoryService.getAllCategories();
-//        model.addAttribute( "listCategories",listCate);
         model.addAttribute("subCate", new SubCategory());
         model.addAttribute("cate_id", id);
+        model.addAttribute( "flag", 1);
+        Category categoryUpdate = categoryService.getCategory(id);
+//        model.addAttribute("showCate", categoryUpdate);
         return "content/admin/categories";
     }
     @PostMapping("add-sub/{id}")
@@ -107,12 +102,9 @@ public class CategoryController {
 
     @GetMapping("update-sub/{id}")
     public String viewUpdateSubCategory(@PathVariable("id") long id, Model model){
-//        List<Category> listCate =  categoryService.getAllCategories();
-//        model.addAttribute( "listCategories",listCate);
+
         SubCategory subCategoryUpdate = subCategoryService.getSubCategory(id);
         model.addAttribute("subCateUpdate", subCategoryUpdate);
-        model.addAttribute("subCate_id", id);
-        model.addAttribute( "flag", 2);
         return "content/admin/categories";
     }
     @PostMapping("update-sub/{id}")

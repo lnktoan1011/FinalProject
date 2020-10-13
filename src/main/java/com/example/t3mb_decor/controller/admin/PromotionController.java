@@ -6,19 +6,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/order")
-public class OrderController {
+@RequestMapping("/promotion")
+public class PromotionController {
+
     @ModelAttribute("first")
     public String getActive1(){
-        return ".mysale_click";
+        return ".catalog_click";
     }
     @ModelAttribute("second")
     public String getActive2(){
-        return ".order_click";
+        return ".promotion_click";
     }
-
     @GetMapping
     public String viewtest(){
-        return "content/admin/order";
+        return "content/admin/promotion";
     }
 }

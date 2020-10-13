@@ -20,7 +20,7 @@ public class SubCategoryServiceImpl implements SubCategoryService{
 
     @Override
     public void saveSubCategory(SubCategory subCategory) {
-
+        this.subCategoryRepository.save(subCategory);
     }
 
     @Override

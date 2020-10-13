@@ -19,8 +19,8 @@ public class Sale {
     @Column(name = "percent",nullable = false)
     private int percent;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "sale_id",referencedColumnName = "id",columnDefinition = "bigint default 0")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "sale")
+//    @JoinColumn(name = "sale_id",referencedColumnName = "id",columnDefinition = "bigint default 0")
     private List<Product> products = new ArrayList<>() ;
 
     @CreationTimestamp

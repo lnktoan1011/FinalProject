@@ -18,8 +18,8 @@ public class Color {
     @Column(name = "name",nullable = false)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "color_id", referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "color")
+//    @JoinColumn(name = "color_id", referencedColumnName = "id")
     private List<Product> product_color = new ArrayList<>() ;
 
     @CreationTimestamp

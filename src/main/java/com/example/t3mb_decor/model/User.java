@@ -1,6 +1,5 @@
 package com.example.t3mb_decor.model;
 
-
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -11,8 +10,9 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "customers")
-public class Customer {
+@Table(name = "users")
+public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -32,15 +32,23 @@ public class Customer {
     @Column(name = "phone",nullable = false)
     private String phone;
 
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles",
+        joinColumns = {@JoinColumn(name = "user_id")},
+        inverseJoinColumns = {@JoinColumn(name = "role_id")})
+    //,referencedColumnName = "id"
+    private List<Role> roles;
+
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "wishlists",
-        joinColumns = {@JoinColumn(name = "customer_id")},
-        inverseJoinColumns = {@JoinColumn(name = "product_id")})
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id")})
     private List<Product> product_wishlist = new ArrayList<>();
 
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_id",referencedColumnName = "id")
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
     private List<Orders> order_customer = new ArrayList<>();
 
     @CreationTimestamp
@@ -53,15 +61,17 @@ public class Customer {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Customer(String name, String email, String password, String address, String phone) {
+
+    public User() {
+    }
+
+    public User(String name, String email, String password, String address, String phone, List<Role> roles) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.address = address;
         this.phone = phone;
-    }
-
-    public Customer() {
+        this.roles = roles;
     }
 
     public long getId() {
@@ -120,6 +130,14 @@ public class Customer {
         this.product_wishlist = product_wishlist;
     }
 
+    public List<Orders> getOrder_customer() {
+        return order_customer;
+    }
+
+    public void setOrder_customer(List<Orders> order_customer) {
+        this.order_customer = order_customer;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -136,11 +154,11 @@ public class Customer {
         this.updatedAt = updatedAt;
     }
 
-    public List<Orders> getOrder_customer() {
-        return order_customer;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setOrder_customer(List<Orders> order_customer) {
-        this.order_customer = order_customer;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

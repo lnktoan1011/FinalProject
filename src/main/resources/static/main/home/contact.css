@@ -1,0 +1,16 @@
+.contact .address a{
+    text-decoration: none;
+    color: #b3b3b3;
+}
+.contact .address h5{
+    font-weight: bold;
+
+}
+.contact .col-md-12 h3{
+    letter-spacing: 4px;
+    font-weight: bold;
+    margin-top: 80px;
+}
+.contact .form-row{
+    margin-bottom: 4px;
+}

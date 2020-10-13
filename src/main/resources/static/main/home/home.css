@@ -4,7 +4,7 @@
     box-sizing: border-box;
     font-family: 'Times New Roman', Times, serif;
 }
-body {
+.home{
     background: url(https://amore-architecture.vn/uploads/duan/dze1452006444.jpg);
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -77,23 +77,35 @@ header ul li a:hover {
 header.sticky .nav-logo, header.sticky ul li a {
     color: #000;
 }
+.site-nav_link{
+    color: #b3b3b3;
+}
 header .nav-icon-cart-quanti {
-    color: #FFF;
+    color: #b3b3b3;
     border: 1px solid #FFF;
 }
-header .login {
-    border: 1px solid #FFF;
-    color: #FFF;
+header .login, .dropdown,.btn-secondary .dropdown-toggle {
+    border: 1px solid #b3b3b3;
+    color: #b3b3b3;
     text-transform: uppercase;
     font-size: 10px;
 }
-header .login:hover {
+.dropdown-item{
+    color: #b3b3b3;
+    background: #00000000;
+}
+div.dropdown-menu.show,div.dropdown.show,#dropdownMenuLink{
+    color: #b3b3b3;
+    border: 1px solid #000;
+    background: #00000000;
+}
+header .login:hover ,.dropdown-item:hover, div.dropdown:hover,div.dropdown-menu.show:hover{
     background-color: #000;
-    color: #FFF;
+    color: #b3b3b3;
     border: 1px solid #000;
 }
 header .search-icon,header .cart {
-    color:#FFF;
+    color:#b3b3b3;
 }
 header.sticky .search-icon,header.sticky .cart {
     color:#000;
@@ -102,18 +114,24 @@ header.sticky .nav-icon-cart-quanti {
     color: #000;
     border: 1px solid black;
 }
-header.sticky .login {
+header.sticky a.dropdown-item{
+    color: #000;
+}
+header.sticky .login, header.sticky div.dropdown-menu.show,header.sticky div.dropdown.show,header.sticky #dropdownMenuLink {
     border: 1px solid #000;
     color: #000;
 }
-header.sticky .login:hover {
+header.sticky .site-nav_link:hover{
+    color: #b3b3b3;
+}
+header.sticky .login:hover ,header.sticky .dropdown-item:hover,header.sticky #dropdownMenuLink:hover{
     border: 1px solid #000;
-    color: #FFF;
+    color: #b3b3b3;
 }
 .nav-banner {
     position: relative;
     width: 100%;
-    min-height: 800px;
+    min-height: 900px;
     background: url(logo1.jpg);
     background-size: cover;
 }
@@ -148,11 +166,11 @@ header.sticky .login:hover {
     align-items: center;
     width: 70%;
 }
-.form-control {
+#form-control1 {
     width: 90%;
     display: inline-block;
 }
-.form-control:focus {
+#form-control1:focus {
     box-shadow: none;
 }
 
@@ -162,7 +180,7 @@ header.sticky .login:hover {
     border-radius: 0;
     padding-left: 0;
 }
-.form-control::placeholder {
+#form-control1::placeholder {
     font-size: 30px;
     color: #aaa;
     font-style: italic;

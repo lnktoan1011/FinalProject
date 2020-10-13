@@ -20,9 +20,19 @@ public class SubCategory {
     @Column(name = "name",nullable = false)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "subcate_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cate_id")
+    private Category category;
+
+
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subCategory")
+//    @JoinColumn(name = "subcate_id", referencedColumnName = "id")
     private List<Product> products = new ArrayList<>() ;
+
+
+
+
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -81,5 +91,11 @@ public class SubCategory {
         this.updatedAt = updatedAt;
     }
 
+    public Category getCategory() {
+        return category;
+    }
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }

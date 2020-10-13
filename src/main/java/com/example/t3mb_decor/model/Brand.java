@@ -18,8 +18,8 @@ public class Brand {
     @Column(name = "name",nullable = false)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "brand_id",referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "brand")
+//    @JoinColumn(name = "brand_id",referencedColumnName = "id")
     private List<Product> product_brand = new ArrayList<>() ;
 
     @CreationTimestamp

@@ -31,8 +31,8 @@ public class Category {
         @Column(name = "updated_at")
         private Date updatedAt;
 
-        @OneToMany(cascade = CascadeType.ALL)
-        @JoinColumn(name = "category_id", referencedColumnName = "id")
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+//        @JoinColumn(name = "category_id")
         private List<SubCategory> sub = new ArrayList<>() ;
 
         public Category(String name) {

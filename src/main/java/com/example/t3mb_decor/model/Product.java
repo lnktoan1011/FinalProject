@@ -38,8 +38,25 @@ public class Product {
     private int width;
     @Column(name = "status", columnDefinition = "integer default 0")
     private int status;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "subcate_id")
+    private SubCategory subCategory;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "color_id")
+    private Color color;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "sale_id",columnDefinition = "bigint default 0")
+    private Sale sale;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product_wishlist")
-    private List<Customer> customer_wishlist= new ArrayList<>();
+    private List<User> customer_wishlist= new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "order_products",
@@ -159,11 +176,11 @@ public class Product {
         this.height = height;
     }
 
-    public List<Customer> getCustomer_wishlist() {
+    public List<User> getCustomer_wishlist() {
         return customer_wishlist;
     }
 
-    public void setCustomer_wishlist(List<Customer> customer_wishlist) {
+    public void setCustomer_wishlist(List<User> customer_wishlist) {
         this.customer_wishlist = customer_wishlist;
     }
     public Date getCreatedAt() {
@@ -188,5 +205,37 @@ public class Product {
 
     public void setOrder_product(List<Orders> order_product) {
         this.order_product = order_product;
+    }
+
+    public SubCategory getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(SubCategory subCategory) {
+        this.subCategory = subCategory;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Sale getSale() {
+        return sale;
+    }
+
+    public void setSale(Sale sale) {
+        this.sale = sale;
     }
 }

@@ -30,8 +30,8 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item has-treeview sale_click" >
-                        <a href="#" class="nav-link sale_click">
+                    <li class="nav-item has-treeview mysale_click" >
+                        <a href="#" class="nav-link mysale_click">
                             <i class="nav-icon fas fa-desktop"></i>
                             <p>
                                 My Sales
@@ -76,13 +76,13 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pages/catalog/promotion.html" class="nav-link">
+                                <a th:href="@{/promotion}" class="nav-link promotion_click">
                                     <i class="fas fa-ticket-alt nav-icon"></i>
                                     <p>Promotion</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pages/catalog/sale.html" class="nav-link">
+                                <a th:href="@{/sale}" class="nav-link sale_click">
                                     <i class="fas fa-percent nav-icon"></i>
                                     <p>Sale</p>
                                 </a>

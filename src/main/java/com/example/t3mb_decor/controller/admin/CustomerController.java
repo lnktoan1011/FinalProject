@@ -11,7 +11,7 @@ public class CustomerController {
 
     @ModelAttribute("first")
     public String getActive1(){
-        return ".sale_click";
+        return ".mysale_click";
     }
     @ModelAttribute("second")
     public String getActive2(){

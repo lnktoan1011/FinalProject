@@ -1,6 +1,8 @@
 package com.example.t3mb_decor.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "roles")
@@ -11,6 +13,8 @@ public class Role {
     @Column(name = "name")
     private String name;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "roles")
+    private List<User> roles;
     public Role() {
     }
 
@@ -32,5 +36,13 @@ public class Role {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<User> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<User> roles) {
+        this.roles = roles;
     }
 }

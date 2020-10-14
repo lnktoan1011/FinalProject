@@ -1,5 +1,6 @@
 package com.example.t3mb_decor.service;
 
+import com.example.t3mb_decor.VO.UserToAdminVO;
 import com.example.t3mb_decor.VO.UserVO;
 import com.example.t3mb_decor.model.Role;
 import com.example.t3mb_decor.model.User;
@@ -23,6 +24,14 @@ public class UserServiceImp implements UserService{
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    @Override
+    public User saveUserToAdmin(UserToAdminVO user) {
+        User us = new User(user.getName(),user.getEmail(),passwordEncoder.encode(user.getPassword())
+                ,user.getAddress(),user.getPhone(),Arrays.asList(new Role(user.getRole())));
+        return userRepository.save(us);
+    }
+
     @Override
     public User saveUser(UserVO registration) {
         User user = new User(registration.getName(),registration.getEmail(),passwordEncoder.encode(registration.getPassword()),

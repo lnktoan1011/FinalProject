@@ -14,15 +14,18 @@
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
         }
+        img{
+            border-radius: 10px 0px 0px 10px;
+        }
 
-        #button_del, #button_edit{
+        #button_dl, #button_ed{
             color: red;
             float: right;
             letter-spacing: 2px;
             padding-right: 30px;
             padding-top: 50%;
         }
-        #button_del:hover, #button_edit:hover{
+        #button_dl:hover, #button_ed:hover{
             cursor: pointer;
             color: royalblue;
         }
@@ -31,7 +34,9 @@
         }
         li{
             list-style: none;
+
         }
+
         #item{
             margin-bottom: 20px;
             background-color: rgb(233, 233, 233);
@@ -47,14 +52,8 @@
             box-shadow:  8px 8px gray;
             transition: 0.5s;
         }
-        img{
-            border-radius: 10px 0px 0px 10px;
-        }
 
 
-        .btn-group{
-            float: right;
-        }
         button{
             margin-right: 20px;
             border-radius: 10px;
@@ -87,7 +86,64 @@
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
+        <ul>
+            <li id="item">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <img src="../../dist/img/avatar.png" style="width: 250px;">
+                    </div>
+                    <div class="col-lg-7" id="cus_info">
+                        <h4>Name Product</h4>
+                        <p id="des">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa voluptas commodi repellat, quia fuga esse iure omnis nam minima harum blanditiis asperiores, aut veritatis. Sequi molestiae autem perspiciatis commodi tenetur.</p>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <table>
+                                    <tr>
+                                        <th>Price:</th>
+                                        <td>1000</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Height: </th>
+                                        <td>1000</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Length: </th>
+                                        <td>1000</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Brand:</th>
+                                        <td>Akea</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-lg-8">
+                                <table>
+                                    <tr>
+                                        <th>Category:</th>
+                                        <td>Table</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Color:</th>
+                                        <td>Black</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Quantity:</th>
+                                        <td>4</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-2">
+                        <a id="button_dl">Delete</a>
+                        <a id="button_ed">Edit</a>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
     </section>
 </div>
 </body>

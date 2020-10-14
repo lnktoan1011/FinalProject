@@ -125,7 +125,7 @@
                         <table class="table table-hover">
                             <thead>
                             <tr class="table-info">
-                                <th scope="col" style="width: 65%;">Name</th>
+                                <th scope="col" style="width: 80%;">Name</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -138,8 +138,6 @@
                                 </td>
                                 <td>
                                     <a th:href="@{/category/delete/{id}(id = ${cate.id})}" class="btn btn-outline-danger"> Delete</a>
-
-                                    <button type="button" id="sub" class="btn btn-outline-info" onclick="Open()"  >Sub</button>
                                 </td>
                             </tr>
 
@@ -155,7 +153,7 @@
                             <table class="table">
                                 <thead>
                                 <tr class="table-info">
-                                    <th th:text="${showCate.getName()}" style="width: 50%;" scope="col">Name</th>
+                                    <th th:text="${showCate.getName()}" style="width: 80%;" scope="col">Name</th>
                                     <th style="width: 30%;" scope="col">&nbsp;</th>
                                 </tr>
                                 </thead>
@@ -168,7 +166,6 @@
                                              </a>
                                          </td>
                                         <td>
-                                            <button type="button" id="edit-sub" class="btn btn-outline-primary">Edit</button>
                                             <a th:href="@{/category/deleteSub/{id}(id = ${subcate.id})}" class="btn btn-outline-danger" > Delete</a>
                                         </td>
                                     </tr>

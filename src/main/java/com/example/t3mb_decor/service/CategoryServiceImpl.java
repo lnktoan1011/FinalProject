@@ -39,7 +39,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void updateCategory(long id, Category category) {
+    public void updateCategory(Category category) {
+        long id = category.getId();
         Category categoryUpdate = this.getCategory(id);
         Date createDate = categoryUpdate.getCreatedAt();
         List<SubCategory> subCategoryList = categoryUpdate.getSub();

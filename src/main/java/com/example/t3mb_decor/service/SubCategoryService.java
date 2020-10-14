@@ -10,5 +10,5 @@ public interface SubCategoryService {
     void saveSubCategory(SubCategory subCategory);
     SubCategory getSubCategory(long id);
     void deleteSubCategory(long id);
-    void updateSubCategory(long id,SubCategory subCategory);
+    void updateSubCategory(SubCategory subCategory);
 }

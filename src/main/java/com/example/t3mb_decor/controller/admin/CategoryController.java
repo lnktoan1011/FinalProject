@@ -68,7 +68,7 @@ public class CategoryController {
 
         //Save cate create date.Because when update the cate create date not save.
         if(category.getId() != 0) {
-            categoryService.updateCategory(category.getId(),category);
+            categoryService.updateCategory(category);
             return "redirect:/category/update/" + category.getId() ;
         }
         categoryService.saveCategory(category);
@@ -110,7 +110,7 @@ public class CategoryController {
     }
     @PostMapping("update-sub/{id}")
     public String UpdateSubCategory(@PathVariable("id") long id, @ModelAttribute("subCateUpdate") SubCategory sub){
-        subCategoryService.updateSubCategory(id,sub);
+        subCategoryService.updateSubCategory(sub);
         return "redirect:/category/update-sub/" + id ;
     }
 }

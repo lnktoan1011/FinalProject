@@ -9,99 +9,59 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="main/profile/profile.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="profile.css">
+
 </head>
 <body>
 <section class="Form my-4 mx-5">
     <div class="container">
-        <h3 class="font-weight-bold py-3 mt-5 pro-title">purchase history</h3>
-        <div class="row no-gutters mt-2">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>###</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>...</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>22/11/2020</td>
-                    <td>Finished</td>
-                    <td><a href="#">Detail</a></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>22/11/2020</td>
-                    <td>Pending</td>
-                    <td><a href="#">Detail</a></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>22/11/2020</td>
-                    <td>Pending</td>
-                    <td><a href="#">Detail</a></td>
-                </tr>
-                </tbody>
-            </table>
+        <h5 class="mb-4 mt-3" style="text-align: center;">Basic info, like your order, total price, status and date, that you use on TeMB services</h5>
+        <div class="row row-card no-gutters mt-2">
+            <div class="col-lg-12 px-5 pt-5 pb-2">
+                <h4>Purchase history</h4>
+                <p>Some info may be visible to order people using TeMB services.</p>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Total price</th>
+                        <th scope="col">...</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>22/10/2020</td>
+                        <td>Finished</td>
+                        <td>300000</td>
+                        <td><a href="#">Details</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>22/10/2020</td>
+                        <td>Finished</td>
+                        <td>300000</td>
+                        <td><a href="#">Details</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>22/10/2020</td>
+                        <td>Finished</td>
+                        <td>300000</td>
+                        <td><a href="#">Details</a></td>
+                    </tr>
+                    </tbody>
+                </table>
 
-        </div>
-        <!-- end of history -->
-        <h3 class="font-weight-bold py-3 mt-5 pro-title">Order history</h3>
-        <div class="row no-gutters mt-2">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>###</th>
-                    <th>Product's name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Total Price</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Tên sản phẩm</td>
-                    <td>2</td>
-                    <td>30000</td>
-                    <td>60000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Tên sản phẩm</td>
-                    <td>2</td>
-                    <td>30000</td>
-                    <td>60000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Tên sản phẩm</td>
-                    <td>2</td>
-                    <td>30000</td>
-                    <td>60000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Tên sản phẩm</td>
-                    <td>2</td>
-                    <td>30000</td>
-                    <td>60000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Tên sản phẩm</td>
-                    <td>2</td>
-                    <td>30000</td>
-                    <td>60000</td>
-                </tr>
-                </tbody>
-            </table>
+            </div>
         </div>
     </div>
 </section>
 
+<script src="profile-validate.js"></script>
 </body>
 </html>

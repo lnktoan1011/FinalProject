@@ -7,9 +7,10 @@
     <meta charset="UTF-8">
     <title>Category</title>
     <style>
-        #table-item:hover{
-            cursor: pointer;
+        a{
+            color: black;
         }
+
 
         #card_info{
             margin-bottom: 30px;
@@ -130,12 +131,13 @@
                             </tr>
                             </thead>
                             <tbody th:each ="cate : ${listCategories}">
-                            <tr>
-                                <td id="table-item">
-                                    <a th:href="@{/category/update/{id}(id = ${cate.id})}"  >
-                                    <div th:text="${cate.getName()}"></div>
+                            <tr id="table-item">
+                                <td>
+                                    <a th:href="@{/category/update/{id}(id = ${cate.id})}" id="cate_name">
+                                        <div th:text="${cate.getName()}" ></div>
                                     </a>
                                 </td>
+
                                 <td>
                                     <a th:href="@{/category/delete/{id}(id = ${cate.id})}" class="btn btn-outline-danger"> Delete</a>
 

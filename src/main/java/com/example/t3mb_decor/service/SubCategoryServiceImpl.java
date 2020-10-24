@@ -34,7 +34,8 @@ public class SubCategoryServiceImpl implements SubCategoryService{
     }
 
     @Override
-    public void updateSubCategory(long id, SubCategory subCategory) {
+    public void updateSubCategory(SubCategory subCategory) {
+        long id = subCategory.getId();
         SubCategory subCategoryUpdate = this.getSubCategory(id);
         Date createDate = subCategoryUpdate.getCreatedAt();
 

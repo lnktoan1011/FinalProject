@@ -4,19 +4,17 @@
     box-sizing: border-box;
     font-family: 'Times New Roman', Times, serif;
 }
-body {
-    background-color: rgb(206, 216, 216);
-}
-.row {
-    background-color: white;
-    border-radius: 30px;
-    box-shadow: 12px 22px 22px grey;
+.row-card {
+
+    border-radius: 25px;
+    border: 1px solid rgb(210, 203, 203);
 }
 img {
     border-radius: 50%;
     margin: 0 auto;
-    display: flex;
-    max-width: 300px !important;
+    max-width: 70px !important;
+    height: 70px !important;
+    float: right;
 
 }
 .as {
@@ -28,12 +26,13 @@ img {
 .login-btn {
     border: none;
     outline: none;
-    height: 50px;
-    width: 100%;
+    height: 30px;
     background-color: black;
     color: white;
     border-radius: 4px;
     font-weight: bold;
+    float: right;
+    padding: 5px;
 }
 .login-btn:hover {
     background-color: #FFF;
@@ -46,9 +45,13 @@ img {
 #password-error {
     color: red;
 }
-.pro-title {
-    text-transform: uppercase;
-}
 #pro-name-error, #pro-email-error, #pro-phone-error, #pro-address-error, #pass-old-error, #pass-new-error, #pass-confirm-error {
     color: red;
+}
+.type-input {
+    border: none;
+
+}
+.type-text {
+    margin-top: 7px;
 }

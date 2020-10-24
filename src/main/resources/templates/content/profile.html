@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,58 +11,128 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <link rel="stylesheet" href="/main/profile/profile.css">
+    <link rel="stylesheet" href="profile.css">
 
 </head>
 <body>
 <section class="Form my-4 mx-5">
     <div class="container">
-        <h3 class="font-weight-bold py-3 mt-5 pro-title">Your Profile</h3>
-        <div class="row no-gutters mt-2">
-            <div class="col-lg-5" style="text-align: center;">
-                <img class="img-fluid mt-4 mb-3" src="https://static2.yan.vn/YanNews/2167221/202003/dan-mang-du-trend-thiet-ke-avatar-du-kieu-day-mau-sac-tu-anh-mac-dinh-b0de2bad.jpg" alt="picture">
-                <a href="#">Edit a photo</a>
-            </div>
-            <div class="col-lg-7 px-5 pt-5">
-                <form id="pro-form" >
-                    <div class="form-group">
-                        <label for="pro-name"> Your Name:</label>
-                        <input type="text" class="form-control" id="pro-name" name="name" placeholder="Your name">
+        <h5 class="mb-4 mt-3" style="text-align: center;">Basic info, like your name and photo, that you use on TeMB services</h5>
+        <div class="row row-card no-gutters mt-2">
+            <div class="col-lg-12 px-5 pt-5 pb-2">
+                <h4>Profile</h4>
+                <p>Some info may be visible to order people using TeMB services.</p>
+                <hr>
+                <form action="">
+                    <div class="row  mt-2">
+                        <div class="col-lg-2">
+                            <label for="pro-name" class="type-text">Photo</label>
+                        </div>
+                        <div class="col-lg-5">
+                            <span style="padding: .375rem .75rem;">Add a photo to personalize your account</span>
+                        </div>
+                        <div class="col-lg-5">
+                            <img src="https://vnn-imgs-f.vgcloud.vn/2020/03/23/11/trend-avatar-1.jpg" class="img" alt="avatar">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="pro-email"> Your Email:</label>
-                        <input type="email" class="form-control" id="pro-email" name="email" placeholder="Your email">
+                </form>
+                <hr>
+                <form action="" id="pro-form">
+                    <div class="row  mt-2">
+                        <div class="col-lg-2">
+                            <label for="pro-name" class="type-text">Name</label>
+                        </div>
+                        <div class="col-lg-7">
+                            <input type="text" class="form-control type-input" id="pro-name" name="name" placeholder="Your name">
+                        </div>
+                        <div class="col" style="margin-top:14px">
+                            <i class="fas fa-angle-right" style="float: right;"></i>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="pro-phone"> Your Phone:</label>
-                        <input type="text" class="form-control" id="pro-phone" name="phone" placeholder="Your phone">
+                    <hr>
+                    <div class="row  mt-2">
+                        <div class="col-lg-2">
+                            <label for="pro-name" class="type-text">Email</label>
+                        </div>
+                        <div class="col-lg-7">
+                            <input type="email" class="form-control type-input" id="pro-email" name="email" placeholder="Your email">
+                        </div>
+                        <div class="col" style="margin-top:14px">
+                            <i class="fas fa-angle-right" style="float: right;"></i>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="pro-address"> Your Address:</label>
-                        <input type="text" class="form-control" id="pro-address" name="address" placeholder="Your address">
+                    <hr>
+                    <div class="row  mt-2">
+                        <div class="col-lg-2">
+                            <label for="pro-name" class="type-text">Phone</label>
+                        </div>
+                        <div class="col-lg-7">
+                            <input type="text" class="form-control type-input" id="pro-phone" name="phone" placeholder="Your phone">
+                        </div>
+                        <div class="col" style="margin-top:14px">
+                            <i class="fas fa-angle-right" style="float: right;"></i>
+                        </div>
                     </div>
-
-                    <button type="button" class="login-btn mt-3 mb-5">Update profile</button>
+                    <hr>
+                    <div class="row  mt-2">
+                        <div class="col-lg-2">
+                            <label for="pro-name" class="type-text">Address</label>
+                        </div>
+                        <div class="col-lg-7">
+                            <input type="text" class="form-control type-input" id="pro-address" name="address" placeholder="Your address">
+                        </div>
+                        <div class="col mb-3" style="margin-top:14px">
+                            <i class="fas fa-angle-right" style="float: right;"></i>
+                        </div>
+                    </div>
+                    <hr>
+                    <button type="button" class="login-btn mt-3 mb-5">Update Info</button>
                 </form>
             </div>
         </div>
-        <h3 class="font-weight-bold py-3 mt-5 pro-title">Your Password</h3>
-        <div class="row no-gutters mt-2">
-            <div class="col-lg-7 px-5 pt-5">
-                <form id="pass-form">
-                    <div class="form-group">
-                        <label for="pass-old"> Old Password:</label>
-                        <input type="password" class="form-control" id="pass-old" name="oldpass" placeholder="Old passowrd">
-                    </div>
-                    <div class="form-group">
-                        <label for="pass-new"> New Password:</label>
-                        <input type="password" class="form-control" id="pass-new" name="newpass" placeholder="New password">
-                    </div>
-                    <div class="form-group">
-                        <label for="pass-confirm"> Confirm New Password:</label>
-                        <input type="password" class="form-control" id="pass-confirm" name="comfirmpass" placeholder="Confirm new password">
-                    </div>
 
+
+        <div class="row row-card no-gutters mt-5">
+            <div class="col-lg-12 px-5 pt-5 pb-2">
+                <h4>Password</h4>
+                <hr>
+                <form action="" id="pass-form">
+                    <div class="row  mt-2">
+                        <div class="col-lg-3">
+                            <label for="pro-name" class="type-text">Old password</label>
+                        </div>
+                        <div class="col-lg-7">
+                            <input type="password" class="form-control type-input" id="pass-old" name="oldpass" placeholder="Old passowrd">
+                        </div>
+                        <div class="col mb-3" style="margin-top:14px">
+                            <i class="fas fa-angle-right" style="float: right;"></i>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row  mt-2">
+                        <div class="col-lg-3">
+                            <label for="pro-name" class="type-text">New password</label>
+                        </div>
+                        <div class="col-lg-7">
+                            <input type="password" class="form-control type-input" id="pass-new" name="newpass" placeholder="New password">
+                        </div>
+                        <div class="col mb-3" style="margin-top:14px">
+                            <i class="fas fa-angle-right" style="float: right;"></i>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row  mt-2">
+                        <div class="col-lg-3">
+                            <label for="pro-name" class="type-text">Confirm new  password</label>
+                        </div>
+                        <div class="col-lg-7">
+                            <input type="password" class="form-control type-input" id="pass-confirm" name="comfirmpass" placeholder="Confirm new password">
+                        </div>
+                        <div class="col mb-3" style="margin-top:14px">
+                            <i class="fas fa-angle-right" style="float: right;"></i>
+                        </div>
+                    </div>
+                    <hr>
                     <button type="button" class="login-btn mt-3 mb-5">Update Password</button>
                 </form>
             </div>
@@ -70,6 +140,6 @@
     </div>
 </section>
 
-<script src="/main/profile/profile-validate.js" ></script>
+<script src="profile-validate.js"></script>
 </body>
 </html>

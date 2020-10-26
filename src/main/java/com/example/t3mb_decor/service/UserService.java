@@ -6,9 +6,15 @@ import com.example.t3mb_decor.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 public interface UserService extends UserDetailsService {
+    List<User> getAllUser();
     User saveUserToAdmin(UserToAdminVO user);
     User saveUser(UserVO registration);
     Boolean checkEmail(String email);
+    void deleteUser(long id);
+    User getUser(long id);
+    void saveUserUpdate(User user);
 }

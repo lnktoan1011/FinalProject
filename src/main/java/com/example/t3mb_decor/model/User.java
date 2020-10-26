@@ -14,7 +14,7 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "name",nullable = false)
     private String name;
@@ -47,8 +47,8 @@ public class User {
     private List<Product> product_wishlist = new ArrayList<>();
 
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+//    @JoinColumn(name = "user_id",referencedColumnName = "id")
     private List<Orders> order_customer = new ArrayList<>();
 
     @CreationTimestamp

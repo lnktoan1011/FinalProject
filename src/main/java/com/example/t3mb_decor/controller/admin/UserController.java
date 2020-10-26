@@ -1,7 +1,9 @@
 package com.example.t3mb_decor.controller.admin;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.example.t3mb_decor.VO.UserToAdminVO;
+import com.example.t3mb_decor.model.Role;
+import com.example.t3mb_decor.model.User;
+import com.example.t3mb_decor.service.RoleService;
 import com.example.t3mb_decor.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -21,6 +24,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    RoleService roleService;
+
     @ModelAttribute("first")
     public String getActive1(){
         return ".mysale_click";
@@ -30,9 +36,22 @@ public class UserController {
         return ".customer_click";
     }
 
+    @ModelAttribute("listUsers")
+    public List<User> getList(){
+        List<User> list = userService.getAllUser();
+        return list;
+    }
+
+    @ModelAttribute("listRole")
+    public List<Role> getListRole(){
+        return roleService.getAllRole();
+    }
+
     @ModelAttribute("user")
     public UserToAdminVO showUser(){return new UserToAdminVO();}
 
+    @ModelAttribute("getTable")
+    public boolean getTable(){return false;}
     @InitBinder
     public void initBinder(WebDataBinder dataBinder){
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
@@ -57,6 +76,7 @@ public class UserController {
             }
         }
         if (bindingResult.hasErrors()){
+            model.addAttribute("getTable",true);
             model.addAttribute("emptyError",true);
             return "/content/admin/users";
         }
@@ -64,4 +84,33 @@ public class UserController {
         return "redirect:/user?success";
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") long id) {
+        userService.deleteUser(id);
+        return "redirect:/user";
+    }
+    @GetMapping("/update/{id}")
+    public String showUpdate(@PathVariable("id") long id,Model model){
+        User user = userService.getUser(id);
+        model.addAttribute("getTable",true);
+        model.addAttribute("userUpdate",user);
+        return "/content/admin/users";
+    }
+    @PostMapping("/update")
+    public String updateUser(@ModelAttribute("userUpdate") User user, BindingResult bindingResult,Model model){
+        if (!user.getEmail().equals(userService.getUser(user.getId()).getEmail())) {
+            if (userService.checkEmail(user.getEmail())) {
+                bindingResult.addError(new FieldError("user", "email",
+                        "Email address already in use"));
+            }
+            if (bindingResult.hasErrors()){
+                model.addAttribute("getTable",true);
+                return "/content/admin/users";
+            }
+        }
+
+        System.out.println(user.getRoles());
+        userService.saveUserUpdate(user);
+        return "redirect:/user?successUpdate";
+    }
 }

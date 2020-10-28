@@ -27,6 +27,10 @@ public class Orders {
     @JoinColumn(name = "discount_id")
     private Discount discount;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
@@ -42,10 +46,7 @@ public class Orders {
     }
 
     public Orders(int total) {
-        this.id = id;
         this.total = total;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     public long getId() {
@@ -96,5 +97,11 @@ public class Orders {
         this.updatedAt = updatedAt;
     }
 
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

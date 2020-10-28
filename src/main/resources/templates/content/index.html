@@ -14,7 +14,7 @@
             </th:block>
             <div class="row">
                 <div class="col-6">
-                    <ul th:each ="cate : ${listCategories}">
+                    <ul th:each ="cate : ${listCate gories}">
                         <li > <a th:href="@{/category/update/{id}(id = ${cate.id})}"> <span th:text="${cate.getName()}"></span> </a>
                             <ul th:each="subcate :${cate.getSub()}">
                                 <li th:text="${subcate.name}"> </li>

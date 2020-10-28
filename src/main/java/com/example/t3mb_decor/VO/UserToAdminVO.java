@@ -18,6 +18,7 @@ public class UserToAdminVO {
     private String address;
     @NotBlank(message = "Enter your phone")
     private String phone;
+    @NotBlank(message = "Enter your role")
     private String role;
 
     public UserToAdminVO() {
@@ -32,6 +33,8 @@ public class UserToAdminVO {
         this.phone = phone;
         this.role = role;
     }
+
+
 
     public String getName() {
         return name;
@@ -88,4 +91,5 @@ public class UserToAdminVO {
     public void setRole(String role) {
         this.role = role;
     }
+
 }

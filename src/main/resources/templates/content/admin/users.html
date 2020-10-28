@@ -17,8 +17,11 @@
             margin-right: 20px;
             border-radius: 10px;
         }
-        #card_info{
+        #card_info,#card_update{
             display: none;
+        }
+        #listUser{
+            display: block;
         }
         .invalid-feedback{
             font-size: 14px;
@@ -32,6 +35,11 @@
     <div th:if="${param.success}">
         <div class="alert alert-success">
             User added successfully !!
+        </div>
+    </div>
+    <div th:if="${param.successUpdate}">
+        <div class="alert alert-success">
+            User updated successfully !!
         </div>
     </div>
     <section class="content-header">
@@ -50,7 +58,10 @@
             </div>
             <div class="row mb-2">
                 <div class="col-sm-6" id="add">
-                    <button type="button" class ="btn btn-primary m-2"  onclick="showForm()">Add User</button>
+                    <button type="button" class ="btn btn-primary m-2"  onclick="showForm()">
+                        <i class="fas fa-plus"></i>
+                        Add User
+                    </button>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -59,8 +70,8 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="card card-info block" id="card_info" th:style="${emptyError} ? 'display:block':'display: none;'">
-                <div class="card-header">
+            <div class="card card-info " id="card_info" th:style="${emptyError} ? 'display:block':'display: none;'">
+                <div class="card-header" style="background-color: #212529;">
                     <h3 class="card-title">New User</h3>
                 </div>
                 <!-- /.card-header -->
@@ -121,9 +132,10 @@
                             <label class="col-sm-2 col-form-label">Roles</label>
                             <div class="col-sm-10">
                                 <select id="roles" th:field="*{role}" class="form-control">
-                                    <option value="ROLE_ADMIN">Admin</option>
-                                    <option value="ROLE_SALER">Saler</option>
-                                    <option value="ROLE_USER">User</option>
+<!--                                    <option value="1">Admin</option>-->
+<!--                                    <option value="2">Saler</option>-->
+<!--                                    <option value="3">Customer</option>-->
+                                    <option th:each="role: ${listRole}" th:value="${role.id}" th:text="${role.name}"></option>
                                 </select>
                             </div>
 
@@ -133,24 +145,142 @@
                     </div>
                     <div class="card-footer">
                         <div class="btn-group">
-                            <button type="submit" class="btn btn-outline-success" onclick="Add()">Add</button>
+                            <button type="submit" class="btn btn-outline-success">Add</button>
                             <button type="button" class="btn btn-outline-danger" onclick="showForm()">Back</button>
                         </div>
                     </div>
                 </form>
             </div>
 
+            <th:block th:if="${userUpdate != null} ">
+            <div class="card card-info " id="card_update" th:style="(${userUpdate != null} )? 'display:block':'display:none'">
+                <div class="card-header" style="background-color: #212529;">
+                    <h3 class="card-title">Update User</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <!-- class="was-validated" -->
+
+                <form th:action="@{/user/update}" th:object="${userUpdate}" method="post" >
+                    <div class="card-body px-5">
+                        <input type="hidden" th:field="*{id} " />
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" th:field="*{name}" id="nameU" class="form-control" placeholder="Enter name" required >
+
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="text" th:field="*{email}" id="emailU" class="form-control " placeholder="Enter email" th:errorClass="is-invalid">
+                                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></div>
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label ">Address</label>
+                            <div class="col-sm-10">
+                                <input type="text" th:field="*{address}" id="addressU" class="form-control " placeholder="Enter address" required >
+
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Phone</label>
+                            <div class="col-sm-10">
+                                <input type="number" th:field="*{phone}" id="phoneU" class="form-control" placeholder="Enter phone" required >
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Role</label>
+                            <div class="col-sm-10">
+<!--                                <th:block th:field="*{roles}">-->
+<!--                                    <th:block th:each="roles : ${listRole}">-->
+<!--                                        <select  th:value="${roles.id}" name="roles" class="form-control">-->
+<!--                                            <option value="1">Admin</option>-->
+<!--                                            <option value="2">Saler</option>-->
+<!--                                            <option value="3">Customer</option>-->
+
+<!--                                        </select>-->
+<!--                                        -->
+<!--                                    </th:block>-->
+<!--                                </th:block>-->
+                                <select th:field="*{roles}" class="form-control">
+                                    <option th:each="roles: ${listRole}" th:value="${roles.id}" th:text="${roles.name}"></option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-outline-success">Update</button>
+                            <button type="button" class="btn btn-outline-danger" onclick="showUp()">Back</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            </th:block>
+            <div id="listUser" th:style="${getTable}  ? 'display:none':'display:block'">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="row">No</th>
+                            <th scope="row">Name</th>
+                            <th scope="row">Email</th>
+                            <th scope="row">Address</th>
+                            <th scope="row">Phone</th>
+                            <th scope="row">Role</th>
+                            <th scope="row">&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody th:each="users,state: ${listUsers}">
+                        <tr>
+                            <th scope="row" th:text="*{state.count}">1</th>
+                            <td th:text="*{users.getName()}">A</td>
+                            <td th:text="*{users.getEmail()}">A</td>
+                            <td th:text="*{users.getAddress()}">A</td>
+                            <td th:text="*{users.getPhone()}">A</td>
+                            <th:block th:each="u : *{users.getRoles()}">
+                            <td th:text="*{u.getName()}">A</td>
+                            </th:block>
+                            <td><a onclick="showUp()" th:href="@{/user/update/{id}(id=*{users.getId()})}" class="btn btn-outline-warning" >Edit</a>
+                                | <a th:href="@{/user/delete/{id}(id= *{users.getId()})}" onclick="return confirm('Are you sure you want to Delete?');"  class="btn btn-outline-danger" >Delete</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div><!-- /.container-fluid -->
     </section>
 
 <script>
     function showForm() {
         var x = document.getElementById("card_info");
-
-        if (x.style.display === "none" ) {
+        var y = document.getElementById("listUser");
+        if (x.style.display === "none" && y.style.display=== "block") {
             x.style.display = "block";
+            y.style.display = "none";
         } else {
             x.style.display = "none";
+            y.style.display = "block";
+        }
+    }
+    function showUp() {
+        var x = document.getElementById("card_update");
+        var y = document.getElementById("listUser");
+        if (x.style.display === "none" || y.style.display=== "block") {
+            x.style.display = "block";
+            y.style.display = "none";
+        } else {
+            x.style.display = "none";
+            y.style.display = "block";
         }
     }
 </script>

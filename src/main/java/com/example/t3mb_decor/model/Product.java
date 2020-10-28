@@ -5,16 +5,18 @@ import net.bytebuddy.implementation.bind.annotation.Default;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Text;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "products")
-public class Product {
+public class Product{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -29,8 +31,6 @@ public class Product {
     @Column(name = "material",nullable = false)
     private String material;
     @Column(name = "image",columnDefinition = "TEXT",nullable = false)
-    private String image;
-    @Column(name = "height",nullable = false)
     private int height;
     @Column(name = "length",nullable = false)
     private int length;
@@ -38,6 +38,14 @@ public class Product {
     private int width;
     @Column(name = "status", columnDefinition = "integer default 0")
     private int status;
+
+//  Mutiple images
+    @Transient
+    private List<MultipartFile> files = new ArrayList<MultipartFile>();
+
+//  Remove images
+    @Transient
+    private List<String> removeImage = new ArrayList<String>();
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "subcate_id")
@@ -77,13 +85,12 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, int price, String description, int quantity, String material, String image, int height, int length, int width) {
+    public Product(String name, int price, String description, int quantity, String material, int height, int length, int width) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.quantity = quantity;
         this.material = material;
-        this.image = image;
         this.height = height;
         this.length = length;
         this.width = width;
@@ -136,15 +143,6 @@ public class Product {
     public void setMaterial(String material) {
         this.material = material;
     }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public int getLength() {
         return length;
     }
@@ -237,5 +235,20 @@ public class Product {
 
     public void setSale(Sale sale) {
         this.sale = sale;
+    }
+    public List<MultipartFile> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<MultipartFile> files) {
+        this.files = files;
+    }
+
+    public List<String> getRemoveImage() {
+        return removeImage;
+    }
+
+    public void setRemoveImage(List<String> removeImage) {
+        this.removeImage = removeImage;
     }
 }

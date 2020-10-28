@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <b><p>Home > Product</p></b>
+    <br>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+
+                <div class="container">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:40%; ">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img src="https://noithatthienminh.vn/wp-content/uploads/2018/11/13-1-1-1.jpg" style="width:100%;">
+                            </div>
+
+                            <div class="item">
+                                <img src="https://noithatanhphat.com.vn/wp-content/uploads/2019/01/ban-lam-vie%CC%A3c-chan-sat-chu%CC%83-k-1m2x60cm.jpg" style="width:100%;">
+                            </div>
+
+                            <div class="item">
+                                <img src="https://dienmaycholon.vn/public/picture/product/product11347/product_11347_1.png" style="width:100%;">
+                            </div>
+                        </div>
+
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" style=" padding-left: 2%; ; border-radius: 20px;">
+                <h1 style="letter-spacing: 2px; color: gray;">Bàn Làm Việc Gỗ Giá Rẻ - Bao Đổi Trả Nếu Không Hài Lòng</h1>
+                <p id="price">$ <span>1.0000</span></p>
+
+                <hr style="border-top: 2px dashed gray;">
+
+                <h3>Quantity</h3>
+
+                <div class="buttons_added" >
+                    <input class="minus is-form" type="button" value="-" >
+                    <input aria-label="quantity" class="input-qty" max="10" min="1" name="" type="number" value="1" disabled>
+                    <input class="plus is-form" type="button" value="+">
+                </div>
+
+                <button style="float: right; background: transparent; border-width: 0;" id="btn_heart">
+                    <i class="fa fa-heart" id="heart" ></i>
+                </button>
+
+                <hr style="border-top: 2px dashed gray;">
+
+                <div class="buttons">
+                    <div class="white">
+                        <a class="btn btn-dark">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                                <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
+                            </svg>
+                            Add to cart
+                        </a>
+                    </div>
+                    <div class="dark">
+                        <a class="btn btn-white">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                                <path fill-rule="evenodd" d="M11.354 5.646a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                            </svg>
+                            Buy now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr style="border-top: 1px solid gray;">
+
+    <div class="des">
+        <h2>Product Detail</h2>
+
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'Description')" >Description</button>
+            <button class="tablinks" onclick="openCity(event, 'Tech')">Technical specifications</button>
+        </div>
+
+        <div id="Description" class="tabcontent" style="display: block;">
+            <h3>Description</h3>
+            <p>London is the capital city of England.</p>
+        </div>
+
+        <div id="Tech" class="tabcontent">
+            <h3>Technical specifications</h3>
+            <table class="table table-striped table-dark" style="font-size: 18px;">
+                <tbody>
+                <tr>
+                    <th scope="row">Material</th>
+                    <td>Wood</td>
+                </tr>
+                <tr>
+                    <th scope="row">Brand</th>
+                    <td>China</td>
+                </tr>
+                <tr>
+                    <th scope="row">Color</th>
+                    <td>Red</td>
+                </tr>
+                <tr>
+                    <th scope="row">Length</th>
+                    <td><span>100</span> cm</td>
+                </tr>
+                <tr>
+                    <th scope="row">Height</th>
+                    <td><span>100</span> cm</td>
+                </tr>
+                <tr>
+                    <th scope="row">Width</th>
+                    <td><span>100</span> cm</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <br>
+    <div class="rel-pro">
+        <h2 style="text-align: center;">Other Products</h2>
+        <hr style="border-top: 1px solid gray; width: 10%;">
+
+        <div class="container1">
+            <div class="card">
+                <a href="#">
+                    <div class="face face1">
+                        <div class="content">
+                            <img style="width: 100%;" src="https://noithatthienminh.vn/wp-content/uploads/2018/11/13-1-1-1.jpg">
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <h3 style="text-align: center;">Design</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="card">
+                <a href="#">
+                    <div class="face face1">
+                        <div class="content">
+                            <img style="width: 100%;" src="https://noithatthienminh.vn/wp-content/uploads/2018/11/13-1-1-1.jpg">
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <h3 style="text-align: center;">Design</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="card">
+                <a href="#">
+                    <div class="face face1">
+                        <div class="content">
+                            <img style="width: 100%;" src="https://noithatthienminh.vn/wp-content/uploads/2018/11/13-1-1-1.jpg">
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <h3 style="text-align: center;">Design</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="card">
+                <a href="#">
+                    <div class="face face1">
+                        <div class="content">
+                            <img style="width: 100%;" src="https://noithatthienminh.vn/wp-content/uploads/2018/11/13-1-1-1.jpg">
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <h3 style="text-align: center;">Design</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="card">
+                <a href="#">
+                    <div class="face face1">
+                        <div class="content">
+                            <img style="width: 100%;" src="https://noithatthienminh.vn/wp-content/uploads/2018/11/13-1-1-1.jpg">
+                        </div>
+                    </div>
+                    <div class="face face2">
+                        <div class="content">
+                            <h3 style="text-align: center;">Design</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+<style>
+    body{
+        font-family: 'Times New Roman', Times, serif;
+        padding-left: 15%;
+        padding-right: 15%;
+        padding-top: 5%;
+    }
+    #price{
+        /* color: red; */
+        font-weight: bolder;
+        font-size: 25px;
+    }
+
+    .buttons_added {
+        opacity:1;
+        display:inline-block;
+        display:-ms-inline-flexbox;
+        display:inline-flex;
+        white-space:nowrap;
+        vertical-align:top;
+    }
+    .is-form {
+        overflow:hidden;
+        position:relative;
+        background-color:#f9f9f9;
+        height:40px;
+        width:40px;
+        padding:0;
+        text-shadow:1px 1px 1px #fff;
+        border:1px solid #ddd;
+    }
+    .is-form:focus,.input-text:focus {
+        outline:none;
+    }
+    .is-form.minus {
+        border-radius:4px 0 0 4px;
+        font-size: 25px;
+    }
+    .is-form.plus {
+        border-radius:0 4px 4px 0;
+        font-size: 25px;
+    }
+    .input-qty {
+        background-color:#fff;
+        height:40px;
+        text-align:center;
+        display:inline-block;
+        vertical-align:top;
+        margin:0;
+        border-top:1px solid #ddd;
+        border-bottom:1px solid #ddd;
+        border-left:0;
+        border-right:0;
+        padding:0;
+        font-size: 18px;
+    }
+    .input-qty::-webkit-outer-spin-button,
+    .input-qty::-webkit-inner-spin-button {
+        -webkit-appearance:none;
+        margin:0;
+    }
+
+    /*BUTTON  */
+    .buttons {
+        overflow: hidden;
+    }
+
+    .buttons > div {
+        padding: 1px;
+        float: left;
+        bottom: 0;
+        top: 0;
+    }
+
+    .buttons .dark {
+        background: #000;
+        margin-left: 10%;
+    }
+
+    .buttons a {
+        float: right;
+    }
+    a#link {
+        position: absolute;
+        text-decoration: none;
+        color: #555;
+        font-weight: bold;
+    }
+    /*------------------------------------------------------*/
+    /* BUTTONS */
+    /*------------------------------------------------------*/
+    .btn,
+    input[type="submit"]{
+        cursor: pointer;
+        border-radius: 0px;
+        text-decoration: none;
+        padding: 12px 18px;
+        font-size: 18px;
+        font-family: 'Times New Roman', Times, serif;
+        -webkit-transition: all .4s ease-in-out;
+        -moz-transition: all .4s ease-in-out;
+        -ms-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+    }
+
+    .btn:hover,
+    input[type="submit"]:hover{
+        -webkit-transition: all .4s ease-in-out;
+        -moz-transition: all .4s ease-in-out;
+        -ms-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+    }
+    .btn-white{
+        background: black;
+        color: #fff ;
+    }
+    .btn-white:hover{
+        border:solid 1px #fff;
+        background: #fff;
+        color: #1f1f1f !important;
+    }
+
+    .btn-dark,
+    input[type="submit"]{
+        border:solid 1px #1f1f1f;
+        background:white;
+        color: #1f1f1f;
+    }
+    .btn-dark:hover,
+    input[type="submit"]:hover,
+    .btn-dark.active{
+        border:solid 1px #1f1f1f;
+        background: #1f1f1f;
+        color: #fff;
+    }
+
+    /* Style the tab */
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+    }
+
+    /* Style the buttons inside the tab */
+    .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+        background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+        background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        -webkit-animation: fadeEffect 1s;
+        animation: fadeEffect 1s;
+    }
+
+    /* Fade in tabs */
+    @-webkit-keyframes fadeEffect {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+
+    @keyframes fadeEffect {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+
+    #logo{
+        transition: transform .2s;
+        border-radius: 20px;
+        width: 100%;
+    }
+
+    /* Card */
+    .container1{
+        width: 100%;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .container1 .card{
+        position: relative;
+        cursor: pointer;
+    }
+
+    .container1 .card .face{
+        width: 200px;
+        height: 200px;
+        transition: 0.5s;
+    }
+
+    .container1 .card .face.face1{
+        position: relative;
+        background: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        transform: translateY(100px);
+    }
+
+    .container1 .card:hover .face.face1{
+
+        transform: translateY(0);
+    }
+
+    .container1 .card .face.face1 .content{
+        transition: 0.5s;
+    }
+
+    .container1 .card:hover .face.face1 .content{
+        opacity: 1;
+    }
+
+    .container1 .card .face.face1 .content img{
+        width: 100%;
+    }
+
+    .container1 .card .face.face1 .content h3{
+        margin: 10px 0 0;
+        padding: 0;
+        color: #fff;
+        text-align: center;
+        font-size: 1.5em;
+    }
+
+    .container1 .card .face.face2{
+        position: relative;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        box-sizing: border-box;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        transform: translateY(-100px);
+    }
+
+    .container1 .card:hover .face.face2{
+        transform: translateY(0);
+    }
+
+    .container1 .card .face.face2 .content p{
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* number of lines to show */
+        -webkit-box-orient: vertical;
+    }
+
+    .container1 .card a{
+        margin: 15px 0 0;
+        display:  inline-block;
+        text-decoration: none;
+        font-weight: 900;
+        color: #333;
+
+    }
+
+    .container1 .card .face.face2 .content a:hover{
+        background: #333;
+        color: #fff;
+    }
+
+    #heart {
+        color: grey;
+        font-size: 25px;
+
+    }
+
+    #heart.red {
+        color: red;
+    }
+
+    #btn_heart:focus{
+        outline: none;
+    }
+    th{
+        width: 20%;
+    }
+    p{
+        font-size: 18px;
+    }
+</style>
+</html>
+<!-- Button -->
+<script>
+    $('input.input-qty').each(function() {
+        var $this = $(this),
+            qty = $this.parent().find('.is-form'),
+            min = Number($this.attr('min')),
+            max = Number($this.attr('max'))
+        if (min == 0) {
+            var d = 0
+        } else d = min
+        $(qty).on('click', function() {
+            if ($(this).hasClass('minus')) {
+                if (d > min) d += -1
+            } else if ($(this).hasClass('plus')) {
+                var x = Number($this.val()) + 1
+                if (x <= max) d += 1
+            }
+            $this.attr('value', d).val(d)
+        })
+    })
+
+    // Tab
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    //  Wish list
+    (function() {
+        const heart = document.getElementById('heart');
+        heart.addEventListener('click', function() {
+            heart.classList.toggle('red');
+        });
+    })();
+</script>

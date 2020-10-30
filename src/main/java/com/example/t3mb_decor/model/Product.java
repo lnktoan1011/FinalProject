@@ -30,7 +30,7 @@ public class Product{
     private int quantity;
     @Column(name = "material",nullable = false)
     private String material;
-    @Column(name = "length",columnDefinition = "TEXT",nullable = false)
+    @Column(name = "height",columnDefinition = "TEXT",nullable = false)
     private int height;
     @Column(name = "length",nullable = false)
     private int length;

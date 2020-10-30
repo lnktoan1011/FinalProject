@@ -26,7 +26,7 @@
             margin-top: 20px;
             transition: 0.4s;
             border-radius: 10px;
-            position: absolute;
+            /*position: absolute;*/
         }
         .card:hover{
             box-shadow: 12px 12px 12px gray;
@@ -62,33 +62,19 @@
             height: auto;
         }
 
+        #heart {
+            color: grey;
+            font-size: 20px;
+        }
 
-        .heart i.fa-heart{
+        #heart.red {
             color: red;
-        }
-        .heart {
-            animation: heart 0.5s linear;
-        }
-        @keyframes heart{
-            0%{
-                transform: rotate(0deg) scale(1.7);
-            }
-            40%{
-                transform: rotate(0deg) scale(1);
-            }
-            41%{
-                transform: rotate(360deg) scale(1);
-            }
-            100%{
-                transform: rotate(0deg) scale(1);
-            }
         }
         #btn_heart{
             float: right;
             background: transparent;
             border-width: 0;
             padding-right: 10px;
-            color: gray;
         }
         #btn_heart:focus{
             outline: none;
@@ -138,8 +124,8 @@
 <!--        </div>-->
 
         <!-- <hr style="border-top: 2px solid gray;"> -->
-        <div class="container" style="padding-top: 200px" >
-            <div class="row" th:each="pro, custStat : ${productList}">
+        <div class="container" style="padding-top: 200px">
+            <div  th:each="pro, custStat : ${productList}">
                 <div class="col-lg-3">
                     <div class="card">
                         <a href="C:/Users/ASUS/product.html" style="text-decoration: none;">
@@ -158,9 +144,9 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <a id="btn_heart" class="like">
-                                    <i class="fa fa-heart"  aria-hidden="true"></i>
-                                </a>
+                                <button id="btn_heart">
+                                    <i class="fa fa-heart" id="heart" ></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -168,11 +154,12 @@
             </div>
         </div>
         <script>
-            $(document).ready(function(){
-                $(".like").click(function(){
-                    $(this).toggleClass("heart");
-                })
-            })
+            (function() {
+                const heart = document.getElementById('heart');
+                heart.addEventListener('click', function() {
+                    heart.classList.toggle('red');
+                });
+            })();
         </script>
     </div>
 </body>

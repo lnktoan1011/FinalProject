@@ -45,10 +45,17 @@ public class CollectionController {
 
 
     @GetMapping
-    public String viewProduct(Model model){
+    public String viewCollection(Model model){
 
         return "content/list_product";
     }
+
+    @GetMapping("/product")
+    public String viewProduct(Model model){
+
+        return "content/product";
+    }
+
 
 
 }

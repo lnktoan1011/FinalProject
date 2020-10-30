@@ -62,19 +62,33 @@
             height: auto;
         }
 
-        #heart {
-            color: grey;
-            font-size: 20px;
-        }
 
-        #heart.red {
+        .heart i.fa-heart{
             color: red;
+        }
+        .heart {
+            animation: heart 0.5s linear;
+        }
+        @keyframes heart{
+            0%{
+                transform: rotate(0deg) scale(1.7);
+            }
+            40%{
+                transform: rotate(0deg) scale(1);
+            }
+            41%{
+                transform: rotate(360deg) scale(1);
+            }
+            100%{
+                transform: rotate(0deg) scale(1);
+            }
         }
         #btn_heart{
             float: right;
             background: transparent;
             border-width: 0;
             padding-right: 10px;
+            color: gray;
         }
         #btn_heart:focus{
             outline: none;
@@ -124,7 +138,7 @@
 <!--        </div>-->
 
         <!-- <hr style="border-top: 2px solid gray;"> -->
-        <div class="container" style="padding-top: 200px">
+        <div class="container" style="padding-top: 200px" >
             <div class="row" th:each="pro, custStat : ${productList}">
                 <div class="col-lg-3">
                     <div class="card">
@@ -144,9 +158,9 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <button id="btn_heart">
-                                    <i class="fa fa-heart" id="heart" ></i>
-                                </button>
+                                <a id="btn_heart" class="like">
+                                    <i class="fa fa-heart"  aria-hidden="true"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -154,12 +168,11 @@
             </div>
         </div>
         <script>
-            (function() {
-                const heart = document.getElementById('heart');
-                heart.addEventListener('click', function() {
-                    heart.classList.toggle('red');
-                });
-            })();
+            $(document).ready(function(){
+                $(".like").click(function(){
+                    $(this).toggleClass("heart");
+                })
+            })
         </script>
     </div>
 </body>

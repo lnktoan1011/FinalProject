@@ -4,98 +4,8 @@
       layout:decorate="~{layouts/main_layout/main}">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/main/collection/list_product.css}">
     <title>Product</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-    <style>
-        body{
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 18px;
-        }
-        .sort{
-            margin-left: 15%;
-            margin-right: 15%;
-            margin-top: 5%;
-            text-align: end;
-        }
-        .card{
-            border: 1px solid gray;
-            margin-top: 20px;
-            transition: 0.4s;
-            border-radius: 10px;
-            /*position: absolute;*/
-        }
-        .card:hover{
-            box-shadow: 12px 12px 12px gray;
-            transition: 0.4s;
-            cursor: pointer;
-        }
-
-        .info{
-            padding-top: 10px;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-        #title{
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 1; /* number of lines to show */
-            -webkit-box-orient: vertical;
-            color: rgb(153, 153, 153);
-        }
-
-        p{
-            font-size: 18px;
-        }
-        #price{
-            font-weight: bold;
-            color: black;
-            font-size: 18px;
-        }
-
-        #img{
-            border-radius: 10px 10px 0 0;
-            height: auto;
-        }
-
-        #heart {
-            color: grey;
-            font-size: 20px;
-        }
-
-        #heart.red {
-            color: red;
-        }
-        #btn_heart{
-            float: right;
-            background: transparent;
-            border-width: 0;
-            padding-right: 10px;
-        }
-        #btn_heart:focus{
-            outline: none;
-        }
-
-        select{
-            padding: 5px;
-            padding-left: 7px;
-            margin-right: 10px;
-        }
-        select:focus{
-            outline: none;
-        }
-        option{
-            color: white;
-            background: rgb(163, 163, 163);
-            padding: 3px;
-            list-style: none;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body>
     <div layout:fragment="contents" style="margin-bottom: 200px">
@@ -125,12 +35,12 @@
 
         <!-- <hr style="border-top: 2px solid gray;"> -->
         <div class="container" style="padding-top: 200px">
-            <div  th:each="pro, custStat : ${productList}">
-                <div class="col-lg-3">
+            <div  class="row">
+                <div class="col-lg-3" th:each="pro, custStat : ${productList}">
                     <div class="card">
                         <a href="C:/Users/ASUS/product.html" style="text-decoration: none;">
                             <div th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
-                                <img id="img" th:src="@{${'/images/' + img}}" width="100%">
+                                <img id="img" th:src="@{${'/images/' + img}}">
                             </div>
 
                             <div class="info">
@@ -144,9 +54,9 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <button id="btn_heart">
-                                    <i class="fa fa-heart" id="heart" ></i>
-                                </button>
+                                <a id="btn_heart" class="like">
+                                    <i class="fa fa-heart"  aria-hidden="true"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -154,12 +64,11 @@
             </div>
         </div>
         <script>
-            (function() {
-                const heart = document.getElementById('heart');
-                heart.addEventListener('click', function() {
-                    heart.classList.toggle('red');
-                });
-            })();
+            $(document).ready(function(){
+                $(".like").click(function(){
+                    $(this).toggleClass("heart");
+                })
+            })
         </script>
     </div>
 </body>

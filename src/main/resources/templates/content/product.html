@@ -1,49 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main_layout/main}">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/main/collection/product.css}">
 </head>
 <body>
+<div layout:fragment="contents" style="padding-top: 100px ">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6">
-
                 <div class="container">
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:40%; ">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#myCarousel" data-slide-to="1"></li>
-                            <li data-target="#myCarousel" data-slide-to="2"></li>
-                        </ol>
-
-                        <!-- Wrapper for slides -->
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="https://noithatthienminh.vn/wp-content/uploads/2018/11/13-1-1-1.jpg" style="width:100%;">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="https://noithatthienminh.vn/wp-content/uploads/2018/11/13-1-1-1.jpg" alt="First slide">
                             </div>
-
-                            <div class="item">
-                                <img src="https://noithatanhphat.com.vn/wp-content/uploads/2019/01/ban-lam-vie%CC%A3c-chan-sat-chu%CC%83-k-1m2x60cm.jpg" style="width:100%;">
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="https://dienmaycholon.vn/public/picture/product/product11347/product_11347_1.png" alt="Second slide">
                             </div>
-
-                            <div class="item">
-                                <img src="https://dienmaycholon.vn/public/picture/product/product11347/product_11347_1.png" style="width:100%;">
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="https://noithatthienminh.vn/wp-content/uploads/2018/11/13-1-1-1.jpg" alt="Third slide">
                             </div>
                         </div>
-
-                        <!-- Left and right controls -->
-                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
@@ -63,31 +50,24 @@
                     <input class="plus is-form" type="button" value="+">
                 </div>
 
-                <button style="float: right; background: transparent; border-width: 0;" id="btn_heart">
-                    <i class="fa fa-heart" id="heart" ></i>
-                </button>
+                <a id="btn_heart" class="like">
+                    <i class="fa fa-heart"  aria-hidden="true"></i>
+                </a>
 
                 <hr style="border-top: 2px dashed gray;">
 
                 <div class="buttons">
-                    <div class="white">
-                        <a class="btn btn-dark">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                                <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
-                            </svg>
-                            Add to cart
-                        </a>
-                    </div>
-                    <div class="dark">
-                        <a class="btn btn-white">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                                <path fill-rule="evenodd" d="M11.354 5.646a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708 0z"/>
-                            </svg>
-                            Buy now
-                        </a>
-                    </div>
+                    <button type="button" class="btn btn-outline-danger">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                            <path fill-rule="evenodd" d="M11.354 5.646a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                        </svg> Buy now</button>
+
+                    <button type="button" class="btn btn-outline-success">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                            <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
+                        </svg> Add to cart</button>
                 </div>
             </div>
         </div>
@@ -110,7 +90,7 @@
 
         <div id="Tech" class="tabcontent">
             <h3>Technical specifications</h3>
-            <table class="table table-striped table-dark" style="font-size: 18px;">
+            <table class="table table-striped" style="font-size: 18px;">
                 <tbody>
                 <tr>
                     <th scope="row">Material</th>
@@ -145,8 +125,6 @@
     <br>
     <div class="rel-pro">
         <h2 style="text-align: center;">Other Products</h2>
-        <hr style="border-top: 1px solid gray; width: 10%;">
-
         <div class="container1">
             <div class="card">
                 <a href="#">
@@ -225,10 +203,16 @@
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>
 <!-- Button -->
 <script>
+    $(document).ready(function(){
+        $(".like").click(function(){
+            $(this).toggleClass("heart");
+        })
+    })
     $('input.input-qty').each(function() {
         var $this = $(this),
             qty = $this.parent().find('.is-form'),

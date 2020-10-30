@@ -26,7 +26,7 @@
             margin-top: 20px;
             transition: 0.4s;
             border-radius: 10px;
-            position: absolute;
+            /*position: absolute;*/
         }
         .card:hover{
             box-shadow: 12px 12px 12px gray;
@@ -125,7 +125,7 @@
 
         <!-- <hr style="border-top: 2px solid gray;"> -->
         <div class="container" style="padding-top: 200px">
-            <div class="row" th:each="pro, custStat : ${productList}">
+            <div  th:each="pro, custStat : ${productList}">
                 <div class="col-lg-3">
                     <div class="card">
                         <a href="C:/Users/ASUS/product.html" style="text-decoration: none;">

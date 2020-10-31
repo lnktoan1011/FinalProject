@@ -18,7 +18,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 
         if (roles.contains("ROLE_ADMIN")){
-            httpServletResponse.sendRedirect("/category");
+            httpServletResponse.sendRedirect("/admins/order");
         }else{
             httpServletResponse.sendRedirect("/home");
         }

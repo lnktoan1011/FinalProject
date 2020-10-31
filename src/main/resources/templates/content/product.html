@@ -37,8 +37,8 @@
                 </div>
             </div>
             <div class="col-lg-6" style=" padding-left: 2%; ; border-radius: 20px;">
-                <h1 style="letter-spacing: 2px; color: gray;">Bàn Làm Việc Gỗ Giá Rẻ - Bao Đổi Trả Nếu Không Hài Lòng</h1>
-                <p id="price">$ <span>1.0000</span></p>
+                <h1 style="letter-spacing: 2px; color: gray;" th:text="${product.name}"></h1>
+                <p id="price" >$ <span th:text="${product.price}"></span></p>
 
                 <hr style="border-top: 2px dashed gray;">
 
@@ -85,7 +85,7 @@
 
         <div id="Description" class="tabcontent" style="display: block;">
             <h3>Description</h3>
-            <p>London is the capital city of England.</p>
+            <p th:text="${product.description}"></p>
         </div>
 
         <div id="Tech" class="tabcontent">
@@ -93,28 +93,28 @@
             <table class="table table-striped" style="font-size: 18px;">
                 <tbody>
                 <tr>
-                    <th scope="row">Material</th>
+                    <th scope="row" th:text="${product.material}"></th>
                     <td>Wood</td>
                 </tr>
                 <tr>
-                    <th scope="row">Brand</th>
-                    <td>China</td>
+                    <th scope="row"></th>
+                    <td  th:text="${product.brand.name}"></td>
                 </tr>
                 <tr>
                     <th scope="row">Color</th>
-                    <td>Red</td>
+                    <td  th:text="${product.color.name}"></td>
                 </tr>
                 <tr>
                     <th scope="row">Length</th>
-                    <td><span>100</span> cm</td>
+                    <td><span th:text="${product.length}"></span> cm</td>
                 </tr>
                 <tr>
                     <th scope="row">Height</th>
-                    <td><span>100</span> cm</td>
+                    <td><span th:text="${product.height}"></span> cm</td>
                 </tr>
                 <tr>
                     <th scope="row">Width</th>
-                    <td><span>100</span> cm</td>
+                    <td><span th:text="${product.width}"></span> cm</td>
                 </tr>
                 </tbody>
             </table>

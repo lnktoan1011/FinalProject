@@ -18,7 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("admins/user")
 public class UserController {
 
 
@@ -81,13 +81,13 @@ public class UserController {
             return "/content/admin/users";
         }
         userService.saveUserToAdmin(user);
-        return "redirect:/user?success";
+        return "redirect:/admins/user?success";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") long id) {
         userService.deleteUser(id);
-        return "redirect:/user";
+        return "redirect:/admins/user";
     }
     @GetMapping("/update/{id}")
     public String showUpdate(@PathVariable("id") long id,Model model){
@@ -111,6 +111,6 @@ public class UserController {
 
         System.out.println(user.getRoles());
         userService.saveUserUpdate(user);
-        return "redirect:/user?successUpdate";
+        return "redirect:/admins/user?successUpdate";
     }
 }

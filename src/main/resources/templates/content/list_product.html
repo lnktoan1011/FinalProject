@@ -38,7 +38,7 @@
             <div  class="row">
                 <div class="col-lg-3" th:each="pro, custStat : ${productList}">
                     <div class="card">
-                        <a href="C:/Users/ASUS/product.html" style="text-decoration: none;">
+                        <a th:href="@{/product/{id}(id = ${pro.id})}" style="text-decoration: none;">
                             <div th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
                                 <img id="img" th:src="@{${'/images/' + img}}">
                             </div>

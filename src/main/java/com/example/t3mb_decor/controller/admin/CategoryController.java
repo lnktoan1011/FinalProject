@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-@RequestMapping("/category")
+@RequestMapping("admins/category")
 @Controller
 public class CategoryController {
 
@@ -46,21 +46,21 @@ public class CategoryController {
     @GetMapping("delete/{id}")
      public String deleteCategory(@PathVariable("id") long id){
         categoryService.deleteCategory(id);
-        return "redirect:/category";
+        return "redirect:/admins/category";
     }
     @GetMapping("delete")
     public String deleteCategory(){
         categoryService.deleteAllOfCategory();
-        return "redirect:/category";
+        return "redirect:/admins/category";
     }
     @GetMapping("/deleteSub/{id}")
     public String deleteSub(@PathVariable("id") long id){
         subCategoryService.deleteSubCategory(id);
-        return "redirect:/category/update-sub/" + id ;
+        return "redirect:/admins/category/update-sub/" + id ;
     }
     @GetMapping("add")
     public String viewNewCategory(Model model){
-        return "redirect:/category";
+        return "redirect:/admins/category";
     }
     @PostMapping("add")
     public String saveCategory(@ModelAttribute("cate") Category category){
@@ -69,7 +69,7 @@ public class CategoryController {
         //Save cate create date.Because when update the cate create date not save.
         if(category.getId() != 0) {
             categoryService.updateCategory(category);
-            return "redirect:/category/update/" + category.getId() ;
+            return "redirect:/admins/category/update/" + category.getId() ;
         }
         categoryService.saveCategory(category);
         return "redirect:" ;
@@ -96,7 +96,7 @@ public class CategoryController {
         Category category = categoryService.getCategory(id) ;
         sub.setCategory(category);
         subCategoryService.saveSubCategory(sub);
-        return "redirect:/category/add-sub/" + id ;
+        return "redirect:/admins/category/add-sub/" + id ;
     }
 
     @GetMapping("update-sub/{id}")
@@ -111,6 +111,6 @@ public class CategoryController {
     @PostMapping("update-sub/{id}")
     public String UpdateSubCategory(@PathVariable("id") long id, @ModelAttribute("subCateUpdate") SubCategory sub){
         subCategoryService.updateSubCategory(sub);
-        return "redirect:/category/update-sub/" + id ;
+        return "redirect:/admins/category/update-sub/" + id ;
     }
 }

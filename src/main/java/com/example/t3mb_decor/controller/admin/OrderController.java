@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/order")
+@RequestMapping("admins/order")
 public class OrderController {
     @ModelAttribute("first")
     public String getActive1(){

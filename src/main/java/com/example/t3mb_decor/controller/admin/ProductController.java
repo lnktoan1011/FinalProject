@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/product")
+@RequestMapping("admins/product")
 public class ProductController {
     @Autowired
     ProductService productService;
@@ -93,7 +93,7 @@ public class ProductController {
         Product saveProduct = productService.save(product);
         if (saveProduct != null){
             redirectAttributes.addFlashAttribute("success","Product is saved successfully");
-            return "redirect:/product";
+            return "redirect:/admins/product";
         }
         else{
             model.addAttribute("error", "Product is not save, please try again");
@@ -109,7 +109,7 @@ public class ProductController {
         Product saveProduct = productService.save(product);
         if (saveProduct != null){
             redirectAttributes.addFlashAttribute("success","Product is saved successfully");
-            return "redirect:/product";
+            return "redirect:/admins/product";
         }
         else{
             model.addAttribute("error", "Product is not save, please try again");

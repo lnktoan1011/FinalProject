@@ -96,22 +96,20 @@
                     </ol>
                 </div>
             </div>
+            <!--Message-->
+            <!--Success-->
+            <div class="alert alert-success alert-dismissible fade show" th:if="${success != null}">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong th:text="${success}"></strong>
+            </div>
+
+            <!--Error-->
+            <div class="alert alert-danger alert-dismissible fade show" th:if="${error != null}">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong th:text="${error}"></strong>
+            </div>
             <!-- form start -->
-            <form role="form" id="form_info" th:action="@{${isAdd}?'/product/save':'/category/update'}" th:object="${product}" method="post" enctype="multipart/form-data">
-
-                    <!--Message-->
-                    <!--Success-->
-                    <div class="alert alert-success alert-dismissible fade show" th:if="${success}">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong th:text="${success}"></strong>
-                    </div>
-
-                    <!--Error-->
-                    <div class="alert alert-danger alert-dismissible fade show" th:if="${error}">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong th:text="${error}"></strong>
-                    </div>
-
+            <form role="form" id="form_info" th:action="@{${isAdd}?'/admins/product/save':'/category/update'}" th:object="${product}" method="post" enctype="multipart/form-data">
 
 
                     <div class="row">
@@ -271,7 +269,7 @@
                         </div>
                         <div class="col-lg-2">
                             <a id="button_dl">Delete</a>
-                            <a id="button_ed" th:href="@{'/product/edit/' + ${pro.id}}"> <i class="fa fa-edit" style="font-size: 21px;"></i> </a>
+                            <a id="button_ed" th:href="@{'/admins/product/edit/' + ${pro.id}}"> <i class="fa fa-edit" style="font-size: 21px;"></i> </a>
                         </div>
                     </div>
                 </li>

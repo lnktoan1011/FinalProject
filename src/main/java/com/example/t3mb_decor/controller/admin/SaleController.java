@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/sale")
+@RequestMapping("admins/sale")
 public class SaleController {
 
     @ModelAttribute("first")
@@ -18,7 +18,7 @@ public class SaleController {
         return ".sale_click";
     }
     @GetMapping
-    public String viewtest(){
+    public String viewSale(){
         return "content/admin/sale";
     }
 }

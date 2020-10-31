@@ -7,9 +7,10 @@
     <meta charset="UTF-8">
     <title>Category</title>
     <style>
-        #table-item:hover{
-            cursor: pointer;
+        a{
+            color: black;
         }
+
 
         #card_info{
             margin-bottom: 30px;
@@ -40,7 +41,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Categories</h1> <a th:href="@{/category/add}" class ="btn btn-primary m-2">Add Category</a>
+                        <h1>Categories</h1> <a th:href="@{/admins/category/add}" class ="btn btn-primary m-2">Add Category</a>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Catalog</a></li>
+                            <li class="breadcrumb-item active">Categories</li>
+                        </ol>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -55,7 +62,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">New Category</h3>
                             </div>
-                            <form action="#" th:action="@{/category/add}" th:object="${cate}" method="post">
+                            <form action="#" th:action="@{/admins/category/add}" th:object="${cate}" method="post">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <div class="input-group-prepend">
@@ -71,7 +78,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">New Sub Category</h3>
                             </div>
-                            <form action="#" th:action="@{/category/add-sub/{id}(id = ${cate_id})}" th:object="${subCate}" method="post">
+                            <form action="#" th:action="@{/admins/category/add-sub/{id}(id = ${cate_id})}" th:object="${subCate}" method="post">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <div class="input-group-prepend">
@@ -89,7 +96,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Update Category</h3>
                             </div>
-                            <form action="#" th:action="@{/category/add}" th:object="${cate}" method="post">
+                            <form action="#" th:action="@{/admins/category/add}" th:object="${cate}" method="post">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <div class="input-group-prepend">
@@ -105,7 +112,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Update Sub Category</h3>
                             </div>
-                            <form action="#" th:action="@{/category/update-sub/{id}(id = ${subCateUpdate.id})}" th:object="${subCateUpdate}" method="post">
+                            <form action="#" th:action="@{/admins/category/update-sub/{id}(id = ${subCateUpdate.id})}" th:object="${subCateUpdate}" method="post">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <div class="input-group-prepend">
@@ -130,14 +137,15 @@
                             </tr>
                             </thead>
                             <tbody th:each ="cate : ${listCategories}">
-                            <tr>
-                                <td id="table-item">
-                                    <a th:href="@{/category/update/{id}(id = ${cate.id})}"  >
-                                    <div th:text="${cate.getName()}"></div>
+                            <tr id="table-item">
+                                <td>
+                                    <a th:href="@{/admins/category/update/{id}(id = ${cate.id})}" id="cate_name">
+                                        <div th:text="${cate.getName()}" ></div>
                                     </a>
                                 </td>
+
                                 <td>
-                                    <a th:href="@{/category/delete/{id}(id = ${cate.id})}" class="btn btn-outline-danger"> Delete</a>
+                                    <a th:href="@{/admins/category/delete/{id}(id = ${cate.id})}" class="btn btn-outline-danger"> Delete</a>
                                 </td>
                             </tr>
 
@@ -147,7 +155,7 @@
 
                     <th:block th:if="${showCate!= null}">
                         <div class="col-lg-5" id="sub-cate">
-                            <a th:href="@{/category/add-sub/{id}(id = ${showCate.id})}" class ="btn btn-primary m-2">Add Sub-Category</a>
+                            <a th:href="@{/admins/category/add-sub/{id}(id = ${showCate.id})}" class ="btn btn-primary m-2">Add Sub-Category</a>
                             <span id="title" style="margin-left: 100px">Sub-Category</span>
                             <span class="btn " id="closeSub" style="float: right;">X</span>
                             <table class="table">
@@ -161,12 +169,12 @@
                                     <tbody th:each="subcate :${showCate.getSub()}">
                                     <tr >
                                          <td id="openSub">
-                                             <a th:href="@{/category/update-sub/{id}(id = ${subcate.id})}"  >
+                                             <a th:href="@{/admins/category/update-sub/{id}(id = ${subcate.id})}"  >
                                              <div th:text="${subcate.getName()}"></div>
                                              </a>
                                          </td>
                                         <td>
-                                            <a th:href="@{/category/deleteSub/{id}(id = ${subcate.id})}" class="btn btn-outline-danger" > Delete</a>
+                                            <a th:href="@{/admins/category/deleteSub/{id}(id = ${subcate.id})}" class="btn btn-outline-danger" > Delete</a>
                                         </td>
                                     </tr>
                                     </tbody>

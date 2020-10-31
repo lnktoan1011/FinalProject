@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("color")
+@RequestMapping("admins/color")
 @Controller
 public class ColorController {
     @Autowired
@@ -39,7 +39,7 @@ public class ColorController {
     @GetMapping("delete/{id}")
     public String deleteColor(@PathVariable("id") long id){
         colorService.deleteColor(id);
-        return "redirect:/color";
+        return "redirect:/admins/color";
     }
 
     @PostMapping("add")
@@ -47,7 +47,7 @@ public class ColorController {
 
         if(color.getId() != 0) {
             colorService.updateColor(color);
-            return "redirect:/color/update/" + color.getId() ;
+            return "redirect:/admins/color/update/" + color.getId() ;
         }
         colorService.saveColor(color);
         return "redirect:" ;

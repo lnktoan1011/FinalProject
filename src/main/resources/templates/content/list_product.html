@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main_layout/main}">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/main/collection/list_product.css}">
+    <title>Product</title>
+</head>
+<body>
+    <div layout:fragment="contents" style="margin-bottom: 200px">
+<!--        <div class="sort">-->
+<!--            <label >Filter:</label>-->
+<!--            <select name="color">-->
+<!--                <option value="default">-&#45;&#45;&#45;&#45;&#45;&#45;</option>-->
+<!--                <optgroup label="Color">-->
+<!--                    <option value="1">Red</option>-->
+<!--                    <option value="2">Green</option>-->
+<!--                    <option value="3">Blue</option>-->
+<!--                </optgroup>-->
+
+<!--                <optgroup label="Brand">-->
+<!--                    <option value="1">Red</option>-->
+<!--                    <option value="2">Green</option>-->
+<!--                    <option value="3">Blue</option>-->
+<!--                </optgroup>-->
+
+<!--                <optgroup label="Material">-->
+<!--                    <option value="1">Red</option>-->
+<!--                    <option value="2">Green</option>-->
+<!--                    <option value="3">Blue</option>-->
+<!--                </optgroup>-->
+<!--            </select>-->
+<!--        </div>-->
+
+        <!-- <hr style="border-top: 2px solid gray;"> -->
+        <div class="container" style="padding-top: 200px">
+            <div  class="row">
+                <div class="col-lg-3" th:each="pro, custStat : ${productList}">
+                    <div class="card">
+                        <a th:href="@{/product/{id}(id = ${pro.id})}" style="text-decoration: none;">
+                            <div th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
+                                <img id="img" th:src="@{${'/images/' + img}}">
+                            </div>
+
+                            <div class="info">
+                                <p id="title" th:text="${pro.name}"></p>
+                            </div>
+                        </a>
+                        <div class="row" style="padding-left: 10px">
+                            <div class="col-lg-6">
+                                <div class="buy">
+                                    <span id="price">$ <span  th:text="${pro.price}"></span></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <a id="btn_heart" class="like">
+                                    <i class="fa fa-heart"  aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $(".like").click(function(){
+                    $(this).toggleClass("heart");
+                })
+            })
+        </script>
+    </div>
+</body>
+
+</html>

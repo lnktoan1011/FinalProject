@@ -26,15 +26,18 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body>
-<div th:replace = "fragments/admin/header :: header"></div>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+    <div th:replace = "fragments/admin/header :: header"></div>
 
-<div th:replace = "fragments/admin/left-navbar :: left-nav"></div>
+    <div th:replace = "fragments/admin/left-navbar :: left-nav"></div>
 
-<div class="content-wrapper">
-    <div layout:fragment="content"></div>
+    <div class="content-wrapper">
+        <div layout:fragment="content"></div>
+    </div>
+    <div th:replace = "fragments/admin/footer :: footer"></div>
+
 </div>
-<div th:replace = "fragments/admin/footer :: footer"></div>
 
 
 

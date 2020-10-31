@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       layout:decorate="~{layouts/admin_layout/admin_layout}">
 <head>
     <meta charset="UTF-8">
@@ -132,10 +133,12 @@
                             <label class="col-sm-2 col-form-label">Roles</label>
                             <div class="col-sm-10">
                                 <select id="roles" th:field="*{role}" class="form-control">
-<!--                                    <option value="1">Admin</option>-->
-<!--                                    <option value="2">Saler</option>-->
-<!--                                    <option value="3">Customer</option>-->
-                                    <option th:each="role: ${listRole}" th:value="${role.id}" th:text="${role.name}"></option>
+                                    <div sec:authorize="!hasRole('ROLE_SALER')">
+                                    <option value="1">ROLE_ADMIN</option>
+                                    </div>
+                                    <option value="2">ROLE_SALER</option>
+                                    <option value="3">ROLE_CUSTOMER</option>
+<!--                                    <option th:each="role: ${listRole}" th:value="${role.id}" th:text="${role.name}"></option>-->
                                 </select>
                             </div>
 
@@ -248,11 +251,16 @@
                             <td th:text="*{users.getEmail()}">A</td>
                             <td th:text="*{users.getAddress()}">A</td>
                             <td th:text="*{users.getPhone()}">A</td>
-                            <th:block th:each="u : *{users.getRoles()}">
-                            <td th:text="*{u.getName()}">A</td>
+                            <th:block th:each="u : *{users.getRoles()}" >
+                            <td th:text="*{u.getName()}" >A</td>
+
                             </th:block>
-                            <td><a onclick="showUp()" th:href="@{/user/update/{id}(id=*{users.getId()})}" class="btn btn-outline-warning" >Edit</a>
-                                | <a th:href="@{/user/delete/{id}(id= *{users.getId()})}" onclick="return confirm('Are you sure you want to Delete?');"  class="btn btn-outline-danger" >Delete</a></td>
+                            <td>
+
+                                <a onclick="showUp()" th:href="@{/user/update/{id}(id=*{users.getId()})}" class="btn btn-outline-warning" >Edit</a>
+                                | <a th:href="@{/user/delete/{id}(id= *{users.getId()})}" onclick="return confirm('Are you sure you want to Delete?');"  class="btn btn-outline-danger" >Delete</a>
+                            </td>
+
                         </tr>
                     </tbody>
                 </table>

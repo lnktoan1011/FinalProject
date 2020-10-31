@@ -29,7 +29,7 @@ public class ProController {
         Product product = productService.getProduct(id);
         List<ProductFiles> productFilesList = productFileService.getProductFilebyProductID(id);
         model.addAttribute("product", product);
-        model.addAttribute("listImg", productFilesList);
+        model.addAttribute("listImage", productFilesList);
         return "content/product";
     }
 }

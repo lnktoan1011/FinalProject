@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/promotion")
+@RequestMapping("admins/promotion")
 public class PromotionController {
 
     @ModelAttribute("first")
@@ -18,7 +18,7 @@ public class PromotionController {
         return ".promotion_click";
     }
     @GetMapping
-    public String viewtest(){
+    public String viewPromotion(){
         return "content/admin/promotion";
     }
 }

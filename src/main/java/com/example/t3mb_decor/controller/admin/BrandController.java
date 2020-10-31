@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("brand")
+@RequestMapping("admins/brand")
 @Controller
 public class BrandController {
     @Autowired
@@ -38,7 +38,7 @@ public class BrandController {
     @GetMapping("delete/{id}")
     public String deleteBrand(@PathVariable("id") long id){
         brandService.deleteBrand(id);
-        return "redirect:/brand";
+        return "redirect:/admins/brand";
     }
 
     @PostMapping("add")
@@ -46,7 +46,7 @@ public class BrandController {
 
         if(brand.getId() != 0) {
             brandService.updateBrand(brand);
-            return "redirect:/brand/update/" + brand.getId() ;
+            return "redirect:/admins/brand/update/" + brand.getId() ;
         }
         brandService.saveBrand(brand);
         return "redirect:" ;

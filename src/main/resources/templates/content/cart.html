@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-                layout:decorate="~{layouts/main_layout/main}">
+                layout:decorate="~{layouts/main_layout/main}"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>Cart</title>
 </head>
-<body>
+<body class="ca">
     <div layout:fragment="contents" style="margin-top: 145px; margin-bottom: 85px;">
         <div class="carts">
             <section class="form-section">
@@ -32,7 +33,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td style="width: 150px;"><input type="number" value="1"></td>
+                                <td style="width: 150px;"><input type="number" value="1" min="0"></td>
                                 <td style="width: 150px; font-weight:bold; font-size: 24px;">$50.00</td>
                             </tr>
 

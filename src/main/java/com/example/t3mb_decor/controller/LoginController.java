@@ -48,10 +48,12 @@ public class LoginController {
             }
         }
         if (bindingResult.hasErrors()){
+            model.addAttribute("sdt",true);
             model.addAttribute("registration",true);
 //            model.addAttribute("register",new UserVO());
             return "content/login/login";
         }
+        System.out.println(cus.getPhone());
         userService.saveUser(cus);
         return "redirect:/login?success";
     }

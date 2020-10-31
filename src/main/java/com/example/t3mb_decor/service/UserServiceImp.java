@@ -6,6 +6,7 @@ import com.example.t3mb_decor.model.Role;
 import com.example.t3mb_decor.model.User;
 import com.example.t3mb_decor.repository.RoleRepository;
 import com.example.t3mb_decor.repository.UserRepository;
+import com.example.t3mb_decor.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -97,6 +98,7 @@ public class UserServiceImp implements UserService{
             throw new UsernameNotFoundException("Invalid username or password.");
         }
         return new org.springframework.security.core.userdetails.User(user.getEmail(),user.getPassword(),mapRolesToAuthorities(user.getRoles()));
+//        return new MyUserDetails(user);
     }
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){

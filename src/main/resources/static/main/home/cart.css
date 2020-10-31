@@ -128,3 +128,23 @@
     cursor: pointer;
     font-size: 16px;
 }
+.ca .type-text {
+    margin-top: 7px;
+}
+.ca nav{
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+}
+.ca nav .color a {
+    text-decoration: none;
+    color: #999;
+}
+/*.ca nav .icon-search*/
+.ca nav a{
+    text-decoration: none;
+    color: #999;
+    font-size: 20px;
+}
+.ca nav .login{
+    color: #999;border-color: #999;
+}

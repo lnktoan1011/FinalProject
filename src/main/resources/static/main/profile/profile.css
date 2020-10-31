@@ -1,15 +1,15 @@
-*{
+.profile *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Times New Roman', Times, serif;
 }
-.row-card {
+.profile .row-card {
 
     border-radius: 25px;
     border: 1px solid rgb(210, 203, 203);
 }
-img {
+.profile img {
     border-radius: 50%;
     margin: 0 auto;
     max-width: 70px !important;
@@ -17,41 +17,42 @@ img {
     float: right;
 
 }
-.as {
+.profile .as {
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
-.login-btn {
-    border: none;
-    outline: none;
-    height: 30px;
-    background-color: black;
-    color: white;
-    border-radius: 4px;
-    font-weight: bold;
-    float: right;
-    padding: 5px;
-}
-.login-btn:hover {
-    background-color: #FFF;
-    color: black;
-    border: 2px solid;
-}
-#email-error {
+
+.profile #email-error {
     color: red;
 }
-#password-error {
+.profile #password-error {
     color: red;
 }
-#pro-name-error, #pro-email-error, #pro-phone-error, #pro-address-error, #pass-old-error, #pass-new-error, #pass-confirm-error {
+.profile #pro-name-error, #pro-email-error, #pro-phone-error, #pro-address-error, #pass-old-error, #pass-new-error, #pass-confirm-error {
     color: red;
 }
-.type-input {
+.profile .type-input {
     border: none;
 
 }
-.type-text {
+.pr .type-text {
     margin-top: 7px;
+}
+.pr nav{
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+}
+.pr nav .color a {
+    text-decoration: none;
+    color: #999;
+}
+.pr nav a{
+    text-decoration: none;
+    color: #999;
+    font-size: 20px;
+}
+.pr nav .login{
+    color: #999;border-color: #999;
 }

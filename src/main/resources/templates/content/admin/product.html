@@ -34,25 +34,20 @@
         }
         li{
             list-style: none;
-
         }
 
         #item{
             margin-bottom: 20px;
             background-color: rgb(233, 233, 233);
             border-radius: 10px;
-            -webkit-box-shadow: 4px 4px gray;
-            -moz-box-shadow: 4px 4px gray;
-            box-shadow:  4px 4px gray;
             transition: 0.5s;
         }
         #item:hover{
             -webkit-box-shadow: 8px 8px gray;
             -moz-box-shadow:  8px 8px gray;
-            box-shadow:  8px 8px gray;
+            box-shadow:  10px 10px gray;
             transition: 0.5s;
         }
-
 
         button{
             margin-right: 20px;
@@ -63,13 +58,6 @@
         }
         #listUser{
             display: block;
-        }
-        #new{
-            color: cornflowerblue;
-        }
-        #new:hover{
-            color: rgb(23, 109, 196);
-            cursor: pointer;
         }
     </style>
 </head>
@@ -163,7 +151,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea class="form-control" id = "description" rows="10" placeholder="Enter description" th:field = "*{description}" required></textarea>
+                                            <textarea class="form-control" id = "description" rows="8" placeholder="Enter description" th:field = "*{description}" required></textarea>
                                         </div>
                                 </div>
                                 <div class="card-footer">
@@ -228,7 +216,7 @@
                         </div>
                         <div class="col-lg-7" id="cus_info">
                             <h4 th:text="${pro.name}"></h4>
-                            <p th:text="${pro.description}"></p>
+                            <p th:text="${pro.description}" id="des"></p>
                             <div class="row">
                                 <div class="col-lg-4">
                                     <table>

@@ -9,6 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Text;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,22 +22,38 @@ public class Product{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Column(name = "name",nullable = false)
+    @NotBlank(message = "Enter your name")
     private String name;
+
     @Column(name = "price",nullable = false)
+    @Min(1)
     private int price;
+
     @Column(name = "description",columnDefinition = "TEXT",nullable = false)
+    @NotBlank(message = "Enter description")
     private String description;
+
     @Column(name = "quantity",nullable = false)
     private int quantity;
+
     @Column(name = "material",nullable = false)
+    @NotBlank(message = "Enter material")
     private String material;
-    @Column(name = "height",columnDefinition = "TEXT",nullable = false)
+
+    @Column(name = "height",nullable = false)
+    @Min(1)
     private int height;
+
     @Column(name = "length",nullable = false)
+    @Min(1)
     private int length;
+
     @Column(name = "width",nullable = false)
+    @Min(1)
     private int width;
+
     @Column(name = "status", columnDefinition = "integer default 0")
     private int status;
 

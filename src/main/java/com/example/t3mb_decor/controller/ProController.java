@@ -1,7 +1,9 @@
 package com.example.t3mb_decor.controller;
 
+import com.example.t3mb_decor.model.Category;
 import com.example.t3mb_decor.model.Product;
 import com.example.t3mb_decor.model.ProductFiles;
+import com.example.t3mb_decor.service.CategoryService;
 import com.example.t3mb_decor.service.ProductFileService;
 import com.example.t3mb_decor.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,15 @@ public class ProController {
     ProductService productService;
     @Autowired
     ProductFileService productFileService;
+    @Autowired
+    CategoryService categoryService;
+
+    //      List of categories
+    @ModelAttribute("listCategories")
+    public List<Category> getList(){
+        List<Category> listCate =  categoryService.getAllCategories();
+        return listCate;
+    }
 
 
 

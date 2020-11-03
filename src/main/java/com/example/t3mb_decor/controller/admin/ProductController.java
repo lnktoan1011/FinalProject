@@ -5,12 +5,14 @@ import com.example.t3mb_decor.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,34 +91,39 @@ public class ProductController {
     }
 
     @PostMapping("/save")
-    public String addProduct(@ModelAttribute Product product, RedirectAttributes redirectAttributes, Model model){
+    public String addProduct(@ModelAttribute @Valid Product product, BindingResult bindingResult,
+                             RedirectAttributes redirectAttributes, Model model){
+
+        if (bindingResult.hasErrors()){
+            model.addAttribute("getTable",true);
+            model.addAttribute("isAdd", true);
+            return "/content/admin/product";
+        }
+
         Product saveProduct = productService.save(product);
         if (saveProduct != null){
             redirectAttributes.addFlashAttribute("success","Product is saved successfully");
             return "redirect:/admins/product";
         }
-        else{
-            model.addAttribute("error", "Product is not save, please try again");
-//      List of products
-            model.addAttribute("product", product);
-            return "content/admin/product";
-        }
+
+        return "content/admin/product";
 
     }
 
     @PostMapping("/edit/{productID}")
-    public String editUser(@ModelAttribute Product product, RedirectAttributes redirectAttributes, Model model){
+    public String editUser(@ModelAttribute @Valid  Product product, BindingResult bindingResult,
+                           RedirectAttributes redirectAttributes, Model model){
         Product saveProduct = productService.save(product);
         if (saveProduct != null){
             redirectAttributes.addFlashAttribute("success","Product is saved successfully");
             return "redirect:/admins/product";
         }
-        else{
-            model.addAttribute("error", "Product is not save, please try again");
+
+        model.addAttribute("error", "Product is not save, please try again");
 //      List of products
-            model.addAttribute("product", product);
-            return "content/admin/product";
-        }
+        model.addAttribute("product", product);
+        return "content/admin/product";
+
 
     }
 }

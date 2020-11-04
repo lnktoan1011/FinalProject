@@ -30,8 +30,8 @@ public class UserServiceImp implements UserService{
 
 
     @Override
-    public List<User> getAllUser() {
-        return userRepository.findAll();
+    public List<User> getAllUser(String email) {
+        return userRepository.getList(email);
     }
 
     @Override
@@ -61,8 +61,10 @@ public class UserServiceImp implements UserService{
     public void deleteUser(long id) {
         User u = this.getUser(id);
         u.setRoles(null);
+        userRepository.deleteRoles(u.getId());
         userRepository.delete(u);
     }
+
 
     @Override
     public User getUser(long id) {
@@ -88,6 +90,12 @@ public class UserServiceImp implements UserService{
         System.out.println(user.getRoles());
         userUpdate.setRoles(user.getRoles());
         this.userRepository.save(userUpdate);
+    }
+
+    @Override
+    public User getUserFindByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        return user;
     }
 
 

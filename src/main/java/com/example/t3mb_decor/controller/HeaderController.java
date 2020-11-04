@@ -15,8 +15,8 @@ public class HeaderController {
     @GetMapping("/cart")
     public String showCart(){return "/content/cart";}
 
-    @GetMapping("/profile")
-    public String showProfile(){return "/content/profile";}
+//    @GetMapping("/profile")
+//    public String showProfile(){return "/content/profile";}
     @GetMapping("/history")
     public String showHistory(){return "/content/pus-history";}
 }

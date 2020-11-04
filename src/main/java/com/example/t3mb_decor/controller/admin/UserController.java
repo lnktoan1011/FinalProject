@@ -7,6 +7,8 @@ import com.example.t3mb_decor.service.RoleService;
 import com.example.t3mb_decor.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
 import java.util.List;
 
 @Controller
@@ -37,8 +40,10 @@ public class UserController {
     }
 
     @ModelAttribute("listUsers")
-    public List<User> getList(){
-        List<User> list = userService.getAllUser();
+    @ResponseBody
+    public List<User> getList(Authentication authentication){
+
+        List<User> list = userService.getAllUser(authentication.getName());
         return list;
     }
 
@@ -51,7 +56,8 @@ public class UserController {
     public UserToAdminVO showUser(){return new UserToAdminVO();}
 
     @ModelAttribute("getTable")
-    public boolean getTable(){return false;}
+    public boolean getTable(){
+        return false;}
     @InitBinder
     public void initBinder(WebDataBinder dataBinder){
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
@@ -108,8 +114,6 @@ public class UserController {
                 return "/content/admin/users";
             }
         }
-
-        System.out.println(user.getRoles());
         userService.saveUserUpdate(user);
         return "redirect:/admins/user?successUpdate";
     }

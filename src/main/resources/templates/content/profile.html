@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/main_layout/main}">
 <head>
@@ -22,73 +23,46 @@
                 <div class="row row-card no-gutters mt-2">
                     <div class="col-lg-12 px-5 pt-5 pb-2">
                         <h4>Profile</h4>
-                        <p>Some info may be visible to order people using TeMB services.</p>
                         <hr>
-                        <form action="">
+                        <form action="" id="pro-form" th:object="${InfoUser}" method="post">
                             <div class="row  mt-2">
-                                <div class="col-lg-2">
-                                    <label for="pro-name" class="type-text">Photo</label>
-                                </div>
-                                <div class="col-lg-5">
-                                    <span style="padding: .375rem .75rem;">Add a photo to personalize your account</span>
-                                </div>
-                                <div class="col-lg-5">
-                                    <img src="https://vnn-imgs-f.vgcloud.vn/2020/03/23/11/trend-avatar-1.jpg" class="img" alt="avatar">
-                                </div>
-                            </div>
-                        </form>
-                        <hr>
-                        <form action="" id="pro-form">
-                            <div class="row  mt-2">
-                                <div class="col-lg-2">
+                                <div class="col-lg-3">
                                     <label for="pro-name" class="type-text">Name</label>
                                 </div>
-                                <div class="col-lg-7">
-                                    <input type="text" class="form-control type-input" id="pro-name" name="name" placeholder="Your name">
-                                </div>
-                                <div class="col" style="margin-top:14px">
-                                    <i class="fas fa-angle-right" style="float: right;"></i>
+                                <div class="col-lg-9">
+                                    <input type="text" th:field="*{name}" class="form-control type-input" id="pro-name" name="name" placeholder="Your name">
                                 </div>
                             </div>
                             <hr>
                             <div class="row  mt-2">
-                                <div class="col-lg-2">
+                                <div class="col-lg-3">
                                     <label for="pro-name" class="type-text">Email</label>
                                 </div>
-                                <div class="col-lg-7">
-                                    <input type="email" class="form-control type-input" id="pro-email" name="email" placeholder="Your email">
-                                </div>
-                                <div class="col" style="margin-top:14px">
-                                    <i class="fas fa-angle-right" style="float: right;"></i>
+                                <div class="col-lg-9">
+                                    <input type="email" th:field="*{email}" class="form-control type-input" id="pro-email" name="email" placeholder="Your email">
                                 </div>
                             </div>
                             <hr>
                             <div class="row  mt-2">
-                                <div class="col-lg-2">
+                                <div class="col-lg-3">
                                     <label for="pro-name" class="type-text">Phone</label>
                                 </div>
-                                <div class="col-lg-7">
-                                    <input type="text" class="form-control type-input" id="pro-phone" name="phone" placeholder="Your phone">
-                                </div>
-                                <div class="col" style="margin-top:14px">
-                                    <i class="fas fa-angle-right" style="float: right;"></i>
+                                <div class="col-lg-9">
+                                    <input type="text" th:field="*{phone}" class="form-control type-input" id="pro-phone" name="phone" placeholder="Your phone">
                                 </div>
                             </div>
                             <hr>
                             <div class="row  mt-2">
-                                <div class="col-lg-2">
+                                <div class="col-lg-3">
                                     <label for="pro-name" class="type-text">Address</label>
                                 </div>
-                                <div class="col-lg-7">
-                                    <input type="text" class="form-control type-input" id="pro-address" name="address" placeholder="Your address">
-                                </div>
-                                <div class="col mb-3" style="margin-top:14px">
-                                    <i class="fas fa-angle-right" style="float: right;"></i>
+                                <div class="col-lg-9">
+                                    <input type="text" th:field="*{address}" class="form-control type-input" id="pro-address" name="address" placeholder="Your address">
                                 </div>
                             </div>
                             <hr>
                             <div class="text-right">
-                                <button type="button" class="btn btn-dark p-2 m-2">Update Info</button>
+                                <button type="submit" class="btn btn-dark p-2 m-2">Update Info</button>
                             </div>
                         </form>
                     </div>
@@ -102,11 +76,8 @@
                                 <div class="col-lg-3">
                                     <label for="pro-name" class="type-text">Old password</label>
                                 </div>
-                                <div class="col-lg-7">
+                                <div class="col-lg-9">
                                     <input type="password" class="form-control type-input" id="pass-old" name="oldpass" placeholder="Old passowrd">
-                                </div>
-                                <div class="col mb-3" style="margin-top:14px">
-                                    <i class="fas fa-angle-right" style="float: right;"></i>
                                 </div>
                             </div>
                             <hr>
@@ -114,11 +85,8 @@
                                 <div class="col-lg-3">
                                     <label for="pro-name" class="type-text">New password</label>
                                 </div>
-                                <div class="col-lg-7">
+                                <div class="col-lg-9">
                                     <input type="password" class="form-control type-input" id="pass-new" name="newpass" placeholder="New password">
-                                </div>
-                                <div class="col mb-3" style="margin-top:14px">
-                                    <i class="fas fa-angle-right" style="float: right;"></i>
                                 </div>
                             </div>
                             <hr>
@@ -126,11 +94,8 @@
                                 <div class="col-lg-3">
                                     <label for="pro-name" class="type-text">Confirm new  password</label>
                                 </div>
-                                <div class="col-lg-7">
+                                <div class="col-lg-9">
                                     <input type="password" class="form-control type-input" id="pass-confirm" name="comfirmpass" placeholder="Confirm new password">
-                                </div>
-                                <div class="col mb-3" style="margin-top:14px">
-                                    <i class="fas fa-angle-right" style="float: right;"></i>
                                 </div>
                             </div>
                             <hr>

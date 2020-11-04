@@ -114,15 +114,22 @@
                             <li class="nav-item dropdown">
                             <a title="My Account" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown nav-link color"><i class="fas fa-user"></i></a>
                             <ul class="dropdown-menu nav-drop" >
-                                <li class="nav-item">
-                                    <a title="Profile" th:href="@{/profile}" class="dropdown-item">Profile</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a title="Cart" th:href="@{/cart}" class="dropdown-item">
-                                        <i class="fa fa-shopping-cart cart mr-1"></i>
-                                        <span class="nav-icon-cart-quanti">&nbsp;23&nbsp;</span>
-                                    </a>
-                                </li>
+                                <div sec:authorize="!hasAnyRole('ROLE_SALER','ROLE_ADMIN')">
+                                    <li class="nav-item">
+                                        <a title="Profile" th:href="@{/profile}" class="dropdown-item">Profile</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a title="Cart" th:href="@{/cart}" class="dropdown-item">
+                                            <i class="fa fa-shopping-cart cart mr-1"></i>
+                                            <span class="nav-icon-cart-quanti">&nbsp;23&nbsp;</span>
+                                        </a>
+                                    </li>
+                                </div>
+                                <div sec:authorize="hasAnyRole('ROLE_SALER','ROLE_ADMIN')">
+                                    <li class="nav-item">
+                                        <a title="Profile" th:href="@{/admins/order}" class="dropdown-item">Manager</a>
+                                    </li>
+                                </div>
                                 <li class="nav-item">
                                     <a title="Profile" class="dropdown-item" th:href="@{/logout}">Logout</a>
                                 </li>

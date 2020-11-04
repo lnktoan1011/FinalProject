@@ -171,7 +171,6 @@
                             <label class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
                                 <input type="text" th:field="*{name}" id="nameU" class="form-control" placeholder="Enter name" required >
-
                             </div>
 
                         </div>
@@ -213,8 +212,15 @@
 <!--                                        -->
 <!--                                    </th:block>-->
 <!--                                </th:block>-->
+
                                 <select th:field="*{roles}" class="form-control">
-                                    <option th:each="roles: ${listRole}" th:value="${roles.id}" th:text="${roles.name}"></option>
+                                    <th:block sec:authorize="hasRole('ROLE_SALER')">
+                                        <option th:each="roles: ${listRole}" th:value="${roles.id}" th:text="${roles.name}"
+                                                th:style="${roles.getName()} == 'ROLE_ADMIN' ? 'display:none':''"></option>
+                                    </th:block>
+                                    <th:block sec:authorize="!hasRole('ROLE_SALER')">
+                                        <option th:each="roles: ${listRole}" th:value="${roles.id}" th:text="${roles.name}"></option>
+                                    </th:block>
                                 </select>
                             </div>
                         </div>
@@ -245,19 +251,33 @@
                         </tr>
                     </thead>
                     <tbody th:each="users,state: ${listUsers}">
-                        <tr>
-                            <th scope="row" th:text="*{state.count}">1</th>
-                            <td th:text="*{users.getName()}">A</td>
-                            <td th:text="*{users.getEmail()}">A</td>
-                            <td th:text="*{users.getAddress()}">A</td>
-                            <td th:text="*{users.getPhone()}">A</td>
-                            <th:block th:each="u : *{users.getRoles()}" >
-                            <td th:text="*{u.getName()}" >A</td>
-
-                            </th:block>
-                            <td><a onclick="showUp()" th:href="@{/admins/user/update/{id}(id=*{users.getId()})}" class="btn btn-outline-warning" >Edit</a>
-                                | <a th:href="@{/admins/user/delete/{id}(id= *{users.getId()})}" onclick="return confirm('Are you sure you want to Delete?');"  class="btn btn-outline-danger" >Delete</a></td>
-                        </tr>
+                        <th:block sec:authorize="hasRole('ROLE_SALER')">
+                            <tr th:style="*{users.getRoles().get(0).getName()} == 'ROLE_ADMIN' ? 'display:none':''">
+                                <th scope="row" th:text="*{state.count}">1</th>
+                                <td th:text="*{users.getName()}">A</td>
+                                <td th:text="*{users.getEmail()}">A</td>
+                                <td th:text="*{users.getAddress()}">A</td>
+                                <td th:text="*{users.getPhone()}">A</td>
+<!--                                <th:block th:each="u : *{users.getRoles()}" >-->
+<!--                                <td th:text="*{u.getName()}" >A</td>-->
+<!--                                </th:block>-->
+                                <td th:text="*{users.getRoles().get(0).getName()}" >A</td>
+                                <td><a onclick="showUp()" th:href="@{/admins/user/update/{id}(id=*{users.getId()})}" class="btn btn-outline-warning" >Edit</a>
+                                    | <a th:href="@{/admins/user/delete/{id}(id= *{users.getId()})}" onclick="return confirm('Are you sure you want to Delete?');"  class="btn btn-outline-danger" >Delete</a></td>
+                            </tr>
+                        </th:block>
+                        <th:block sec:authorize="!hasRole('ROLE_SALER')">
+                            <tr>
+                                <th scope="row" th:text="*{state.count}">1</th>
+                                <td th:text="*{users.getName()}">A</td>
+                                <td th:text="*{users.getEmail()}">A</td>
+                                <td th:text="*{users.getAddress()}">A</td>
+                                <td th:text="*{users.getPhone()}">A</td>
+                                <td th:text="*{users.getRoles().get(0).getName()}" >A</td>
+                                <td><a onclick="showUp()" th:href="@{/admins/user/update/{id}(id=*{users.getId()})}" class="btn btn-outline-warning" >Edit</a>
+                                    | <a th:href="@{/admins/user/delete/{id}(id= *{users.getId()})}" onclick="return confirm('Are you sure you want to Delete?');"  class="btn btn-outline-danger" >Delete</a></td>
+                            </tr>
+                        </th:block>
                     </tbody>
                 </table>
             </div>

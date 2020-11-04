@@ -53,11 +53,10 @@
             margin-right: 20px;
             border-radius: 10px;
         }
-        #form_info{
-            display: none;
-        }
-        #listUser{
-            display: block;
+        .invalid-feedback{
+            font-size: 14px;
+            font-weight: 600;
+            text-align: left;
         }
     </style>
 </head>
@@ -90,14 +89,8 @@
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong th:text="${success}"></strong>
             </div>
-
-            <!--Error-->
-            <div class="alert alert-danger alert-dismissible fade show" th:if="${error != null}">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong th:text="${error}"></strong>
-            </div>
             <!-- form start -->
-            <form role="form" id="form_info" th:action="@{${isAdd}?'/admins/product/save':'/category/update'}" th:object="${product}" method="post" enctype="multipart/form-data">
+            <form role="form" id="form_info" th:style="${getTable} ? 'display:block':'display: none;'" th:action="@{${isAdd}?'/admins/product/save':'/category/update'}" th:object="${product}" method="post" enctype="multipart/form-data">
 
 
                     <div class="row">
@@ -108,19 +101,31 @@
                                         <div class="form-group">
                                             <label>Image</label>
                                             <br>
-                                            <input type="file" id="exampleInputFile" th:field = "*{files}" multiple="multiple">
+                                            <input type="file" id="exampleInputFile" th:field = "*{files}" multiple="multiple" required>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input type="text" id = "name" class="form-control" placeholder="Enter name" th:field = "*{name}" required >
+                                            <input type="text" id = "name" class="form-control" placeholder="Enter name" th:field = "*{name}" th:errorClass="is-invalid">
+                                            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label>Material</label>
-                                            <input type="text" id = "material" class="form-control" placeholder="Enter name" th:field = "*{material}" required >
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <div class="form-group">
+                                                    <label>Material</label>
+                                                    <input type="text" id = "material" class="form-control" placeholder="Enter name" th:field = "*{material}" th:errorClass="is-invalid">
+                                                    <div th:if="${#fields.hasErrors('material')}" th:errors="*{material}" class="invalid-feedback"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Quantity</label>
+                                                    <input type="text" id ="quantity" class="form-control" placeholder="Enter quantity"  th:field = "*{quantity}" th:errorClass="is-invalid">
+                                                    <div th:if="${#fields.hasErrors('quantity')}" th:errors="*{name}" class="invalid-feedback"></div>
+                                                </div>
+                                            </div>
                                         </div>
-
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="form-group">
@@ -149,7 +154,8 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea class="form-control" id = "description" rows="8" placeholder="Enter description" th:field = "*{description}" required></textarea>
+                                            <textarea class="form-control" id = "description" rows="8" placeholder="Enter description" th:field = "*{description}" th:errorClass="is-invalid"></textarea>
+                                            <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="invalid-feedback"></div>
                                         </div>
                                 </div>
                                 <div class="card-footer">
@@ -165,33 +171,34 @@
                         <div class="col-lg-3">
                             <div class="card card-info block" style="display: block">
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label>Price</label>
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                                                    <input type="number" class="form-control" id = "price" min="1" placeholder="Enter price" th:field = "*{price}" required>
-                                                </div>
-                                            </div>
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                                            <input type="text" class="form-control" id = "price" min="1" placeholder="Enter price" th:field = "*{price}" th:errorClass="is-invalid">
                                         </div>
-                                        <div class="col-lg-6">
-                                            <label>Quantity</label>
-                                            <input type="number" class="form-control" min="1" placeholder="Enter quantity"  th:field = "*{quantity}" required>
-                                        </div>
+                                        <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="invalid-feedback"></div>
                                     </div>
-
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label>Height</label>
-                                                <input type="number" id = "height" class="form-control" min="1" placeholder="Enter height" th:field = "*{height}">
+                                                <input type="text" id = "height" class="form-control" placeholder="Enter height" th:field = "*{height}" th:errorClass="is-invalid">
+                                                <div th:if="${#fields.hasErrors('height')}" class="invalid-feedback"></div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label>Length</label>
-                                                <input type="number" id = "length" class="form-control" min="1" placeholder="Enter length" th:field = "*{length}">
+                                                <input type="text" id = "length" class="form-control"  placeholder="Enter length" th:field = "*{length}" th:errorClass="is-invalid">
+                                                <div th:if="${#fields.hasErrors('length')}"  class="invalid-feedback"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label>Width</label>
+                                                <input type="text" id = "width" class="form-control"  placeholder="Enter height" th:field = "*{width}" th:errorClass="is-invalid">
+                                                <div th:if="${#fields.hasErrors('width')}"  class="invalid-feedback"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -203,7 +210,7 @@
             </form>
         </div>
 
-        <div  id="listUser">
+        <div  id="listUser" th:style="${getTable} ? 'display:none':'display: block;'">
             <ul th:each="pro, custStat : ${productList}">
                 <li id="item">
                     <div class="row">
@@ -276,6 +283,70 @@
                 y.style.display = "block";
             }
         }
+        $('input#price').keyup(function(event) {
+            // skip for arrow keys
+            if(event.which >= 37 && event.which <= 40) return;
+
+            // format number
+            $(this).val(function(index, value) {
+                return value
+                    .replace(/\D/g, "")
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, "")
+                    ;
+            });
+        });
+
+        $('input#quantity').keyup(function(event) {
+            // skip for arrow keys
+            if(event.which >= 37 && event.which <= 40) return;
+
+            // format number
+            $(this).val(function(index, value) {
+                return value
+                    .replace(/\D/g, "")
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, "")
+                    ;
+            });
+        });
+
+        $('input#length').keyup(function(event) {
+            // skip for arrow keys
+            if(event.which >= 37 && event.which <= 40) return;
+
+            // format number
+            $(this).val(function(index, value) {
+                return value
+                    .replace(/\D/g, "")
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, "")
+                    ;
+            });
+        });
+
+        $('input#height').keyup(function(event) {
+            // skip for arrow keys
+            if(event.which >= 37 && event.which <= 40) return;
+
+            // format number
+            $(this).val(function(index, value) {
+                return value
+                    .replace(/\D/g, "")
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, "")
+                    ;
+            });
+        });
+
+        $('input#width').keyup(function(event) {
+            // skip for arrow keys
+            if(event.which >= 37 && event.which <= 40) return;
+
+            // format number
+            $(this).val(function(index, value) {
+                return value
+                    .replace(/\D/g, "")
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, "")
+                    ;
+            });
+        });
     </script>
 </div>
 </body>

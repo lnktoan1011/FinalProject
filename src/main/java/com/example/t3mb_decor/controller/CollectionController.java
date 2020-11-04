@@ -21,13 +21,21 @@ public class CollectionController {
     ProductService productService;
     @Autowired
     ProductFileService productFileService;
+    @Autowired
+    CategoryService categoryService;
+
+    //      List of categories
+    @ModelAttribute("listCategories")
+    public List<Category> getList(){
+        List<Category> listCate =  categoryService.getAllCategories();
+        return listCate;
+    }
 
     //      List of products
     @ModelAttribute("productList")
     public List<Product> productList(){
         return productService.getAllProduct();
     }
-
 
     //      List of images
     @ModelAttribute("listImg")

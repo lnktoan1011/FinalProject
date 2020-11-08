@@ -5,6 +5,7 @@ document.querySelector('.img-btn').addEventListener('click',function()
         $("#phone-number").show();
         $("#phone-verify").hide();
         $("#sign-up-form").hide();
+        $("#sdt").show();
         $("#verificationCode").val('');
     }
 );
@@ -31,7 +32,7 @@ function phoneAuth() {
             // $("#sent-code").click(function(){
             $("#phone-verify").show();
             $("#phone-number").hide();
-            document.getElementById("ph").defaultValue=phone;
+            document.getElementById("ph").value=phone;
 
             // })
         }).catch(function( error) {

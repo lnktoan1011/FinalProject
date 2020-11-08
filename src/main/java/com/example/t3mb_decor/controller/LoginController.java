@@ -28,6 +28,10 @@ public class LoginController {
     public UserVO customerRegistration(){
         return new UserVO();
     }
+    @ModelAttribute("sdt")
+    public Boolean getSdt(){
+        return false;
+    }
     @GetMapping
     public String showLogin(Model model){
         model.addAttribute("registration",false);

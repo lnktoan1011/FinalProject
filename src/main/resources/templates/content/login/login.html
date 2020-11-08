@@ -85,43 +85,44 @@
         </div>
         <div class="form sign-up">
             <h2>Sign Up</h2>
+            <div id="sdt" th:style="${sdt} ? 'display:none':'display:block;'">
+                <label id="phone-number">
+                    <div class="col-wrap">
+                        <div class="col">
+                            <span>Country</span>
+                            <img src="https://product.hstatic.net/200000122283/product/c-e1-bb-9d-vi-e1-bb-87t-nam_2c0683597d2d419fac401f51ccbae779_grande.jpg" style="max-height:30px; display:block" alt="">
+                        </div>
+                        <div class="col" style="padding-left: 1rem;">
+                            <span>Phone</span>
+                            <input type="text" id="number" class="check-number" name="phone" placeholder="09*********">
+                            <div id="recaptcha-container" style="margin-top: 20px;"></div>
+                        </div>
+                    </div>
+                    <button type="button" id="sent-code" class="submit" onclick="phoneAuth();">Sign Up</button>
+                </label>
+                <label id="phone-verify" style="display:none;">
+                    <div class="col-wrap">
+                        <div class="col" style="padding-left: 1rem;">
+                            <span>Code Verify</span>
+                            <input type="text" id="verificationCode" class="check-number" name="code" placeholder="Enter your code here">
+                        </div>
+                    </div>
+                    <button type="button" class="submit"  onclick="codeverify();">Verify Code</button>
+                </label>
+            </div>
 
-            <label id="phone-number">
-                <div class="col-wrap">
-                    <div class="col">
-                        <span>Country</span>
-                        <img src="https://product.hstatic.net/200000122283/product/c-e1-bb-9d-vi-e1-bb-87t-nam_2c0683597d2d419fac401f51ccbae779_grande.jpg" style="max-height:30px; display:block" alt="">
-                    </div>
-                    <div class="col" style="padding-left: 1rem;">
-                        <span>Phone</span>
-                        <input type="text" id="number" class="check-number" name="phone" placeholder="09*********">
-                        <div id="recaptcha-container" style="margin-top: 20px;"></div>
-                    </div>
-                </div>
-                <button type="button" id="sent-code" class="submit" onclick="phoneAuth();">Sign Up</button>
-            </label>
-            <label id="phone-verify" style="display:none;">
-                <div class="col-wrap">
-                    <div class="col" style="padding-left: 1rem;">
-                        <span>Code Verify</span>
-                        <input type="text" id="verificationCode" class="check-number" name="code" placeholder="Enter your code here">
-                    </div>
-                </div>
-                <button type="button" class="submit"  onclick="codeverify();">Verify Code</button>
-            </label>
-
-            <div id="sign-up-form" style="display:none;">
+            <div id="sign-up-form" th:style="${sdt} ? 'display:block':'display:none;'">
                 <form th:action="@{/login/registers}" th:object="${register}" method="post">
                 <label>
                     <div class="col-wrap">
                         <div class="col">
                             <span>Name</span>
-                            <input type="text" th:field="*{name}" th:errorClass="is-invalid"/>
+                            <input id="name" type="text" th:field="*{name}" th:errorClass="is-invalid"/>
                             <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></div>
                         </div>
                         <div class="col" style="padding-left: 1rem;">
                             <span>Address</span>
-                            <input type="text" th:field="*{address}" th:errorClass="is-invalid"/>
+                            <input id="address" type="text" th:field="*{address}" th:errorClass="is-invalid"/>
                             <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="invalid-feedback"></div>
                         </div>
                     </div>
@@ -130,7 +131,7 @@
                     <div class="col-wrap">
                         <div class="col">
                             <span>Email</span>
-                            <input type="text" th:field="*{email}" th:errorClass="is-invalid"/>
+                            <input id="email" type="text" th:field="*{email}" th:errorClass="is-invalid"/>
 <!--                            required-->
 <!--                            th:errorClass="is-invalid"-->
                             <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></div>

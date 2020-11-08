@@ -2,8 +2,6 @@ package com.example.t3mb_decor.controller;
 
 
 import com.example.t3mb_decor.model.Category;
-import com.example.t3mb_decor.model.Product;
-import com.example.t3mb_decor.model.ProductFiles;
 import com.example.t3mb_decor.service.CategoryService;
 import com.example.t3mb_decor.service.ProductFileService;
 import com.example.t3mb_decor.service.ProductService;

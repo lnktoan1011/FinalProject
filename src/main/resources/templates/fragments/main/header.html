@@ -7,7 +7,7 @@
 <body class="home">
 <div class="header" th:fragment="header">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <div class="navbar-brand"><a id="logo"  th:href="@{/home}"> <img id="logo-img" src="/main/home/logo2.png" alt="Logo"/></a></div>
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#main-nav-1" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" >
@@ -18,7 +18,7 @@
                         <li class="nav-item color mx-4"><a title="Home" th:href="@{/home}" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item dropdown position-static mx-4">
-                            <a th:href="@{/collections}" class="nav-link dropdown color">Product</a>
+                            <a th:href="@{/collections}" class="nav-link dropdown color" >Product</a>
                             <div class="dropdown-menu w-100 top-auto nav-drop">
                                 <div class="container">
                                     <div class="row w-100">
@@ -49,16 +49,23 @@
                         <div sec:authorize="isAuthenticated()">
                             <li class="nav-item dropdown">
                             <a title="My Account" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown nav-link color"><i class="fas fa-user"></i></a>
-                            <ul class="dropdown-menu nav-drop" >
-                                <li class="nav-item">
-                                    <a title="Profile" th:href="@{/profile}" class="dropdown-item">Profile</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a title="Cart" th:href="@{/cart}" class="dropdown-item">
-                                        <i class="fa fa-shopping-cart cart mr-1"></i>
-                                        <span    id = "cart_quantity"></span>
-                                    </a>
-                                </li>
+                            <ul class="dropdown-menu nav-drop" id="sign">
+                                <div sec:authorize="!hasAnyRole('ROLE_SALER','ROLE_ADMIN')">
+                                    <li class="nav-item">
+                                        <a title="Profile" th:href="@{/profile}" class="dropdown-item">Profile</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a title="Cart" th:href="@{/cart}" class="dropdown-item">
+                                            <i class="fa fa-shopping-cart cart mr-1"></i>
+                                            <span class="nav-icon-cart-quanti">&nbsp;23&nbsp;</span>
+                                        </a>
+                                    </li>
+                                </div>
+                                <div sec:authorize="hasAnyRole('ROLE_SALER','ROLE_ADMIN')">
+                                    <li class="nav-item">
+                                        <a title="Profile" th:href="@{/admins/order}" class="dropdown-item">Manager</a>
+                                    </li>
+                                </div>
                                 <li class="nav-item">
                                     <a title="Profile" class="dropdown-item" th:href="@{/logout}">Logout</a>
                                 </li>

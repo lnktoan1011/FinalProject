@@ -3,8 +3,11 @@ package com.example.t3mb_decor.model;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,9 +20,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "name",nullable = false)
+    @NotBlank(message = "Enter your name")
     private String name;
 
     @Column(name = "email",nullable = false)
+    @NotBlank(message = "Enter your email")
+    @Email(message = "Enter a valid email address")
     private String email;
 
     @Column(name = "password",nullable = false)
@@ -27,9 +33,11 @@ public class User {
     private String password;
 
     @Column(name = "address")
+    @NotBlank(message = "Enter your address")
     private String address;
 
     @Column(name = "phone",nullable = false)
+    @NotBlank(message = "Enter your phone")
     private String phone;
 
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)

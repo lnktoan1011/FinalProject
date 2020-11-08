@@ -2,9 +2,14 @@ package com.example.t3mb_decor.controller;
 
 
 import com.example.t3mb_decor.model.Category;
+import com.example.t3mb_decor.model.Product;
+import com.example.t3mb_decor.model.ProductFiles;
 import com.example.t3mb_decor.service.CategoryService;
+import com.example.t3mb_decor.service.ProductFileService;
+import com.example.t3mb_decor.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -12,6 +17,11 @@ import java.util.List;
 
 @Controller
 public class HeaderController {
+
+    @Autowired
+    ProductService productService;
+    @Autowired
+    ProductFileService productFileService;
     @Autowired
     CategoryService categoryService;
 
@@ -28,9 +38,6 @@ public class HeaderController {
 
     @GetMapping("/about")
     public String showAbout(){return "/content/about";}
-
-    @GetMapping("/cart")
-    public String showCart(){return "/content/cart";}
 
     @GetMapping("/profile")
     public String showProfile(){return "/content/profile";}

@@ -1,5 +1,6 @@
 package com.example.t3mb_decor.controller;
 
+import com.example.t3mb_decor.model.Cart;
 import com.example.t3mb_decor.model.Category;
 import com.example.t3mb_decor.model.Product;
 import com.example.t3mb_decor.model.ProductFiles;
@@ -34,13 +35,15 @@ public class ProController {
     }
 
 
-
     @GetMapping("product/{id}")
     public String viewCollection(@PathVariable("id") long id, Model model){
         Product product = productService.getProduct(id);
         List<ProductFiles> productFilesList = productFileService.getProductFilebyProductID(id);
         model.addAttribute("product", product);
         model.addAttribute("listImage", productFilesList);
+        Cart cart = new Cart();
+        cart.setProduct_cart(product);
+        model.addAttribute("cart", cart);
         return "content/product";
     }
 }

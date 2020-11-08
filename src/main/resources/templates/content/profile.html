@@ -12,11 +12,22 @@
 <!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>-->
 <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
 
-
+<style>
+    .invalid-feedback{
+        font-size: 14px;
+        font-weight: 600;
+        text-align: left;
+    }
+</style>
 </head>
 <body class="pr">
 <div layout:fragment="contents">
     <div class="profile">
+        <div th:if="${param.successUpdate}">
+            <div class="alert alert-success">
+                User updated successfully !!
+            </div>
+        </div>
         <section class="Form m-5">
             <div class="container">
                 <h5 class="mb-4 mt-3" style="text-align: center;">Basic info, like your name and photo, that you use on TeMB services</h5>
@@ -24,13 +35,15 @@
                     <div class="col-lg-12 px-5 pt-5 pb-2">
                         <h4>Profile</h4>
                         <hr>
-                        <form action="" id="pro-form" th:object="${InfoUser}" method="post">
+                        <form th:action="@{/profile/update}" id="pro-form" th:object="${InfoUser}" method="post">
+                            <input type="text" th:field="*{id} " />
                             <div class="row  mt-2">
                                 <div class="col-lg-3">
                                     <label for="pro-name" class="type-text">Name</label>
                                 </div>
                                 <div class="col-lg-9">
-                                    <input type="text" th:field="*{name}" class="form-control type-input" id="pro-name" name="name" placeholder="Your name">
+                                    <input type="text" th:field="*{name}" class="form-control type-input" id="pro-name" name="name" placeholder="Your name" th:errorClass="is-invalid">
+                                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></div>
                                 </div>
                             </div>
                             <hr>
@@ -39,7 +52,8 @@
                                     <label for="pro-name" class="type-text">Email</label>
                                 </div>
                                 <div class="col-lg-9">
-                                    <input type="email" th:field="*{email}" class="form-control type-input" id="pro-email" name="email" placeholder="Your email">
+                                    <input type="email" th:field="*{email}" class="form-control type-input" id="pro-email" name="email" placeholder="Your email" th:errorClass="is-invalid">
+                                    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></div>
                                 </div>
                             </div>
                             <hr>
@@ -48,7 +62,8 @@
                                     <label for="pro-name" class="type-text">Phone</label>
                                 </div>
                                 <div class="col-lg-9">
-                                    <input type="text" th:field="*{phone}" class="form-control type-input" id="pro-phone" name="phone" placeholder="Your phone">
+                                    <input type="text" th:field="*{phone}" class="form-control type-input" id="pro-phone" name="phone" placeholder="Your phone" th:errorClass="is-invalid">
+                                    <div th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="invalid-feedback"></div>
                                 </div>
                             </div>
                             <hr>
@@ -57,7 +72,8 @@
                                     <label for="pro-name" class="type-text">Address</label>
                                 </div>
                                 <div class="col-lg-9">
-                                    <input type="text" th:field="*{address}" class="form-control type-input" id="pro-address" name="address" placeholder="Your address">
+                                    <input type="text" th:field="*{address}" class="form-control type-input" id="pro-address" name="address" placeholder="Your address" th:errorClass="is-invalid">
+                                    <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="invalid-feedback"></div>
                                 </div>
                             </div>
                             <hr>

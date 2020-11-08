@@ -46,7 +46,7 @@ public class UserServiceImp implements UserService{
     @Override
     public User saveUser(UserVO registration) {
         long v = Long.parseLong("3");
-        System.out.println(roleRepository.findById(v).get());
+//        System.out.println(roleRepository.findById(v).get());
         User user = new User(registration.getName(),registration.getEmail(),passwordEncoder.encode(registration.getPassword()),
                 registration.getAddress(),registration.getPhone(), Arrays.asList(roleRepository.findById(v).get()));
         return userRepository.save(user);
@@ -87,7 +87,6 @@ public class UserServiceImp implements UserService{
         userUpdate.setPhone(user.getPhone());
         Date updateDate = user.getCreatedAt();
         userUpdate.setUpdatedAt(updateDate);
-        System.out.println(user.getRoles());
         userUpdate.setRoles(user.getRoles());
         this.userRepository.save(userUpdate);
     }
@@ -96,6 +95,18 @@ public class UserServiceImp implements UserService{
     public User getUserFindByEmail(String email) {
         User user = userRepository.findByEmail(email);
         return user;
+    }
+
+    @Override
+    public void saveProfile(User user) {
+        User userProfile = getUserFindByEmail(user.getEmail());
+        userProfile.setName(user.getName());
+        userProfile.setEmail(user.getEmail());
+        userProfile.setPhone(user.getPhone());
+        userProfile.setAddress(user.getAddress());
+        Date updateDate = userProfile.getCreatedAt();
+        userProfile.setUpdatedAt(updateDate);
+        this.userRepository.save(userProfile);
     }
 
 

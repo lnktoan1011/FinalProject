@@ -10,6 +10,24 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+
+nav{
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+}
+nav .color a,nav .icon-search ,nav .color{
+    text-decoration: none;
+    color: #999;
+}
+/*,.con nav .icon-search*/
+nav a {
+    text-decoration: none;
+    color: #999;
+    font-size: 20px;
+}
+nav .login{
+    color: #999;border-color: #999;
+}
 /* start navigation */
 .top-auto {
     top:auto
@@ -33,9 +51,9 @@ nav.sticky {
     background-color: #fff;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
-nav .login{
-    color: #fff;border-color: #fff;
-}
+/*nav .login{*/
+/*    color: #fff;border-color: #fff;*/
+/*}*/
 nav.sticky .login{
     color: #999;border-color: #999;
 }
@@ -43,11 +61,11 @@ nav.sticky .login:hover{
     color: #000;border-color: #000;
 }
 nav .login:hover{
-    color: #999;
-    border-color: #999;
+    color: #000;
+    border-color: #000;
 }
 nav .color a:hover,nav .color:hover,nav .icon-search:hover{
-    color: #999;
+    color: #000;
 }
 nav {
     position: relative;
@@ -56,17 +74,20 @@ nav {
     /* background-color: #FFF; */
 
 }
-nav a {
-    text-decoration: none;
-    color: #FFF;
-    font-size: 20px;
+#sign .nav-item a{
+    color: #999;
 }
+/*nav a {*/
+/*    text-decoration: none;*/
+/*    color: #FFF;*/
+/*    font-size: 20px;*/
+/*}*/
 nav a:hover {
-    color: #FFF;
+    color: #000;
 }
 nav .login:hover{
-    color: #999;
-    border-color: #999;
+    color: #000;
+    border-color: #000;
 }
 nav.sticky .color a {
     text-decoration: none;
@@ -153,9 +174,9 @@ nav.sticky .color:hover {
 .navbar-nav li:hover > ul.dropdown-menu {
     display: block;
 }
-.navbar-nav a {
-    color: #fff;
-}
+/*.navbar-nav a {*/
+/*    color: #fff;*/
+/*}*/
 .nav-drop {
     background-color: #1d1d1d;
     opacity: 0.9;

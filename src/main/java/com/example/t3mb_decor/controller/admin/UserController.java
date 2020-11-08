@@ -103,7 +103,13 @@ public class UserController {
         return "/content/admin/users";
     }
     @PostMapping("/update")
-    public String updateUser(@ModelAttribute("userUpdate") User user, BindingResult bindingResult,Model model){
+    public String updateUser(@ModelAttribute("userUpdate") @Valid User user, BindingResult bindingResult,Model model){
+        if (bindingResult.hasErrors()){
+            model.addAttribute("getTable",true);
+            return "/content/admin/users";
+        }
+        String userData =userService.getUser(user.getId()).getEmail();
+        String userPage =user.getEmail();
         if (!user.getEmail().equals(userService.getUser(user.getId()).getEmail())) {
             if (userService.checkEmail(user.getEmail())) {
                 bindingResult.addError(new FieldError("user", "email",
@@ -114,6 +120,7 @@ public class UserController {
                 return "/content/admin/users";
             }
         }
+
         userService.saveUserUpdate(user);
         return "redirect:/admins/user?successUpdate";
     }

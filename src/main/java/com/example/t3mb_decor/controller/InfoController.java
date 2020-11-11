@@ -1,6 +1,7 @@
 package com.example.t3mb_decor.controller;
 
 import com.example.t3mb_decor.VO.UserVO;
+import com.example.t3mb_decor.model.Cart;
 import com.example.t3mb_decor.model.User;
 
 import com.example.t3mb_decor.repository.UserRepository;
@@ -14,6 +15,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/profile")
@@ -22,6 +24,23 @@ public class InfoController {
     UserService userService;
     @Autowired
     UserRepository userRepository;
+
+    //      Total Product in Cart
+    @ModelAttribute("TotalProduct")
+    public int totalProduct(Authentication authentication){
+        int total = 0;
+        if (authentication != null){
+            String emailName = authentication.getName();
+            User user = userService.getUserFindByEmail(emailName);
+            List<Cart> listCart = user.getListCart();
+            for(int i = 0; i < listCart.size(); i++){
+                total = total + listCart.get(i).getQuantity();
+            }
+
+        }
+        return total;
+    }
+
     @ModelAttribute("InfoUser")
     @ResponseBody
     public User showUserInfo(Authentication authentication){

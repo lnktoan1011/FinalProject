@@ -19,8 +19,14 @@ public class Orders {
 
     @Column(name = "total",columnDefinition = "integer default 0",length = 100)
     private int total;
+    @Column(name = "subtotal",columnDefinition = "integer default 0",length = 100)
+    private int subTotal;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "order_product")
+
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinTable(name = "order_products",
+            joinColumns = {@JoinColumn(name = "order_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id")})
     private List<Product> order_product= new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -30,6 +36,8 @@ public class Orders {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
+    @Column(name = "status",columnDefinition = "integer default 0",length = 100)
+    private int status;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -45,8 +53,10 @@ public class Orders {
     public Orders() {
     }
 
-    public Orders(int total) {
+    public Orders(int total, int subTotal, int status) {
         this.total = total;
+        this.subTotal = subTotal;
+        this.status = status;
     }
 
     public long getId() {
@@ -65,6 +75,14 @@ public class Orders {
         this.total = total;
     }
 
+    public int getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(int subTotal) {
+        this.subTotal = subTotal;
+    }
+
     public List<Product> getOrder_product() {
         return order_product;
     }
@@ -79,6 +97,14 @@ public class Orders {
 
     public void setDiscount(Discount discount) {
         this.discount = discount;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public Date getCreatedAt() {

@@ -13,7 +13,6 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
     User findByEmail(String email);
-
     @Query(value = "SELECT * FROM users WHERE email != :email", nativeQuery = true)
     List<User> getList(@Param("email") String email);
 

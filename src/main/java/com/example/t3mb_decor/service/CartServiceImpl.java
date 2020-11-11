@@ -45,4 +45,15 @@ public class CartServiceImpl implements  CartService{
         cartUpdate.setQuantity(cart.getQuantity());
         this.cartRepository.save(cartUpdate);
     }
+
+    @Override
+    public Cart getExistCart(long userId, long productId) {
+        return this.cartRepository.getExistCart(userId, productId);
+    }
+
+    @Override
+    public void deleteExistCart(long userID) {
+        cartRepository.deleteExistCart(userID);
+    }
+
 }

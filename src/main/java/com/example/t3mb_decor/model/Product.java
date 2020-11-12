@@ -65,6 +65,9 @@ public class Product{
     @Transient
     private List<String> removeImage = new ArrayList<String>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product_cart")
+    private List<Cart> listCart = new ArrayList<>() ;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "subcate_id")
     private SubCategory subCategory;
@@ -84,10 +87,7 @@ public class Product{
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product_wishlist")
     private List<User> customer_wishlist= new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinTable(name = "order_products",
-            joinColumns = {@JoinColumn(name = "product_id")},
-            inverseJoinColumns = {@JoinColumn(name = "order_id")})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "order_product")
     private List<Orders> order_product = new ArrayList<>();
 
     @CreationTimestamp
@@ -268,5 +268,13 @@ public class Product{
 
     public void setRemoveImage(List<String> removeImage) {
         this.removeImage = removeImage;
+    }
+
+    public List<Cart> getListCart() {
+        return listCart;
+    }
+
+    public void setListCart(List<Cart> listCart) {
+        this.listCart = listCart;
     }
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
                 layout:decorate="~{layouts/main_layout/main}"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
@@ -15,57 +16,73 @@
                     <div class="col-md-8">
                         <h5 class="text-center" >MY SHOPPING BAG</h5>
                         <hr id="text1">
-                        <table class="table1">
-                            <tr>
+                        <table class="table1" id = "tableList">
+                          <tr>
                                 <th>Product</th>
                                 <th>Quantity</th>
                                 <th>Subtotal</th>
                             </tr>
-                            <tr>
+                            <tr th:each ="c : ${listCart}">
                                 <td>
                                     <div class="cart-info">
-                                        <img src="https://cb2.scene7.com/is/image/CB2/SideraChairWhiteSHS17_1x1/?$web_zoom$&190905021443&wid=450&hei=450" width="150px" height="150px" alt="">
-                                        <div class="info">
-                                            <h5>Chair 123</h5>
-                                            <small>Price: $50.00</small>
-                                            <br>
-                                            <a href="">Remove</a>
-                                        </div>
+                                            <img src="https://cb2.scene7.com/is/image/CB2/SideraChairWhiteSHS17_1x1/?$web_zoom$&190905021443&wid=450&hei=450" width="150px" height="150px" alt="">
+                                            <div class="info">
+                                                    <h5 th:text="${c.getProduct_cart().getName()}"></h5>
+                                                    <small th:text="'Price: $' + ${c.getProduct_cart().getPrice()} +'.00'"></small>
+                                                    <br>
+                                                    <a href="">Remove</a>
+                                            </div>
                                     </div>
                                 </td>
-                                <td style="width: 150px;"><input type="number" value="1" min="0"></td>
-                                <td style="width: 150px; font-weight:bold; font-size: 24px;">$50.00</td>
+                                <td style="width: 150px;"><input type="number" th:value="${c.getQuantity()}" min="1"></td>
+                                <td style="width: 150px; font-weight:bold; font-size: 24px;" th:text="${'$' + c.getProduct_cart().getPrice() * c.getQuantity()} +'.00'"></td>
                             </tr>
-
                         </table>
                     </div>
                     <div class="col-md-4">
-                        <h5 class="text-center">SUMARY</h5>
+                        <h5 class="text-center">CHECK OUT</h5>
                         <hr>
+                        <p><b>Name: </b></p>
+                        <p th:text="${order.getUser().getName()}"></p>
+                        <p><b>Email: </b></p>
+                        <p th:text="${order.getUser().getEmail()}"></p>
+                        <p><b>Address: </b></p>
+                        <p th:text="${order.getUser().getAddress()}"></p>
+                        <p><b>Phone: </b></p>
+                        <p th:text="${order.getUser().getPhone()}"></p>
+                        <hr>
+                        <h5 class="text-center">TOTAL ORDER</h5>
                         <h6>Do you have promo code?</h6>
-                        <input type="text" class="form-control" placeholder="search promo code" id="discount">
-                        <hr>
-                        <table class="table table-borderless">
-                            <tr>
-                                <td><h6>Subtotal</h6></td>
-                                <td>$50.00</td>
-                            </tr>
-                            <tr>
-                                <td><h6>Tax</h6></td>
-                                <td>$50.00</td>
-                            </tr>
-                            <tr>
-                                <td><h6>Promo code</h6></td>
-                                <td>$50.00</td>
-                            </tr>
-                            <tr>
-                                <td><h4>Total</h4></td>
-                                <td>$50.00</td>
-                            </tr>
-                        </table>
-                        <hr>
-                        <input type="submit" class=" form-control btn btn-dark" value="CHECKOUT">
+                        <form action="#" th:action="@{/order}" th:object="${order}" method="post">
+                            <input type="text" class="form-control" placeholder="search promo code" id="discount">
 
+                            <table class="table table-borderless">
+                                    <tr>
+                                        <td><h6>Subtotal</h6></td>
+                                        <input type="hidden" th:field="*{order_product}">
+                                        <input type="hidden" th:field="*{user}">
+                                        <input type="hidden" th:field="*{subTotal}">
+                                        <td th:text="*{'$' +subTotal + '.00'}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h6>Promo code</h6></td>
+                                        <div th:if="*{discount != null}">
+                                            <input type="hidden" th:field="*{discount}">
+                                            <td th:text="*{'$' + discount + '.00'}"></td>
+                                        </div>
+                                        <div th:unless="*{discount != null}">
+                                            <td>$0.00</td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <td><h4>Total</h4></td>
+                                        <input type="hidden" th:field="*{total}">
+                                        <td th:text="*{'$' + total + '.00'}"></td>
+                                    </tr>
+                            </table>
+                            <hr>
+                            <input type="submit" class=" form-control btn btn-dark" value="ORDER">
+                        </form>
                     </div>
 
                 </div>

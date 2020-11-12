@@ -59,6 +59,9 @@ public class User {
 //    @JoinColumn(name = "user_id",referencedColumnName = "id")
     private List<Orders> order_customer = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user_cart")
+    private List<Cart> listCart = new ArrayList<>() ;
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
@@ -168,5 +171,13 @@ public class User {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<Cart> getListCart() {
+        return listCart;
+    }
+
+    public void setListCart(List<Cart> listCart) {
+        this.listCart = listCart;
     }
 }

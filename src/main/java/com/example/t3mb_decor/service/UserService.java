@@ -1,5 +1,6 @@
 package com.example.t3mb_decor.service;
 
+import com.example.t3mb_decor.VO.InfoPwd;
 import com.example.t3mb_decor.VO.UserToAdminVO;
 import com.example.t3mb_decor.VO.UserVO;
 import com.example.t3mb_decor.model.User;
@@ -19,4 +20,6 @@ public interface UserService extends UserDetailsService {
     void saveUserUpdate(User user);
     User getUserFindByEmail(String email);
     void saveProfile(User user);
+    void saveInfoPwd(InfoPwd infoPwd);
+    Boolean checkOldPwd(InfoPwd infoPwd);
 }

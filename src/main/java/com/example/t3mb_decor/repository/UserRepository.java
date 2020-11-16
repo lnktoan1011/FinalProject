@@ -16,6 +16,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Query(value = "SELECT * FROM users WHERE email != :email", nativeQuery = true)
     List<User> getList(@Param("email") String email);
 
+
     @Modifying
     @Query(value = "DELETE FROM user_roles WHERE user_id = :id", nativeQuery = true)
     @Transactional

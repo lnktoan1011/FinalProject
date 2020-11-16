@@ -108,8 +108,11 @@ public class UserController {
             model.addAttribute("getTable",true);
             return "/content/admin/users";
         }
-        String userData =userService.getUser(user.getId()).getEmail();
-        String userPage =user.getEmail();
+//        System.out.println("usPage: " +user.getEmail()+"id:"+user.getId());
+//        System.out.println("usData: " +userService.getUser(user.getId()).getEmail()+"id:"+userService.getUser(user.getId()).getId());
+//        System.out.println("x: "+user.getName());
+//        System.out.println("y: " + userService.getUser(user.getId()).getName());
+
         if (!user.getEmail().equals(userService.getUser(user.getId()).getEmail())) {
             if (userService.checkEmail(user.getEmail())) {
                 bindingResult.addError(new FieldError("user", "email",

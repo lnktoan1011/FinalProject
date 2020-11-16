@@ -23,12 +23,17 @@
 <body class="pr">
 <div layout:fragment="contents">
     <div class="profile">
-        <div th:if="${param.successUpdate}">
-            <div class="alert alert-success">
-                User updated successfully !!
-            </div>
-        </div>
         <section class="Form m-5">
+            <div th:if="${param.successUpdate}">
+                <div class="alert alert-success">
+                    User updated successfully !!
+                </div>
+            </div>
+            <div th:if="${param.successUpdatePwd}">
+                <div class="alert alert-success">
+                    User updated successfully !!
+                </div>
+            </div>
             <div class="container">
                 <h5 class="mb-4 mt-3" style="text-align: center;">Basic info, like your name and photo, that you use on TeMB services</h5>
                 <div class="row row-card no-gutters mt-2">
@@ -36,7 +41,7 @@
                         <h4>Profile</h4>
                         <hr>
                         <form th:action="@{/profile/update}" id="pro-form" th:object="${InfoUser}" method="post">
-                            <input type="text" th:field="*{id} " />
+                            <input type="hidden" th:field="*{id} " />
                             <div class="row  mt-2">
                                 <div class="col-lg-3">
                                     <label for="pro-name" class="type-text">Name</label>
@@ -87,13 +92,17 @@
                     <div class="col-lg-12 px-5 pt-5 pb-2">
                         <h4>Password</h4>
                         <hr>
-                        <form action="" id="pass-form">
+                        <form th:action="@{/profile/updatePwd}" id="pass-form" th:object="${InfoPwd}" method="post">
+                            <div th:field="*{id}">
+                                <input type="hidden" th:field="${InfoUser.id}">
+                            </div>
                             <div class="row  mt-2">
                                 <div class="col-lg-3">
                                     <label for="pro-name" class="type-text">Old password</label>
                                 </div>
                                 <div class="col-lg-9">
-                                    <input type="password" class="form-control type-input" id="pass-old" name="oldpass" placeholder="Old passowrd">
+                                    <input type="password" th:field="*{oldPwd}" class="form-control type-input" id="pass-old" name="oldpass" placeholder="Old passowrd" th:errorClass="is-invalid">
+                                    <div th:if="${#fields.hasErrors('oldPwd')}" th:errors="*{oldPwd}" class="invalid-feedback"></div>
                                 </div>
                             </div>
                             <hr>
@@ -102,7 +111,8 @@
                                     <label for="pro-name" class="type-text">New password</label>
                                 </div>
                                 <div class="col-lg-9">
-                                    <input type="password" class="form-control type-input" id="pass-new" name="newpass" placeholder="New password">
+                                    <input type="password" th:field="*{password}" class="form-control type-input" id="pass-new" name="newpass" placeholder="New password" th:errorClass="is-invalid">
+                                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
                                 </div>
                             </div>
                             <hr>
@@ -111,12 +121,13 @@
                                     <label for="pro-name" class="type-text">Confirm new  password</label>
                                 </div>
                                 <div class="col-lg-9">
-                                    <input type="password" class="form-control type-input" id="pass-confirm" name="comfirmpass" placeholder="Confirm new password">
+                                    <input type="password" th:field="*{rpassword}" class="form-control type-input" id="pass-confirm" name="comfirmpass" placeholder="Confirm new password" th:errorClass="is-invalid">
+                                    <div th:if="${#fields.hasErrors('rpassword')}" th:errors="*{rpassword}" class="invalid-feedback"></div>
                                 </div>
                             </div>
                             <hr>
                             <div class="text-right">
-                                <button type="button" class="btn btn-dark p-2 m-2">Update Password</button>
+                                <button type="submit" class="btn btn-dark p-2 m-2">Update Password</button>
                             </div>
                         </form>
                     </div>

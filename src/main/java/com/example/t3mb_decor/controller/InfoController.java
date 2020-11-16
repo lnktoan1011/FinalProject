@@ -71,10 +71,10 @@ public class InfoController {
 
 
 //        String userData=userRepository.findById(user.getId()).get().getEmail();
-        System.out.println("usPage: " +user.getEmail()+"id:"+user.getId());
-        System.out.println("usData: " +userService.getUser(user.getId()).getEmail()+"id:"+userService.getUser(user.getId()).getId());
-        System.out.println("x: "+user.getName());
-        System.out.println("y: " + userService.getUser(user.getId()).getName());
+//        System.out.println("usPage: " +user.getEmail()+"id:"+user.getId());
+//        System.out.println("usData: " +userService.getUser(user.getId()).getEmail()+"id:"+userService.getUser(user.getId()).getId());
+//        System.out.println("x: "+user.getName());
+//        System.out.println("y: " + userService.getUser(user.getId()).getName());
 
         if (!user.getEmail().equals(userService.getUser(user.getId()).getEmail())) {
             if (userService.checkEmail(user.getEmail()) ){
@@ -94,13 +94,6 @@ public class InfoController {
         userService.saveProfile(user);
         return "redirect:/profile?successUpdate";
     }
-
-//    @GetMapping("/updatePwd")
-//    public String showUpdatePwd(Authentication authentication, Model model){
-//        User user = userService.getUserFindByEmail(authentication.getName());
-//        model.addAttribute("InfoUser",user);
-//        return "/content/profile";
-//    }
 
     @PostMapping("updatePwd")
     public String updatePwd(@ModelAttribute("InfoPwd") @Valid InfoPwd infoPwd, BindingResult bindingResult,Model model){

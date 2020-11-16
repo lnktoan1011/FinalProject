@@ -25,37 +25,36 @@
             <div class="col-lg-12 px-5 pt-5 pb-2">
                 <h4>Purchase history</h4>
                 <p>Some info may be visible to order people using TeMB services.</p>
-                <table class="table">
+                <table class="table" >
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">No.</th>
                         <th scope="col">Date</th>
                         <th scope="col">Status</th>
                         <th scope="col">Total price</th>
-                        <th scope="col">...</th>
+                        <th scope="col">Detail</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody th:each="his, custStat : ${history}">
                     <tr>
-                        <th scope="row">1</th>
-                        <td>22/10/2020</td>
-                        <td>Finished</td>
-                        <td>300000</td>
-                        <td><a href="#">Details</a></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>22/10/2020</td>
-                        <td>Finished</td>
-                        <td>300000</td>
-                        <td><a href="#">Details</a></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>22/10/2020</td>
-                        <td>Finished</td>
-                        <td>300000</td>
-                        <td><a href="#">Details</a></td>
+                        <th scope="row" th:text="${custStat.index + 1}"></th>
+                        <td th:text="${his.getCreatedAt()}"></td>
+                        <div th:if="${his.getStatus() == 0}">
+                            <td>
+                                <div class="alert alert-danger" style="width: 45%" >Waiting</div>
+                            </td>
+                        </div>
+                        <div th:unless="${his.getStatus() == 0}">
+                            <td>
+                                <div class="alert alert-success" style="width: 45%">Finished</div>
+                            </td>
+                        </div>
+                        <td th:text="${ '$' + his.getTotal() + '.00'}"></td>
+                        <td>
+                            <div class="alert alert-primary" style="width: 45%">
+                                <a href="#" style="text-decoration: none; color:black">Details</a>
+                            </div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

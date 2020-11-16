@@ -3,11 +3,10 @@ package com.example.t3mb_decor.controller;
 
 import com.example.t3mb_decor.model.Cart;
 import com.example.t3mb_decor.model.Category;
+import com.example.t3mb_decor.model.Orders;
 import com.example.t3mb_decor.model.User;
-import com.example.t3mb_decor.service.CategoryService;
-import com.example.t3mb_decor.service.ProductFileService;
-import com.example.t3mb_decor.service.ProductService;
-import com.example.t3mb_decor.service.UserService;
+import com.example.t3mb_decor.service.*;
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -28,6 +27,8 @@ public class HeaderController {
     CategoryService categoryService;
     @Autowired
     UserService userService;
+    @Autowired
+    OrderService orderService;
 
     //      Total Product in Cart
     @ModelAttribute("TotalProduct")
@@ -60,5 +61,11 @@ public class HeaderController {
     public String showAbout(){return "/content/about";}
 
     @GetMapping("/history")
-    public String showHistory(){return "/content/pus-history";}
+    public String showHistory(Model model,  Authentication authentication){
+        String emailName = authentication.getName();
+        User user = userService.getUserFindByEmail(emailName);
+        List<Orders> ordersList = orderService.getHistory(user.getId());
+        model.addAttribute("history", ordersList);
+        return "/content/pus-history";
+    }
 }

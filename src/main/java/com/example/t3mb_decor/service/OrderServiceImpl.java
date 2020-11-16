@@ -36,4 +36,9 @@ public class OrderServiceImpl implements OrderService{
     public void updateOrder(Orders order) {
 
     }
+
+    @Override
+    public List<Orders> getHistory(long userId) {
+        return orderRepository.getHistory(userId);
+    }
 }

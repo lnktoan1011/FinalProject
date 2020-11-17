@@ -51,9 +51,11 @@
                         </div>
                         <td th:text="${ '$' + his.getTotal() + '.00'}"></td>
                         <td>
-                            <div class="alert alert-primary" style="width: 45%">
-                                <a href="#" style="text-decoration: none; color:black">Details</a>
-                            </div>
+                            <a th:href="@{/history/{id}(id = ${his.id})}" style="text-decoration: none; color:black">
+                                <div class="alert alert-primary" style="width: 45%">
+                                    Details
+                                </div>
+                            </a>
                         </td>
                     </tr>
                     </tbody>

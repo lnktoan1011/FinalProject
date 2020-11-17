@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+                layout:decorate="~{layouts/main_layout/main}"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>History detail</title>
+</head>
+<body class="ca">
+    <div layout:fragment="contents" style="margin-top: 145px; margin-bottom: 85px;">
+        <div class="carts">
+            <section class="form-section">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h5 class="text-center" >MY SHOPPING BAG</h5>
+                        <hr id="text1">
+                        <table class="table1" id = "tableList">
+                          <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                            </tr>
+                            <tr th:each ="c : ${orderDetail.getOrder_product()}">
+                                <td>
+                                    <div class="cart-info">
+                                            <img src="https://cb2.scene7.com/is/image/CB2/SideraChairWhiteSHS17_1x1/?$web_zoom$&190905021443&wid=450&hei=450" width="150px" height="150px" alt="">
+                                            <div class="info">
+                                                    <h5 th:text="${c.getName()}"></h5>
+                                                    <small th:text="'Price: $' + ${c.getPrice()} +'.00'"></small>
+                                                    <br>
+                                            </div>
+                                    </div>
+                                </td>
+                                <td style="width: 150px;"><input type="text" th:value="${c.getQuantity()}" readonly></td>
+                                <td style="width: 150px; font-weight:bold; font-size: 24px;" th:text="${'$' + c.getPrice() * c.getQuantity()} +'.00'"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="text-center">CHECK OUT</h5>
+                        <hr>
+                        <p><b>Name: </b></p>
+                        <p th:text="${orderDetail.user.getName()}"></p>
+                        <p><b>Email: </b></p>
+                        <p th:text="${orderDetail.user.getEmail()}"></p>
+                        <p><b>Address: </b></p>
+                        <p th:text="${orderDetail.user.getAddress()}"></p>
+                        <p><b>Phone: </b></p>
+                        <p th:text="${orderDetail.user.getPhone()}"></p>
+                        <hr>
+                        <h5 class="text-center">TOTAL ORDER</h5>
+                        <h6> <b>Promo code Name </b></h6>
+                        <div th:if="${orderDetail.getDiscount() != null}">
+                            <input type="text" class="form-control" th:text="${orderDetail.getDiscount().getName()}" id="discount" readonly>
+                        </div>
+                        <div th:unless="${orderDetail.getDiscount() != null}">
+                            <input type="text" class="form-control" value="No Discount" readonly>
+                        </div>
+                        <table class="table table-borderless">
+                                <tr>
+                                    <td><h6><b>Subtotal</b></h6></td>
+                                    <td th:text="*{'$' +orderDetail.getSubTotal() + '.00'}"></td>
+                                </tr>
+                                <tr>
+                                    <td><h6> <b>Promo code </b></h6></td>
+                                    <div th:if="${orderDetail.getDiscount() != null}">
+                                        <td th:text="${orderDetail.getDiscount().getPercent() + '%'}"></td>
+                                    </div>
+                                    <div th:unless="${orderDetail.getDiscount() != null}">
+                                        <td>00%</td>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <td><h4><b>Total</b></h4></td>
+                                    <td th:text="${'$' + orderDetail.getTotal() + '.00'}"></td>
+                                </tr>
+                        </table>
+                        <hr>
+                        <div th:if="${orderDetail.getStatus() == 0}">
+                            <td>
+                                <div class="alert alert-danger" style="text-align: center"> <h3> Waiting </h3> </div>
+                            </td>
+                        </div>
+                        <div th:unless="${orderDetail.getStatus() == 0}">
+                            <td>
+                                <div class="alert alert-success" style="text-align: center"><h3> Finished </h3></div>
+                            </td>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!--        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
+<!--        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
+
+    </div>
+</body>
+</html>

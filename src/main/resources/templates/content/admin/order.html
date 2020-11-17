@@ -96,14 +96,15 @@
         </div>
         <div class="row">
             <div class="col-lg-7" id="left-order">
-                <div class="card">
+                <div class="card" th:each="pro : ${listOrder}">
                     <div class="row">
                         <div class="col-lg-11" style="padding: 10px; padding-left: 40px;">
-                            <h4 style="color: cornflowerblue;">Order: <span>123</span></h4>
+                            <h4 style="color: cornflowerblue;">Order: <span th:text="${pro.id}"></span></h4>
                             <br>
-                            <p>Address: <span><b>19 nguyen huu tho </b></span></p>
-                            <p>Customer: <span><b>Khanh Toan </b></span></p>
-                            <h5 style="float: right; padding-right: 10px;">Total: <span style="font-weight: bold;"><span>100.00</span> $</span></h5>
+                            <p>Customer: <span><b th:text="${pro.user.getName()}"></b></span></p>
+                            <p>Address: <span><b th:text="${pro.user.getAddress()}"></b></span></p>
+                            <p>Date order: <span><b th:text="${pro.getCreatedAt()}"></b></span></p>
+                            <h5 style="float: right; padding-right: 10px;">Total: <span style="font-weight: bold;"><span th:text="${pro.getTotal()}" ></span> $</span></h5>
                         </div>
                         <div class="col-lg-1">
                             <div class="small-box bg-info" id="button_info">

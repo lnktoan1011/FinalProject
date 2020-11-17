@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -67,5 +68,22 @@ public class HeaderController {
         List<Orders> ordersList = orderService.getHistory(user.getId());
         model.addAttribute("history", ordersList);
         return "/content/pus-history";
+    }
+    @GetMapping("/history/{id}")
+    public String viewOrderDetail(@PathVariable("id") long id,Model model, Authentication authentication){
+        String emailName = authentication.getName();
+        User user = userService.getUserFindByEmail(emailName);
+        Orders orderDetail = null;
+        List<Orders> ordersList = user.getOrder_customer();
+        for(int i=0; i < ordersList.size(); i++){
+            if(ordersList.get(i).getId() == id){
+                orderDetail = ordersList.get(i);
+            }
+        }
+        if(orderDetail == null){
+            model.addAttribute("null", "null");
+        }
+        model.addAttribute("orderDetail", orderDetail);
+        return "/content/history-detail";
     }
 }

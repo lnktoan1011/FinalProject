@@ -48,6 +48,7 @@ public class Discount {
 
     }
 
+
     public long getId() {
         return id;
     }

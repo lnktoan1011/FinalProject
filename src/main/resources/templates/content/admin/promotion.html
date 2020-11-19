@@ -5,16 +5,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        #card_info{
+            display: none;
+        }
+    </style>
 </head>
+
 <body>
 <div layout:fragment="content">
+    <div th:if="${param.successAdd}">
+        <div class="alert alert-success">
+            Promotion added successfully !!
+        </div>
+    </div>
+    <div th:if="${param.errorAdd}">
+        <div class="alert alert-danger">
+            <strong>Promotion already exists</strong> Please try again !!
+        </div>
+    </div>
+    <div th:if="${param.successUpdate}">
+        <div class="alert alert-success">
+            Promotion updated successfully !!
+        </div>
+    </div>
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Promotion</h1>
+                    <button type="button" class ="btn btn-primary m-2"  onclick="showForm()">
+                        <i class="fas fa-plus"></i>
+                        Add Promotion
+                    </button>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-lg-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Catalog</a></li>
                         <li class="breadcrumb-item active">Promotion</li>
@@ -23,6 +48,83 @@
             </div>
         </div>
     </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-info" id="card_info" th:style="${showUp} == 1 ?'display:block': 'display:none'">
+                <th:block th:if="${Pro.id == 0}">
+                <div class="card-header">
+                    <h3 class="card-title">New Promotion</h3>
+                </div>
+
+                <form action="#" th:action="@{/admins/promotion/add}" th:object="${Pro}" method="post">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="input-group-prepend">
+                                <input type="text" th:field="*{percent}"  class="form-control" placeholder="Enter a promotion percentage" required />
+                                <button type="submit" class="btn btn-outline-success mx-4" onclick="Add()">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                </th:block>
+                <th:block th:unless="${Pro.id == 0}">
+                    <div class="card-header">
+                        <h3 class="card-title">Update Brand</h3>
+                    </div>
+                    <form action="#" th:action="@{/admins/promotion/add}" th:object="${Pro}" method="post">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="input-group-prepend">
+                                    <input type="hidden" th:field="*{id} " />
+                                    <input type="text" th:field="*{percent} " class="form-control" placeholder="Enter Promotion percentage" required />
+                                    <button type="submit" class="btn btn-outline-success mx-4">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </th:block>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr class="table-info">
+                            <th scope="col" >No.</th>
+                            <th scope="col" >Name</th>
+                            <th scope="col" >Code</th>
+                            <th scope="col" >Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody th:each ="promo,stage : ${listPro}">
+                        <tr>
+
+                                <th scope="col" th:text="*{stage.count}"></th>
+                                <td  th:text="'Gift voucher ' + *{promo.percent} + '%'"></td>
+                                <td  th:text="*{promo.name}"></td>
+                                <td  th:text="*{promo.status}"></td>
+
+                            <td>
+                                <a th:href="@{/admins/promotion/update/{id}(id = *{promo.getId()})}" class="btn btn-outline-warning" >Edit</a> |
+                                <a th:href="@{/admins/promotion/delete/{id}(id = *{promo.getId()})}" onclick="return confirm('Are you sure you want to Delete?')" class="btn btn-outline-danger"> Delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <script>
+        function showForm() {
+            var x = document.getElementById("card_info");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
 </div>
 </body>
 </html>

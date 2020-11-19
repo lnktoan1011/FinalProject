@@ -86,7 +86,7 @@ public class UserServiceImp implements UserService{
         userUpdate.setEmail(user.getEmail());
         userUpdate.setAddress(user.getAddress());
         userUpdate.setPhone(user.getPhone());
-        Date updateDate = user.getCreatedAt();
+        Date updateDate = userUpdate.getCreatedAt();
         userUpdate.setUpdatedAt(updateDate);
         userUpdate.setRoles(user.getRoles());
         this.userRepository.save(userUpdate);

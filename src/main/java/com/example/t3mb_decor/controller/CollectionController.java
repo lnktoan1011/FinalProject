@@ -72,8 +72,13 @@ public class CollectionController {
 
 
     @GetMapping
-    public String viewCollection(Model model){
-
+    public String viewCollection(Model model, Authentication authentication){
+        if (authentication != null){
+            String emailName = authentication.getName();
+            User user = userService.getUserFindByEmail(emailName);
+            model.addAttribute("user", user);
+            return "content/list_product";
+            }
         return "content/list_product";
     }
 

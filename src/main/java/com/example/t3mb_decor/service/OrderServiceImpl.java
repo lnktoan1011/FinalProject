@@ -24,7 +24,14 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public Orders getOrder(long id) {
-        return null;
+        return orderRepository.findById(id).get();
+    }
+
+    @Override
+    public void confirmOrder(long id) {
+        Orders confirmOrder = getOrder(id);
+        confirmOrder.setStatus(1);
+        orderRepository.save(confirmOrder);
     }
 
     @Override

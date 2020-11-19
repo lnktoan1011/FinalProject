@@ -61,6 +61,7 @@ public class ProController {
         model.addAttribute("listImage", productFilesList);
         Cart cart = new Cart();
         cart.setProduct_cart(product);
+        cart.setQuantity(1);
         model.addAttribute("cart", cart);
         return "content/product";
     }

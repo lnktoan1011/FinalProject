@@ -12,4 +12,5 @@ public interface OrderService {
     void deleteOrder(long id);
     void updateOrder(Orders order);
     List<Orders> getHistory(long userId);
+    void confirmOrder(long id);
 }

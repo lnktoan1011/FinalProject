@@ -105,6 +105,7 @@ public class UserServiceImp implements UserService{
         userProfile.setEmail(user.getEmail());
         userProfile.setPhone(user.getPhone());
         userProfile.setAddress(user.getAddress());
+        userProfile.setProduct_wishlist(user.getProduct_wishlist());
         Date updateDate = userProfile.getCreatedAt();
         userProfile.setUpdatedAt(updateDate);
         this.userRepository.save(userProfile);

@@ -10,4 +10,5 @@ public interface PromotionService {
     void deletePro(long id);
     Discount getPro(long id);
     void updatePro(Discount discount);
+    Discount getProbyName(String name);
 }

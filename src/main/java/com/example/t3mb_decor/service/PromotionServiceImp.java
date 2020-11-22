@@ -43,4 +43,13 @@ public class PromotionServiceImp implements PromotionService {
         discountOld.setCreatedAt(createDate);
         this.promotionRepository.save(discountOld);
     }
+
+    @Override
+    public Discount getProbyName(String name) {
+        Discount discount = this.promotionRepository.findByName(name);
+        if(discount != null){
+            return discount;
+        }
+        return null;
+    }
 }

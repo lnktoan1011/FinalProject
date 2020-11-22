@@ -1,11 +1,7 @@
 package com.example.t3mb_decor.controller;
 
-import com.example.t3mb_decor.model.Cart;
-import com.example.t3mb_decor.model.Orders;
-import com.example.t3mb_decor.model.User;
-import com.example.t3mb_decor.service.CartService;
-import com.example.t3mb_decor.service.OrderService;
-import com.example.t3mb_decor.service.UserService;
+import com.example.t3mb_decor.model.*;
+import com.example.t3mb_decor.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -27,6 +23,10 @@ public class OrdersController {
     UserService userService;
     @Autowired
     CartService cartService;
+    @Autowired
+    CategoryService categoryService;
+    @Autowired
+    PromotionService promotionService;
 
     //      Total Product in Cart
     @ModelAttribute("TotalProduct")
@@ -44,10 +44,50 @@ public class OrdersController {
         return total;
     }
 
-    @PostMapping
-    public String AddToOrder(@ModelAttribute("order") Orders order, Authentication authentication){
+    //      List of categories
+    @ModelAttribute("listCategories")
+    public List<Category> getList(){
+        List<Category> listCate =  categoryService.getAllCategories();
+        return listCate;
+    }
+    @ModelAttribute("listCart")
+    public List<Cart> getListCart(Authentication authentication){
         String emailName = authentication.getName();
         User user = userService.getUserFindByEmail(emailName);
+        List<Cart> listCart = user.getListCart();
+        return listCart;
+    }
+
+    @PostMapping
+    public String AddToOrder(@ModelAttribute("order") Orders order, Authentication authentication, Model model){
+        String emailName = authentication.getName();
+        User user = userService.getUserFindByEmail(emailName);
+        String valueDiscount = order.getDiscount().getName();
+        if (valueDiscount != null && order.getDiscount().getId() == 0){
+            Discount discount = promotionService.getProbyName(valueDiscount);
+            if(discount != null){
+                if (discount.getStatus() == 1){
+                    order.setDiscount(discount);
+                    model.addAttribute("diss", discount);
+                    int subTotal = order.getSubTotal();
+                    float percent = (float)discount.getPercent() / 100;
+                    order.setTotal((int)(subTotal - subTotal * percent));
+                }
+                else{
+                    model.addAttribute("error", "Promotion is used");
+                }
+            }
+            else{
+                model.addAttribute("error", "Invalid Promotion");
+            }
+            model.addAttribute("order", order);
+            return "/content/cart";
+        }
+        if (order.getDiscount() != null){
+            Discount discount = promotionService.getPro(order.getDiscount().getId());
+            discount.setStatus(0);
+            promotionService.savePro(discount);
+        }
         orderService.saveOrder(order);
         cartService.deleteExistCart(user.getId());
         return "redirect:/history";

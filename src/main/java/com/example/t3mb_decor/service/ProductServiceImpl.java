@@ -40,24 +40,25 @@ public class ProductServiceImpl implements ProductService {
         Product productSave = productRepository.save(product);
         if(productSave != null && product.getFiles() != null && product.getFiles().size() > 0){
             for(MultipartFile file: product.getFiles()){
-                String filename = file.getOriginalFilename();
-                String modifiedName = FilenameUtils.getBaseName(filename) + "_" + System.currentTimeMillis() + "." + FilenameUtils.getExtension(filename);
-                File storeFile = uploadPathService.getFilePath(modifiedName, "images");
-                if(storeFile != null){
-                    try {
-                        FileUtils.writeByteArrayToFile(storeFile, file.getBytes());
-                    }catch (Exception e){
-                        e.printStackTrace();
+                if(!file.getOriginalFilename().isEmpty())
+                {
+                    String filename = file.getOriginalFilename();
+                    String modifiedName = FilenameUtils.getBaseName(filename) + "_" + System.currentTimeMillis() + "." + FilenameUtils.getExtension(filename);
+                    File storeFile = uploadPathService.getFilePath(modifiedName, "images");
+                    if(storeFile != null){
+                        try {
+                            FileUtils.writeByteArrayToFile(storeFile, file.getBytes());
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
                     }
+                    ProductFiles files = new ProductFiles();
+                    files.setFileExtention(FilenameUtils.getExtension(filename));
+                    files.setFilename(filename);
+                    files.setModifiedFileName(modifiedName);
+                    files.setProduct(productSave);
+                    productFileRepository.save(files);
                 }
-
-                ProductFiles files = new ProductFiles();
-                files.setFileExtention(FilenameUtils.getExtension(filename));
-                files.setFilename(filename);
-                files.setModifiedFileName(modifiedName);
-                files.setProduct(productSave);
-                productFileRepository.save(files);
-
             }
             return productSave;
         }

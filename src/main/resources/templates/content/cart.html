@@ -54,8 +54,30 @@
                         <h5 class="text-center">TOTAL ORDER</h5>
                         <h6>Do you have promo code?</h6>
                         <form action="#" th:action="@{/order}" th:object="${order}" method="post">
-                            <input type="text" class="form-control" placeholder="search promo code" id="discount">
+                            <div class="row">
 
+                                    <div class="col-md-8">
+                                        <th:block th:if="${diss != null}">
+                                            <input type="text" class="form-control" placeholder="search promo code" id="discount" th:field="*{discount.name}" readonly>
+                                        </th:block>
+                                        <th:block th:unless="${diss != null}">
+                                            <input type="text" class="form-control" placeholder="search promo code" id="discount" th:field="*{discount.name}">
+                                        </th:block>
+                                        <div th:if="${error != null}">
+                                            <div class="alert alert-danger" role="alert" th:text="${error}" style="margin-top: 5px"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <th:block th:if="${diss != null}">
+                                            <a th:href="@{/cart}" >
+                                                <input type="button" class=" form-control btn btn-danger" value="Cancel">
+                                            </a>
+                                        </th:block>
+
+                                        <th:block th:unless="${diss != null}">
+                                            <input type="submit" class=" form-control btn btn-dark" value="Apply">
+                                        </th:block>
+                                    </div>
                             <table class="table table-borderless">
                                     <tr>
                                         <td><h6>Subtotal</h6></td>
@@ -66,17 +88,12 @@
                                     </tr>
                                     <tr>
                                         <td><h6>Promo code</h6></td>
-                                        <div th:if="*{discount != null}">
-                                            <input type="hidden" th:field="*{discount}">
-                                            <td th:text="*{'$' + discount + '.00'}"></td>
-                                        </div>
-                                        <div th:unless="*{discount != null}">
-                                            <td>$0.00</td>
-                                        </div>
+                                        <input type="hidden" th:field="*{discount}">
+                                        <td th:text="*{discount.getPercent() + ' %'}"></td>
                                     </tr>
                                     <tr>
                                         <td><h4>Total</h4></td>
-                                        <input type="hidden" th:field="*{total}">
+                                        <input type="hidden" th:field="*{total}" th:value="*{total}">
                                         <td th:text="*{'$' + total + '.00'}"></td>
                                     </tr>
                             </table>

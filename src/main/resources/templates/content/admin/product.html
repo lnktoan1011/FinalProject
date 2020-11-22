@@ -30,7 +30,7 @@
             color: royalblue;
         }
         #cus_info{
-            padding-top: 20px;
+            padding-top: 5px;
         }
         li{
             list-style: none;
@@ -73,7 +73,7 @@
                         <div class="col-sm-6" id="add">
                             <button type="button" class ="btn btn-primary m-2"  onclick="showForm()">
                                 <i class="fas fa-plus"></i>
-                                Add Product
+                                <span> Add Product</span>
                             </button>
                         </div>
                     </div>
@@ -265,7 +265,7 @@
 
                         </div>
                         <div class="col-lg-2">
-                            <a id="button_dl">Delete</a>
+                            <a id="button_dl"> <i class="fa fa-trash" style="font-size: 21px;"></i> </a>
                             <a id="button_ed" th:href="@{'/admins/product/edit/' + ${pro.id}}"> <i class="fa fa-edit" style="font-size: 21px;"></i> </a>
                         </div>
                     </div>

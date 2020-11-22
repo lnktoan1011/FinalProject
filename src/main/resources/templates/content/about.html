@@ -6,18 +6,15 @@
     <title>Introduction</title>
 </head>
 <body class="ab">
-    <div layout:fragment="contents" style="margin-top: 100px;">
+    <div layout:fragment="contents">
         <div class="about">
             <div class="container-fluid">
                 <section>
-                    <div class="image">
-                        <!--Image here-->
-
-                    </div>
+                    <div class="image"></div>
                     <div class="content">
                         <h2>About Us</h2>
                         <span></span>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur corporis consequatur, eligendi cum dignissimos odit sed vitae dicta eos pariatur suscipit quod animi, veritatis minus quisquam nostrum at aliquid doloribus.</p>
+                        <p>We T3MB Decor can provide to the clients the most gorgeous furnitures they could ever find. We can make your house a ground-paradise.</p>
                         <ul class="icon">
                             <li><i class="fab fa-facebook-f"></i></li>
                             <li><i class="fab fa-twitter"></i></li>
@@ -27,46 +24,47 @@
                 </section>
             </div>
             <div class="team-section">
-                    <h1>Our team</h1>
-                    <span class="border"></span>
-                    <div class="ps">
-                        <a href="#p1"><img src="/main/home/about/p1.jpg" alt="" ></a>
-                        <a href="#p2"><img src="/main/home/about/p2.jpg" alt="" ></a>
-                        <a href="#p3"><img src="/main/home/about/p3.jpg" alt="" ></a>
-                        <a href="#p4"><img src="/main/home/about/p4.jpg" alt="" ></a>
-                        <a href="#p5"><img src="/main/home/about/p5.jpg" alt="" ></a>
-                    </div>
-                    <div class="section" id="p1">
-                        <span class="name">Nguyen Cong thanh</span>
-                        <span class="border"></span>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, hic cum, omnis perspiciatis odit, nesciunt earum expedita ut quas ipsa optio autem! Saepe sed deserunt earum magnam, quis officiis dignissimos.</p>
-                    </div>
-
-                    <div class="section" id="p2">
-                        <span class="name">Le Ngoc Khanh Toan</span>
-                        <span class="border"></span>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, hic cum, omnis perspiciatis odit, nesciunt earum expedita ut quas ipsa optio autem! Saepe sed deserunt earum magnam, quis officiis dignissimos.</p>
-                    </div>
-
-                    <div class="section" id="p3">
-                        <span class="name">Duong Gia Bao</span>
-                        <span class="border"></span>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, hic cum, omnis perspiciatis odit, nesciunt earum expedita ut quas ipsa optio autem! Saepe sed deserunt earum magnam, quis officiis dignissimos.</p>
-                    </div>
-
-                    <div class="section" id="p4">
-                        <span class="name">Nguyen Tan Tai</span>
-                        <span class="border"></span>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, hic cum, omnis perspiciatis odit, nesciunt earum expedita ut quas ipsa optio autem! Saepe sed deserunt earum magnam, quis officiis dignissimos.</p>
-                    </div>
-
-                    <div class="section" id="p5">
-                        <span class="name">Le Tuan Minh</span>
-                        <span class="border"></span>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, hic cum, omnis perspiciatis odit, nesciunt earum expedita ut quas ipsa optio autem! Saepe sed deserunt earum magnam, quis officiis dignissimos.</p>
-                    </div>
+                <h1>Our team</h1>
+                <span class="border"></span>
+                <div class="tab">
+                    <a class="tablinks" onclick="openCity(event, 'p1')"><img class="ima" src="/main/home/about/p1.jpg" alt="" ></a>
+                    <a class="tablinks" onclick="openCity(event, 'p2')"><img class="ima" src="/main/home/about/p2.jpg" alt="" ></a>
+                    <a class="tablinks" onclick="openCity(event, 'p3')"><img class="ima" src="/main/home/about/p3.jpg" alt="" ></a>
+                    <a class="tablinks" onclick="openCity(event, 'p4')"><img class="ima" src="/main/home/about/p4.jpg" alt="" ></a>
+                    <a class="tablinks" onclick="openCity(event, 'p5')"><img class="ima" src="/main/home/about/p5.jpg" alt="" ></a>
                 </div>
 
+                <div id="p1" class="tabcontent">
+                    <h3>Nguyen Cong Thanh</h3>
+                    <p>Student ID - 517H0084</p>
+                    <p>Phone number - 0907.986.613</p>
+                    <p>Email - 517H0084@student.tdtu.edu.vn</p>
+                </div>
+                <div id="p2" class="tabcontent">
+                    <h3>Le Ngoc Khanh Toan</h3>
+                    <p>Student ID - 517H0090</p>
+                    <p>Phone number - 0979.036.420</p>
+                    <p>Email - 517H0090@student.tdtu.edu.vn</p>
+                </div>
+                <div id="p3" class="tabcontent">
+                    <h3>Duong Gia Bao</h3>
+                    <p>Student ID - 517H0036</p>
+                    <p>Phone number - 0773.787.085</p>
+                    <p>Email - 517H0036@student.tdtu.edu.vn</p>
+                </div>
+                <div id="p4" class="tabcontent">
+                    <h3>Nguyen Tan Tai</h3>
+                    <p>Student ID - 51702227</p>
+                    <p>Phone number - 0707.336.606</p>
+                    <p>Email - 51702227@student.tdtu.edu.vn</p>
+                </div>
+                <div id="p5" class="tabcontent">
+                    <h3>Le Tuan Minh</h3>
+                    <p>Student ID - 517H0066</p>
+                    <p>Phone number - 0913.205.175</p>
+                    <p>Email - 517H0066@student.tdtu.edu.vn</p>
+                </div>
+            </div>
         </div>
     </div>
 </body>

@@ -44,9 +44,9 @@
 .about .content span
 {
     height: 0.5px;
-    width: 80px;
+    width: 100px;
     background: #777;
-    margin: 30px 0;
+    margin-bottom: 30px;
 }
 .about .content p
 {
@@ -84,13 +84,13 @@
     overflow: hidden;
     text-align: center;
     background:  #595959;
-    padding: 60px 60px 180px;
+    padding: 60px 60px 150px;
 
 }
 .about .team-section h1
 {
     text-transform: uppercase;
-    margin-bottom: 60px;
+    margin-bottom: 10px;
     color: white;
     font-size: 40px;
 }
@@ -98,16 +98,16 @@
 {
     display: block;
     margin: auto;
-    width: 160px;
-    height: 3px;
+    width: 100px;
+    height: 0.5px;
     background: white;
     margin-bottom: 40px;
 }
-.about .ps
+.about .tab
 {
     margin-bottom: 40px;
 }
-.about .ps a
+.about .tab a
 {
     display: inline-block;
     margin: 0 30px;
@@ -116,15 +116,18 @@
     overflow: hidden;
     border-radius: 50%;
 }
-.about .ps a img
+.about .tab a img
 {
     width: 100%;
-
 }
-.about .ps a:hover >img
+
+.about .tab a:hover >img
 {
     filter: none;
-
+    cursor: pointer;
+}
+.ima{
+    margin: 0;
 }
 .about .section
 {
@@ -149,27 +152,17 @@
     text-transform: uppercase;
     font-size: 22px;
 }
+.about .tabcontent{
+    color: white;
+    display: none;
+}
+.about .tab #a:hover{
+    cursor: pointer;
+}
 
 .ab nav .icon-search{
     color: #fff;
 }
-/*.ab nav{*/
-/*    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);*/
-
-/*}*/
-/*.ab nav .color a {*/
-/*    text-decoration: none;*/
-/*    color: #999;*/
-/*}*/
-/*!*,.ab nav .icon-search*!*/
-/*.ab nav a {*/
-/*    text-decoration: none;*/
-/*    color: #999;*/
-/*    font-size: 20px;*/
-/*}*/
-/*.ab nav .login{*/
-/*    color: #999;border-color: #999;*/
-/*}*/
 
 @media(max-width: 992px)
 {

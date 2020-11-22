@@ -22,12 +22,9 @@ public class Orders {
     @Column(name = "subtotal",columnDefinition = "integer default 0",length = 100)
     private int subTotal;
 
-
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinTable(name = "order_products",
-            joinColumns = {@JoinColumn(name = "order_id")},
-            inverseJoinColumns = {@JoinColumn(name = "product_id")})
-    private List<Product> order_product= new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orders")
+//    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private List<OrderProduct> order_product = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "discount_id")
@@ -83,11 +80,11 @@ public class Orders {
         this.subTotal = subTotal;
     }
 
-    public List<Product> getOrder_product() {
+    public List<OrderProduct> getOrder_product() {
         return order_product;
     }
 
-    public void setOrder_product(List<Product> order_product) {
+    public void setOrder_product(List<OrderProduct> order_product) {
         this.order_product = order_product;
     }
 

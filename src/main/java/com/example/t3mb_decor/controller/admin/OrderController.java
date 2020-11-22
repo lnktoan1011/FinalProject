@@ -2,13 +2,17 @@ package com.example.t3mb_decor.controller.admin;
 
 import com.example.t3mb_decor.model.Category;
 import com.example.t3mb_decor.model.Orders;
+import com.example.t3mb_decor.model.Product;
+import com.example.t3mb_decor.model.ProductFiles;
 import com.example.t3mb_decor.service.OrderService;
+import com.example.t3mb_decor.service.ProductFileService;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -16,7 +20,8 @@ import java.util.List;
 public class OrderController {
     @Autowired
     private OrderService orderService;
-
+    @Autowired
+    private ProductFileService productFileService;
     @ModelAttribute("first")
     public String getActive1(){
         return ".mysale_click";
@@ -40,6 +45,17 @@ public class OrderController {
     @GetMapping("/{id}")
     public String viewOrderDetail(@PathVariable("id") long id, Model model){
         Orders orderDetail = orderService.getOrder(id);
+        List<Product> productList = new ArrayList<>();
+        for (int i =0; i< orderDetail.getOrder_product().size(); i++){
+            productList.add(orderDetail.getOrder_product().get(i).getProduct_orders());
+        }
+        List<ProductFiles> productFilesList = new ArrayList<>();
+        for (int i =0; i< productList.size(); i++){
+            long productID = productList.get(i).getId();
+            List<ProductFiles> productFileslist1 = productFileService.getProductFilebyProductID(productID);
+            productFilesList.add(productFileslist1.get(0));
+        }
+        model.addAttribute("listImg",productFilesList );
         model.addAttribute("orderDetail", orderDetail);
         return "content/admin/order";
     }

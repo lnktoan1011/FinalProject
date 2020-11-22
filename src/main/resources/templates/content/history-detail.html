@@ -27,14 +27,14 @@
                                     <div class="cart-info">
                                             <img src="https://cb2.scene7.com/is/image/CB2/SideraChairWhiteSHS17_1x1/?$web_zoom$&190905021443&wid=450&hei=450" width="150px" height="150px" alt="">
                                             <div class="info">
-                                                    <h5 th:text="${c.getName()}"></h5>
-                                                    <small th:text="'Price: $' + ${c.getPrice()} +'.00'"></small>
+                                                    <h5 th:text="${c.getProduct_orders().getName()}"></h5>
+                                                    <small th:text="'Price: $' + ${c.getProduct_orders().getPrice()} +'.00'"></small>
                                                     <br>
                                             </div>
                                     </div>
                                 </td>
                                 <td style="width: 150px;"><input type="text" th:value="${c.getQuantity()}" readonly></td>
-                                <td style="width: 150px; font-weight:bold; font-size: 24px;" th:text="${'$' + c.getPrice() * c.getQuantity()} +'.00'"></td>
+                                <td style="width: 150px; font-weight:bold; font-size: 24px;" th:text="${'$' + c.getProduct_orders().getPrice() * c.getQuantity()} +'.00'"></td>
                             </tr>
                         </table>
                     </div>
@@ -53,7 +53,7 @@
                         <h5 class="text-center">TOTAL ORDER</h5>
                         <h6> <b>Promo code Name </b></h6>
                         <div th:if="${orderDetail.getDiscount() != null}">
-                            <input type="text" class="form-control" th:text="${orderDetail.getDiscount().getName()}" id="discount" readonly>
+                            <input type="text" class="form-control" th:value="${orderDetail.getDiscount().getName()}" id="discount" readonly>
                         </div>
                         <div th:unless="${orderDetail.getDiscount() != null}">
                             <input type="text" class="form-control" value="No Discount" readonly>

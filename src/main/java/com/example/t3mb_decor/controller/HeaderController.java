@@ -1,10 +1,7 @@
 package com.example.t3mb_decor.controller;
 
 
-import com.example.t3mb_decor.model.Cart;
-import com.example.t3mb_decor.model.Category;
-import com.example.t3mb_decor.model.Orders;
-import com.example.t3mb_decor.model.User;
+import com.example.t3mb_decor.model.*;
 import com.example.t3mb_decor.service.*;
 import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,6 +28,8 @@ public class HeaderController {
     UserService userService;
     @Autowired
     OrderService orderService;
+    @Autowired
+    OrderProductService orderProductService;
 
     //      Total Product in Cart
     @ModelAttribute("TotalProduct")
@@ -70,16 +70,22 @@ public class HeaderController {
         return "/content/pus-history";
     }
     @GetMapping("/history/{id}")
-    public String viewOrderDetail(@PathVariable("id") long id,Model model, Authentication authentication){
-        String emailName = authentication.getName();
-        User user = userService.getUserFindByEmail(emailName);
-        Orders orderDetail = null;
-        List<Orders> ordersList = user.getOrder_customer();
-        for(int i=0; i < ordersList.size(); i++){
-            if(ordersList.get(i).getId() == id){
-                orderDetail = ordersList.get(i);
-            }
+    public String viewOrderDetail(@PathVariable("id") long id,Model model){
+
+        Orders orderDetail = orderService.getOrder(id);
+
+        List<Product> productList = new ArrayList<>();
+        for (int i =0; i< orderDetail.getOrder_product().size(); i++){
+            productList.add(orderDetail.getOrder_product().get(i).getProduct_orders());
         }
+        List<ProductFiles> productFilesList = new ArrayList<>();
+        for (int i =0; i< productList.size(); i++){
+            long productID = productList.get(i).getId();
+            List<ProductFiles> productFileslist1 = productFileService.getProductFilebyProductID(productID);
+            productFilesList.add(productFileslist1.get(0));
+        }
+        model.addAttribute("listImg",productFilesList );
+
         if(orderDetail == null){
             model.addAttribute("null", "null");
         }

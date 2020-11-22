@@ -250,6 +250,9 @@ nav.sticky .icon-search:hover {
     background-color: black;
     opacity: .7;
 }
+.slogan-text {
+    margin: 0 auto;
+}
 .slogan .slogan-text p{
     color: #FFF;
     font-size: 40px;
@@ -337,8 +340,9 @@ footer{
     position: relative    ;
     bottom: 0px;
     width: 100%;
-    background: #111;
+    background: #FFF;
     padding: 100px 0 40px;
+    color: black;
 }
 .main-content{
     display: flex;
@@ -361,14 +365,14 @@ footer{
     top: -10px;
     height: 2px;
     width: 100%;
-    background: #1a1a1a;
+    background: #FFF;
 }
 .box .content:after{
     position: absolute;
     content: '';
     height: 2px;
     width: 15%;
-    background: #f12020;
+    background: #C7DB9C;
     top: -10px;
 }
 .left .content p{
@@ -383,7 +387,7 @@ footer{
 .left .content .social a span{
     height: 40px;
     width: 40px;
-    background: #1a1a1a;
+    background: #FFF;
     line-height: 40px;
     text-align: center;
     font-size: 18px;
@@ -391,11 +395,11 @@ footer{
     transition: 0.3s;
 }
 .left .content .social a span:hover{
-    background: #f12020;
+    background: #C7DB9C;
 }
 .center .content .fas{
     font-size: 1.4375rem;
-    background: #1a1a1a;
+    background: #FFF;
     height: 45px;
     width: 45px;
     line-height: 45px;
@@ -405,7 +409,7 @@ footer{
     cursor: pointer;
 }
 .center .content .fas:hover{
-    background: #f12020;
+    background: #C7DB9C;
 }
 .center .content .text{
     font-size: 1.0625rem;
@@ -426,7 +430,7 @@ footer{
 .right form input, .right form .msgForm{
     width: 100%;
     font-size: 1.0625rem;
-    background: #151515;
+    background: #FFF;
     padding-left: 10px;
     border: 1px solid #222222;
 }
@@ -445,7 +449,7 @@ footer{
     width: 100%;
     border: none;
     outline: none;
-    background: #f12020;
+    background: #C7DB9C;
     font-size: 1.0625rem;
     font-weight: 500;
     cursor: pointer;
@@ -481,4 +485,12 @@ footer{
     .main-content .box{
         margin: 5px 0;
     }
+}
+.sub-cate a:hover{
+    color: #FFF !important;
+    text-decoration: underline !important;
+}
+.title-cate .cate-title-big {
+    text-decoration: underline !important;
+    color: #FFFFFF;
 }

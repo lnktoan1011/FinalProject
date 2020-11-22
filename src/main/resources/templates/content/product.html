@@ -6,10 +6,16 @@
     <meta charset="UTF-8">
     <title th:text="${product.name}"></title>
     <link rel="stylesheet" th:href="@{/main/collection/product.css}">
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
 <div layout:fragment="contents" style="padding-top: 100px ">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-lg-6">
                 <div class="container">
@@ -67,7 +73,7 @@
                 </form>
             </div>
         </div>
-    </div>
+
 
     <hr style="border-top: 1px solid gray;">
 
@@ -199,6 +205,7 @@
         </div>
     </div>
 
+    </div>
 </div>
 </body>
 </html>

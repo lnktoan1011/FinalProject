@@ -18,6 +18,9 @@
 .con nav .icon-search{
     color: #fff;
 }
+.con nav.sticky .icon-search:hover{
+    color: #fff;
+}
 /*.con nav .login{*/
 /*    color: #999;border-color: #999;*/
 /*}*/

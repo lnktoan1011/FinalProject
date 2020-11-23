@@ -66,7 +66,6 @@ public class UserController {
 
     @GetMapping
     public String viewtest(){
-//        System.out.println(userService.getUserSort());
 
         return "/content/admin/users";
     }

@@ -53,13 +53,13 @@ public class CollectionController {
     //      List of products
     @ModelAttribute("productList")
     public List<Product> productList(){
-        return productService.getAllProduct();
+        return productService.getAllProductSort();
     }
 
 
     @GetMapping
     public String viewCollection(Model model, Authentication authentication){
-        List<Product> productList = productService.getAllProduct();
+        List<Product> productList = productService.getAllProductSort();
         List<ProductFiles> productFilesList = new ArrayList<>();
         for (int i =0; i< productList.size(); i++) {
             long productID = productList.get(i).getId();

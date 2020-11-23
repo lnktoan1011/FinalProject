@@ -21,4 +21,6 @@ public class ProductFileServiceImpl implements ProductFileService {
     public List<ProductFiles> getProductFilebyProductID(long id) {
         return productFileRepository.getProductFilebyProductID(id);
     }
+
+
 }

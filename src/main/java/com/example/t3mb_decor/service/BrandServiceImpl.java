@@ -44,4 +44,10 @@ public class BrandServiceImpl implements BrandService{
         brandUpdate.setName(brand.getName());
         this.brandRepository.save(brandUpdate);
     }
+
+    @Override
+    public List<Brand> getAllBrandSort() {
+        List<Brand> list = brandRepository.findByOrderByIdDesc();
+        return list;
+    }
 }

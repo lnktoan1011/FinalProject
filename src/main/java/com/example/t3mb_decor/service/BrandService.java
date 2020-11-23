@@ -10,4 +10,5 @@ public interface BrandService {
     Brand getBrand(long id);
     void deleteBrand(long id);
     void updateBrand(Brand brand);
+    List<Brand> getAllBrandSort();
 }

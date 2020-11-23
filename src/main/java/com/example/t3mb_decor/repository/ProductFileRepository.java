@@ -13,6 +13,5 @@ public interface ProductFileRepository extends JpaRepository<ProductFiles, Long>
 
     @Query(value = "SELECT * from product_files where product_id = :id", nativeQuery = true)
     List<ProductFiles> getProductFilebyProductID(@Param("id") long id);
-
-
+    
 }

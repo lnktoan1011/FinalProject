@@ -42,7 +42,8 @@ public class ProductController {
     //      List of products
     @ModelAttribute("productList")
     public List<Product> productList(){
-        return productService.getAllProduct();
+        List<Product> list = productService.getAllProductSort();
+        return list;
     }
 
     //      List of colors
@@ -66,7 +67,7 @@ public class ProductController {
     //      List of images
     @ModelAttribute("listImg")
     public List<ProductFiles> productFiles(){
-        List<Product> productList = productService.getAllProduct();
+        List<Product> productList = productService.getAllProductSort();
         List<ProductFiles> productFilesList = new ArrayList<>();
 
         for (int i =0; i< productList.size(); i++){

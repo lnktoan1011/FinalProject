@@ -56,6 +56,24 @@ public class CartController {
         return listCart;
     }
 
+    @ModelAttribute("listImg")
+    public List<ProductFiles> productFiles(Authentication authentication){
+
+        String emailName = authentication.getName();
+        User user = userService.getUserFindByEmail(emailName);
+        List<Product> productList = new ArrayList<>();
+        List<Cart> cartList = user.getListCart();
+        for (int i =0; i< cartList.size(); i++){
+            productList.add(cartList.get(i).getProduct_cart());
+        }
+        List<ProductFiles> productFilesList = new ArrayList<>();
+        for (int i =0; i< productList.size(); i++){
+            long productID = productList.get(i).getId();
+            List<ProductFiles> productFileslist1 = productFileService.getProductFilebyProductID(productID);
+            productFilesList.add(productFileslist1.get(0));
+        }
+        return productFilesList;
+    }
 
     @GetMapping
     public String showCart(Authentication authentication, Model model){
@@ -63,16 +81,14 @@ public class CartController {
         String emailName = authentication.getName();
         User user = userService.getUserFindByEmail(emailName);
 
-        List<Product> products = new ArrayList<>();
         int total = 0;
+        Orders orders = new Orders();
         List<Cart> cartList = user.getListCart();
+
         for(int i = 0; i < cartList.size(); i++){
             total = total + cartList.get(i).getQuantity() * cartList.get(i).getProduct_cart().getPrice();
-            products.add(cartList.get(i).getProduct_cart());
         }
-        Orders orders = new Orders();
         orders.setUser(user);
-        orders.setOrder_product(products);
         orders.setSubTotal(total);
         orders.setTotal(total);
         model.addAttribute("order", orders);

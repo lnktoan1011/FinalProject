@@ -1,33 +1,28 @@
 package com.example.t3mb_decor.model;
 
-
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-@Table(name = "carts")
-public class Cart {
+@Table(name = "order_product")
+public class OrderProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user_cart;
+    @JoinColumn(name = "order_id")
+    private Orders orders;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
-    private Product product_cart;
+    private Product product_orders;
 
     @Column(name = "quantity",nullable = false)
     private int quantity;
-    @Column(name = "status",columnDefinition = "integer default 0",length = 100)
-    private int status;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -39,13 +34,16 @@ public class Cart {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Cart(long id, int quantity, int status) {
-        this.id = id;
-        this.quantity = quantity;
-        this.status = status;
+    public OrderProduct() {
     }
 
-    public Cart() {
+    public OrderProduct(long id, Orders orders, Product product_orders, int quantity, Date createdAt, Date updatedAt) {
+        this.id = id;
+        this.orders = orders;
+        this.product_orders = product_orders;
+        this.quantity = quantity;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public long getId() {
@@ -56,20 +54,20 @@ public class Cart {
         this.id = id;
     }
 
-    public User getUser_cart() {
-        return user_cart;
+    public Orders getOrders() {
+        return orders;
     }
 
-    public void setUser_cart(User user_cart) {
-        this.user_cart = user_cart;
+    public void setOrders(Orders orders) {
+        this.orders = orders;
     }
 
-    public Product getProduct_cart() {
-        return product_cart;
+    public Product getProduct_orders() {
+        return product_orders;
     }
 
-    public void setProduct_cart(Product product_cart) {
-        this.product_cart = product_cart;
+    public void setProduct_orders(Product product_orders) {
+        this.product_orders = product_orders;
     }
 
     public int getQuantity() {
@@ -78,14 +76,6 @@ public class Cart {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     public Date getCreatedAt() {

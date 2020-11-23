@@ -27,6 +27,8 @@ public class OrdersController {
     CategoryService categoryService;
     @Autowired
     PromotionService promotionService;
+    @Autowired
+    OrderProductService orderProductService;
 
     //      Total Product in Cart
     @ModelAttribute("TotalProduct")
@@ -63,7 +65,7 @@ public class OrdersController {
         String emailName = authentication.getName();
         User user = userService.getUserFindByEmail(emailName);
         String valueDiscount = order.getDiscount().getName();
-        if (valueDiscount != null && order.getDiscount().getId() == 0){
+        if (!valueDiscount.isEmpty() && order.getDiscount().getId() == 0){
             Discount discount = promotionService.getProbyName(valueDiscount);
             if(discount != null){
                 if (discount.getStatus() == 1){
@@ -83,10 +85,23 @@ public class OrdersController {
             model.addAttribute("order", order);
             return "/content/cart";
         }
-        if (order.getDiscount() != null){
+        if (!order.getDiscount().getName().isEmpty()){
             Discount discount = promotionService.getPro(order.getDiscount().getId());
             discount.setStatus(0);
             promotionService.savePro(discount);
+            order.setDiscount(discount);
+        }
+        else{
+            order.setDiscount(null);
+        }
+        List<Cart> cartList = user.getListCart();
+        for(int i = 0; i < cartList.size(); i++){
+            OrderProduct orderProduct = new OrderProduct();
+            orderProduct.setProduct_orders(cartList.get(i).getProduct_cart());
+            orderProduct.setQuantity(cartList.get(i).getQuantity());
+            orderProduct.setOrders(order);
+//            orderProductService.saveOrderProduct(orderProduct);
+            order.getOrder_product().add(orderProduct);
         }
         orderService.saveOrder(order);
         cartService.deleteExistCart(user.getId());

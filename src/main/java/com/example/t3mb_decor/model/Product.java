@@ -87,8 +87,9 @@ public class Product{
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product_wishlist")
     private List<User> customer_wishlist= new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "order_product")
-    private List<Orders> order_product = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product_orders")
+//    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private List<OrderProduct> order_product = new ArrayList<>();
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -215,11 +216,11 @@ public class Product{
         this.updatedAt = updatedAt;
     }
 
-    public List<Orders> getOrder_product() {
+    public List<OrderProduct> getOrder_product() {
         return order_product;
     }
 
-    public void setOrder_product(List<Orders> order_product) {
+    public void setOrder_product(List<OrderProduct> order_product) {
         this.order_product = order_product;
     }
 

@@ -317,9 +317,6 @@ img {
 /*footer*/
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
-footer {
-    color: #d9d9d9;
-}
 .content1{
     position: relative;
     margin: 130px auto;
@@ -337,12 +334,12 @@ footer {
     color: #202020;
 }
 footer{
-    position: relative    ;
+    position: relative;
     bottom: 0px;
     width: 100%;
-    background: #FFF;
+    background: #211E1E;
+    color: #FFF;
     padding: 100px 0 40px;
-    color: black;
 }
 .main-content{
     display: flex;
@@ -365,7 +362,7 @@ footer{
     top: -10px;
     height: 2px;
     width: 100%;
-    background: #FFF;
+    background: #211E1E;
 }
 .box .content:after{
     position: absolute;
@@ -399,7 +396,7 @@ footer{
 }
 .center .content .fas{
     font-size: 1.4375rem;
-    background: #FFF;
+    background: #211E1E;
     height: 45px;
     width: 45px;
     line-height: 45px;
@@ -422,7 +419,7 @@ footer{
 .right form .text{
     font-size: 1.0625rem;
     margin-bottom: 2px;
-    color: #656565;
+    color: #FFF;
 }
 .right form .msg{
     margin-top: 10px;
@@ -488,9 +485,10 @@ footer{
 }
 .sub-cate a:hover{
     color: #FFF !important;
-    text-decoration: underline !important;
 }
 .title-cate .cate-title-big {
-    text-decoration: underline !important;
     color: #FFFFFF;
+}
+.credit a {
+    color: #C7DB9C;
 }

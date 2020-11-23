@@ -17,20 +17,22 @@
                         <h5 class="text-center" >MY SHOPPING BAG</h5>
                         <hr id="text1">
                         <table class="table1" id = "tableList">
-                          <tr>
+                            <tr>
                                 <th>Product</th>
                                 <th>Quantity</th>
                                 <th>Subtotal</th>
                             </tr>
-                            <tr th:each ="c : ${orderDetail.getOrder_product()}">
+                            <tr th:each ="c, custStat : ${orderDetail.getOrder_product()}">
                                 <td>
                                     <div class="cart-info">
-                                            <img src="https://cb2.scene7.com/is/image/CB2/SideraChairWhiteSHS17_1x1/?$web_zoom$&190905021443&wid=450&hei=450" width="150px" height="150px" alt="">
-                                            <div class="info">
-                                                    <h5 th:text="${c.getProduct_orders().getName()}"></h5>
-                                                    <small th:text="'Price: $' + ${c.getProduct_orders().getPrice()} +'.00'"></small>
-                                                    <br>
-                                            </div>
+                                        <div th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
+                                            <img id="img" th:src="@{${'/images/' + img}}" width="150px" height="150px">
+                                        </div>
+                                        <div class="info">
+                                                <h5 th:text="${c.getProduct_orders().getName()}"></h5>
+                                                <small th:text="'Price: $' + ${c.getProduct_orders().getPrice()} +'.00'"></small>
+                                                <br>
+                                        </div>
                                     </div>
                                 </td>
                                 <td style="width: 150px;"><input type="text" th:value="${c.getQuantity()}" readonly></td>

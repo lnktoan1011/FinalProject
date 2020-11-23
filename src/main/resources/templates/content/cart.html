@@ -18,7 +18,7 @@
                             <h5 class="text-center" >MY SHOPPING BAG</h5>
                             <hr id="text1">
                             <table class="table1" id = "tableList">
-                              <tr>
+                                <tr>
                                     <th>Product</th>
                                     <th>Quantity</th>
                                     <th>Subtotal</th>
@@ -26,15 +26,15 @@
                                 <tr th:each ="c, custStat : ${listCart}">
                                     <td>
                                         <div class="cart-info">
-                                                <div th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
-                                                        <img id="img" th:src="@{${'/images/' + img}}" width="150px" height="150px">
-                                                </div>
-                                                <div class="info">
-                                                        <h5 th:text="${c.getProduct_cart().getName()}"></h5>
-                                                        <small th:text="'Price: $' + ${c.getProduct_cart().getPrice()} +'.00'"></small>
-                                                        <br>
-                                                        <a href="">Remove</a>
-                                                </div>
+                                            <div th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
+                                                <img id="img" th:src="@{${'/images/' + img}}" width="150px" height="150px">
+                                            </div>
+                                            <div class="info">
+                                                <h5 th:text="${c.getProduct_cart().getName()}"></h5>
+                                                <small th:text="'Price: $' + ${c.getProduct_cart().getPrice()} +'.00'"></small>
+                                                <br>
+                                                <a href="">Remove</a>
+                                            </div>
                                         </div>
                                     </td>
                                     <td style="width: 150px;"><input type="number" th:value="${c.getQuantity()}" min="1"></td>

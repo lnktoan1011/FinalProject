@@ -56,27 +56,32 @@ public class CollectionController {
         return productService.getAllProduct();
     }
 
-    //      List of images
-    @ModelAttribute("listImg")
-    public List<ProductFiles> productFiles(){
+
+    @GetMapping
+    public String viewCollection(Model model, Authentication authentication){
         List<Product> productList = productService.getAllProduct();
         List<ProductFiles> productFilesList = new ArrayList<>();
-
-        for (int i =0; i< productList.size(); i++){
+        for (int i =0; i< productList.size(); i++) {
             long productID = productList.get(i).getId();
             List<ProductFiles> productFileslist1 = productFileService.getProductFilebyProductID(productID);
             productFilesList.add(productFileslist1.get(0));
         }
-        return productFilesList;
-    }
-
-
-    @GetMapping
-    public String viewCollection(Model model, Authentication authentication){
+        model.addAttribute("listImg", productFilesList);
         if (authentication != null){
             String emailName = authentication.getName();
             User user = userService.getUserFindByEmail(emailName);
+            List<String> listWishList = new ArrayList<>();
+            List<Product> listWishListProduct = user.getProduct_wishlist();
+            for (int i =0; i< productList.size(); i++){
+                if (listWishListProduct.contains(productList.get(i))){
+                    listWishList.add("1");
+                }
+                else{
+                    listWishList.add("0");
+                }
+            }
             model.addAttribute("user", user);
+            model.addAttribute("listWishList", listWishList);
             return "content/list_product";
             }
         return "content/list_product";

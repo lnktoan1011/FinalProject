@@ -23,12 +23,21 @@ public class WishlistController {
     UserService userService;
     @Autowired
     ProductService productService;
-    @GetMapping("/wishlist/{id}")
-    public String showHistory(@PathVariable("id") long id, Authentication authentication){
+    @GetMapping("/wishlist/add/{id}")
+    public String addToWishlist(@PathVariable("id") long id, Authentication authentication){
         Product product = productService.getProduct(id);
         String emailName = authentication.getName();
         User user = userService.getUserFindByEmail(emailName);
         user.getProduct_wishlist().add(product);
+        userService.saveProfile(user);
+        return "redirect:/collections";
+    }
+    @GetMapping("/wishlist/delete/{id}")
+    public String deleteWishlist(@PathVariable("id") long id, Authentication authentication){
+        Product product = productService.getProduct(id);
+        String emailName = authentication.getName();
+        User user = userService.getUserFindByEmail(emailName);
+        user.getProduct_wishlist().remove(product);
         userService.saveProfile(user);
         return "redirect:/collections";
     }

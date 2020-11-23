@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface ColorRepository extends JpaRepository<Color,Long> {
 
-    List<Color> findByOrderByCreatedAtDesc();
+    List<Color> findByOrderByIdDesc();
 }

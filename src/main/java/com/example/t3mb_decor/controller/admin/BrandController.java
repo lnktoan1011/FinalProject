@@ -26,7 +26,7 @@ public class BrandController {
 
     @ModelAttribute("listBrands")
     public List<Brand> getList(){
-        List<Brand> listBrand =  brandService.getAllBrand();
+        List<Brand> listBrand =  brandService.getAllBrandSort();
         return listBrand;
     }
 

@@ -45,7 +45,7 @@ public class ColorServiceImpl implements ColorService{
 
     @Override
     public List<Color> getColorSort() {
-        List<Color> list = colorRepository.findByOrderByCreatedAtDesc();
+        List<Color> list = colorRepository.findByOrderByIdDesc();
         return list;
     }
 }

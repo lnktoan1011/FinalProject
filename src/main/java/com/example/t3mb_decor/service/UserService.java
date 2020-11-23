@@ -22,5 +22,5 @@ public interface UserService extends UserDetailsService {
     void saveProfile(User user);
     void saveInfoPwd(InfoPwd infoPwd);
     Boolean checkOldPwd(InfoPwd infoPwd);
-    List<User> getUserSort();
+
 }

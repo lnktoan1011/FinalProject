@@ -34,7 +34,7 @@ public class OrderController {
     //      List of categories
     @ModelAttribute("listOrder")
     public List<Orders> getList(){
-        List<Orders> listOrders =  orderService.getAllOrder();
+        List<Orders> listOrders =  orderService.getAllOrderSoft();
         return listOrders;
     }
 

@@ -22,5 +22,5 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Transactional
     void deleteRoles(@Param("id") long id);
 
-    List<User> findByOrderByCreatedAtDesc();
+
 }

@@ -35,6 +35,11 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
+    public List<Orders> getAllOrderSoft() {
+        return this.orderRepository.findByOrderByIdDesc();
+    }
+
+    @Override
     public void deleteOrder(long id) {
 
     }

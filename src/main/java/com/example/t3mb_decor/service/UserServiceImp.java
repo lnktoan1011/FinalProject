@@ -124,12 +124,6 @@ public class UserServiceImp implements UserService{
         return passwordEncoder.matches(infoPwd.getOldPwd(),user.getPassword());
     }
 
-    @Override
-    public List<User> getUserSort() {
-        List<User> list = userRepository.findByOrderByCreatedAtDesc();
-        return list;
-    }
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

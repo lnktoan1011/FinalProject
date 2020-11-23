@@ -67,7 +67,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllProductSort() {
-        List<Product> list = this.productRepository.findByOrderByUpdatedAtAsc();
+        List<Product> list = this.productRepository.findByOrderByIdDesc();
         return list;
     }
 }

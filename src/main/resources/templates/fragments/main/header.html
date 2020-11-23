@@ -40,6 +40,12 @@
                     <ul class="navbar-nav ml-auto mr-0">
                         <i class="fas fa-search icon-search" style="margin-left:250px;" data-toggle="modal" data-target="#exampleModal"></i>
                     </ul>
+                    <ul style="margin: 0 auto; margin-right: -5px;">
+                        <a title="Cart" th:href="@{/cart}" style="text-decoration: none">
+                            <i class="fa fa-shopping-cart cart mr-1"></i>
+                            <span class="nav-icon-cart-quanti" th:text="${TotalProduct}" style="border: none;"></span>
+                        </a>
+                    </ul>
                     <ul class="navbar-nav ml-auto mr-0">
                         <div sec:authorize="!isAuthenticated()">
                             <a th:href="@{/login}">
@@ -54,12 +60,12 @@
                                     <li class="nav-item">
                                         <a title="Profile" th:href="@{/profile}" class="dropdown-item">Profile</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a title="Cart" th:href="@{/cart}" class="dropdown-item">
-                                            <i class="fa fa-shopping-cart cart mr-1"></i>
-                                            <span class="nav-icon-cart-quanti" th:text="${TotalProduct}"></span>
-                                        </a>
-                                    </li>
+<!--                                    <li class="nav-item">-->
+<!--                                        <a title="Cart" th:href="@{/cart}" class="dropdown-item">-->
+<!--                                            <i class="fa fa-shopping-cart cart mr-1"></i>-->
+<!--                                            <span class="nav-icon-cart-quanti" th:text="${TotalProduct}"></span>-->
+<!--                                        </a>-->
+<!--                                    </li>-->
                                     <li class="nav-item">
                                         <a title="Profile" th:href="@{/history}" class="dropdown-item">History</a>
                                     </li>

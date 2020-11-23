@@ -56,7 +56,8 @@ public class HeaderController {
 
     @GetMapping("/contact")
     public String showContact(){ return "/content/contact";}
-
+    @GetMapping("/#p1")
+    public String showP1(){ return "/about";}
 
     @GetMapping("/about")
     public String showAbout(){return "/content/about";}

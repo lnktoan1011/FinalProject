@@ -66,7 +66,7 @@
                                         <div class="input-group-prepend">
                                                 <input type="hidden" th:field="*{id} " />
                                                 <input type="text" th:field="*{name} " class="form-control" placeholder="Enter Brand" required />
-                                                <button type="submit" class="btn btn-outline-success" onclick="Add()">Add</button>
+                                                <button type="submit" class="btn btn-outline-success mx-4" onclick="Add()">Add</button>
                                         </div>
                                     </div>
                                 </div>
@@ -82,7 +82,7 @@
                                         <div class="input-group-prepend">
                                             <input type="hidden" th:field="*{id} " />
                                             <input type="text" th:field="*{name} " class="form-control" placeholder="Enter Brand" required />
-                                            <button type="submit" class="btn btn-outline-success" onclick="Add()">Update</button>
+                                            <button type="submit" class="btn btn-outline-success mx-4" onclick="Add()">Update</button>
                                         </div>
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                             <tbody th:each ="brand : ${listBrands}">
                             <tr>
                                 <td id="table-item">
-                                    <a th:href="@{/admins/brand/update/{id}(id = ${brand.id})}"  >
+                                    <a th:href="@{/admins/brand/update/{id}(id = ${brand.id})}" style="color: #000;" >
                                     <div th:text="${brand.getName()}"></div>
                                     </a>
                                 </td>

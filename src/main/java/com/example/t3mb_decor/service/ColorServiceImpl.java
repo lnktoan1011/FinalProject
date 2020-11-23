@@ -29,7 +29,7 @@ public class ColorServiceImpl implements ColorService{
     }
 
     @Override
-    public void deleteColor(long id) { colorRepository.delete(this.getColor(id));
+    public void deleteColor(long id) { this.colorRepository.deleteById(id);
     }
 
     @Override
@@ -41,5 +41,11 @@ public class ColorServiceImpl implements ColorService{
         colorUpdate.setCreatedAt(createDate);
         colorUpdate.setName(color.getName());
         this.colorRepository.save(colorUpdate);
+    }
+
+    @Override
+    public List<Color> getColorSort() {
+        List<Color> list = colorRepository.findByOrderByCreatedAtDesc();
+        return list;
     }
 }

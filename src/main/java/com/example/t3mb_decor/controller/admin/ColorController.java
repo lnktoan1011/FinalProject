@@ -29,7 +29,7 @@ public class ColorController {
 
     @ModelAttribute("listColors")
     public List<Color> getList(){
-        List<Color> listColor =  colorService.getAllColor();
+        List<Color> listColor =  colorService.getColorSort();
         return listColor;
     }
 
@@ -38,7 +38,7 @@ public class ColorController {
         model.addAttribute("color", new Color());
         return "content/admin/color";
     }
-    @GetMapping("delete/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteColor(@PathVariable("id") long id){
         colorService.deleteColor(id);
         return "redirect:/admins/color";
@@ -52,7 +52,7 @@ public class ColorController {
             return "redirect:/admins/color/update/" + color.getId() ;
         }
         colorService.saveColor(color);
-        return "redirect:" ;
+        return "redirect:/admins/color?successAdd" ;
     }
     @GetMapping("update/{id}")
     public String viewUpdateColor(@PathVariable("id") long id, Model model){

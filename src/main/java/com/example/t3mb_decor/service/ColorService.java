@@ -11,4 +11,5 @@ public interface ColorService {
     Color getColor(long id);
     void deleteColor(long id);
     void updateColor(Color color);
+    List<Color> getColorSort();
 }

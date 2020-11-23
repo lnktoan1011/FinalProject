@@ -4,9 +4,12 @@ import com.example.t3mb_decor.VO.InfoPwd;
 import com.example.t3mb_decor.VO.InfoPwd;
 import com.example.t3mb_decor.VO.UserVO;
 import com.example.t3mb_decor.model.Cart;
+import com.example.t3mb_decor.model.Category;
 import com.example.t3mb_decor.model.User;
 
+import com.example.t3mb_decor.repository.CategoryRepository;
 import com.example.t3mb_decor.repository.UserRepository;
+import com.example.t3mb_decor.service.CategoryService;
 import com.example.t3mb_decor.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
@@ -28,6 +31,13 @@ public class InfoController {
     UserService userService;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    CategoryService categoryService;
+    @ModelAttribute("listCategories")
+    public List<Category> getList(){
+        List<Category> listCate =  categoryService.getAllCategories();
+        return listCate;
+    }
 
     //      Total Product in Cart
     @ModelAttribute("TotalProduct")

@@ -131,6 +131,9 @@
 .ca nav .icon-search{
     color: #fff;
 }
+.ca nav.sticky .icon-search:hover{
+    color: #fff;
+}
 /*.ca .type-text {*/
 /*    margin-top: 7px;*/
 /*}*/

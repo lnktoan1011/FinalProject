@@ -64,4 +64,10 @@ public class ProductServiceImpl implements ProductService {
         }
         return null;
     }
+
+    @Override
+    public List<Product> getAllProductSort() {
+        List<Product> list = this.productRepository.findByOrderByUpdatedAtAsc();
+        return list;
+    }
 }

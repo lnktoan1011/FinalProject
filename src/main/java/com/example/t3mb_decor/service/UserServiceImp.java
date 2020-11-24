@@ -124,6 +124,11 @@ public class UserServiceImp implements UserService{
         return passwordEncoder.matches(infoPwd.getOldPwd(),user.getPassword());
     }
 
+    @Override
+    public long countUser() {
+        return this.userRepository.count();
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

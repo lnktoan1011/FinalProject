@@ -14,23 +14,10 @@
 
 <body>
 <div layout:fragment="content">
-    <div th:if="${param.successAdd}">
-        <div class="alert alert-success">
-            Promotion added successfully !!
-        </div>
-    </div>
-    <div th:if="${param.errorAdd}">
-        <div class="alert alert-danger">
-            <strong>Promotion already exists</strong> Please try again !!
-        </div>
-    </div>
-    <div th:if="${param.successUpdate}">
-        <div class="alert alert-success">
-            Promotion updated successfully !!
-        </div>
-    </div>
+
     <section class="content-header">
         <div class="container-fluid">
+
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Promotion</h1>
@@ -50,6 +37,24 @@
     </section>
     <section class="content">
         <div class="container-fluid">
+            <div th:if="${param.successAdd}">
+                <div class="alert alert-success alert-dismissible fade show">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    Promotion added successfully !!
+                </div>
+            </div>
+            <div th:if="${param.errorAdd}">
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Promotion already exists</strong> Please try again !!
+                </div>
+            </div>
+            <div th:if="${param.successUpdate}">
+                <div class="alert alert-success alert-dismissible fade show">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    Promotion updated successfully !!
+                </div>
+            </div>
             <div class="card card-info" id="card_info" th:style="${showUp} == 1 ?'display:block': 'display:none'">
                 <th:block th:if="${Pro.id == 0}">
                 <div class="card-header">

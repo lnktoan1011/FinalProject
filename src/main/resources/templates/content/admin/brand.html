@@ -55,6 +55,18 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                <div th:if="${param.successAdd}">
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        Brand added successful!!
+                    </div>
+                </div>
+                <div th:if="${successUpdate != null}">
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <p th:text="${successUpdate}" style="margin: 0"></p>
+                    </div>
+                </div>
                 <div class="card card-info" id="card_info">
                         <th:block th:if="${brand.id == 0}">
                             <div class="card-header">
@@ -106,7 +118,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a th:href="@{/admins/brand/delete/{id}(id = ${brand.id})}" class="btn btn-outline-danger"> Delete</a>
+                                    <a th:href="@{/admins/brand/delete/{id}(id = ${brand.id})}" onclick="return confirm('Are you sure you want to Delete?')" class="btn btn-outline-danger"> Delete</a>
                                 </td>
                             </tr>
 

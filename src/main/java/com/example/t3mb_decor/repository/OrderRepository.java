@@ -15,4 +15,8 @@ public interface OrderRepository extends JpaRepository<Orders,Long> {
     List<Orders> getHistory(@Param("userId") long userId) ;
 
     List<Orders> findByOrderByIdDesc();
+
+    @Query(value = "SELECT count(id) FROM orders where status=0", nativeQuery = true)
+    long countNewOrder();
+
 }

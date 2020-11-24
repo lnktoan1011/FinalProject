@@ -6,6 +6,7 @@ import com.example.t3mb_decor.model.Product;
 import com.example.t3mb_decor.model.ProductFiles;
 import com.example.t3mb_decor.service.OrderService;
 import com.example.t3mb_decor.service.ProductFileService;
+import com.example.t3mb_decor.service.UserService;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,8 @@ import java.util.List;
 public class OrderController {
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private UserService userService;
     @Autowired
     private ProductFileService productFileService;
     @ModelAttribute("first")
@@ -37,7 +40,18 @@ public class OrderController {
         List<Orders> listOrders =  orderService.getAllOrderSoft();
         return listOrders;
     }
-
+    @ModelAttribute("newOrder")
+    public long getNewOrder(){
+        return orderService.countNewOrder();
+    }
+    @ModelAttribute("TotalOrder")
+    public long getTotalOrder(){
+        return orderService.countOrder();
+    }
+    @ModelAttribute("TotalCus")
+    public long getTotalCus(){
+        return userService.countUser();
+    }
     @GetMapping
     public String viewOrder(){
         return "content/admin/order";

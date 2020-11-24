@@ -40,6 +40,18 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
+    public long countOrder() {
+        return orderRepository.count();
+    }
+
+    @Override
+    public long countNewOrder() {
+        return orderRepository.countNewOrder();
+    }
+
+
+
+    @Override
     public void deleteOrder(long id) {
 
     }

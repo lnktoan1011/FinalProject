@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -45,10 +46,11 @@ public class ColorController {
     }
 
     @PostMapping("add")
-    public String saveColor(@ModelAttribute("color") Color color){
+    public String saveColor(@ModelAttribute("color") Color color, RedirectAttributes redirectAttributes){
 
         if(color.getId() != 0) {
             colorService.updateColor(color);
+            redirectAttributes.addFlashAttribute("successUpdate","Color updated successful !!");
             return "redirect:/admins/color/update/" + color.getId() ;
         }
         colorService.saveColor(color);

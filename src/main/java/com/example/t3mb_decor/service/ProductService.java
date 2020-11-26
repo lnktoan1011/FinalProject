@@ -10,4 +10,5 @@ public interface ProductService {
     List<Product> searchProduct(String name);
     Product save(Product product);
     List<Product> getAllProductSort();
+    List<Product> getProductBySubId(long id);
 }

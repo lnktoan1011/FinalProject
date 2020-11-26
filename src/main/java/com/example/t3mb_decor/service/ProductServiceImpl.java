@@ -75,4 +75,9 @@ public class ProductServiceImpl implements ProductService {
         List<Product> list = this.productRepository.findByOrderByIdDesc();
         return list;
     }
+
+    @Override
+    public List<Product> getProductBySubId(long id) {
+        return this.productRepository.findBySubId(id);
+    }
 }

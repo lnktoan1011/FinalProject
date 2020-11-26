@@ -43,4 +43,9 @@ public class SubCategoryServiceImpl implements SubCategoryService{
         subCategoryUpdate.setName(subCategory.getName());
         this.subCategoryRepository.save(subCategoryUpdate);
     }
+
+    @Override
+    public List<Long> getSubIdByCate(long id) {
+        return subCategoryRepository.findByIdFromCateId(id);
+    }
 }

@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
@@ -26,6 +23,8 @@ public class CollectionController {
     CategoryService categoryService;
     @Autowired
     UserService userService;
+    @Autowired
+    SubCategoryService subCategoryService;
 
     //      Total Product in Cart
     @ModelAttribute("TotalProduct")
@@ -50,11 +49,11 @@ public class CollectionController {
         return listCate;
     }
 
-    //      List of products
-    @ModelAttribute("productList")
-    public List<Product> productList(){
-        return productService.getAllProductSort();
-    }
+//    //      List of products
+//    @ModelAttribute("productList")
+//    public List<Product> productList(){
+//        return productService.getAllProductSort();
+//    }
 
 
     @GetMapping
@@ -67,7 +66,9 @@ public class CollectionController {
             List<ProductFiles> productFileslist1 = productFileService.getProductFilebyProductID(productID);
             productFilesList.add(productFileslist1.get(0));
         }
+        model.addAttribute("productList",productList);
         model.addAttribute("listImg", productFilesList);
+
         if (authentication != null){
             String emailName = authentication.getName();
             User user = userService.getUserFindByEmail(emailName);
@@ -94,6 +95,82 @@ public class CollectionController {
         return "content/product";
     }
 
+    @GetMapping("/productSub/{id}")
+    public String viewProductFromSub(@PathVariable("id") long id,Model model,Authentication authentication){
+        List<Product> productList = productService.getProductBySubId(id);
+        List<ProductFiles> productFilesList = new ArrayList<>();
+        for (int i =0; i< productList.size(); i++) {
+            long productID = productList.get(i).getId();
+            List<ProductFiles> productFileslist1 = productFileService.getProductFilebyProductID(productID);
+            productFilesList.add(productFileslist1.get(0));
+        }
+        model.addAttribute("productList",productList);
+        model.addAttribute("listImg", productFilesList);
 
+        if (authentication != null){
+            String emailName = authentication.getName();
+            User user = userService.getUserFindByEmail(emailName);
+            List<String> listWishList = new ArrayList<>();
+            List<Product> listWishListProduct = user.getProduct_wishlist();
+            for (int i =0; i< productList.size(); i++){
+                if (listWishListProduct.contains(productList.get(i))){
+                    listWishList.add("1");
+                }
+                else{
+                    listWishList.add("0");
+                }
+            }
+            model.addAttribute("user", user);
+
+            return "content/list_product";
+        }
+        return "content/list_product";
+    }
+    @GetMapping("/productCate/{id}")
+    public String viewProductFromCate(@PathVariable("id") long id,Model model,Authentication authentication){
+        List<Long> subId = subCategoryService.getSubIdByCate(id);
+        System.out.println("subId: "+subId);
+        List<Product> productList = new ArrayList<>();
+        for (long i:subId)
+        {
+            System.out.println("i:"+i);
+            List<Product> productLists  = productService.getProductBySubId(i);
+
+            for (int x=0;x<productLists.size();x++){
+                System.out.println("x:"+x);
+                System.out.println("pro:"+productLists.get(x).getName());
+                productList.add(productLists.get(x));
+            }
+        }
+
+//        List<Product> productList = productService.getProductBySubId(id);
+        List<ProductFiles> productFilesList = new ArrayList<>();
+        for (int i =0; i< productList.size(); i++) {
+            long productID = productList.get(i).getId();
+            List<ProductFiles> productFileslist1 = productFileService.getProductFilebyProductID(productID);
+            productFilesList.add(productFileslist1.get(0));
+        }
+        model.addAttribute("productList",productList);
+        model.addAttribute("listImg", productFilesList);
+
+        if (authentication != null){
+            String emailName = authentication.getName();
+            User user = userService.getUserFindByEmail(emailName);
+            List<String> listWishList = new ArrayList<>();
+            List<Product> listWishListProduct = user.getProduct_wishlist();
+            for (int i =0; i< productList.size(); i++){
+                if (listWishListProduct.contains(productList.get(i))){
+                    listWishList.add("1");
+                }
+                else{
+                    listWishList.add("0");
+                }
+            }
+            model.addAttribute("user", user);
+
+            return "content/list_product";
+        }
+        return "content/list_product";
+    }
 
 }

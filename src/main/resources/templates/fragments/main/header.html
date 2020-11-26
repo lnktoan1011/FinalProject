@@ -23,9 +23,9 @@
                                 <div class="container">
                                     <div class="row w-100">
                                         <div class="text-center title-cate col-sm-3" id="products"  th:each ="cate : ${listCategories}">
-                                            <a class="cate-title-big" title="" href="#"> <h3 th:text="${cate.getName()}">Title Item 1</h3> </a>
+                                            <a class="cate-title-big" title="" th:href="@{/collections/productCate/{id}(id=${cate.getId()})}"> <h3 th:text="${cate.getName()}">Title Item 1</h3> </a>
                                             <th:block th:each ="subCate : ${cate.getSub()}">
-                                             <div class="sub-cate"> <a title="" href="#" th:text="${subCate.getName()}"></a></div>
+                                                <div class="sub-cate"> <a title="" th:href="@{/collections/productSub/{id}(id=${subCate.getId()})}" th:text="${subCate.getName()}"></a></div>
                                             </th:block>
                                         </div>
                                     </div>

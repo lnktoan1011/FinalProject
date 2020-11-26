@@ -126,7 +126,7 @@
                 <strong th:text="${success}"></strong>
             </div>
             <!-- form start -->
-            <form role="form" id="form_info" th:style="${getTable} ? 'display:block':'display: none;'" th:action="@{${isAdd}?'/admins/product/save':'/category/update'}" th:object="${product}" method="post" enctype="multipart/form-data">
+            <form role="form" id="form_info" th:style="${getTable} ? 'display:block':'display: none;'" th:action="@{${isAdd}?'/admins/product/save':'/admins/product/update'}" th:object="${product}" method="post" enctype="multipart/form-data">
 
 
                     <div class="row">
@@ -137,7 +137,12 @@
                                         <div class="form-group">
                                             <label>Image</label>
                                             <br>
-                                            <input type="file" id="exampleInputFile" th:field = "*{files}" multiple="multiple" required>
+                                            <div th:if="${product.getName() !=null}">
+                                                <input type="file" id="exampleInputFile" th:field = "*{files}" multiple="multiple">
+                                            </div>
+                                            <div th:unless="${product.getName() !=null}">
+                                                <input type="file" id="exampleInputFile" th:field = "*{files}" multiple="multiple" required>
+                                            </div>
                                         </div>
                                          <div class="form-group">
                                             <span th:each="pro, custStat : ${productImages}" class="imagecontainer" th:id="'imageindex'+${custStat.index}">
@@ -324,14 +329,14 @@
         $(function(){
             var images = [];
             $('.image-confirm-delete').on('click', function (e){
-                e.prevenDefault();
+                e.preventDefault();
                 var id = $(this).data('id');
                 var name = $(this).data('name');
                 images.push(name);
                 $('#removeImages').val(images);
                 $('#imageindex'+id).hide();
 
-            })
+            });
         });
         $('#description').summernote({
             placeholder: 'Description',

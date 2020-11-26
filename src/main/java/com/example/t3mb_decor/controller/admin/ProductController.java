@@ -107,7 +107,6 @@ public class ProductController {
         return "content/admin/product";
 
     }
-
     @GetMapping("/{productID}")
     public String editUser(@PathVariable Long productID, Model model){
         Product product = productService.getProduct(productID);
@@ -119,6 +118,25 @@ public class ProductController {
         model.addAttribute("getTable",true);
         return "content/admin/product";
 
+
+    }
+    @PostMapping("/update")
+    public String updateProduct(@ModelAttribute @Valid Product product, BindingResult bindingResult,
+                             RedirectAttributes redirectAttributes, Model model){
+
+        if (bindingResult.hasErrors()){
+            model.addAttribute("getTable",true);
+            model.addAttribute("isAdd", true);
+            return "/content/admin/product";
+        }
+
+        Product saveProduct = productService.update(product);
+        if (saveProduct != null){
+            redirectAttributes.addFlashAttribute("success","Product is update successfully");
+            return "redirect:/admins/product";
+        }
+
+        return "content/admin/product";
 
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletContext;
 import java.io.File;
 import java.util.List;
 
@@ -23,6 +24,8 @@ public class ProductServiceImpl implements ProductService {
     private UploadPathService uploadPathService;
     @Autowired
     private ProductFileRepository productFileRepository;
+    @Autowired
+    private ServletContext context;
 
     @Override
     public List<Product> getAllProduct() {
@@ -43,6 +46,47 @@ public class ProductServiceImpl implements ProductService {
     public Product save(Product product) {
 
         Product productSave = productRepository.save(product);
+        if(productSave != null && product.getFiles() != null && product.getFiles().size() > 0){
+            for(MultipartFile file: product.getFiles()){
+                if(!file.getOriginalFilename().isEmpty())
+                {
+                    String filename = file.getOriginalFilename();
+                    String modifiedName = FilenameUtils.getBaseName(filename) + "_" + System.currentTimeMillis() + "." + FilenameUtils.getExtension(filename);
+                    File storeFile = uploadPathService.getFilePath(modifiedName, "images");
+                    if(storeFile != null){
+                        try {
+                            FileUtils.writeByteArrayToFile(storeFile, file.getBytes());
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                    ProductFiles files = new ProductFiles();
+                    files.setFileExtention(FilenameUtils.getExtension(filename));
+                    files.setFilename(filename);
+                    files.setModifiedFileName(modifiedName);
+                    files.setProduct(productSave);
+                    productFileRepository.save(files);
+                }
+            }
+            return productSave;
+        }
+        return null;
+    }
+    @Override
+    public Product update(Product product) {
+
+        Product productSave = productRepository.save(product);
+        if(product!= null && product.getRemoveImage() != null && product.getRemoveImage().size() > 0){
+            productFileRepository.deleteImageByProduct(product.getId(), product.getRemoveImage());
+            for(String img:product.getRemoveImage()){
+                File dbFile = new File(context.getRealPath("/images/"+File.separator+img));
+                if(dbFile.exists()){
+                    dbFile.delete();
+                }
+            }
+        }
+
+
         if(productSave != null && product.getFiles() != null && product.getFiles().size() > 0){
             for(MultipartFile file: product.getFiles()){
                 if(!file.getOriginalFilename().isEmpty())

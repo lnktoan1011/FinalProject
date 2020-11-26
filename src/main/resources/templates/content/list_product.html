@@ -12,6 +12,12 @@
 
         <!-- <hr style="border-top: 2px solid gray;"> -->
         <div class="container" style="padding-top: 100px">
+            <div class="d-flex justify-content-center">
+                <form action="#" th:action="@{/search}" th:object="${productSearch}" method="post">
+                    <input class="form-control" type="text" placeholder="Search" aria-label="Search" th:field="*{name}">
+                </form>
+            </div>
+            <hr>
             <div  class="row">
                 <div class="col-lg-3" th:each="pro, custStat : ${productList}">
                     <div class="card">

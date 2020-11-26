@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,5 +61,56 @@ public class ProController {
         cart.setQuantity(1);
         model.addAttribute("cart", cart);
         return "content/product";
+    }
+    @GetMapping("/search")
+        public String search(){
+            return "redirect:/collections";
+        }
+    @PostMapping("/search")
+    public String search(@ModelAttribute("productSearch") Product productSearch, Authentication authentication,Model model){
+
+
+       if (productSearch.getName().isEmpty()){
+           return "redirect:/collections";
+
+       }
+        List<Product> productListbefore = productService.getAllProductSort();
+        List<Product> productList = new ArrayList<>();
+        for (int i =0; i< productListbefore.size(); i++) {
+            if(productListbefore.get(i).getName().contains(productSearch.getName())){
+                productList.add(productListbefore.get(i));
+            }
+        }
+
+        List<ProductFiles> productFilesList = new ArrayList<>();
+        for (int i =0; i< productList.size(); i++) {
+            long productID = productList.get(i).getId();
+            List<ProductFiles> productFileslist1 = productFileService.getProductFilebyProductID(productID);
+            productFilesList.add(productFileslist1.get(0));
+        }
+
+        model.addAttribute("productSearch", productSearch);
+        model.addAttribute("productList", productList);
+        model.addAttribute("listImg", productFilesList);
+
+        if (authentication != null){
+            String emailName = authentication.getName();
+            User user = userService.getUserFindByEmail(emailName);
+            List<String> listWishList = new ArrayList<>();
+            List<Product> listWishListProduct = user.getProduct_wishlist();
+            for (int i =0; i< productList.size(); i++){
+                if (listWishListProduct.contains(productList.get(i))){
+                    listWishList.add("1");
+                }
+                else{
+                    listWishList.add("0");
+                }
+            }
+            model.addAttribute("user", user);
+            model.addAttribute("listWishList", listWishList);
+            return "content/list_product";
+        }
+        return "content/list_product";
+
     }
 }

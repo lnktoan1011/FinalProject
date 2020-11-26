@@ -1,9 +1,7 @@
 package com.example.t3mb_decor.controller;
 
-import com.example.t3mb_decor.model.Cart;
-import com.example.t3mb_decor.model.Orders;
-import com.example.t3mb_decor.model.Product;
-import com.example.t3mb_decor.model.User;
+import com.example.t3mb_decor.model.*;
+import com.example.t3mb_decor.service.CategoryService;
 import com.example.t3mb_decor.service.ProductService;
 import com.example.t3mb_decor.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +21,21 @@ public class WishlistController {
     UserService userService;
     @Autowired
     ProductService productService;
+    @Autowired
+    CategoryService categoryService;
+    //      List of categories
+    @ModelAttribute("listCategories")
+    public List<Category> getList(){
+        List<Category> listCate =  categoryService.getAllCategories();
+        return listCate;
+    }
+    @GetMapping("/wishlist")
+    public String Wishlist(Authentication authentication, Model model){
+        String emailName = authentication.getName();
+        User user = userService.getUserFindByEmail(emailName);
+        model.addAttribute("wishList", user.getProduct_wishlist());
+        return "content/wishlist";
+    }
     @GetMapping("/wishlist/add/{id}")
     public String addToWishlist(@PathVariable("id") long id, Authentication authentication){
         Product product = productService.getProduct(id);

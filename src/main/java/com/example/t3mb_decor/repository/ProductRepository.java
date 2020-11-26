@@ -2,7 +2,10 @@ package com.example.t3mb_decor.repository;
 
 import com.example.t3mb_decor.model.Category;
 import com.example.t3mb_decor.model.Product;
+import com.example.t3mb_decor.model.ProductFiles;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,4 +14,7 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product,Long> {
 
     List<Product> findByOrderByIdDesc();
+
+    @Query(value = "SELECT * from products where name = :name", nativeQuery = true)
+    List<Product> searchProduct(@Param("name") String name);
 }

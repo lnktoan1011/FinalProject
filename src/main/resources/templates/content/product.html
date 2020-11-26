@@ -59,10 +59,6 @@
                         <input class="plus is-form" type="button" value="+">
                     </div>
 
-                    <a id="btn_heart" class="like">
-                        <i class="fa fa-heart"  aria-hidden="true"></i>
-                    </a>
-
                     <hr style="border-top: 2px dashed gray;">
                     <button type="submit" class="btn btn-outline-success" id = "btnAddToCart" >
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -87,7 +83,7 @@
 
             <div id="Description" class="tabcontent" style="display: block;">
                 <h3>Description</h3>
-                <pre th:text="${product.description}"></pre>
+                <pre th:utext="${product.description}"></pre>
             </div>
 
             <div id="Tech" class="tabcontent">

@@ -58,6 +58,40 @@
             font-weight: 600;
             text-align: left;
         }
+        .imagecontainer{
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+        .overlay{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .3s ease;
+            border-radius: 50%;
+        }
+        .imagecontainer:hover .overlay{
+            opacity: 1;
+        }
+        .icon{
+            color:white;
+            font-size: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .fa-trash:hover{
+            color:rebeccapurple;
+        }
+
     </style>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
@@ -105,7 +139,18 @@
                                             <br>
                                             <input type="file" id="exampleInputFile" th:field = "*{files}" multiple="multiple" required>
                                         </div>
-
+                                         <div class="form-group">
+                                            <span th:each="pro, custStat : ${productImages}" class="imagecontainer" th:id="'imageindex'+${custStat.index}">
+                                                <th:block th:with="img=${pro.getModifiedFileName()}">
+                                                    <img th:src="@{${'/images/' + img}}" style="width: 80px; height: 80px; border-radius: 50%; margin-left: 10px" class="image">
+                                                </th:block>
+                                                <span class="overlay">
+                                                    <a href="#" class = "icon image-confirm-delete" title="image delete" th:attr="data-id=${custStat.index}, data-name=${pro.modifiedFileName}">
+                                                        <i class="fa fa-trash" style="color:red"></i>
+                                                    </a>
+                                                </span>
+                                            </span>
+                                          </div>
                                         <div class="form-group">
                                             <label>Name</label>
                                             <input type="text" id = "name" class="form-control" placeholder="Enter name" th:field = "*{name}" th:errorClass="is-invalid">
@@ -162,6 +207,8 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="btn-group">
+                                        <input type = "hidden" class="form-control" th:field="*{removeImage}" id = "removeImages">
+                                        <input type = "hidden" class="form-control" th:field="*{id}">
                                         <button type="submit" class="btn btn-outline-success" th:text = "${isAdd}?'Save':'Update'" ></button>
                                         <button type="button" class="btn btn-outline-danger" onclick="showForm()">Back</button>
                                     </div>
@@ -266,7 +313,7 @@
                         </div>
                         <div class="col-lg-2">
                             <a id="button_dl"> <i class="fa fa-trash" style="font-size: 21px;"></i> </a>
-                            <a id="button_ed" th:href="@{'/admins/product/edit/' + ${pro.id}}"> <i class="fa fa-edit" style="font-size: 21px;"></i> </a>
+                            <a id="button_ed" th:href="@{'/admins/product/' + ${pro.id}}"> <i class="fa fa-edit" style="font-size: 21px;"></i> </a>
                         </div>
                     </div>
                 </li>
@@ -274,6 +321,18 @@
         </div>
     </section>
     <script>
+        $(function(){
+            var images = [];
+            $('.image-confirm-delete').on('click', function (e){
+                e.prevenDefault();
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+                images.push(name);
+                $('#removeImages').val(images);
+                $('#imageindex'+id).hide();
+
+            })
+        });
         $('#description').summernote({
             placeholder: 'Description',
             tabsize: 2,

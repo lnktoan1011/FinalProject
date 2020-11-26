@@ -38,7 +38,7 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto mr-0">
-                        <i class="fas fa-search icon-search" style="margin-left:250px;" data-toggle="modal" data-target="#exampleModal"></i>
+                        <i class="fas fa-search icon-search" style="margin-left:250px;" data-toggle="modal" data-target="#exampleModal" ></i>
                     </ul>
                     <ul style="margin: 0 auto; margin-right: -5px;">
                         <a title="Cart" th:href="@{/cart}" style="text-decoration: none">
@@ -68,6 +68,9 @@
 <!--                                    </li>-->
                                     <li class="nav-item">
                                         <a title="Profile" th:href="@{/history}" class="dropdown-item">History</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a title="Profile" th:href="@{/wishlist}" class="dropdown-item">Wishlist</a>
                                     </li>
                                 </div>
                                 <div sec:authorize="hasAnyRole('ROLE_SALER','ROLE_ADMIN')">

@@ -59,6 +59,7 @@ public class CollectionController {
 
     @GetMapping
     public String viewCollection(Model model, Authentication authentication){
+        model.addAttribute("productSearch", new Product());
         List<Product> productList = productService.getAllProductSort();
         List<ProductFiles> productFilesList = new ArrayList<>();
         for (int i =0; i< productList.size(); i++) {

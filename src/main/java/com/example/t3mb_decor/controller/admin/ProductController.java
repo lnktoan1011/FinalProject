@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -111,18 +108,15 @@ public class ProductController {
 
     }
 
-    @PostMapping("/edit/{productID}")
-    public String editUser(@ModelAttribute @Valid  Product product, BindingResult bindingResult,
-                           RedirectAttributes redirectAttributes, Model model){
-        Product saveProduct = productService.save(product);
-        if (saveProduct != null){
-            redirectAttributes.addFlashAttribute("success","Product is saved successfully");
-            return "redirect:/admins/product";
-        }
+    @GetMapping("/{productID}")
+    public String editUser(@PathVariable Long productID, Model model){
+        Product product = productService.getProduct(productID);
+        List<ProductFiles> productImages = productFileService.getProductFilebyProductID(productID);
 
-        model.addAttribute("error", "Product is not save, please try again");
-//      List of products
         model.addAttribute("product", product);
+        model.addAttribute("productImages", productImages);
+        model.addAttribute("isAdd", false);
+        model.addAttribute("getTable",true);
         return "content/admin/product";
 
 

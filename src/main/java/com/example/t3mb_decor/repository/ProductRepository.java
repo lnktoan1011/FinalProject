@@ -16,4 +16,6 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
     @Query(value = "SELECT * FROM products WHERE subcate_id= :id",nativeQuery = true)
     List<Product> findBySubId(@Param("id") long id);
+
+
 }

@@ -120,7 +120,7 @@ public class CollectionController {
                 }
             }
             model.addAttribute("user", user);
-
+            model.addAttribute("listWishList", listWishList);
             return "content/list_product";
         }
         return "content/list_product";
@@ -166,7 +166,7 @@ public class CollectionController {
                 }
             }
             model.addAttribute("user", user);
-
+            model.addAttribute("listWishList", listWishList);
             return "content/list_product";
         }
         return "content/list_product";

@@ -15,7 +15,7 @@ nav{
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     background-color: #fff;
 }
-nav .color a,nav .color{
+nav .color a,nav .icon-search ,nav .color{
     text-decoration: none;
     color: #999;
 }
@@ -64,8 +64,7 @@ nav .login:hover{
     color: #000;
     border-color: #000;
 }
-
-nav .color a:hover,nav .color:hover{
+nav .color a:hover,nav .color:hover,nav .icon-search:hover{
     color: #000;
 }
 nav {
@@ -112,7 +111,7 @@ nav.sticky .color:hover {
     position: relative;
     top: 0;
     width: 100%;
-    min-height: 800px;
+    min-height: 600px;
     /* background: url(logo1.jpg); */
     background-size: cover;
     color: #FFF;
@@ -183,15 +182,15 @@ nav.sticky .color:hover {
     opacity: 0.9;
     color: #fff;
 }
-nav .icon-search,nav.sticky .icon-search {
-    color: #fff;
+.icon-search {
+    color: #FFF;
 }
-/*nav.sticky .icon-search {*/
-/*    color: #999;*/
-/*}*/
-/*nav.sticky .icon-search:hover {*/
-/*    color: #000;*/
-/*}*/
+nav.sticky .icon-search {
+    color: #999;
+}
+nav.sticky .icon-search:hover {
+    color: #000;
+}
 /* end navigation */
 .modal-body .search:focus {
     width: 600px;
@@ -273,7 +272,7 @@ nav .icon-search,nav.sticky .icon-search {
 .gallery-title {
     min-height: 150px;
     width: 300px;
-    margin-top: 35px;
+    margin-top: 15px;
     margin-bottom: 35px;
     display: flex;
     align-items: center;
@@ -293,26 +292,51 @@ nav .icon-search,nav.sticky .icon-search {
     align-items: center;
 }
 /* end gallery-cate */
-.album > div {
-    padding: 0 4px !important;
+
+.album .row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
 }
 
-img {
+/* Create four equal columns that sits next to each other */
+.album .column {
+    flex: 25%;
+    max-width: 33.3%;
+    padding: 0 4px;
+}
+
+.album .column img {
     margin-top: 8px;
     vertical-align: middle;
-
+    width: 100%;
+    filter: grayscale(1) brightness(0.5);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s linear;
 }
+.album .column img:hover {
+    filter: grayscale(0);
+}
+@media screen and (max-width: 800px) {
+    .album .column {
+        flex: 50%;
+        max-width: 50%;
+    }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .album .column {
+        flex: 100%;
+        max-width: 100%;
+    }
+    .album .column img {
+        filter: grayscale(0) brightness(1);
+    }
+}
+
 /* end album  */
-.shipping {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #F6F6F6;
-    padding-top: 10px;
-    min-height: 300px;
-}
-
-/* end shipping */
 
 
 /*footer*/

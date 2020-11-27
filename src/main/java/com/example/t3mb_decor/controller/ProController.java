@@ -56,10 +56,25 @@ public class ProController {
         List<ProductFiles> productFilesList = productFileService.getProductFilebyProductID(id);
         model.addAttribute("product", product);
         model.addAttribute("listImage", productFilesList);
+
+        List<Product> proNew = productService.getNewProduct();
+        List<ProductFiles> productFilesListImg = new ArrayList<>();
+        for (int i =0; i< proNew.size(); i++) {
+            long productID = proNew.get(i).getId();
+            List<ProductFiles> productFileslist1 = productFileService.getProductFilebyProductID(productID);
+            productFilesListImg.add(productFileslist1.get(0));
+        }
+        model.addAttribute("listNewPro",proNew);
+        model.addAttribute("listImg",productFilesListImg);
+
+
         Cart cart = new Cart();
         cart.setProduct_cart(product);
         cart.setQuantity(1);
         model.addAttribute("cart", cart);
+
+
+
         return "content/product";
     }
     @GetMapping("/search")

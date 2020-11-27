@@ -124,4 +124,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getProductBySubId(long id) {
         return this.productRepository.findBySubId(id);
     }
+
+    @Override
+    public List<Product> getNewProduct() {
+        return productRepository.findByIdSortNew();
+    }
 }

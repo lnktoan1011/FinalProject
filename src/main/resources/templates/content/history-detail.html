@@ -8,95 +8,93 @@
     <title>History detail</title>
 </head>
 <body class="ca">
-    <div layout:fragment="contents" style="margin-top: 145px; margin-bottom: 85px;">
+    <div layout:fragment="contents" style="margin-bottom: 40px;">
         <div class="carts">
             <section class="form-section">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h5 class="text-center" >MY SHOPPING BAG</h5>
-                        <hr id="text1">
-                        <table class="table1" id = "tableList">
-                            <tr>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th>Subtotal</th>
-                            </tr>
-                            <tr th:each ="c, custStat : ${orderDetail.getOrder_product()}">
+                <div class="container-fluid">
+                    <div class="row" style="min-height: 680px;">
+                        <div class="col-md-8">
+                            <h5 class="text-center" >MY SHOPPING BAG</h5>
+                            <hr id="text1">
+                            <table class="table1" id = "tableList">
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                                <tr th:each ="c, custStat : ${orderDetail.getOrder_product()}">
+                                    <td>
+                                        <div class="cart-info">
+                                            <div th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
+                                                <img id="img" th:src="@{${'/images/' + img}}" width="150px" height="150px">
+                                            </div>
+                                            <div class="info">
+                                                    <h5 th:text="${c.getProduct_orders().getName()}"></h5>
+                                                    <small th:text="'Price: $' + ${c.getProduct_orders().getPrice()} +'.00'"></small>
+                                                    <br>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="width: 150px;"><input type="text" th:value="${c.getQuantity()}" readonly></td>
+                                    <td style="width: 150px; font-weight:bold; font-size: 24px;" th:text="${'$' + c.getProduct_orders().getPrice() * c.getQuantity()} +'.00'"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-4" style="padding-bottom: 0">
+                            <h5 class="text-center">CHECK OUT</h5>
+                            <hr>
+                            <p><span><b>Name: </b></span>
+                                <span th:text="${orderDetail.user.getName()}"></span></p>
+                            <p><span><b>Email: </b></span>
+                                <span th:text="${orderDetail.user.getEmail()}"></span></p>
+                            <p><span><b>Address: </b></span>
+                                <span th:text="${orderDetail.user.getAddress()}"></span></p>
+                            <p><span><b>Phone: </b></span>
+                                <span th:text="${orderDetail.user.getPhone()}"></span></p>
+                            <hr>
+                            <h5 class="text-center">TOTAL ORDER</h5>
+                            <h6> <b>Promo code</b></h6>
+                            <div th:if="${orderDetail.getDiscount() != null}">
+                                <input type="text" class="form-control" th:value="${orderDetail.getDiscount().getName()}" id="discount" readonly>
+                            </div>
+                            <div th:unless="${orderDetail.getDiscount() != null}">
+                                <input type="text" class="form-control" value="No Discount" readonly>
+                            </div>
+                            <table class="table table-borderless">
+                                    <tr>
+                                        <td><h6><b>Subtotal</b></h6></td>
+                                        <td th:text="*{'$' +orderDetail.getSubTotal() + '.00'}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h6> <b>Promo code </b></h6></td>
+                                        <div th:if="${orderDetail.getDiscount() != null}">
+                                            <td th:text="${orderDetail.getDiscount().getPercent() + '%'}"></td>
+                                        </div>
+                                        <div th:unless="${orderDetail.getDiscount() != null}">
+                                            <td>00%</td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <td><h4><b>Total</b></h4></td>
+                                        <td><h4 th:text="${'$' + orderDetail.getTotal() + '.00'}"></h4></td>
+                                    </tr>
+                            </table>
+                            <hr>
+                            <div th:if="${orderDetail.getStatus() == 0}">
                                 <td>
-                                    <div class="cart-info">
-                                        <div th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
-                                            <img id="img" th:src="@{${'/images/' + img}}" width="150px" height="150px">
-                                        </div>
-                                        <div class="info">
-                                                <h5 th:text="${c.getProduct_orders().getName()}"></h5>
-                                                <small th:text="'Price: $' + ${c.getProduct_orders().getPrice()} +'.00'"></small>
-                                                <br>
-                                        </div>
-                                    </div>
+                                    <div class="alert alert-danger" style="text-align: center"> <h4> Waiting </h4> </div>
                                 </td>
-                                <td style="width: 150px;"><input type="text" th:value="${c.getQuantity()}" readonly></td>
-                                <td style="width: 150px; font-weight:bold; font-size: 24px;" th:text="${'$' + c.getProduct_orders().getPrice() * c.getQuantity()} +'.00'"></td>
-                            </tr>
-                        </table>
+                            </div>
+                            <div th:unless="${orderDetail.getStatus() == 0}">
+                                <td>
+                                    <div class="alert alert-success" style="text-align: center"><h4> Finished </h4></div>
+                                </td>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <h5 class="text-center">CHECK OUT</h5>
-                        <hr>
-                        <p><b>Name: </b></p>
-                        <p th:text="${orderDetail.user.getName()}"></p>
-                        <p><b>Email: </b></p>
-                        <p th:text="${orderDetail.user.getEmail()}"></p>
-                        <p><b>Address: </b></p>
-                        <p th:text="${orderDetail.user.getAddress()}"></p>
-                        <p><b>Phone: </b></p>
-                        <p th:text="${orderDetail.user.getPhone()}"></p>
-                        <hr>
-                        <h5 class="text-center">TOTAL ORDER</h5>
-                        <h6> <b>Promo code Name </b></h6>
-                        <div th:if="${orderDetail.getDiscount() != null}">
-                            <input type="text" class="form-control" th:value="${orderDetail.getDiscount().getName()}" id="discount" readonly>
-                        </div>
-                        <div th:unless="${orderDetail.getDiscount() != null}">
-                            <input type="text" class="form-control" value="No Discount" readonly>
-                        </div>
-                        <table class="table table-borderless">
-                                <tr>
-                                    <td><h6><b>Subtotal</b></h6></td>
-                                    <td th:text="*{'$' +orderDetail.getSubTotal() + '.00'}"></td>
-                                </tr>
-                                <tr>
-                                    <td><h6> <b>Promo code </b></h6></td>
-                                    <div th:if="${orderDetail.getDiscount() != null}">
-                                        <td th:text="${orderDetail.getDiscount().getPercent() + '%'}"></td>
-                                    </div>
-                                    <div th:unless="${orderDetail.getDiscount() != null}">
-                                        <td>00%</td>
-                                    </div>
-                                </tr>
-                                <tr>
-                                    <td><h4><b>Total</b></h4></td>
-                                    <td th:text="${'$' + orderDetail.getTotal() + '.00'}"></td>
-                                </tr>
-                        </table>
-                        <hr>
-                        <div th:if="${orderDetail.getStatus() == 0}">
-                            <td>
-                                <div class="alert alert-danger" style="text-align: center"> <h3> Waiting </h3> </div>
-                            </td>
-                        </div>
-                        <div th:unless="${orderDetail.getStatus() == 0}">
-                            <td>
-                                <div class="alert alert-success" style="text-align: center"><h3> Finished </h3></div>
-                            </td>
-                        </div>
-
-                    </div>
-
                 </div>
-            </div>
 
-        </section>
+            </section>
 
         </div>
 

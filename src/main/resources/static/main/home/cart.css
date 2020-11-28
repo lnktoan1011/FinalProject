@@ -44,6 +44,8 @@
 }
 .carts .col-md-4 {
     background-color: #e6e6e6;
+    position: absolute;
+    right: 0;
 }
 .carts th
 {

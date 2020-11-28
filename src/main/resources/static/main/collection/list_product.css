@@ -29,7 +29,7 @@ body{
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 1; /* number of lines to show */
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     color: rgb(153, 153, 153);
 }
@@ -60,20 +60,6 @@ p{
 }
 .heart {
     animation: heart 0.5s linear;
-}
-@keyframes heart{
-    0%{
-        transform: rotate(0deg) scale(1.7);
-    }
-    40%{
-        transform: rotate(0deg) scale(1);
-    }
-    41%{
-        transform: rotate(360deg) scale(1);
-    }
-    100%{
-        transform: rotate(0deg) scale(1);
-    }
 }
 
 #btn_heart{

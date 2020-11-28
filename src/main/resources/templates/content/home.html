@@ -5,6 +5,8 @@
 <head>
     <meta charset="UTF-8">
   <title>Home</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <style>
     .home{
       z-index: 1;
@@ -169,20 +171,19 @@
 <!--      </div>-->
 <!--    </div>-->
 <!--  </div>-->
-  <div th:if ="${param.logout}" style="z-index: 2">
-    <div class="alert-logout" id="announce" >
-            <span class="closebtn"
-                  onclick="this.parentElement.style.display='none';">&times;</span>
-      You have been logged out!!!
+  <div th:if ="${param.logout}" style="z-index: 2 ;position: absolute;bottom: 0;right: 5px;">
+    <div class="alert alert-success " id="announce" style="font-size: 24px;">
+      <i class="fas fa-check"> </i>
+      You have been logged out.
     </div>
   </div>
   <script>
-    $("#announce").fadeTo(2000, 500).slideUp(500, function(){
+    $("#announce").fadeTo(3000, 500).slideUp(500, function(){
       $("#announce").slideUp(500);
     });
   </script>
   <section class="nav-banner">
-    <div class="container" style="text-align: center">
+    <div class="container" style="text-align: center; opacity: 1;">
       <h2 style="text-align: center">We are <span></span></h2>
 <!--      <p style="text-align: center">None of Us is as Smart as All of Us.</p>-->
       <a style="display: inline-block" th:href="@{/contact}">Contact Us</a>
@@ -255,14 +256,7 @@
           </div>
         </a>
       </div>
-      <div class="col">
-        <img src="https://trangtrinoithatcompa.com/data/uarticle/2019/08/14/nQCZ32HO.png" style="height:375.75px;" class="img-gallery" alt="gallery">
-        <a href="#">
-          <div class="gallery-title" style="background-color:#BCE5D3;border: 2px solid #BCE5D3">
-            <p>Wardrobe</p>
-          </div>
-        </a>
-      </div>
+
     </div>
   </div>
 

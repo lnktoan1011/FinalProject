@@ -29,6 +29,9 @@
             font-weight: bold;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 
 </head>
 <body >
@@ -67,6 +70,11 @@
                         <p th:text="${successUpdate}" style="margin: 0"></p>
                     </div>
                 </div>
+                <script>
+                    $(".alert").fadeTo(3000, 500).slideUp(500, function(){
+                        $(".alert").slideUp(500);
+                    });
+                </script>
                 <div class="card card-info" id="card_info">
                         <th:block th:if="${brand.id == 0}">
                             <div class="card-header">

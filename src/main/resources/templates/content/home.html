@@ -6,7 +6,9 @@
     <meta charset="UTF-8">
   <title>Home</title>
   <style>
-
+    .home{
+      z-index: 1;
+    }
   </style>
 </head>
 <body class="home">
@@ -167,6 +169,18 @@
 <!--      </div>-->
 <!--    </div>-->
 <!--  </div>-->
+  <div th:if ="${param.logout}" style="z-index: 2">
+    <div class="alert-logout" id="announce" >
+            <span class="closebtn"
+                  onclick="this.parentElement.style.display='none';">&times;</span>
+      You have been logged out!!!
+    </div>
+  </div>
+  <script>
+    $("#announce").fadeTo(2000, 500).slideUp(500, function(){
+      $("#announce").slideUp(500);
+    });
+  </script>
   <section class="nav-banner">
     <div class="container" style="text-align: center">
       <h2 style="text-align: center">We are <span></span></h2>
@@ -299,23 +313,23 @@
     </div>
   </div>
   <!-- start modal -->
-  <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Search Dialog</h5>
-        </div>
-        <div class="modal-body">
-          <form action="#">
-            <input class="form-control form-control-underlined search" type="search" placeholder="Search" aria-label="Search">
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary">Search</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<!--  <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-lg modal-dialog-centered">-->
+<!--      <div class="modal-content">-->
+<!--        <div class="modal-header">-->
+<!--          <h5 class="modal-title" id="exampleModalLabel">Search Dialog</h5>-->
+<!--        </div>-->
+<!--        <div class="modal-body">-->
+<!--          <form action="#">-->
+<!--            <input class="form-control form-control-underlined search" type="search" placeholder="Search" aria-label="Search">-->
+<!--          </form>-->
+<!--        </div>-->
+<!--        <div class="modal-footer">-->
+<!--          <button type="button" class="btn btn-secondary">Search</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
 </div>
   <!-- end modal -->
 

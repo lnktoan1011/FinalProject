@@ -20,7 +20,7 @@ public class PromotionServiceImp implements PromotionService {
 
     @Override
     public List<Discount> getList() {
-        return this.promotionRepository.findAll();
+        return this.promotionRepository.findByOrderByIdDesc();
     }
 
     @Override

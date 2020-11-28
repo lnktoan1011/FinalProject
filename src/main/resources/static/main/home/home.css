@@ -111,9 +111,11 @@ nav.sticky .color:hover {
     position: relative;
     top: 0;
     width: 100%;
-    min-height: 600px;
+    min-height: 800px;
     /* background: url(logo1.jpg); */
     background-size: cover;
+    /*background-color: black;*/
+    /*opacity: .5;*/
     color: #FFF;
     display: flex;
     align-items: center;

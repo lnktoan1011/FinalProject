@@ -2,6 +2,7 @@ package com.example.t3mb_decor.repository;
 
 import com.example.t3mb_decor.model.Cart;
 import com.example.t3mb_decor.model.Category;
+import com.example.t3mb_decor.model.Product;
 import com.example.t3mb_decor.model.ProductFiles;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -24,5 +25,9 @@ public interface CartRepository extends JpaRepository<Cart,Long> {
     @Transactional
     void deleteExistCart(@Param("userId") long userId) ;
 
+    @Modifying
+    @Query(value = "DELETE from carts where product_id = :productId", nativeQuery = true)
+    @Transactional
+    void deleteByProduct_cart(@Param("productId") long productId);
 
 }

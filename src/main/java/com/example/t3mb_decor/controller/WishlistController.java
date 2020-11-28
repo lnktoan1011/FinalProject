@@ -24,6 +24,22 @@ public class WishlistController {
     @Autowired
     CategoryService categoryService;
     //      List of categories
+
+    //      Total Product in Cart
+    @ModelAttribute("TotalProduct")
+    public int totalProduct(Authentication authentication){
+        int total = 0;
+        if (authentication != null){
+            String emailName = authentication.getName();
+            User user = userService.getUserFindByEmail(emailName);
+            List<Cart> listCart = user.getListCart();
+            for(int i = 0; i < listCart.size(); i++){
+                total = total + listCart.get(i).getQuantity();
+            }
+
+        }
+        return total;
+    }
     @ModelAttribute("listCategories")
     public List<Category> getList(){
         List<Category> listCate =  categoryService.getAllCategories();

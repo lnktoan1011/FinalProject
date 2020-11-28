@@ -2,6 +2,7 @@ package com.example.t3mb_decor.service;
 
 import com.example.t3mb_decor.model.Brand;
 import com.example.t3mb_decor.model.Cart;
+import com.example.t3mb_decor.model.Product;
 import com.example.t3mb_decor.repository.BrandRepository;
 import com.example.t3mb_decor.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,11 @@ public class CartServiceImpl implements  CartService{
     @Override
     public Cart getExistCart(long userId, long productId) {
         return this.cartRepository.getExistCart(userId, productId);
+    }
+
+    @Override
+    public void deleteProductCart(long id) {
+        cartRepository.deleteByProduct_cart(id);
     }
 
     @Override

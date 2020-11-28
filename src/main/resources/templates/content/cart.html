@@ -8,117 +8,104 @@
     <title>Cart</title>
 </head>
 <body class="ca">
-    <div layout:fragment="contents" style="margin-top: 145px; margin-bottom: 85px;">
+    <div layout:fragment="contents" style="margin-bottom: 60px;">
         <form action="#" th:action="@{/order}" th:object="${order}" method="post">
             <div class="carts">
                 <section class="form-section">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <h5 class="text-center" >MY SHOPPING BAG</h5>
-                            <hr id="text1">
-                            <table class="table1" id = "tableList">
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Quantity</th>
-                                    <th>Subtotal</th>
-                                </tr>
-                                <tr th:each ="c, custStat : ${listCart}">
-                                    <td>
-                                        <div class="cart-info">
-                                            <div th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
-                                                <img id="img" th:src="@{${'/images/' + img}}" width="150px" height="150px">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h5 class="text-center" >MY SHOPPING BAG</h5>
+                                <hr id="text1">
+                                <table class="table1" id = "tableList">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Subtotal</th>
+                                    </tr>
+                                    <tr th:each ="c, custStat : ${listCart}">
+                                        <td>
+                                            <div class="cart-info">
+                                                <div th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
+                                                    <img id="img" th:src="@{${'/images/' + img}}" width="150px" height="150px">
+                                                </div>
+                                                <div class="info">
+                                                    <h5 th:text="${c.getProduct_cart().getName()}"></h5>
+                                                    <small th:text="'Price: $' + ${c.getProduct_cart().getPrice()} +'.00'"></small>
+                                                    <br>
+                                                    <a href="">Remove</a>
+                                                </div>
                                             </div>
-                                            <div class="info">
-                                                <h5 th:text="${c.getProduct_cart().getName()}"></h5>
-                                                <small th:text="'Price: $' + ${c.getProduct_cart().getPrice()} +'.00'"></small>
-                                                <br>
-                                                <a href="">Remove</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td style="width: 150px;"><input type="number" th:value="${c.getQuantity()}" min="1"></td>
-                                    <td style="width: 150px; font-weight:bold; font-size: 24px;" th:text="${'$' + c.getProduct_cart().getPrice() * c.getQuantity()} +'.00'"></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="col-md-4">
-                            <h5 class="text-center">CHECK OUT</h5>
-                            <hr>
-                            <p><b>Name: </b></p>
-                            <p th:text="${order.getUser().getName()}"></p>
-                            <p><b>Email: </b></p>
-                            <p th:text="${order.getUser().getEmail()}"></p>
-                            <p><b>Address: </b></p>
-                            <p th:text="${order.getUser().getAddress()}"></p>
-                            <p><b>Phone: </b></p>
-                            <p th:text="${order.getUser().getPhone()}"></p>
-                            <hr>
-                            <h5 class="text-center">TOTAL ORDER</h5>
-                            <h6>Do you have promo code?</h6>
-                                <div class="row">
-
-                                        <div class="col-md-8">
-                                            <th:block th:if="${diss != null}">
-                                                <input type="text" class="form-control" placeholder="search promo code" id="discount" th:field="*{discount.name}" readonly>
-                                            </th:block>
-                                            <th:block th:unless="${diss != null}">
-                                                <input type="text" class="form-control" placeholder="search promo code" id="discount" th:field="*{discount.name}">
-                                            </th:block>
-                                            <div th:if="${error != null}">
-                                                <div class="alert alert-danger" role="alert" th:text="${error}" style="margin-top: 5px"> </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <th:block th:if="${diss != null}">
-                                                <a th:href="@{/cart}" >
-                                                    <input type="button" class=" form-control btn btn-danger" value="Cancel">
-                                                </a>
-                                            </th:block>
-
-                                            <th:block th:unless="${diss != null}">
-                                                <input type="submit" class=" form-control btn btn-dark" value="Apply">
-                                            </th:block>
-                                        </div>
-                                <table class="table table-borderless">
-                                        <tr>
-                                            <td><h6>Subtotal</h6></td>
-                                            <input type="hidden" th:field="*{order_product}">
-                                            <input type="hidden" th:field="*{user}">
-                                            <input type="hidden" th:field="*{subTotal}">
-                                            <td th:text="*{'$' +subTotal + '.00'}"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><h6>Promo code</h6></td>
-                                            <input type="hidden" th:field="*{discount}">
-                                            <td th:text="*{discount.getPercent() + ' %'}"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><h4>Total</h4></td>
-                                            <input type="hidden" th:field="*{total}" th:value="*{total}">
-                                            <td th:text="*{'$' + total + '.00'}"></td>
-                                        </tr>
+                                        </td>
+                                        <td style="width: 150px;"><input type="number" th:value="${c.getQuantity()}" min="1"></td>
+                                        <td style="width: 150px; font-weight:bold; font-size: 24px;" th:text="${'$' + c.getProduct_cart().getPrice() * c.getQuantity()} +'.00'"></td>
+                                    </tr>
                                 </table>
+                            </div>
+                            <div class="col-md-4" style="padding-bottom: 0">
+                                <h5 class="text-center">CHECK OUT</h5>
                                 <hr>
-                                <input type="submit" class=" form-control btn btn-dark" value="ORDER">
+                                <p><span><b>Name: </b></span>
+                                <span th:text="${order.getUser().getName()}"></span></p>
+                                <p><span><b>Email: </b></span>
+                                <span th:text="${order.getUser().getEmail()}"></span></p>
+                                <p><span><b>Address: </b></span>
+                                <span th:text="${order.getUser().getAddress()}"></span></p>
+                                <p><span><b>Phone: </b></span>
+                                <span th:text="${order.getUser().getPhone()}"></span></p>
+                                <hr>
+                                <h5 class="text-center">TOTAL ORDER</h5>
+                                <h6>Do you have promo code?</h6>
+                                <div class="row">
+                                    <div class="col-md-8" style="padding-top: 0">
+                                        <th:block th:if="${diss != null}">
+                                            <input type="text" class="form-control" placeholder="Enter promo code" id="discount" th:field="*{discount.name}" readonly>
+                                        </th:block>
+                                        <th:block th:unless="${diss != null}">
+                                            <input type="text" class="form-control" placeholder="Enter promo code" id="discount" th:field="*{discount.name}">
+                                        </th:block>
+                                        <div th:if="${error != null}">
+                                            <div class="alert alert-danger" role="alert" th:text="${error}" style="margin-top: 5px"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" style="padding-top: 0">
+                                        <th:block th:if="${diss != null}">
+                                            <a th:href="@{/cart}" >
+                                                <input type="button" class=" form-control btn btn-danger" value="Cancel">
+                                            </a>
+                                        </th:block>
 
+                                        <th:block th:unless="${diss != null}">
+                                            <input type="submit" class=" form-control btn btn-dark" value="Apply">
+                                        </th:block>
+                                    </div>
+                                </div>
+                                <table class="table table-borderless">
+                                    <tr>
+                                        <td><h6>Subtotal</h6></td>
+                                        <input type="hidden" th:field="*{order_product}">
+                                        <input type="hidden" th:field="*{user}">
+                                        <input type="hidden" th:field="*{subTotal}">
+                                        <td th:text="*{'$ ' +subTotal + '.00'}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h6>Promo code</h6></td>
+                                        <input type="hidden" th:field="*{discount}">
+                                        <td th:text="*{discount.getPercent() + ' %'}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h4>Total</h4></td>
+                                        <input type="hidden" th:field="*{total}" th:value="*{total}">
+                                        <td><h4 th:text="*{'$ ' + total + '.00'}"></h4></td>
+                                    </tr>
+                                </table>
+                                <input type="submit" style="padding: 0" class=" form-control btn btn-dark" value="ORDER">
+                            </div>
                         </div>
-
                     </div>
-                </div>
-                </div>
-            </section>
-
+                </section>
             </div>
         </form>
-    </div>
-
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<!--        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
-<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
-<!--        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
-
     </div>
 </body>
 </html>

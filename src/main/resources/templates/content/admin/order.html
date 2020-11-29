@@ -170,6 +170,7 @@
                                 </div>
                             </th:block>
                         </div>
+                        <hr>
                         <div class="row" id="total">
                             <div class="col-lg-7" style="padding-left: 50px; padding-bottom: 20px">
                                 <div th:if="${orderDetail.getStatus() == 0}">
@@ -179,7 +180,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-5">
-                                <p style="font-weight: bold;">Total: <span th:text="${orderDetail.getTotal()}"></span> $</p>
+                                <p style="font-weight: bold;font-size: 22px;">Total: <span th:text="${orderDetail.getTotal()}"></span> $</p>
                             </div>
                         </div>
                     </div>

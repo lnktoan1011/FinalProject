@@ -66,11 +66,13 @@
         <div class="container-fluid">
             <div th:if="${param.success}">
                 <div class="alert alert-success alert-dismissible fade show">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
                     User added successfully !!
                 </div>
             </div>
             <div th:if="${param.successUpdate}">
                 <div class="alert alert-success alert-dismissible fade show">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
                     User updated successfully !!
                 </div>
             </div>
@@ -83,9 +85,6 @@
                 <div class="card-header" style="background-color: #212529;">
                     <h3 class="card-title">New User</h3>
                 </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <!-- class="was-validated" -->
                 <form th:action="@{/admins/user/add}" th:object="${user}" method="post" >
                     <div class="card-body px-5">
 
@@ -146,12 +145,10 @@
                                     </div>
                                     <option value="2">ROLE_SALER</option>
                                     <option value="3">ROLE_CUSTOMER</option>
-<!--                                    <option th:each="role: ${listRole}" th:value="${role.id}" th:text="${role.name}"></option>-->
                                 </select>
                             </div>
 
                         </div>
-
 
                     </div>
                     <div class="card-footer">
@@ -168,10 +165,6 @@
                 <div class="card-header" style="background-color: #212529;">
                     <h3 class="card-title">Update User</h3>
                 </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <!-- class="was-validated" -->
-
                 <form th:action="@{/admins/user/update}" th:object="${userUpdate}" method="post" >
                     <div class="card-body px-5">
                         <input type="hidden" th:field="*{id} " />
@@ -211,17 +204,6 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Role</label>
                             <div class="col-sm-10">
-<!--                                <th:block th:field="*{roles}">-->
-<!--                                    <th:block th:each="roles : ${listRole}">-->
-<!--                                        <select  th:value="${roles.id}" name="roles" class="form-control">-->
-<!--                                            <option value="1">Admin</option>-->
-<!--                                            <option value="2">Saler</option>-->
-<!--                                            <option value="3">Customer</option>-->
-
-<!--                                        </select>-->
-<!--                                        -->
-<!--                                    </th:block>-->
-<!--                                </th:block>-->
 
                                 <select th:field="*{roles}" class="form-control">
                                     <th:block sec:authorize="hasRole('ROLE_SALER')">

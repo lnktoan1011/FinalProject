@@ -100,7 +100,7 @@ public class CartController {
     }
 
     @PostMapping
-    public String AddToCart(@ModelAttribute("cart") Cart cart, Authentication authentication){
+    public String AddToCart(@ModelAttribute("cart") Cart cart, Authentication authentication, RedirectAttributes redirectAttributes){
 
         String emailName = authentication.getName();
         User user = userService.getUserFindByEmail(emailName);
@@ -115,8 +115,8 @@ public class CartController {
         else{
             cartService.saveCart(cart);
         }
-
-        return "redirect:/cart";
+        redirectAttributes.addFlashAttribute("success","Added to card successfully");
+        return "redirect:/product/"+cart.getProduct_cart().getId();
     }
     @ModelAttribute("order")
     public Orders showCart(Authentication authentication){

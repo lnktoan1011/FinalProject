@@ -10,11 +10,27 @@
         body{
             padding: 0;
             margin: 0;
+            z-index: 1;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body>
 <div layout:fragment="contents" style="padding: 100px 0 50px">
+    <div th:if="${success != null}" style="z-index: 2 ;position: absolute;bottom: 0;left: 5px;">
+        <tr>
+            <div class="alert alert-success alert-dismissible fade show" role="alert"  >
+                <i class="fas fa-check"> </i>
+                <span th:text="${success}"> </span>
+            </div>
+        </tr>
+    </div>
+    <script>
+        $(".alert").fadeTo(3000, 500).slideUp(500, function(){
+            $(".alert").slideUp(500);
+        });
+    </script>
     <div class="container">
         <div class="row">
             <div class="col-lg-6">

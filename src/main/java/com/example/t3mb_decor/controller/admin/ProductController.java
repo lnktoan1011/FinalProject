@@ -108,7 +108,7 @@ public class ProductController {
 
     }
     @GetMapping("/{productID}")
-    public String editUser(@PathVariable Long productID, Model model){
+    public String editProduct(@PathVariable Long productID, Model model){
         Product product = productService.getProduct(productID);
         List<ProductFiles> productImages = productFileService.getProductFilebyProductID(productID);
 
@@ -137,6 +137,14 @@ public class ProductController {
         }
 
         return "content/admin/product";
+
+    }
+    @GetMapping("/delete/{productID}")
+    public String deleteProduct(@PathVariable Long productID, RedirectAttributes redirectAttributes){
+        productService.delete(productID);
+        redirectAttributes.addFlashAttribute("success","Product is deleted successfully");
+        return "redirect:/admins/product";
+
 
     }
 }

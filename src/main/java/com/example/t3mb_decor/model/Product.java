@@ -80,10 +80,6 @@ public class Product{
     @JoinColumn(name = "color_id")
     private Color color;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "sale_id",columnDefinition = "bigint default 0")
-    private Sale sale;
-
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product_wishlist")
     private List<User> customer_wishlist= new ArrayList<>();
 
@@ -248,13 +244,6 @@ public class Product{
         this.color = color;
     }
 
-    public Sale getSale() {
-        return sale;
-    }
-
-    public void setSale(Sale sale) {
-        this.sale = sale;
-    }
     public List<MultipartFile> getFiles() {
         return files;
     }

@@ -4,9 +4,11 @@ import com.example.t3mb_decor.model.Category;
 import com.example.t3mb_decor.model.Product;
 import com.example.t3mb_decor.model.ProductFiles;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,4 +26,8 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
     @Query(value = "SELECT * FROM products ORDER BY id DESC LIMIT 5",nativeQuery = true)
     List<Product> findByIdSortNew();
+
+    @Query(value = "SELECT * from products where status = 0 ORDER BY id DESC", nativeQuery = true)
+    List<Product> getValidProduct();
+
 }

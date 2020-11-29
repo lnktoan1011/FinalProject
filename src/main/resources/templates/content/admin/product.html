@@ -275,7 +275,7 @@
                         </div>
                         <div class="col-lg-7" id="cus_info">
                             <h4 th:text="${pro.name}"></h4>
-                            <p th:text="${pro.description}" id="des"></p>
+                            <p th:utext="${pro.description}" id="des"></p>
                             <div class="row">
                                 <div class="col-lg-4">
                                     <table>
@@ -317,7 +317,7 @@
 
                         </div>
                         <div class="col-lg-2">
-                            <a id="button_dl"> <i class="fa fa-trash" style="font-size: 21px;"></i> </a>
+                            <a id="button_dl" th:href="@{'/admins/product/delete/' + ${pro.id}}"> <i class="fa fa-trash" style="font-size: 21px;"></i> </a>
                             <a id="button_ed" th:href="@{'/admins/product/' + ${pro.id}}"> <i class="fa fa-edit" style="font-size: 21px;"></i> </a>
                         </div>
                     </div>

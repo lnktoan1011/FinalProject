@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -74,7 +75,6 @@ public class ProductServiceImpl implements ProductService {
     }
     @Override
     public Product update(Product product) {
-
         Product productSave = productRepository.save(product);
         if(product!= null && product.getRemoveImage() != null && product.getRemoveImage().size() > 0){
             productFileRepository.deleteImageByProduct(product.getId(), product.getRemoveImage());
@@ -85,8 +85,6 @@ public class ProductServiceImpl implements ProductService {
                 }
             }
         }
-
-
         if(productSave != null && product.getFiles() != null && product.getFiles().size() > 0){
             for(MultipartFile file: product.getFiles()){
                 if(!file.getOriginalFilename().isEmpty())
@@ -115,8 +113,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public void delete(Long id) {
+        Product product = this.getProduct(id);
+        product.setStatus(1);
+        productRepository.save(product);
+    }
+
+    @Override
     public List<Product> getAllProductSort() {
-        List<Product> list = this.productRepository.findByOrderByIdDesc();
+        List<Product> list = this.productRepository.getValidProduct();
         return list;
     }
 
@@ -128,5 +133,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getNewProduct() {
         return productRepository.findByIdSortNew();
+    }
+
+    @Override
+    public List<Product> getValidProduct() {
+        return productRepository.getValidProduct();
     }
 }

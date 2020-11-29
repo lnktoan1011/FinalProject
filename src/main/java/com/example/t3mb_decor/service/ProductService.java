@@ -10,7 +10,9 @@ public interface ProductService {
     List<Product> searchProduct(String name);
     Product save(Product product);
     Product update(Product product);
+    void delete(Long id);
     List<Product> getAllProductSort();
     List<Product> getProductBySubId(long id);
     List<Product> getNewProduct();
+    List<Product> getValidProduct();
 }

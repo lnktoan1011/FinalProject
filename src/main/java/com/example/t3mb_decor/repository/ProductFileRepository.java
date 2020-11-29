@@ -17,6 +17,11 @@ public interface ProductFileRepository extends JpaRepository<ProductFiles, Long>
     List<ProductFiles> getProductFilebyProductID(@Param("id") long id);
 
     @Modifying
+    @Query(value = "DELETE FROM product_files WHERE product_id = :id", nativeQuery = true)
+    @Transactional
+    void deleteImages(@Param("id") long id);
+
+    @Modifying
     @Query(value = "DELETE FROM product_files WHERE product_id = :id and modified_file_name in :removeImage", nativeQuery = true)
     @Transactional
     void deleteImageByProduct(@Param("id") long id,@Param("removeImage") List<String> removeImage);

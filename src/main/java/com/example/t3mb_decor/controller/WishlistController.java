@@ -49,7 +49,7 @@ public class WishlistController {
     public String Wishlist(Authentication authentication, Model model){
         String emailName = authentication.getName();
         User user = userService.getUserFindByEmail(emailName);
-        model.addAttribute("wishList", user.getProduct_wishlist());
+            model.addAttribute("wishList", user.getProduct_wishlist());
         return "content/wishlist";
     }
     @GetMapping("/wishlist/add/{id}")

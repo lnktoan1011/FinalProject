@@ -1,5 +1,6 @@
 package com.example.t3mb_decor.repository;
 
+import com.example.t3mb_decor.model.Product;
 import com.example.t3mb_decor.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -22,5 +23,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Transactional
     void deleteRoles(@Param("id") long id);
 
-
+    @Query(value = "SELECT * FROM wishlists WHERE user_id = :id ORDER BY product_id DESC ", nativeQuery = true)
+    List<Product> getWLByEmailSort(@Param("id") long id);
 }

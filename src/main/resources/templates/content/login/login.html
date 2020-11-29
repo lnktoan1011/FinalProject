@@ -15,6 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -23,26 +24,31 @@
 <!--<th:block th:if="${param.registration}"><div class="cont s-signup"></th:block>-->
 <!--<th:block th:unless="${param.registration}"><div class="cont"></th:block>-->
     <div th:if ="${param.success}">
-        <div class="alert-success" >
+        <div class="alert alert-success alert-dismissible fade show" >
             <span class="closebtn"
                   onclick="this.parentElement.style.display='none';">&times;</span>
             You've successfully registerd!!!
         </div>
     </div>
     <div th:if ="${param.error}">
-        <div class="alert-error" >
+        <div class="alert alert-error alert-dismissible fade show" >
             Invalid username or password!!!
             <span class="closebtn"
                   onclick="this.parentElement.style.display='none';">&times;</span>
         </div>
     </div>
     <div th:if ="${param.logout}">
-        <div class="alert-logout" >
+        <div class="alert alert-logout" >
             <span class="closebtn"
                   onclick="this.parentElement.style.display='none';">&times;</span>
             You have been logged out!!!
         </div>
     </div>
+    <script>
+        $(".alert").fadeTo(3000, 500).slideUp(500, function(){
+            $(".alert").slideUp(500);
+        });
+    </script>
     <div class="form sign-in">
         <h2>Sign In</h2>
         <form th:action="@{/login}" method="post">

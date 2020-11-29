@@ -72,7 +72,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <div class="input-group-prepend">
-                                <input type="text" th:field="*{percent}"  class="form-control" placeholder="Enter a promotion percentage" required />
+                                <input type="number" th:field="*{percent}" min="0" max="100" class="form-control" placeholder="Enter a promotion percentage" required />
                                 <button type="submit" class="btn btn-outline-success mx-4" onclick="Add()">Add</button>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                             <div class="form-group">
                                 <div class="input-group-prepend">
                                     <input type="hidden" th:field="*{id} " />
-                                    <input type="text" th:field="*{percent} " class="form-control" placeholder="Enter Promotion percentage" required />
+                                    <input type="number" th:field="*{percent} " min="0" max="100" class="form-control" placeholder="Enter Promotion percentage" required />
                                     <button type="submit" class="btn btn-outline-success mx-4">Update</button>
                                 </div>
                             </div>

@@ -3,7 +3,9 @@ package com.example.t3mb_decor.service;
 import com.example.t3mb_decor.VO.InfoPwd;
 import com.example.t3mb_decor.VO.UserToAdminVO;
 import com.example.t3mb_decor.VO.UserVO;
+import com.example.t3mb_decor.model.Product;
 import com.example.t3mb_decor.model.User;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
@@ -23,4 +25,7 @@ public interface UserService extends UserDetailsService {
     void saveInfoPwd(InfoPwd infoPwd);
     Boolean checkOldPwd(InfoPwd infoPwd);
     long countUser();
+
+    List<Product> getWL(long id);
+
 }

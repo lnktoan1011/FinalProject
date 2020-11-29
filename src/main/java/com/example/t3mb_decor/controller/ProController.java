@@ -91,8 +91,12 @@ public class ProController {
        }
         List<Product> productListbefore = productService.getAllProductSort();
         List<Product> productList = new ArrayList<>();
+
+        String productSear = productSearch.getName().toLowerCase();
+
         for (int i =0; i< productListbefore.size(); i++) {
-            if(productListbefore.get(i).getName().contains(productSearch.getName())){
+            String productCheck = productListbefore.get(i).getName().toLowerCase();
+            if(productCheck.contains(productSear)){
                 productList.add(productListbefore.get(i));
             }
         }

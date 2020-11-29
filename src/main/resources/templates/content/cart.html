@@ -72,7 +72,7 @@
                                                 </td>
                                                 <td style="width: 150px;"><input type="number"  th:name="|lCarts[${custStat.index}].quantity|" th:value="${c.getQuantity()}" min="1"></td>
                                                 <td style="width: 150px; font-weight:bold; font-size: 24px;" th:text="${'$' + c.getProduct_cart().getPrice() * c.getQuantity()} +'.00'"></td>
-                                                <td><a th:href="@{/cart/{id}(id = ${c.getProduct_cart().getId()})}"><button type="button" class="btn btn-outline-danger border-0 rounded-circle" ><i style="font-size:16px;" class="fas fa-times"></i><button</a></td>
+                                                <td><a th:href="@{/cart/{id}(id = ${c.getProduct_cart().getId()})}"><button type="button" class="btn btn-outline-danger border-0 rounded-circle" ><i style="font-size:16px;" class="fas fa-times"></i></button></a></td>
                                             </tr>
                                         </fieldset>
                                     </form>

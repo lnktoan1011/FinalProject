@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Orders,Long> {
-    @Query(value = "SELECT * from orders where user_id = :userId", nativeQuery = true)
+    @Query(value = "SELECT * from orders where user_id = :userId ORDER BY id DESC", nativeQuery = true)
     List<Orders> getHistory(@Param("userId") long userId) ;
 
     List<Orders> findByOrderByIdDesc();

@@ -6,6 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <title>User</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <style>
         li{
             list-style: none;
@@ -33,16 +35,7 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <div th:if="${param.success}">
-        <div class="alert alert-success">
-            User added successfully !!
-        </div>
-    </div>
-    <div th:if="${param.successUpdate}">
-        <div class="alert alert-success">
-            User updated successfully !!
-        </div>
-    </div>
+
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -71,6 +64,21 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            <div th:if="${param.success}">
+                <div class="alert alert-success alert-dismissible fade show">
+                    User added successfully !!
+                </div>
+            </div>
+            <div th:if="${param.successUpdate}">
+                <div class="alert alert-success alert-dismissible fade show">
+                    User updated successfully !!
+                </div>
+            </div>
+            <script>
+                $(".alert").fadeTo(3000, 500).slideUp(500, function(){
+                    $(".alert").slideUp(500);
+                });
+            </script>
             <div class="card card-info " id="card_info" th:style="${emptyError} ? 'display:block':'display: none;'">
                 <div class="card-header" style="background-color: #212529;">
                     <h3 class="card-title">New User</h3>

@@ -14,7 +14,7 @@
     </style>
 </head>
 <body>
-<div layout:fragment="contents" style="padding-top: 100px ">
+<div layout:fragment="contents" style="padding: 100px 0 50px">
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
@@ -146,9 +146,8 @@
                             </div>
                             <div class="face face2">
                                 <div class="content">
-                                    <h3 style="text-align: center;">Design</h3>
-                                    <p th:text="${proNew.getName()}"></p>
-                                    <p th:text="${proNew.getPrice()}"></p>
+                                    <h3 style="text-align: center;" th:text="${proNew.getName()}"></h3>
+                                    <p th:text="'$ '+${proNew.getPrice()}"></p>
                                 </div>
                             </div>
                         </a>

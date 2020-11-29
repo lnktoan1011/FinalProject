@@ -6,65 +6,79 @@
 <head>
     <meta charset="UTF-8">
     <title>Cart</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <style>
+        .ca{
+            z-index: 1;
+        }
+    </style>
 </head>
 <body class="ca">
     <div layout:fragment="contents" style="margin-bottom: 40px">
             <div class="carts">
                 <section class="form-section">
                     <div class="container-fluid">
+                        <div th:if="${errorProduct != null}" style="z-index: 2 ;position: absolute;bottom: 0;left: 5px;">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert"  >
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <span th:text="${errorProduct}"> </span>
+                            </div>
+                        </div>
+                        <div th:if="${updateCart != null}" style="z-index: 2 ;position: absolute;bottom: 0;left: 5px;">
+                            <tr>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert"  >
+                                    <i class="fas fa-check"> </i>
+                                    <span th:text="${updateCart}"> </span>
+                                </div>
+                            </tr>
+                        </div>
+                        <script>
+                            $(".alert").fadeTo(3000, 500).slideUp(500, function(){
+                                $(".alert").slideUp(500);
+                            });
+                        </script>
                         <div class="row" style="min-height: 650px">
                             <div class="col-md-8" style="padding-top:10px; ">
                                 <h5 class="text-center" >MY SHOPPING BAG</h5>
                                 <hr id="text1">
                                 <table class="table1" id = "tableList">
+                                    <form action="#" th:action="@{/cart/update}" th:object="${listCart}" method="post">
                                     <tr>
                                         <th>Product</th>
                                         <th>Quantity</th>
                                         <th>Subtotal</th>
+                                        <th class="p-0"><button type="submit" id="submitButton" class="btn btn-outline-success border-0" ><i class="far fa-edit"></i></button></th>
                                     </tr>
-                                    <div th:if="${errorProduct != null}">
-                                        <tr>
-                                            <div class="alert alert-danger alert-dismissible fade show" role="alert"  style="margin-top: 5px">
-                                                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                                <span th:text="${errorProduct}"> </span>
-                                            </div>
-                                        </tr>
-                                    </div>
-                                    <div th:if="${updateCart != null}">
-                                        <tr>
-                                            <div class="alert alert-success alert-dismissible fade show" role="alert"  style="margin-top: 5px">
-                                                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                                <span th:text="${updateCart}"> </span>
-                                            </div>
-                                        </tr>
-                                    </div>
-                                    <form action="#" th:action="@{/cart/update}" th:object="${listCart}" method="post">
+
                                         <fieldset>
-                                        <input type="submit" id="submitButton" class="btn btn-outline-info" value="Update Cart">
-                                        <tr th:each ="c, custStat : ${listCart.lCarts}">
-                                            <td>
-                                                <div class="cart-info">
-                                                    <div th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
-                                                        <img id="img" th:src="@{${'/images/' + img}}" width="150px" height="150px">
+<!--                                            <div class="text-right">-->
+<!--                                                <button type="submit" id="submitButton" class="btn btn-outline-success" ><i class="fas fa-redo-alt"></i></button>-->
+<!--                                            </div>-->
+                                            <tr th:each ="c, custStat : ${listCart.lCarts}">
+                                                <td>
+                                                    <div class="cart-info">
+                                                        <div th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
+                                                            <img id="img" th:src="@{${'/images/' + img}}" width="150px" height="150px">
+                                                        </div>
+                                                        <div class="info">
+                                                            <input type="hidden"  th:value="${c.getProduct_cart().getId()}"/>
+                                                            <input type="hidden"  th:value="${c.getProduct_cart().getName()}"/>
+                                                            <h5 th:text="${c.getProduct_cart().getName()}"> </h5>
+                                                            <small style="font-weight: bold;" th:text="${'$ '+c.getProduct_cart().getPrice()} +'.00'"></small>
+                                                            <br>
+                                                        </div>
                                                     </div>
-                                                    <div class="info">
-                                                        <input type="hidden"  th:value="${c.getProduct_cart().getId()}"/>
-                                                        <input type="hidden"  th:value="${c.getProduct_cart().getName()}"/>
-                                                        <h5 th:text="${c.getProduct_cart().getName()}"> </h5>
-                                                        <small th:text="${c.getProduct_cart().getPrice()} +'.00'"></small>
-                                                        <br>
-                                                        <a th:href="@{/cart/{id}(id = ${c.getProduct_cart().getId()})}">Remove</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td style="width: 150px;"><input type="number"  th:name="|lCarts[${custStat.index}].quantity|" th:value="${c.getQuantity()}" min="1"></td>
-                                            <td style="width: 150px; font-weight:bold; font-size: 24px;" th:text="${'$' + c.getProduct_cart().getPrice() * c.getQuantity()} +'.00'"></td>
-                                        </tr>
+                                                </td>
+                                                <td style="width: 150px;"><input type="number"  th:name="|lCarts[${custStat.index}].quantity|" th:value="${c.getQuantity()}" min="1"></td>
+                                                <td style="width: 150px; font-weight:bold; font-size: 24px;" th:text="${'$' + c.getProduct_cart().getPrice() * c.getQuantity()} +'.00'"></td>
+                                                <td><a th:href="@{/cart/{id}(id = ${c.getProduct_cart().getId()})}"><button type="button" class="btn btn-outline-danger border-0 rounded-circle" ><i style="font-size:16px;" class="fas fa-times"></i><button</a></td>
+                                            </tr>
                                         </fieldset>
                                     </form>
                                 </table>
                             </div>
-                            <div class="col-md-4" style="padding-bottom: 0; padding-top:10px;">
+                            <div class="col-md-4" style="padding-bottom: 30px; padding-top:10px;">
                                 <h5 class="text-center">CHECK OUT</h5>
                                 <hr>
                                 <p><span><b>Name: </b></span>

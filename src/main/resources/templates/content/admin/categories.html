@@ -7,11 +7,9 @@
     <meta charset="UTF-8">
     <title>Category</title>
     <style>
-        a{
+        .cate_name,.sub-name{
             color: black;
         }
-
-
         #card_info{
             margin-bottom: 30px;
         }
@@ -30,6 +28,8 @@
             font-weight: bold;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </head>
 <body >
@@ -56,6 +56,15 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                <div class="alert alert-success alert-dismissible fade show" th:if="${success != null}">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong th:text="${success}"></strong>
+                </div>
+                <script>
+                    $(".alert").fadeTo(3000, 500).slideUp(500, function(){
+                        $(".alert").slideUp(500);
+                    });
+                </script>
                 <div class="card card-info" id="card_info">
                     <th:block th:if="${flag == 1}">
                         <th:block th:if="${cate_id == null}">
@@ -127,6 +136,7 @@
                     </th:block>
                 </div>
 
+
                 <div class="row">
                     <div class="col-lg-7">
                         <table class="table table-hover">
@@ -139,13 +149,13 @@
                             <tbody th:each ="cate : ${listCategories}">
                             <tr id="table-item">
                                 <td>
-                                    <a th:href="@{/admins/category/update/{id}(id = ${cate.id})}" id="cate_name">
+                                    <a th:href="@{/admins/category/update/{id}(id = ${cate.id})}" class="cate_name">
                                         <div th:text="${cate.getName()}" ></div>
                                     </a>
                                 </td>
 
                                 <td>
-                                    <a th:href="@{/admins/category/delete/{id}(id = ${cate.id})}" class="btn btn-outline-danger"> Delete</a>
+                                    <a th:href="@{/admins/category/delete/{id}(id = ${cate.id})}" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to Delete?')"> Delete</a>
                                 </td>
                             </tr>
 
@@ -169,12 +179,12 @@
                                     <tbody th:each="subcate :${showCate.getSub()}">
                                     <tr >
                                          <td id="openSub">
-                                             <a th:href="@{/admins/category/update-sub/{id}(id = ${subcate.id})}"  >
-                                             <div th:text="${subcate.getName()}"></div>
+                                             <a th:href="@{/admins/category/update-sub/{id}(id = ${subcate.id})}" class="sub-name">
+                                                <div th:text="${subcate.getName()}"></div>
                                              </a>
                                          </td>
                                         <td>
-                                            <a th:href="@{/admins/category/deleteSub/{id}(id = ${subcate.id})}" class="btn btn-outline-danger" > Delete</a>
+                                            <a th:href="@{/admins/category/deleteSub/{id}(id = ${subcate.id})}" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to Delete?')"> Delete</a>
                                         </td>
                                     </tr>
                                     </tbody>

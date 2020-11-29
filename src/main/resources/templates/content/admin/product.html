@@ -95,6 +95,8 @@
     </style>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body>
 <div layout:fragment="content">
@@ -125,6 +127,11 @@
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong th:text="${success}"></strong>
             </div>
+            <script>
+                $(".alert").fadeTo(3000, 500).slideUp(500, function(){
+                    $(".alert").slideUp(500);
+                });
+            </script>
             <!-- form start -->
             <form role="form" id="form_info" th:style="${getTable} ? 'display:block':'display: none;'" th:action="@{${isAdd}?'/admins/product/save':'/admins/product/update'}" th:object="${product}" method="post" enctype="multipart/form-data">
 
@@ -316,8 +323,11 @@
 
                         </div>
                         <div class="col-lg-2">
-                            <a id="button_dl" th:href="@{'/admins/product/delete/' + ${pro.id}}"> <i class="fa fa-trash" style="font-size: 21px;"></i> </a>
-                            <a id="button_ed" th:href="@{'/admins/product/' + ${pro.id}}"> <i class="fa fa-edit" style="font-size: 21px;"></i> </a>
+                            <a id="button_dl" th:href="@{'/admins/product/delete/' + ${pro.id}}" onclick="return confirm('Are you sure you want to Delete?');"><button type="button" class="btn btn-outline-danger border-0" >
+                                <i style="font-size:18px;" class="fa fa-trash"></i></button> </a>
+                            <a id="button_ed" th:href="@{'/admins/product/' + ${pro.id}}"><button type="button" class="btn btn-outline-success border-0" >
+                                <i style="font-size:18px;" class="fa fa-edit"></i></button></a>
+<!--                            <i class="fa fa-edit" style="font-size: 21px;"></i>-->
                         </div>
                     </div>
                 </li>

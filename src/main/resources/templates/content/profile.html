@@ -4,14 +4,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/main_layout/main}">
 <head>
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">-->
-<!--    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
-<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>-->
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
-
 <style>
     .invalid-feedback{
         font-size: 14px;
@@ -19,21 +14,31 @@
         text-align: left;
     }
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </head>
 <body class="pr">
 <div layout:fragment="contents">
     <div class="profile">
         <section class="Form m-5">
             <div th:if="${param.successUpdate}">
-                <div class="alert alert-success">
-                    User updated successfully !!
+                <div class="alert alert-success alert-dismissible fade show">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    User is updated successfully !!
                 </div>
             </div>
             <div th:if="${param.successUpdatePwd}">
-                <div class="alert alert-success">
-                    User updated successfully !!
+                <div class="alert alert-success alert-dismissible fade showv">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    Password is updated successfully !!
                 </div>
             </div>
+            <script>
+                $(".alert").fadeTo(3000, 500).slideUp(500, function(){
+                    $(".alert").slideUp(500);
+                });
+            </script>
             <div class="container">
                 <h5 class="mb-4 mt-3" style="text-align: center;">Basic info, like your name and photo, that you use on TeMB services</h5>
                 <div class="row row-card no-gutters mt-2">

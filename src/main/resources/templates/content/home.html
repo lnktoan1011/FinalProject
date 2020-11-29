@@ -15,6 +15,7 @@
 </head>
 <body class="home">
 <div layout:fragment="contents">
+
   <div th:if ="${param.logout}" style="z-index: 2 ;position: absolute;bottom: 0;right: 5px;">
     <div class="alert alert-success " id="announce" style="font-size: 24px;">
       <i class="fas fa-check"> </i>
@@ -29,8 +30,8 @@
   <section class="nav-banner">
     <div class="container" style="text-align: center; opacity: 1;">
       <h2 style="text-align: center">We are <span></span></h2>
-<!--      <p style="text-align: center">None of Us is as Smart as All of Us.</p>-->
-      <a style="display: inline-block" th:href="@{/contact}">Contact Us</a>
+      <p style="text-align: center">None of Us is as Smart as All of Us.</p>
+<!--      <a style="display: inline-block" th:href="@{/contact}">Contact Us</a>-->
     </div>
   </section>
 
@@ -70,33 +71,33 @@
     <div class="row">
       <div class="col">
         <img src="https://hstatic.net/098/1000117098/1000161013/collection_intro_v3_background_1.jpg?v=81" class="img-gallery"  alt="gallery">
-        <a href="#">
+        <a th:href="@{/collections/productCate/{id}(id=${listCategories.get(0).getId()})}">
           <div class="gallery-title" style="background-color:#C7DB9C;border: 2px solid #C7DB9C">
-            <p>Chair</p>
+            <p th:text="${listCategories.get(0).getName()}"></p>
           </div>
         </a>
       </div>
       <div class="col">
         <img src="https://cf.shopee.vn/file/995b9cfc40b85ebdda58e86d6403ace6" style="height:375.75px;" class="img-gallery" alt="gallery">
-        <a href="#">
+        <a th:href="@{/collections/productCate/{id}(id=${listCategories.get(1).getId()})}">
           <div class="gallery-title" style="background-color:#F4DC86;border: 2px solid #F4DC86">
-            <p>Table</p>
+            <p th:text="${listCategories.get(1).getName()}"></p>
           </div>
         </a>
       </div>
       <div class="col">
         <img src="https://hstatic.net/098/1000117098/1000161013/collection_intro_v3_background_3.jpg?v=81" class="img-gallery" alt="gallery">
-        <a href="#">
+        <a th:href="@{/collections/productCate/{id}(id=${listCategories.get(2).getId()})}">
           <div class="gallery-title" style="background-color:#A7C8EB; border: 2px solid#A7C8EB;">
-            <p>Sofa</p>
+            <p th:text="${listCategories.get(2).getName()}"></p>
           </div>
         </a>
       </div>
       <div class="col">
         <img src="https://i.pinimg.com/736x/ea/02/b7/ea02b7add1937021c5608aaf64ec3917.jpg" style="height:375.75px;" class="img-gallery" alt="gallery">
-        <a href="#">
+        <a th:href="@{/collections/productCate/{id}(id=${listCategories.get(3).getId()})}">
           <div class="gallery-title" style="background-color:#ffb3e6;border: 2px solid #ffb3e6">
-            <p>Bookcase</p>
+            <p th:text="${listCategories.get(3).getName()}"></p>
           </div>
         </a>
       </div>
@@ -133,9 +134,9 @@
         </div>
         <div class="column">
           <img src="https://media3.scdn.vn/img4/2020/01_13/iSTmZOMljZSiaTFy47YB_simg_de2fe0_500x500_maxb.jpg" />
-          <img src="https://lh3.googleusercontent.com/proxy/4HF3pOVTOPo3mUw7ruKBrrnVz2VoXU9RwmthJFWbyTdcc7kCgamacRQEq9iUYdf14PSIlVy8g5SkKkt11tqKa_4tQb98JgHOsTcW9frPzc4ICPbqzbyfY2NPkBeHKGDA1KrXJoLlaBmE" />
-          <img src="https://lh3.googleusercontent.com/proxy/nSFNnkwK6JIN7oOJT4OM0f1Yq_AEykp79HaO8Fn3WMGlK6XFk3HynNgHgZaQlddE92zruaoEWGKrAjNK-diUiHDSE5OYziLNuooB0r8YjEPuP1GMn9HsuD1U7RtmqdDD71LJHIfIfMk-umwasqfDIJUNksCex0Hm6g26Ago4vRLYHXCjnldPoat6h4LKXpUu4BCKdeHtySLaq9XHik3j4Rhj5DeBhSFEnDAqq3r4xQM">
-          <img style="height: 310px;" src="https://khungtranhtreotuong.com/wp-content/uploads/112a.jpg">
+          <img src="https://bizweb.dktcdn.net/thumb/1024x1024/100/328/520/products/tb2fvlugy1ybunjsszhxxcusfxa-678542310-copy.jpg" />
+          <img src="https://media.travelmag.vn/resize/800x532/files/minhthu77/2020/08/07/nick-hillier-iekmmvdzfc0-unsplash-0953.jpg">
+          <img style="height: 305px;" src="https://khungtranhtreotuong.com/wp-content/uploads/112a.jpg">
         </div>
       </div>
     </div>
@@ -150,8 +151,8 @@
       </div>
     </div>
   </div>
+<!--end of home-->
 </div>
-  <!-- end modal -->
 
 </body>
 </html>

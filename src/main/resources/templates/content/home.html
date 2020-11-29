@@ -71,33 +71,33 @@
     <div class="row">
       <div class="col">
         <img src="https://hstatic.net/098/1000117098/1000161013/collection_intro_v3_background_1.jpg?v=81" class="img-gallery"  alt="gallery">
-        <a href="#">
+        <a th:href="@{/collections/productCate/{id}(id=${listCategories.get(0).getId()})}">
           <div class="gallery-title" style="background-color:#C7DB9C;border: 2px solid #C7DB9C">
-            <p>Chair</p>
+            <p th:text="${listCategories.get(0).getName()}"></p>
           </div>
         </a>
       </div>
       <div class="col">
         <img src="https://cf.shopee.vn/file/995b9cfc40b85ebdda58e86d6403ace6" style="height:375.75px;" class="img-gallery" alt="gallery">
-        <a href="#">
+        <a th:href="@{/collections/productCate/{id}(id=${listCategories.get(1).getId()})}">
           <div class="gallery-title" style="background-color:#F4DC86;border: 2px solid #F4DC86">
-            <p>Table</p>
+            <p th:text="${listCategories.get(1).getName()}"></p>
           </div>
         </a>
       </div>
       <div class="col">
         <img src="https://hstatic.net/098/1000117098/1000161013/collection_intro_v3_background_3.jpg?v=81" class="img-gallery" alt="gallery">
-        <a href="#">
+        <a th:href="@{/collections/productCate/{id}(id=${listCategories.get(2).getId()})}">
           <div class="gallery-title" style="background-color:#A7C8EB; border: 2px solid#A7C8EB;">
-            <p>Sofa</p>
+            <p th:text="${listCategories.get(2).getName()}"></p>
           </div>
         </a>
       </div>
       <div class="col">
         <img src="https://i.pinimg.com/736x/ea/02/b7/ea02b7add1937021c5608aaf64ec3917.jpg" style="height:375.75px;" class="img-gallery" alt="gallery">
-        <a href="#">
+        <a th:href="@{/collections/productCate/{id}(id=${listCategories.get(3).getId()})}">
           <div class="gallery-title" style="background-color:#ffb3e6;border: 2px solid #ffb3e6">
-            <p>Bookcase</p>
+            <p th:text="${listCategories.get(3).getName()}"></p>
           </div>
         </a>
       </div>

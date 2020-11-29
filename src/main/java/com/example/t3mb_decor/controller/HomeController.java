@@ -50,8 +50,5 @@ public class HomeController {
     public String home(){
         return "/content/home";
     }
-//    @GetMapping
-//    public String home(){
-//        return "/fragments/main/header";
-//    }
+
 }

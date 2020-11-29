@@ -137,10 +137,10 @@
                                         <div class="form-group">
                                             <label>Image</label>
                                             <br>
-                                            <div th:if="${product.getName() !=null}">
+                                            <div th:if="${product.getId() !=0}">
                                                 <input type="file" id="exampleInputFile" th:field = "*{files}" multiple="multiple" >
                                             </div>
-                                            <div th:unless="${product.getName() !=null}">
+                                            <div th:unless="${product.getId() != 0}">
                                                 <input type="file" id="exampleInputFile" th:field = "*{files}" multiple="multiple" required>
                                             </div>
                                         </div>

@@ -101,7 +101,7 @@ public class ProductController {
         Product saveProduct = productService.save(product);
         if (saveProduct != null){
             redirectAttributes.addFlashAttribute("success","Product is saved successfully");
-            return "redirect:/admins/product";
+            return "redirect:/loading";
         }
 
         return "content/admin/product";

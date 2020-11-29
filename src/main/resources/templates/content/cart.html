@@ -8,12 +8,12 @@
     <title>Cart</title>
 </head>
 <body class="ca">
-    <div layout:fragment="contents" style="margin-top: 145px; margin-bottom: 85px;">
+    <div layout:fragment="contents" style="margin-bottom: 40px">
             <div class="carts">
                 <section class="form-section">
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-8">
+                        <div class="row" style="min-height: 650px">
+                            <div class="col-md-8" style="padding-top:10px; ">
                                 <h5 class="text-center" >MY SHOPPING BAG</h5>
                                 <hr id="text1">
                                 <table class="table1" id = "tableList">
@@ -64,40 +64,40 @@
                                     </form>
                                 </table>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4" style="padding-bottom: 0; padding-top:10px;">
                                 <h5 class="text-center">CHECK OUT</h5>
                                 <hr>
-                                <p><b>Name: </b></p>
-                                <p th:text="${order.getUser().getName()}"></p>
-                                <p><b>Email: </b></p>
-                                <p th:text="${order.getUser().getEmail()}"></p>
-                                <p><b>Address: </b></p>
-                                <p th:text="${order.getUser().getAddress()}"></p>
-                                <p><b>Phone: </b></p>
-                                <p th:text="${order.getUser().getPhone()}"></p>
+                                <p><span><b>Name: </b></span>
+                                    <span th:text="${order.getUser().getName()}"></span></p>
+                                <p><span><b>Email: </b></span>
+                                    <span th:text="${order.getUser().getEmail()}"></span></p>
+                                <p><span><b>Address: </b></span>
+                                    <span th:text="${order.getUser().getAddress()}"></span></p>
+                                <p><span><b>Phone: </b></span>
+                                    <span th:text="${order.getUser().getPhone()}"></span></p>
                                 <hr>
                                 <h5 class="text-center">TOTAL ORDER</h5>
                                 <form action="#" th:action="@{/order}" th:object="${order}" method="post">
                                 <h6>Do you have promo code?</h6>
                                     <div class="row">
-                                            <div class="col-md-8">
-                                                <th:block th:if="${diss != null}">
-                                                    <input type="text" class="form-control" placeholder="search promo code" id="discount" th:field="*{discount.name}" readonly>
-                                                </th:block>
-                                                <th:block th:unless="${diss != null}">
-                                                    <input type="text" class="form-control" placeholder="search promo code" id="discount" th:field="*{discount.name}">
-                                                </th:block>
-                                                <div th:if="${error != null}">
-                                                    <div class="alert alert-danger" role="alert" th:text="${error}" style="margin-top: 5px"> </div>
-                                                </div>
+                                        <div class="col-md-8">
+                                            <th:block th:if="${diss != null}">
+                                                <input type="text" class="form-control" placeholder="Enter promo code" id="discount" th:field="*{discount.name}" readonly>
+                                            </th:block>
+                                            <th:block th:unless="${diss != null}">
+                                                <input type="text" class="form-control" placeholder="Enter promo code" id="discount" th:field="*{discount.name}">
+                                            </th:block>
+                                            <div th:if="${error != null}">
+                                                <div class="alert alert-danger" role="alert" th:text="${error}" style="margin-top: 5px"> </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <th:block th:if="${diss != null}">
-                                                    <a th:href="@{/cart}" >
-                                                        <input type="button" class=" form-control btn btn-danger" value="Cancel">
-                                                    </a>
-                                                </th:block>
-                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <th:block th:if="${diss != null}">
+                                                <a th:href="@{/cart}" >
+                                                    <input type="button" class=" form-control btn btn-danger" value="Cancel">
+                                                </a>
+                                            </th:block>
+                                        </div>
                                     </div>
                                     <table class="table table-borderless">
                                             <tr>
@@ -115,7 +115,7 @@
                                             <tr>
                                                 <td><h4>Total</h4></td>
                                                 <input type="hidden" th:field="*{total}" th:value="*{total}">
-                                                <td th:text="*{'$' + total + '.00'}"></td>
+                                                <td><h4 th:text="*{'$' + total + '.00'}"></h4></td>
                                             </tr>
                                     </table>
                                     <hr>

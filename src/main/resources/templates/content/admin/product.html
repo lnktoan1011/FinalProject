@@ -138,7 +138,7 @@
                                             <label>Image</label>
                                             <br>
                                             <div th:if="${product.getName() !=null}">
-                                                <input type="file" id="exampleInputFile" th:field = "*{files}" multiple="multiple">
+                                                <input type="file" id="exampleInputFile" th:field = "*{files}" multiple="multiple" >
                                             </div>
                                             <div th:unless="${product.getName() !=null}">
                                                 <input type="file" id="exampleInputFile" th:field = "*{files}" multiple="multiple" required>
@@ -280,7 +280,7 @@
                                     <table>
                                         <tr>
                                             <th>Price:</th>
-                                            <td th:text="${pro.price}"></td>
+                                            <td th:text="${'$ ' + pro.price}"></td>
                                         </tr>
                                         <tr>
                                             <th>Height: </th>

@@ -55,8 +55,9 @@ public class CategoryController {
     }
     @GetMapping("/deleteSub/{id}")
     public String deleteSub(@PathVariable("id") long id){
+        long cateID = subCategoryService.getSubCategory(id).getCategory().getId();
         subCategoryService.deleteSubCategory(id);
-        return "redirect:/admins/category/update-sub/" + id ;
+        return "redirect:/admins/category/update/" + cateID ;
     }
     @GetMapping("add")
     public String viewNewCategory(Model model){

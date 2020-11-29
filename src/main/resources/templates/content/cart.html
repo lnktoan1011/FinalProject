@@ -57,14 +57,14 @@
 <!--                                            </div>-->
                                             <tr th:each ="c, custStat : ${listCart.lCarts}">
                                                 <td>
-                                                    <div class="cart-info">
-                                                        <div th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
+                                                    <div class="row cart-info">
+                                                        <div class="col-md-3.5" th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
                                                             <img id="img" th:src="@{${'/images/' + img}}" width="150px" height="150px">
                                                         </div>
-                                                        <div class="info">
+                                                        <div class="col-md-8 info">
                                                             <input type="hidden"  th:value="${c.getProduct_cart().getId()}"/>
                                                             <input type="hidden"  th:value="${c.getProduct_cart().getName()}"/>
-                                                            <h5 th:text="${c.getProduct_cart().getName()}"> </h5>
+                                                            <h5 style="word-break: break-word;" th:text="${c.getProduct_cart().getName()}"> </h5>
                                                             <small style="font-weight: bold;" th:text="${'$ '+c.getProduct_cart().getPrice()} +'.00'"></small>
                                                             <br>
                                                         </div>

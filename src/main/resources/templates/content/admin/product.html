@@ -93,11 +93,11 @@
         }
 
     </style>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</head>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+ </head>
 <body>
 <div layout:fragment="content">
     <section class="content-header">
@@ -222,7 +222,12 @@
                                         <input type = "hidden" class="form-control" th:field="*{removeImage}" id = "removeImages">
                                         <input type = "hidden" class="form-control" th:field="*{id}">
                                         <button type="submit" class="btn btn-outline-success" th:text = "${isAdd}?'Save':'Update'" ></button>
-                                        <button type="button" class="btn btn-outline-danger" onclick="showForm()">Back</button>
+                                        <div th:unless="${back}">
+                                            <button type="button" class="btn btn-outline-danger" onclick="showForm()">Back</button>
+                                        </div>
+                                        <div th:if="${back}">
+                                            <a type="button" class="btn btn-outline-danger" th:href="@{/admins/product}">Back</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

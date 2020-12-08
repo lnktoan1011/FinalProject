@@ -85,13 +85,13 @@ public class ProductController {
         model.addAttribute("productfile", new ArrayList<ProductFiles>());
 //      Check already add or not
         model.addAttribute("isAdd", true);
+        model.addAttribute("back",false);
         return "content/admin/product";
     }
 
     @PostMapping("/save")
     public String addProduct(@ModelAttribute @Valid Product product, BindingResult bindingResult,
                              RedirectAttributes redirectAttributes, Model model){
-
         if (bindingResult.hasErrors()){
             model.addAttribute("getTable",true);
             model.addAttribute("isAdd", true);
@@ -116,6 +116,7 @@ public class ProductController {
         model.addAttribute("productImages", productImages);
         model.addAttribute("isAdd", false);
         model.addAttribute("getTable",true);
+        model.addAttribute("back",true);
         return "content/admin/product";
 
 

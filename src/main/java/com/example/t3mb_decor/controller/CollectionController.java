@@ -36,9 +36,11 @@ public class CollectionController {
             List<Cart> listCart = user.getListCart();
             for(int i = 0; i < listCart.size(); i++){
                 total = total + listCart.get(i).getQuantity();
+
             }
 
         }
+
         return total;
     }
 

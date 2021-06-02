@@ -19,7 +19,7 @@
 <!--        <start-class>com.example.t3mb_decor.T3mbDecorApplication</start-class>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>11</java.version>
+        <java.version>15</java.version>
         <maven-jar-plugin-version>3.3.9</maven-jar-plugin-version>
     </properties>
 

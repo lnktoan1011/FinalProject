@@ -4,6 +4,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Contact</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        .about
+        {
+            margin-top: 20px;
+            font-family: sans-serif;
+            display: grid;
+            background-color: white;
+            align-content: center;
+            min-height: 60vh;
+        }
+
+        .about section
+        {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 90vh;
+            width: 85vm;
+            margin: 0 auto;
+        }
+
+        .about .col-lg-6
+        {
+            text-align: center;
+        }
+        .about .col-lg-6 img
+        {
+            margin-bottom: 40px;
+            width: 220px;
+            height: 220px;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+
+        @media(max-width: 992px)
+        {
+            .about section{
+                grid-template-columns: 1fr;
+                width: 100%;
+            }
+            .about .content h2{
+                font-size: 20px;
+                margin-top: 50px;
+            }
+            .about .content span{
+                margin: 20px 0;
+            }
+            .about .content p{
+                font-size: 14px;
+            }
+            .about .icon li i{
+                font-size:15px;
+            }
+        }
+    </style>
 </head>
 <body class="con">
 
@@ -18,6 +77,50 @@
                         </iframe>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h3 style="margin-top: 20px; font-weight: bold">Members</h3>
+                <hr>
+                <div class="about">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <img class="ima" src="/main/home/contact/p1.jpg">
+                            <h3>Nguyen Cong Thanh</h3>
+                            <p>Student ID - 517H0084</p>
+                            <p>Phone number - 0907.986.613</p>
+                            <p>Email - 517H0084@student.tdtu.edu.vn</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <img class="ima" src="/main/home/contact/p2.jpg">
+                            <h3>Le Ngoc Khanh Toan</h3>
+                            <p>Student ID - 517H0090</p>
+                            <p>Phone number - 0979.036.420</p>
+                            <p>Email - 517H0090@student.tdtu.edu.vn</p>
+                        </div>
+                    </div>
+                </div>
+<!--                <div class="about">-->
+<!--                    <div class="tab">-->
+<!--                        <a class="tablinks" onclick="openCity(event, 'p1')"><img class="ima" src="/main/home/contact/p1.jpg" alt="" ></a>-->
+<!--                        <a class="tablinks" onclick="openCity(event, 'p2')"><img class="ima" src="/main/home/contact/p2.jpg" alt="" ></a>-->
+<!--                    </div>-->
+
+<!--                    <div id="p1" class="tabcontent">-->
+<!--                        <h3>Nguyen Cong Thanh</h3>-->
+<!--                        <p>Student ID - 517H0084</p>-->
+<!--                        <p>Phone number - 0907.986.613</p>-->
+<!--                        <p>Email - 517H0084@student.tdtu.edu.vn</p>-->
+<!--                    </div>-->
+<!--                    <div id="p2" class="tabcontent">-->
+<!--                        <h3>Le Ngoc Khanh Toan</h3>-->
+<!--                        <p>Student ID - 517H0090</p>-->
+<!--                        <p>Phone number - 0979.036.420</p>-->
+<!--                        <p>Email - 517H0090@student.tdtu.edu.vn</p>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </section>
         <section class="form-section">
@@ -68,13 +171,11 @@
                     </div>
                     <div class="col-md-6 address">
                         <h5>Call Us</h5>
-                        <p><a href="tel:+919090909090"><i class="fa fa-phone"></i> +(84) 913205175 </a><br>
+                        <p><a href="tel:+919090909090"><i class="fa fa-phone"></i> +(84) 979036420 </a><br>
                         </p>
-                        <h5>Email / Website</h5>
+                        <h5>Email</h5>
                         <p>
-                            <a href="mailto:2018minh@gmail.com"><i class="fa fa-envelope"></i> 2018minh@gmail.com</a><br>
-                            <a href="#"><i class="fa fa-globe"></i></i> www.xyz.com </a>
-
+                            <a href="mailto:2018minh@gmail.com"><i class="fa fa-envelope"></i> 517H0090@student.tdtu.edu.vn</a><br>
                         </p>
                         <h5>Working hours</h5>
                         <p>

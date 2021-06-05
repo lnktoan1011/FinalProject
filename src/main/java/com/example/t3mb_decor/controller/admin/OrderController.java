@@ -71,7 +71,7 @@ public class OrderController {
         }
         model.addAttribute("listImg",productFilesList );
         model.addAttribute("orderDetail", orderDetail);
-        return "content/admin/order";
+        return "content/admin/order_detail";
     }
 
     @GetMapping("/confirm/{id}")

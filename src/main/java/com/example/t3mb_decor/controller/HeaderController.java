@@ -59,9 +59,6 @@ public class HeaderController {
     @GetMapping("/#p1")
     public String showP1(){ return "/about";}
 
-    @GetMapping("/about")
-    public String showAbout(){return "/content/about";}
-
     @GetMapping("/history")
     public String showHistory(Model model,  Authentication authentication){
         String emailName = authentication.getName();

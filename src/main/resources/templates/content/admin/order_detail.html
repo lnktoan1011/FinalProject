@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layouts/admin_layout/admin_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Order </title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark" th:text="${'Order: ' + orderDetail.getId()}"></h1>
+                </div>
+                <div class="col-lg-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Catalog</a></li>
+                        <li class="breadcrumb-item active">Orders</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-9">
+                </div>
+                <div class="col-lg-1">
+                    <p>Quantity</p>
+                </div>
+                <div class="col-lg-2">
+                    <p>Price</p>
+                </div>
+            </div>
+            <hr style="border-top: 2px solid gray; margin-top: 0">
+            <div class="row" th:each="pro, custStat: ${orderDetail.getOrder_product()}">
+                <div class="col-lg-3" id="image">
+                    <div th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
+                        <img id="img" th:src="@{${'/images/' + img}}" style="width: 70%; padding: 10px;">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <p style="color: gray;" th:text="${pro.getProduct_orders().getName()}"></p>
+                </div>
+                <div class="col-lg-1">
+                    <p style="text-align: center;"><span th:text="${pro.getQuantity()}"></span></p>
+                </div>
+                <div class="col-lg-2">
+                    <p style="font-weight: bold;" th:text="${'$' + pro.getProduct_orders().getPrice()}"></p>
+                </div>
+            </div>
+            <hr style="border-top: 2px solid gray;">
+            <div class="row">
+                <div class="col-lg-6"></div>
+                <div class="col-lg-6" style="float: right">
+                    <div class="row" id="subtotal">
+                        <div class="col-lg-7" style="padding-left: 50px; padding-bottom: 20px">
+                        </div>
+                        <div class="col-lg-5">
+                            <p>SubTotal: <span style="font-weight: bold;" th:text="${'$'+ orderDetail.getSubTotal()}"></span></p>
+                        </div>
+                    </div>
+                    <div class="row" id="disCount">
+                        <th:block th:if="${orderDetail.getDiscount() == null}">
+                            <div class="col-lg-7" style="padding-left: 50px; padding-bottom: 20px">
+                                <p>Discount: <span style="font-weight: bold;"> No discount</span> </p>
+                            </div>
+                            <div class="col-lg-5">
+                                <p>Percent: <span style="font-weight: bold;">0%</span></p>
+                            </div>
+                        </th:block>
+                        <th:block th:unless="${orderDetail.getDiscount() == null}">
+                            <div class="col-lg-7" style="padding-left: 50px; padding-bottom: 20px">
+                                <p>Discount: <span style="font-weight: bold;" th:text="${orderDetail.getDiscount().getName()}"></span> </p>
+                            </div>
+                            <div class="col-lg-5">
+                                <p>Percent: <span style="font-weight: bold;" th:text="${orderDetail.getDiscount().getPercent()}"></span> %</p>
+                            </div>
+                        </th:block>
+                    </div>
+                    <hr>
+                    <div class="row" id="total">
+                        <div class="col-lg-7" style="padding-left: 50px; padding-bottom: 20px">
+                            <div th:if="${orderDetail.getStatus() == 0}">
+                                <a  th:href="@{/admins/order/confirm/{id}(id = ${orderDetail.id})}">
+                                    <button class="btn btn-outline-info" >Approve</button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <p>Total: <span style="font-weight: bold;font-size: 22px;" th:text="${'$' +orderDetail.getTotal()}"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

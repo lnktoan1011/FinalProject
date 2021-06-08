@@ -4,7 +4,7 @@
       layout:decorate="~{layouts/admin_layout/admin_layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Order </title>
+    <title th:text="${'Order: ' + orderDetail.getId()}"></title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -21,33 +21,53 @@
                     </ol>
                 </div>
             </div>
+            <hr style="border-top: 2px solid gray; margin-top: 0">
             <div class="row">
-                <div class="col-lg-9">
+                <div class="col-lg-3">
+                </div>
+                <div class="col-lg-3">
+                    <p>Product Name</p>
+                </div>
+                <div class="col-lg-2">
+                    <p>Color</p>
+                </div>
+                <div class="col-lg-2">
+                    <p>Brand</p>
                 </div>
                 <div class="col-lg-1">
                     <p>Quantity</p>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-1">
                     <p>Price</p>
                 </div>
             </div>
-            <hr style="border-top: 2px solid gray; margin-top: 0">
-            <div class="row" th:each="pro, custStat: ${orderDetail.getOrder_product()}">
-                <div class="col-lg-3" id="image">
-                    <div th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
-                        <img id="img" th:src="@{${'/images/' + img}}" style="width: 70%; padding: 10px;">
+
+            <div th:each="pro, custStat: ${orderDetail.getOrder_product()}">
+                <hr style="margin-top: 0">
+                <div class="row">
+                    <div class="col-lg-3" id="image">
+                        <div th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
+                            <img id="img" th:src="@{${'/images/' + img}}" style="width: 70%; padding: 10px;">
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <p style="color: gray;" th:text="${pro.getProduct_orders().getName()}"></p>
+                    </div>
+                    <div class="col-lg-2">
+                        <p th:text="${pro.getProduct_orders().getColor().getName()}"></p>
+                    </div>
+                    <div class="col-lg-2">
+                        <p th:text="${pro.getProduct_orders().getBrand().getName()}"></p>
+                    </div>
+                    <div class="col-lg-1">
+                        <p style="text-align: center;"><span th:text="${pro.getQuantity()}"></span></p>
+                    </div>
+                    <div class="col-lg-1">
+                        <p style="font-weight: bold;" th:text="${'$' + pro.getProduct_orders().getPrice()}"></p>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <p style="color: gray;" th:text="${pro.getProduct_orders().getName()}"></p>
-                </div>
-                <div class="col-lg-1">
-                    <p style="text-align: center;"><span th:text="${pro.getQuantity()}"></span></p>
-                </div>
-                <div class="col-lg-2">
-                    <p style="font-weight: bold;" th:text="${'$' + pro.getProduct_orders().getPrice()}"></p>
-                </div>
             </div>
+
             <hr style="border-top: 2px solid gray;">
             <div class="row">
                 <div class="col-lg-6"></div>
@@ -87,7 +107,7 @@
                             </div>
                         </div>
                         <div class="col-lg-5">
-                            <p>Total: <span style="font-weight: bold;font-size: 22px;" th:text="${'$' +orderDetail.getTotal()}"></span></p>
+                            <p style="font-size: 25px;">Total: <span style="font-weight: bold;" th:text="${'$' +orderDetail.getTotal()}"></span></p>
                         </div>
                     </div>
                 </div>

@@ -266,20 +266,19 @@ nav.sticky .icon-search ,nav .icon-search{
     align-items: center;
     justify-content: center;
     background-color: #FFF;
-    min-height: 700px;
+    padding-top: 50px;
 }
 .gallery-cate a {
     text-decoration: none;
 }
 .gallery-title {
-    min-height: 150px;
+    min-height: 100px;
     width: 300px;
-    margin-top: 15px;
-    margin-bottom: 35px;
+    margin-top: 10px;
+    margin-bottom: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 .gallery-title p {
     font-size: 30px;

@@ -11,7 +11,7 @@
     <groupId>com.example</groupId>
     <artifactId>t3mb_decor</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+
     <name>t3mb_decor</name>
     <description>Demo project for Spring Boot</description>
 

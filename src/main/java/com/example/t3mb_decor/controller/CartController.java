@@ -97,6 +97,7 @@ public class CartController {
         userService.saveProfile(user);
         redirectAttributes.addFlashAttribute("updateCart","Cart is updated");
         return "redirect:/cart";
+
     }
 
     @PostMapping

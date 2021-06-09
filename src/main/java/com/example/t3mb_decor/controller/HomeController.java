@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@RequestMapping("/home")
+@RequestMapping(value = {"/","/home"})
 @Controller
 public class HomeController {
 

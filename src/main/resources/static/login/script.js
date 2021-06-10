@@ -12,12 +12,14 @@ document.querySelector('.img-btn').addEventListener('click',function()
 window.onload = function () {
     render();
 }
-function render() {
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
-    recaptchaVerifier.render();
-}
+// function render() {
+//     window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+//     recaptchaVerifier.render();
+// }
 function phoneAuth() {
     var phone = document.getElementById('number').value;
+    var appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+    appVerifier.render();
     if(phone.length > 10)
     {
         var message = "The phone number is too long!";
@@ -25,7 +27,7 @@ function phoneAuth() {
     }
     else {
         phone = '+84' + phone.substring(phone.length - 9, phone.length);
-        firebase.auth().signInWithPhoneNumber(phone,window.recaptchaVerifier).then(function(confirmationResult) {
+        firebase.auth().signInWithPhoneNumber(phone,appVerifier).then(function(confirmationResult) {
             window.confirmationResult = confirmationResult;
             coderesult =confirmationResult;
             // alert("Please check your code in your phone");

@@ -12,13 +12,13 @@ document.querySelector('.img-btn').addEventListener('click',function()
 window.onload = function () {
     render();
 }
-// function render() {
-//     window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
-//     recaptchaVerifier.render();
-// }
-
-var appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
-appVerifier.render();
+var appVerifier;
+function render() {
+    // window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+    // recaptchaVerifier.render();
+    appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+    appVerifier.render();
+}
 
 function phoneAuth() {
     var phone = document.getElementById('number').value;

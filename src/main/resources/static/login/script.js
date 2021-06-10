@@ -16,10 +16,13 @@ window.onload = function () {
 //     window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
 //     recaptchaVerifier.render();
 // }
+
+var appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+appVerifier.render();
+
 function phoneAuth() {
     var phone = document.getElementById('number').value;
-    var appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
-    appVerifier.render();
+
     if(phone.length > 10)
     {
         var message = "The phone number is too long!";

@@ -48,7 +48,7 @@ public class HomeController {
 
     @GetMapping
     public String home(){
-        return "/content/home";
+        return "content/home";
     }
 
 }

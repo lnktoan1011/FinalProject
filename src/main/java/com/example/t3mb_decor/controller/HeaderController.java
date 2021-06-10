@@ -55,9 +55,9 @@ public class HeaderController {
     }
 
     @GetMapping("/contact")
-    public String showContact(){ return "/content/contact";}
+    public String showContact(){ return "content/contact";}
     @GetMapping("/#p1")
-    public String showP1(){ return "/about";}
+    public String showP1(){ return "about";}
 
     @GetMapping("/history")
     public String showHistory(Model model,  Authentication authentication){
@@ -65,7 +65,7 @@ public class HeaderController {
         User user = userService.getUserFindByEmail(emailName);
         List<Orders> ordersList = orderService.getHistory(user.getId());
         model.addAttribute("history", ordersList);
-        return "/content/pus-history";
+        return "content/pus-history";
     }
     @GetMapping("/history/{id}")
     public String viewOrderDetail(@PathVariable("id") long id,Model model){
@@ -88,6 +88,6 @@ public class HeaderController {
             model.addAttribute("null", "null");
         }
         model.addAttribute("orderDetail", orderDetail);
-        return "/content/history-detail";
+        return "content/history-detail";
     }
 }

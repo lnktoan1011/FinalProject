@@ -67,7 +67,7 @@ public class UserController {
     @GetMapping
     public String viewtest(){
 
-        return "/content/admin/users";
+        return "content/admin/users";
     }
 
     @PostMapping("add")
@@ -85,7 +85,7 @@ public class UserController {
         if (bindingResult.hasErrors()){
             model.addAttribute("getTable",true);
             model.addAttribute("emptyError",true);
-            return "/content/admin/users";
+            return "content/admin/users";
         }
         userService.saveUserToAdmin(user);
         return "redirect:/admins/user?success";
@@ -101,13 +101,13 @@ public class UserController {
         User user = userService.getUser(id);
         model.addAttribute("getTable",true);
         model.addAttribute("userUpdate",user);
-        return "/content/admin/users";
+        return "content/admin/users";
     }
     @PostMapping("/update")
     public String updateUser(@ModelAttribute("userUpdate") @Valid User user, BindingResult bindingResult,Model model){
         if (bindingResult.hasErrors()){
             model.addAttribute("getTable",true);
-            return "/content/admin/users";
+            return "content/admin/users";
         }
 //        System.out.println("usPage: " +user.getEmail()+"id:"+user.getId());
 //        System.out.println("usData: " +userService.getUser(user.getId()).getEmail()+"id:"+userService.getUser(user.getId()).getId());
@@ -121,7 +121,7 @@ public class UserController {
             }
             if (bindingResult.hasErrors()){
                 model.addAttribute("getTable",true);
-                return "/content/admin/users";
+                return "content/admin/users";
             }
         }
 

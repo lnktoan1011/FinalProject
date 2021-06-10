@@ -93,7 +93,7 @@ public class OrdersController {
         if(order.getSubTotal() == 0){
             model.addAttribute("errorProduct", "Please add product to Cart");
             model.addAttribute("order", order);
-            return "/content/cart";
+            return "content/cart";
         }
         if (!valueDiscount.isEmpty() && order.getDiscount().getId() == 0){
             Discount discount = promotionService.getProbyName(valueDiscount);
@@ -113,7 +113,7 @@ public class OrdersController {
                 model.addAttribute("error", "Invalid Promotion");
             }
             model.addAttribute("order", order);
-            return "/content/cart";
+            return "content/cart";
         }
         if (!order.getDiscount().getName().isEmpty()){
             Discount discount = promotionService.getPro(order.getDiscount().getId());

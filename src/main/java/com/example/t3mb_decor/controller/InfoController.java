@@ -74,7 +74,7 @@ public class InfoController {
     public String showUpdate(Authentication authentication, Model model){
         User user = userService.getUserFindByEmail(authentication.getName());
         model.addAttribute("InfoUser",user);
-        return "/content/profile";
+        return "content/profile";
     }
     @PostMapping("update")
     public String updateProfile(@ModelAttribute("InfoUser") @Valid User user, BindingResult bindingResult){
@@ -92,12 +92,12 @@ public class InfoController {
                         "Email address already in use"));
             }
             if(bindingResult.hasErrors()){
-                return "/content/profile";
+                return "content/profile";
             }
         }
 
         if(bindingResult.hasErrors()){
-            return "/content/profile";
+            return "content/profile";
         }
 
 
@@ -122,7 +122,7 @@ public class InfoController {
         }
         if (bindingResult.hasErrors()){
             model.addAttribute("InfoUser",userService.getUser(infoPwd.getId()));
-            return "/content/profile";
+            return "content/profile";
         }
 
         userService.saveInfoPwd(infoPwd);

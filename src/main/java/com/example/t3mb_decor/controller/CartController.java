@@ -86,7 +86,7 @@ public class CartController {
 
     @GetMapping
     public String Cart(){
-        return "/content/cart";
+        return "content/cart";
     }
 
     @PostMapping("/update")

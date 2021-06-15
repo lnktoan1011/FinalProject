@@ -2,6 +2,10 @@
 {
     margin: 0;
     padding: 0;
+
+}
+body{
+    background-color: #f4f4f4;
 }
 
 .carts #text1{
@@ -33,18 +37,11 @@
 }
 .carts #discount{
     border: 1px solid black;
-    background-color: #e6e6e6;
+    background-color: #f4f4f4;
 }
-.carts .info{
-    text-transform: uppercase;
-}
+
 .carts .info a{
     text-decoration: none;
-}
-.carts .col-md-4 {
-    background-color: #e6e6e6;
-    position: absolute;
-    right: 0;
 }
 .carts th
 {
@@ -135,23 +132,3 @@
 .ca nav.sticky .icon-search:hover{
     color: #fff;
 }
-/*.ca .type-text {*/
-/*    margin-top: 7px;*/
-/*}*/
-/*.ca nav{*/
-/*    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);*/
-
-/*}*/
-/*.ca nav .color a {*/
-/*    text-decoration: none;*/
-/*    color: #999;*/
-/*}*/
-/*!*.ca nav .icon-search*!*/
-/*.ca nav a{*/
-/*    text-decoration: none;*/
-/*    color: #999;*/
-/*    font-size: 20px;*/
-/*}*/
-/*.ca nav .login{*/
-/*    color: #999;border-color: #999;*/
-/*}*/

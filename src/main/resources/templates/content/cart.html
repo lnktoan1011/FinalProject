@@ -39,9 +39,9 @@
                             });
                         </script>
                         <div class="row" style="min-height: 650px">
-                            <div class="col-md-8" style="padding-top:10px; ">
-                                <h5 class="text-center" >MY SHOPPING BAG</h5>
-                                <hr id="text1">
+                            <div class="col-md-7" style="padding-top:10px; background-color: white; border-radius: 20px; margin: 20px; margin-left: 50px; position: absolute">
+<!--                                <h5 class="text-center" >MY SHOPPING CART</h5>-->
+<!--                                <hr id="text1">-->
                                 <table class="table1" id = "tableList">
                                     <form action="#" th:action="@{/cart/update}" th:object="${listCart}" method="post">
                                     <tr>
@@ -52,20 +52,17 @@
                                     </tr>
 
                                         <fieldset>
-<!--                                            <div class="text-right">-->
-<!--                                                <button type="submit" id="submitButton" class="btn btn-outline-success" ><i class="fas fa-redo-alt"></i></button>-->
-<!--                                            </div>-->
                                             <tr th:each ="c, custStat : ${listCart.lCarts}">
                                                 <td>
                                                     <div class="row cart-info">
-                                                        <div class="col-md-3.5" th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
+                                                        <div class="col-lg-5" th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
                                                             <img id="img" th:src="@{${'/images/' + img}}" width="150px" height="150px">
                                                         </div>
-                                                        <div class="col-md-8 info">
+                                                        <div class="col-lg-7 info">
                                                             <input type="hidden"  th:value="${c.getProduct_cart().getId()}"/>
                                                             <input type="hidden"  th:value="${c.getProduct_cart().getName()}"/>
                                                             <h5 style="word-break: break-word;" th:text="${c.getProduct_cart().getName()}"> </h5>
-                                                            <small style="font-weight: bold;" th:text="${'$ '+c.getProduct_cart().getPrice()} +'.00'"></small>
+                                                            <p style="font-weight: bold;" th:text="${'$ '+c.getProduct_cart().getPrice()} +'.00'"></p>
                                                             <br>
                                                         </div>
                                                     </div>
@@ -78,9 +75,8 @@
                                     </form>
                                 </table>
                             </div>
-                            <div class="col-md-4" style="padding-bottom: 30px; padding-top:10px;">
-                                <h5 class="text-center">CHECK OUT</h5>
-                                <hr>
+                            <div class="col-md-4" style="padding-bottom: 30px; padding-top:10px; background-color: white; border-radius: 20px; margin: 20px; margin-right: 50px; position: absolute; right: 0">
+<!--                                <hr>-->
                                 <p><span><b>Name: </b></span>
                                     <span th:text="${order.getUser().getName()}"></span></p>
                                 <p><span><b>Email: </b></span>
@@ -90,16 +86,16 @@
                                 <p><span><b>Phone: </b></span>
                                     <span th:text="${order.getUser().getPhone()}"></span></p>
                                 <hr>
-                                <h5 class="text-center">TOTAL ORDER</h5>
+<!--                                <h5 class="text-center">TOTAL ORDER</h5>-->
                                 <form action="#" th:action="@{/order}" th:object="${order}" method="post">
-                                <h6>Do you have promo code?</h6>
+<!--                                <h6>Do you have promo code?</h6>-->
                                     <div class="row">
                                         <div class="col-md-8">
                                             <th:block th:if="${diss != null}">
-                                                <input type="text" class="form-control" placeholder="Enter promo code" id="discount" th:field="*{discount.name}" readonly>
+                                                <input type="text" class="form-control" placeholder="Promo code" id="discount" th:field="*{discount.name}" readonly>
                                             </th:block>
                                             <th:block th:unless="${diss != null}">
-                                                <input type="text" class="form-control" placeholder="Enter promo code" id="discount" th:field="*{discount.name}">
+                                                <input type="text" class="form-control" placeholder="Promo code" id="discount" th:field="*{discount.name}">
                                             </th:block>
                                             <div th:if="${error != null}">
                                                 <div class="alert alert-danger" role="alert" th:text="${error}" style="margin-top: 5px"> </div>
@@ -114,25 +110,24 @@
                                         </div>
                                     </div>
                                     <table class="table table-borderless">
-                                            <tr>
-                                                <td><h6>Subtotal</h6></td>
-                                                <input type="hidden" th:field="*{order_product}">
-                                                <input type="hidden" th:field="*{user}">
-                                                <input type="hidden" th:field="*{subTotal}">
-                                                <td th:text="*{'$' +subTotal + '.00'}"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><h6>Promo code</h6></td>
-                                                <input type="hidden" th:field="*{discount}">
-                                                <td th:text="*{discount.getPercent() + ' %'}"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><h4>Total</h4></td>
-                                                <input type="hidden" th:field="*{total}" th:value="*{total}">
-                                                <td><h4 th:text="*{'$' + total + '.00'}"></h4></td>
-                                            </tr>
+                                        <tr>
+                                            <td><h6>Subtotal</h6></td>
+                                            <input type="hidden" th:field="*{order_product}">
+                                            <input type="hidden" th:field="*{user}">
+                                            <input type="hidden" th:field="*{subTotal}">
+                                            <td th:text="*{'$' +subTotal + '.00'}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><h6>Promo code</h6></td>
+                                            <input type="hidden" th:field="*{discount}">
+                                            <td th:text="*{discount.getPercent() + ' %'}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><h4>Total</h4></td>
+                                            <input type="hidden" th:field="*{total}" th:value="*{total}">
+                                            <td><h4 th:text="*{'$' + total + '.00'}"></h4></td>
+                                        </tr>
                                     </table>
-                                    <hr>
                                     <input type="submit" class=" form-control btn btn-dark" value="ORDER">
                                 </form>
                             </div>
@@ -142,13 +137,6 @@
                 </section>
             </div>
     </div>
-
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<!--        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
-<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
-<!--        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
-
     </div>
 </body>
 </html>

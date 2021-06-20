@@ -7,13 +7,28 @@
     <meta charset="UTF-8">
     <title>Cart</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <style>
         .ca{
             z-index: 1;
         }
     </style>
+    <script>
+    $(document).ready(function(){
+        $('input[id="discounts"]').attr('disabled',true);
+        $('input[id="discount"]').on('keyup',function (){
+            if($(this).val().length>=8){
+                $('input[id="discounts"]').attr('disabled',false);
+            }
+            else{
+                $('input[id="discounts"]').attr('disabled',true);
+            }
+        });
+    });
+    </script>
 </head>
+
 <body class="ca">
     <div layout:fragment="contents" style="margin-bottom: 40px">
             <div class="carts">
@@ -104,9 +119,13 @@
                                         <div class="col-md-4">
                                             <th:block th:if="${diss != null}">
                                                 <a th:href="@{/cart}" >
-                                                    <input type="button" class=" form-control btn btn-danger" value="Cancel">
+                                                    <input type="button" class=" form-control btn btn-outline-danger" value="Cancel">
                                                 </a>
                                             </th:block>
+                                            <th:block th:unless="${diss != null}">
+                                                <input type="submit" id = "discounts" class=" form-control btn btn-outline-secondary" value="Apply">
+                                            </th:block>
+
                                         </div>
                                     </div>
                                     <table class="table table-borderless">
@@ -139,4 +158,5 @@
     </div>
     </div>
 </body>
+
 </html>

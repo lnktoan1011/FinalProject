@@ -13,6 +13,7 @@ import java.util.List;
 public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
     private long id;
 
     @Column(name = "name",nullable = false)

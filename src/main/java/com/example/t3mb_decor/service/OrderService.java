@@ -14,6 +14,7 @@ public interface OrderService {
     List<Orders> getHistory(long userId);
     void confirmOrder(long id);
     List<Orders> getAllOrderSoft();
+    List<Orders> getOrderSearch(String id, String name, String address, String total);
     long countOrder();
     long countNewOrder();
 

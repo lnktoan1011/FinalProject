@@ -19,4 +19,17 @@ public interface OrderRepository extends JpaRepository<Orders,Long> {
     @Query(value = "SELECT count(id) FROM orders where status=0", nativeQuery = true)
     long countNewOrder();
 
+    @Query(value =  "SELECT os.* from orders as os " +
+                    "INNER JOIN users as us" +
+                    " on os.user_id = us.id" +
+                    " WHERE ( os.id = CASE WHEN :id = 0 THEN os.id ELSE :id END)" +
+                    " AND   ( us.name = CASE WHEN :name = '' THEN us.name ELSE :name END)" +
+                    " AND   ( us.address = CASE WHEN :address = '' THEN us.address ELSE :address END)" +
+                    " AND   ( os.total = CASE WHEN :total = 0 THEN os.total ELSE :total END)" +
+                    "ORDER BY os.id DESC"
+                    ,nativeQuery = true)
+    List<Orders> getOrderSearch(@Param("id") long id,
+                                @Param("name") String name,
+                                @Param("address") String address,
+                                @Param("total") long total);
 }

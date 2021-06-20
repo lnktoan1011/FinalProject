@@ -40,6 +40,21 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
+    public List<Orders> getOrderSearch(String id, String name, String address, String total){
+        long order_id = 0;
+        long order_total = 0;
+
+        if (!id.equals("")){
+            order_id = Integer.parseInt(id);
+            System.out.println("abc");
+        }
+        if (!total.equals("")){
+            order_total = Integer.parseInt(total);
+            System.out.println("cde");
+        }
+        return this.orderRepository.getOrderSearch(order_id,name,address,order_total);
+    }
+    @Override
     public long countOrder() {
         return orderRepository.count();
     }

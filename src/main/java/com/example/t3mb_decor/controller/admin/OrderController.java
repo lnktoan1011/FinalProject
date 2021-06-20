@@ -9,6 +9,7 @@ import com.example.t3mb_decor.service.ProductFileService;
 import com.example.t3mb_decor.service.UserService;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -53,7 +54,26 @@ public class OrderController {
         return userService.countUser();
     }
     @GetMapping
-    public String viewOrder(){
+    public String viewOrder(Model model){
+        return "content/admin/order";
+    }
+
+    @GetMapping("/searchOrder")
+    public String search(@Param("id") String id,
+                         @Param("name") String name,
+                         @Param("address") String address,
+                         @Param("date") String date,
+                         @Param("total") String total,
+                         Model model){
+
+        List<Orders> listOrders = orderService.getOrderSearch(id,name,address,total);
+        model.addAttribute("listOrder",listOrders);
+        model.addAttribute("id", id);
+        model.addAttribute("name", name);
+        model.addAttribute("address", address);
+        model.addAttribute("date", date);
+        model.addAttribute("total", total);
+        System.out.println( name + address + date);
         return "content/admin/order";
     }
     @GetMapping("/{id}")

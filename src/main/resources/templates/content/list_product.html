@@ -9,17 +9,29 @@
 </head>
 <body>
     <div layout:fragment="contents" style="margin: 50px 0 75px">
-
-        <!-- <hr style="border-top: 2px solid gray;"> -->
         <div class="container my-3">
             <div class="my-0 mx-auto w-50">
                 <form action="#" th:action="@{/search}" th:object="${productSearch}" method="post">
-                    <div class="input-group input-group-md border rounded">
-                        <input class="form-control border-0" type="text" placeholder="Search" aria-label="Search" th:field="*{name}">
-                        <div class="input-group-append border-1">
-                            <button class="btn btn-navbar" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
+                    <div class="input-group mb-3">
+                        <input type="text" placeholder="Enter product" style="border-radius: 5px" class="form-control" aria-label="Text input with dropdown button">
+                        <button class="btn btn-navbar" type="submit" style="border: 0.5px solid #c9c9c9">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <div class="input-group-prepend" style="margin-left: 20px">
+                            <button class="btn btn-secondary dropdown-toggle" style="border-radius: 5px" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Price</button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="">$0 - $500</a>
+                                <a class="dropdown-item" href="">$501 - $1000</a>
+                                <a class="dropdown-item" href="">$1001 - $2000</a>
+                            </div>
+                        </div>
+                        <div class="input-group-prepend" style="margin-left: 10px">
+                            <button class="btn btn-secondary dropdown-toggle" style="border-radius: 5px" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Brand</button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="">ABC</a>
+                                <a class="dropdown-item" href="">ASD</a>
+                                <a class="dropdown-item" href="">ASD</a>
+                            </div>
                         </div>
                     </div>
                 </form>

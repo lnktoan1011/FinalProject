@@ -33,10 +33,6 @@
 .profile #pro-name-error, #pro-email-error, #pro-phone-error, #pro-address-error, #pass-old-error, #pass-new-error, #pass-confirm-error {
     color: red;
 }
-.profile .type-input {
-    border: none;
-
-}
 .pr .type-text {
     margin-top: 7px;
 }

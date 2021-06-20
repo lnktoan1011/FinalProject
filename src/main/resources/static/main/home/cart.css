@@ -32,9 +32,6 @@ body{
     vertical-align: top;
     border-bottom: 1px solid #dee2e6;
 }
-.carts .col-md-8,.carts .col-md-4{
-    padding-bottom: 20px;
-}
 .carts #discount{
     border: 1px solid black;
     background-color: #f4f4f4;

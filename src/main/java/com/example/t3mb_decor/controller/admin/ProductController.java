@@ -3,6 +3,7 @@ package com.example.t3mb_decor.controller.admin;
 import com.example.t3mb_decor.model.*;
 import com.example.t3mb_decor.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -78,6 +79,30 @@ public class ProductController {
 
     @GetMapping
     public String viewProduct(Model model){
+
+//      add new product
+        model.addAttribute("product", new Product());
+//      List of files
+        model.addAttribute("productfile", new ArrayList<ProductFiles>());
+//      Check already add or not
+        model.addAttribute("isAdd", true);
+        model.addAttribute("back",false);
+        return "content/admin/product";
+    }
+
+    @GetMapping("/searchProduct")
+    public String search(@Param("name") String name,
+                         @Param("price") String price,
+                         @Param("quantity") String quantity,
+                         @Param("category") String category,
+                         @Param("color") String color,
+                         @Param("brand") String brand,
+                         Model model){
+        List<Product> productList  = productService.getProductSearch(name,price,quantity);
+        model.addAttribute("productList",productList);
+        model.addAttribute("name", name);
+        model.addAttribute("price", price);
+        model.addAttribute("quantity", quantity);
 
 //      add new product
         model.addAttribute("product", new Product());

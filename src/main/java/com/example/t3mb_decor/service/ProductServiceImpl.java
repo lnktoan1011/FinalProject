@@ -1,5 +1,6 @@
 package com.example.t3mb_decor.service;
 
+import com.example.t3mb_decor.model.Orders;
 import com.example.t3mb_decor.model.Product;
 import com.example.t3mb_decor.model.ProductFiles;
 import com.example.t3mb_decor.repository.ProductFileRepository;
@@ -138,5 +139,19 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getValidProduct() {
         return productRepository.getValidProduct();
+    }
+
+    @Override
+    public List<Product>  getProductSearch(String name,String price,String quantity){
+        int product_price = 0;
+        int product_quantity = 0;
+        if (!price.equals("")){
+            product_price = Integer.parseInt(price);
+        }
+        if (!quantity.equals("")){
+            product_quantity = Integer.parseInt(price);
+        }
+        List<Product> productList = this.productRepository.getProductSearch(name,product_price,product_quantity);
+        return productList;
     }
 }

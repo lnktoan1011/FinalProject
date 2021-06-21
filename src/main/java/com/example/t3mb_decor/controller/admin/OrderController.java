@@ -66,14 +66,13 @@ public class OrderController {
                          @Param("total") String total,
                          Model model){
 
-        List<Orders> listOrders = orderService.getOrderSearch(id,name,address,total);
+        List<Orders> listOrders = orderService.getOrderSearch(id,name,address,date,total);
         model.addAttribute("listOrder",listOrders);
         model.addAttribute("id", id);
         model.addAttribute("name", name);
         model.addAttribute("address", address);
         model.addAttribute("date", date);
         model.addAttribute("total", total);
-        System.out.println( name + address + date);
         return "content/admin/order";
     }
     @GetMapping("/{id}")

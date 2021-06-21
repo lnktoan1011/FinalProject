@@ -6,6 +6,8 @@ import com.example.t3mb_decor.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -40,10 +42,10 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public List<Orders> getOrderSearch(String id, String name, String address, String total){
+    public List<Orders> getOrderSearch(String id, String name, String address,String date ,String total){
         long order_id = 0;
         long order_total = 0;
-
+        String[] dated;
         if (!id.equals("")){
             order_id = Integer.parseInt(id);
             System.out.println("abc");
@@ -52,7 +54,21 @@ public class OrderServiceImpl implements OrderService{
             order_total = Integer.parseInt(total);
             System.out.println("cde");
         }
-        return this.orderRepository.getOrderSearch(order_id,name,address,order_total);
+
+        List<Orders> ordersList = this.orderRepository.getOrderSearch(order_id,name,address,order_total);
+        List<Orders> ordersList_final = new ArrayList<>();
+        System.out.println(ordersList.size());
+        //Handle for date
+        for (int i =0; i< ordersList.size(); i++){
+            dated = ordersList.get(i).getCreatedAt().toString().split("\\s+");
+            if ( date.equals(dated[0]) ){
+                ordersList_final.add(ordersList.get(i));
+            }
+        }
+        if(ordersList_final.size() == 0 && date.equals("")){
+            ordersList_final = ordersList;
+        }
+        return ordersList_final;
     }
     @Override
     public long countOrder() {

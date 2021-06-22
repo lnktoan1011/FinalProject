@@ -30,7 +30,6 @@ body{
 .carts .table1 th, .table1 td{
     padding: .75rem;
     vertical-align: top;
-    border-bottom: 1px solid #dee2e6;
 }
 .carts #discount{
     border: 1px solid black;

@@ -91,6 +91,10 @@
         .fa-trash:hover{
             color:rebeccapurple;
         }
+        #label{
+            text-align: right;
+            font-weight: bold;
+        }
 
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -104,14 +108,16 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Product</h1>
-                    <div class="row mb-2">
-                        <div class="col-sm-6" id="add">
-                            <button type="button" class ="btn btn-primary m-2"  onclick="showForm()">
-                                <i class="fas fa-plus"></i>
-                                <span> Add Product</span>
-                            </button>
-                        </div>
+                    <div class="row">
+                        <h1>Product</h1>
+                        <button type="button" class ="btn btn-primary"  onclick="showForm()" style="margin-left: 20px">
+                            <i class="fas fa-plus"></i>
+                            <span style="margin-left: 5px"> Add Product</span>
+                        </button>
+                        <button type="button" class ="btn btn-primary"  onclick="search()">
+                            <i class="fas fa-search"></i>
+                            <span style="margin-left: 5px"> Search</span>
+                        </button>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -139,28 +145,28 @@
                         <div class="col-lg-9">
                             <div class="card card-info block" style="display: block" id="card_info">
                                 <div class="card-body">
-                                        <div class="form-group">
-                                            <label>Image</label>
-                                            <br>
-                                            <div th:if="${product.getId() !=0}">
-                                                <input type="file" id="exampleInputFile" th:field = "*{files}" multiple="multiple" >
-                                            </div>
-                                            <div th:unless="${product.getId() != 0}">
-                                                <input type="file" id="exampleInputFile" th:field = "*{files}" multiple="multiple" required>
-                                            </div>
+                                    <div class="form-group">
+                                        <label>Image</label>
+                                        <br>
+                                        <div th:if="${product.getId() !=0}">
+                                            <input type="file" id="exampleInputFile" th:field = "*{files}" multiple="multiple" >
                                         </div>
-                                         <div class="form-group">
-                                            <span th:each="pro, custStat : ${productImages}" class="imagecontainer" th:id="'imageindex'+${custStat.index}">
-                                                <th:block th:with="img=${pro.getModifiedFileName()}">
-                                                    <img th:src="@{${'/images/' + img}}" style="width: 80px; height: 80px; border-radius: 50%; margin-left: 10px" class="image">
-                                                </th:block>
-                                                <span class="overlay">
-                                                    <a href="#" class = "icon image-confirm-delete" title="image delete" th:attr="data-id=${custStat.index}, data-name=${pro.modifiedFileName}">
-                                                        <i class="fa fa-trash" style="color:red"></i>
-                                                    </a>
-                                                </span>
+                                        <div th:unless="${product.getId() != 0}">
+                                            <input type="file" id="exampleInputFile" th:field = "*{files}" multiple="multiple" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <span th:each="pro, custStat : ${productImages}" class="imagecontainer" th:id="'imageindex'+${custStat.index}">
+                                            <th:block th:with="img=${pro.getModifiedFileName()}">
+                                                <img th:src="@{${'/images/' + img}}" style="width: 80px; height: 80px; border-radius: 50%; margin-left: 10px" class="image">
+                                            </th:block>
+                                            <span class="overlay">
+                                                <a href="#" class = "icon image-confirm-delete" title="image delete" th:attr="data-id=${custStat.index}, data-name=${pro.modifiedFileName}">
+                                                    <i class="fa fa-trash" style="color:red"></i>
+                                                </a>
                                             </span>
-                                          </div>
+                                        </span>
+                                    </div>
                                         <div class="form-group">
                                             <label>Name</label>
                                             <input type="text" id = "name" class="form-control" placeholder="Enter name" th:field = "*{name}" th:errorClass="is-invalid">
@@ -276,68 +282,54 @@
 
         <div  id="listUser" th:style="${getTable} ? 'display:none':'display: block;'">
             <div class="card card-info " id="card_info">
-                <form action="#" th:action="@{/admins/product/searchProduct}"  method="get">
-                    <div class="row mb-3">
-                        <div class="col-lg-5">
-                            <div class="card-body px-5">
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Name</label>
-                                    <div class="col-sm-6">
-                                        <th:block th:if="${name != null}">
-                                            <input type="text"  id="name" name = "name" th:value="*{name}" class="form-control" placeholder="Enter name" >
-                                        </th:block>
-                                        <th:block th:unless="${name != null}">
-                                            <input type="text"  id="name" name = "name" class="form-control" placeholder="Enter name" >
-                                        </th:block>
-                                        <div class="invalid-feedback"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2">
-                            <div class="card-body px-5">
-                                <div class="form-group row">
-                                    <label class="col-sm-8 col-form-label">Price</label>
-                                    <div class="col-sm-3">
-                                        <th:block th:if="${price != null}">
-                                            <input type="number"  id="price" name = "price"  th:value="*{price}" class="form-control" >
-                                        </th:block>
-                                        <th:block th:unless="${price != null}">
-                                            <input type="numer"  id="price" name = "price"  class="form-control"  >
-                                        </th:block>
-                                        <div class="invalid-feedback"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2">
-                            <div class="card-body px-5">
-                                <div class="form-group row">
-                                    <label class="col-sm-8 col-form-label">Quantity</label>
-                                    <div class="col-sm-3">
-                                        <th:block th:if="${quantity != null}">
-                                            <input type="number"  id="quantity" name = "quantity" th:value="*{quantity}" class="form-control"  >
-                                        </th:block>
-                                        <th:block th:unless="${quantity != null}">
-                                            <input type="number"  id="quantity" name = "quantity" class="form-control"  >
-                                        </th:block>
-                                        <div class="invalid-feedback"></div>
-                                    </div>
+                <form action="#" th:action="@{/admins/product/searchProduct}"  method="get" id="search_form" style="display: none">
+                    <div class="row" style="margin-top: 30px; margin-right:20px">
+                        <div class="col-lg-3">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" id="label">Name</label>
+                                <div class="col-sm-9">
+                                    <th:block th:if="${name != null}">
+                                        <input type="text"  id="name" name = "name" th:value="*{name}" class="form-control" placeholder="Enter name" >
+                                    </th:block>
+                                    <th:block th:unless="${name != null}">
+                                        <input type="text"  id="name" name = "name" class="form-control" placeholder="Enter name" >
+                                    </th:block>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <div class="card-body px-5">
-                                <div class="form-group row">
-                                    <button type="submit" class="btn btn-outline-success float-sm-right" >Search</button>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" id="label">Price</label>
+                                <div class="col-sm-9">
+                                    <th:block th:if="${price != null}">
+                                        <input type="number"  id="price" name = "price"  th:value="*{price}" class="form-control" >
+                                    </th:block>
+                                    <th:block th:unless="${price != null}">
+                                        <input type="numer"  id="price" name = "price"  class="form-control"  >
+                                    </th:block>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" id="label">Quantity</label>
+                                <div class="col-sm-9">
+                                    <th:block th:if="${quantity != null}">
+                                        <input type="number"  id="quantity" name = "quantity" th:value="*{quantity}" class="form-control"  >
+                                    </th:block>
+                                    <th:block th:unless="${quantity != null}">
+                                        <input type="number"  id="quantity" name = "quantity" class="form-control"  >
+                                    </th:block>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <button type="submit" class="btn btn-outline-success float-sm-right" >Search</button>
                         </div>
                     </div>
 
                 </form>
             </div>
-        </div>
             <ul th:each="pro, custStat : ${productList}">
                 <li id="item">
                     <div class="row">
@@ -401,6 +393,14 @@
         </div>
     </section>
     <script>
+        function search(){
+            var x = document.getElementById("search_form");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
         $(function(){
             var images = [];
             $('.image-confirm-delete').on('click', function (e){

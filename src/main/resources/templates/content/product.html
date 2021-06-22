@@ -107,14 +107,14 @@
                 <button class="tablinks" onclick="openCity(event, 'Tech')">Technical specifications</button>
             </div>
 
-            <div id="Description" class="tabcontent" style="display: block;">
+            <div id="Description" class="tabcontent" style="display: block; background-color: white; border-radius: 0 0 20px 20px">
                 <h3>Description</h3>
                 <pre th:utext="${product.description}"></pre>
             </div>
 
-            <div id="Tech" class="tabcontent">
+            <div id="Tech" class="tabcontent" style="background-color: white; border-radius: 0 0 20px 20px">
                 <h3>Technical specifications</h3>
-                <table class="table table-striped" style="font-size: 18px;">
+                <table class="table table-bordered" style="font-size: 18px;">
                     <tbody>
                     <tr>
                         <th scope="row">Material</th>
@@ -150,19 +150,18 @@
             <h2 style="text-align: center;">Other Products</h2>
             <div class="container1">
                 <th:block th:each=" proNew, custStat : ${listNewPro}">
-                    <div class="card">
+                    <div class="card" style="background-color: #f4f4f4;">
                         <a th:href="@{/product/{id}(id = ${proNew.id})}">
                             <div class="face face1">
                                 <div class="content">
                                     <div th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">
                                         <img style="width: 100%; height:200px;" id="img" th:src="@{${'/images/' + img}}">
                                     </div>
-<!--                                    <img style="width: 100%;" src="https://noithatthienminh.vn/wp-content/uploads/2018/11/13-1-1-1.jpg">-->
                                 </div>
                             </div>
                             <div class="face face2">
-                                <div class="content">
-                                    <h3 style="text-align: center;" th:text="${proNew.getName()}"></h3>
+                                <div class="content" style="text-align: center;">
+                                    <h5 th:text="${proNew.getName()}"></h5>
                                     <p th:text="'$ '+${proNew.getPrice()}"></p>
                                 </div>
                             </div>

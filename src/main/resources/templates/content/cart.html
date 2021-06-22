@@ -54,20 +54,17 @@
                             });
                         </script>
                         <div class="row" style="min-height: 580px">
-                            <div class="col-md-7" style="padding-bottom:10px; padding-top:10px; background-color: white; border-radius: 20px; margin: 20px; margin-left: 50px; position: absolute">
-<!--                                <h5 class="text-center" >MY SHOPPING CART</h5>-->
-<!--                                <hr id="text1">-->
+                            <div class="col-md-7" style="padding-bottom:10px; padding-top:10px; background-color: white; border-radius: 20px; margin: 20px; margin-bottom: 30px; margin-left: 50px">
                                 <table class="table1" id = "tableList">
                                     <form action="#" th:action="@{/cart/update}" th:object="${listCart}" method="post">
-                                    <tr>
-                                        <th>Product</th>
-                                        <th>Quantity</th>
-                                        <th>Subtotal</th>
-                                        <th class="p-0"><button type="submit" id="submitButton" class="btn btn-outline-success border-0" ><i class="far fa-edit"></i></button></th>
-                                    </tr>
-
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Quantity</th>
+                                            <th>Subtotal</th>
+                                            <th class="p-0"><button type="submit" id="submitButton" class="btn btn-outline-success border-0" ><i class="far fa-edit"></i></button></th>
+                                        </tr>
                                         <fieldset>
-                                            <tr th:each ="c, custStat : ${listCart.lCarts}">
+                                            <tr th:each ="c, custStat : ${listCart.lCarts}" style="border-top: 1px solid grey">
                                                 <td>
                                                     <div class="row cart-info">
                                                         <div class="col-lg-5" th:with="img=${listImg.get(custStat.index).getModifiedFileName()}">

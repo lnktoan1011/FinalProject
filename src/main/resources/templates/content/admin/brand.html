@@ -36,14 +36,18 @@
 </head>
 <body >
 <div layout:fragment="content">
-<!--   Toan -->
-
-        <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Brand</h1> <a th:href="@{/admins/brand}" class ="btn btn-primary m-2">Add Brand</a>
+                        <div class="row">
+                            <h1>Brand</h1>
+                            <a th:href="@{/admins/brand}" class ="btn btn-primary" style="margin-left: 20px">
+                                <i class="fas fa-plus"></i>
+                                <span style="margin-left: 5px"> Add Brand</span>
+                            </a>
+                        </div>
+
                     </div>
                     <div class="col-lg-6">
                         <ol class="breadcrumb float-sm-right">

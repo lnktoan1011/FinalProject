@@ -41,7 +41,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Categories</h1> <a th:href="@{/admins/category/add}" class ="btn btn-primary m-2">Add Category</a>
+                        <div class="row">
+                            <h1>Categories</h1>
+                            <a th:href="@{/admins/category/add}" class ="btn btn-primary" style="margin-left: 20px">
+                                <i class="fas fa-plus"></i>
+                                <span style="margin-left: 5px"> Add Category</span>
+                            </a>
+                        </div>
                     </div>
                     <div class="col-lg-6">
                         <ol class="breadcrumb float-sm-right">

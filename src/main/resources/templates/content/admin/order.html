@@ -37,7 +37,7 @@
         </div>
     </div>
     <div class="card card-info " id="card_info">
-        <form action="#" th:action="@{/admins/order/searchOrder}"  method="get" id="search_form" style="display: none">
+        <form action="#" th:action="@{/admins/order/searchOrder}"  method="get" id="search_form" th:style="${display} ? 'display:block':'display: none;'">
             <div class="row" style="margin-top: 30px; margin-right:20px">
                 <div class="col-lg-4">
                     <div class="row">

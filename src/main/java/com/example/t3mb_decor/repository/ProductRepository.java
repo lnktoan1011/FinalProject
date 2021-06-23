@@ -31,7 +31,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     List<Product> getValidProduct();
 
     @Query(value = "SELECT prd.* from products as prd" +
-                   " WHERE ( UPPER(prd.name) like CASE WHEN :name = '' THEN prd.name ELSE UPPER('%'||:name||'%') END)" +
+                   " WHERE ( UPPER(prd.name) like CASE WHEN :name = '' THEN UPPER(prd.name) ELSE UPPER('%'||:name||'%') END)" +
                    " AND ( prd.price >= CASE WHEN :price_low = 0 THEN  prd.price ELSE :price_low END)" +
                    " AND ( prd.price <= CASE WHEN :price_high = 0 THEN  prd.price ELSE :price_high END)" +
                    " AND ( prd.brand_id = CASE WHEN :brand = 0 THEN prd.brand_id ELSE :brand END)" +
@@ -42,7 +42,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
                                        @Param("brand") long brand );
 
     @Query(value =  "SELECT prd.* from products as prd" +
-                    " WHERE   ( prd.name = CASE WHEN :name = '' THEN prd.name ELSE :name END)" +
+                    " WHERE   ( UPPER(prd.name) LIKE CASE WHEN :name = '' THEN UPPER(prd.name) ELSE UPPER('%'||:name||'%') END)" +
                     " AND   ( prd.price = CASE WHEN :product_price = 0 THEN  prd.price ELSE :product_price END)" +
                     " AND   ( prd.quantity = CASE WHEN :product_quantity = 0 THEN prd.quantity ELSE :product_quantity END)" +
                     "ORDER BY prd.id DESC"

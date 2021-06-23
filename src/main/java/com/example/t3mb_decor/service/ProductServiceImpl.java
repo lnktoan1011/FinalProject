@@ -152,12 +152,18 @@ public class ProductServiceImpl implements ProductService {
     public List<Product>  getProductSearch(String name,String price,String quantity){
         int product_price = 0;
         int product_quantity = 0;
+
+        System.out.println(price);
+        System.out.println(quantity);
         if (!price.equals("")){
             product_price = Integer.parseInt(price);
         }
         if (!quantity.equals("")){
             product_quantity = Integer.parseInt(price);
         }
+
+        System.out.println(product_price);
+        System.out.println(product_quantity);
 
         List<Product> productList = this.productRepository.getProductSearch(name,product_price,product_quantity);
         return productList;

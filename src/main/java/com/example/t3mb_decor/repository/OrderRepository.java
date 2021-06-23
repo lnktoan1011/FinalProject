@@ -23,8 +23,8 @@ public interface OrderRepository extends JpaRepository<Orders,Long> {
                     "INNER JOIN users as us" +
                     " on os.user_id = us.id" +
                     " WHERE ( os.id = CASE WHEN :id = 0 THEN os.id ELSE :id END)" +
-                    " AND   ( us.name = CASE WHEN :name = '' THEN us.name ELSE :name END)" +
-                    " AND   ( us.address = CASE WHEN :address = '' THEN us.address ELSE :address END)" +
+                    " AND   ( UPPER(us.name) LIKE CASE WHEN :name = '' THEN UPPER(us.name) ELSE UPPER('%'||:name||'%') END)" +
+                    " AND   ( UPPER(us.address) LIKE CASE WHEN :address = '' THEN UPPER(us.address) ELSE UPPER('%'||:address||'%') END)" +
                     " AND   ( os.total = CASE WHEN :total = 0 THEN os.total ELSE :total END)" +
                     "ORDER BY os.id DESC"
                     ,nativeQuery = true)

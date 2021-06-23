@@ -73,6 +73,7 @@ public class OrderController {
         model.addAttribute("address", address);
         model.addAttribute("date", date);
         model.addAttribute("total", total);
+        model.addAttribute("display", "display");
         return "content/admin/order";
     }
     @GetMapping("/{id}")

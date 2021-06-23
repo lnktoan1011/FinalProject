@@ -30,6 +30,17 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     @Query(value = "SELECT * from products where status = 0 ORDER BY id DESC", nativeQuery = true)
     List<Product> getValidProduct();
 
+    @Query(value = "SELECT prd.* from products as prd" +
+                   " WHERE ( UPPER(prd.name) like CASE WHEN :name = '' THEN prd.name ELSE UPPER('%'||:name||'%') END)" +
+                   " AND ( prd.price >= CASE WHEN :price_low = 0 THEN  prd.price ELSE :price_low END)" +
+                   " AND ( prd.price <= CASE WHEN :price_high = 0 THEN  prd.price ELSE :price_high END)" +
+                   " AND ( prd.brand_id = CASE WHEN :brand = 0 THEN prd.brand_id ELSE :brand END)" +
+                   " AND prd.status = 0 ORDER BY prd.id DESC", nativeQuery = true)
+    List<Product> getProductSearchMain(@Param("name") String name,
+                                       @Param("price_low") int price_low,
+                                       @Param("price_high") int price_high,
+                                       @Param("brand") long brand );
+
     @Query(value =  "SELECT prd.* from products as prd" +
                     " WHERE   ( prd.name = CASE WHEN :name = '' THEN prd.name ELSE :name END)" +
                     " AND   ( prd.price = CASE WHEN :product_price = 0 THEN  prd.price ELSE :product_price END)" +

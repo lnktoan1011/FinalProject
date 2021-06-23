@@ -1,11 +1,9 @@
 package com.example.t3mb_decor.controller;
 
 import com.example.t3mb_decor.model.*;
-import com.example.t3mb_decor.service.CategoryService;
-import com.example.t3mb_decor.service.ProductFileService;
-import com.example.t3mb_decor.service.ProductService;
-import com.example.t3mb_decor.service.UserService;
+import com.example.t3mb_decor.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +19,8 @@ public class ProController {
     ProductService productService;
     @Autowired
     ProductFileService productFileService;
+    @Autowired
+    BrandService brandService;
     @Autowired
     CategoryService categoryService;
     @Autowired
@@ -77,29 +77,29 @@ public class ProController {
 
         return "content/product";
     }
+
     @GetMapping("/search")
-        public String search(){
-            return "redirect:/collections";
+    public String search(@Param("productSearch") String productSearch,
+                         @Param("priceSearch") String priceSearch,
+                         @Param("brandSearch") String brandSearch, Authentication authentication,Model model){
+        int price_low = 0;
+        int price_high = 0;
+        long brand = 0;
+        String[] split;
+        split = priceSearch.split("-");
+        String name = productSearch;
+
+        if (!priceSearch.equals("All"))
+        {
+            price_low = Integer.parseInt(split[0]);
+            price_high = Integer.parseInt(split[1]);
         }
-    @PostMapping("/search")
-    public String search(@ModelAttribute("productSearch") Product productSearch, Authentication authentication,Model model){
-
-
-       if (productSearch.getName().isEmpty()){
-           return "redirect:/collections";
-
-       }
-        List<Product> productListbefore = productService.getAllProductSort();
-        List<Product> productList = new ArrayList<>();
-
-        String productSear = productSearch.getName().toLowerCase();
-
-        for (int i =0; i< productListbefore.size(); i++) {
-            String productCheck = productListbefore.get(i).getName().toLowerCase();
-            if(productCheck.contains(productSear)){
-                productList.add(productListbefore.get(i));
-            }
+        if (!brandSearch.equals("All")){
+            brand = Integer.parseInt(brandSearch);
         }
+
+        List<Product> productList = productService.getProductSearchMain(name,price_low, price_high, brand);
+
 
         List<ProductFiles> productFilesList = new ArrayList<>();
         for (int i =0; i< productList.size(); i++) {
@@ -108,10 +108,12 @@ public class ProController {
             productFilesList.add(productFileslist1.get(0));
         }
 
-        model.addAttribute("productSearch", productSearch);
         model.addAttribute("productList", productList);
         model.addAttribute("listImg", productFilesList);
-
+        model.addAttribute("listBrand", brandService.getAllBrand());
+        model.addAttribute("productSearch", productSearch);
+        model.addAttribute("priceSearch", priceSearch);
+        model.addAttribute("brandSearch", brandSearch);
         if (authentication != null){
             String emailName = authentication.getName();
             User user = userService.getUserFindByEmail(emailName);

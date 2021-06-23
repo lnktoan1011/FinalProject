@@ -142,6 +142,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> getProductSearchMain(String name,int price_low,int price_high ,long brand){
+        System.out.println(name);
+        List<Product> productList = this.productRepository.getProductSearchMain(name, price_low, price_high, brand);
+        return productList;
+    }
+
+    @Override
     public List<Product>  getProductSearch(String name,String price,String quantity){
         int product_price = 0;
         int product_quantity = 0;
@@ -151,6 +158,7 @@ public class ProductServiceImpl implements ProductService {
         if (!quantity.equals("")){
             product_quantity = Integer.parseInt(price);
         }
+
         List<Product> productList = this.productRepository.getProductSearch(name,product_price,product_quantity);
         return productList;
     }

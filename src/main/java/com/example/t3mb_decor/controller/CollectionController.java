@@ -18,6 +18,8 @@ public class CollectionController {
     @Autowired
     ProductService productService;
     @Autowired
+    BrandService brandService;
+    @Autowired
     ProductFileService productFileService;
     @Autowired
     CategoryService categoryService;
@@ -51,12 +53,6 @@ public class CollectionController {
         return listCate;
     }
 
-//    //      List of products
-//    @ModelAttribute("productList")
-//    public List<Product> productList(){
-//        return productService.getAllProductSort();
-//    }
-
 
     @GetMapping
     public String viewCollection(Model model, Authentication authentication){
@@ -70,6 +66,10 @@ public class CollectionController {
         }
         model.addAttribute("productList",productList);
         model.addAttribute("listImg", productFilesList);
+        model.addAttribute("listBrand", brandService.getAllBrand());
+        model.addAttribute("productSearch", "");
+        model.addAttribute("priceSearch", "All");
+        model.addAttribute("brandSearch", "All");
 
         if (authentication != null){
             String emailName = authentication.getName();

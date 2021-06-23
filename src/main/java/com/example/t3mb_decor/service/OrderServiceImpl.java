@@ -42,20 +42,26 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public List<Orders> getOrderSearch(String id, String name, String address,String date ,String total){
+    public List<Orders> getOrderSearch(String id, String name, String address,String date ,String total,String status){
         long order_id = 0;
         long order_total = 0;
+        int order_status = 3;
         String[] dated;
         if (!id.equals("")){
             order_id = Integer.parseInt(id);
-            System.out.println("abc");
+
         }
         if (!total.equals("")){
             order_total = Integer.parseInt(total);
-            System.out.println("cde");
+
+        }
+        System.out.println("cc:" + status);
+        if (!status.equals("All")){
+            order_status = Integer.parseInt(status);
+
         }
 
-        List<Orders> ordersList = this.orderRepository.getOrderSearch(order_id,name,address,order_total);
+        List<Orders> ordersList = this.orderRepository.getOrderSearch(order_id,name,address,order_total,order_status);
         List<Orders> ordersList_final = new ArrayList<>();
         System.out.println(ordersList.size());
         //Handle for date

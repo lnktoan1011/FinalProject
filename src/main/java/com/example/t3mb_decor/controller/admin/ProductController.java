@@ -98,11 +98,16 @@ public class ProductController {
                          @Param("color") String color,
                          @Param("brand") String brand,
                          Model model){
-        List<Product> productList  = productService.getProductSearch(name,price,quantity);
+
+
+        List<Product> productList  = productService.getProductSearch(name,price,quantity, brand, color, category);
         model.addAttribute("productList",productList);
         model.addAttribute("name", name);
         model.addAttribute("price", price);
         model.addAttribute("quantity", quantity);
+        model.addAttribute("brand", brand);
+        model.addAttribute("color", color);
+        model.addAttribute("category", category);
         model.addAttribute("display", "display");
 
 //      add new product

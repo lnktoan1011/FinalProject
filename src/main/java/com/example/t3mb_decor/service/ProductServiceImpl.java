@@ -149,9 +149,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product>  getProductSearch(String name,String price,String quantity){
+    public List<Product>  getProductSearch(String name,String price,String quantity,String brand,String color,String category){
         int product_price = 0;
         int product_quantity = 0;
+        long brandSearch = 0;
+        long colorSearch = 0;
+        long cateSearch = 0;
 
         System.out.println(price);
         System.out.println(quantity);
@@ -162,10 +165,20 @@ public class ProductServiceImpl implements ProductService {
             product_quantity = Integer.parseInt(price);
         }
 
+        if (!brand.equals("All")){
+            brandSearch = Integer.parseInt(brand);
+        }
+        if (!color.equals("All")){
+            colorSearch = Integer.parseInt(color);
+        }
+        if (!category.equals("All")){
+            cateSearch = Integer.parseInt(category);
+        }
+
         System.out.println(product_price);
         System.out.println(product_quantity);
 
-        List<Product> productList = this.productRepository.getProductSearch(name,product_price,product_quantity);
+        List<Product> productList = this.productRepository.getProductSearch(name,product_price,product_quantity,brandSearch,colorSearch,cateSearch);
         return productList;
     }
 }

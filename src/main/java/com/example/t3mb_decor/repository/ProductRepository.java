@@ -42,13 +42,19 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
                                        @Param("brand") long brand );
 
     @Query(value =  "SELECT prd.* from products as prd" +
-                    " WHERE   ( UPPER(prd.name) LIKE CASE WHEN :name = '' THEN UPPER(prd.name) ELSE UPPER('%'||:name||'%') END)" +
+                    " WHERE  ( UPPER(prd.name) LIKE CASE WHEN :name = '' THEN UPPER(prd.name) ELSE UPPER('%'||:name||'%') END)" +
                     " AND   ( prd.price = CASE WHEN :product_price = 0 THEN  prd.price ELSE :product_price END)" +
                     " AND   ( prd.quantity = CASE WHEN :product_quantity = 0 THEN prd.quantity ELSE :product_quantity END)" +
+                    "AND   ( prd.brand_id = CASE WHEN :brand = 0 THEN  prd.brand_id ELSE :brand END)" +
+                    "AND   ( prd.color_id = CASE WHEN :color = 0 THEN  prd.color_id ELSE :color END)" +
+                    "AND   ( prd.subcate_id = CASE WHEN :cate = 0 THEN  prd.subcate_id ELSE :cate END)" +
                     "ORDER BY prd.id DESC"
                     ,nativeQuery = true)
     List<Product> getProductSearch(@Param("name") String name,
                                    @Param("product_price") int product_price,
-                                   @Param("product_quantity") int product_quantity);
+                                   @Param("product_quantity") int product_quantity,
+                                   @Param("brand") long brand,
+                                   @Param("color") long color,
+                                   @Param("cate") long cate);
 
 }

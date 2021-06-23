@@ -55,6 +55,7 @@ public class OrderController {
     }
     @GetMapping
     public String viewOrder(Model model){
+        model.addAttribute("status", "All");
         return "content/admin/order";
     }
 
@@ -64,15 +65,17 @@ public class OrderController {
                          @Param("address") String address,
                          @Param("date") String date,
                          @Param("total") String total,
+                         @Param("status") String status,
                          Model model){
 
-        List<Orders> listOrders = orderService.getOrderSearch(id,name,address,date,total);
+        List<Orders> listOrders = orderService.getOrderSearch(id,name,address,date,total,status);
         model.addAttribute("listOrder",listOrders);
         model.addAttribute("id", id);
         model.addAttribute("name", name);
         model.addAttribute("address", address);
         model.addAttribute("date", date);
         model.addAttribute("total", total);
+        model.addAttribute("status", status);
         model.addAttribute("display", "display");
         return "content/admin/order";
     }

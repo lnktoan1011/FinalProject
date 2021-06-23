@@ -97,10 +97,11 @@
                     <div class="form-group row">
                         <span class="col-lg-3 col-form-label" id="label">Status</span>
                         <div class="col-lg-9">
-                            <select class="form-control">
-                                <option selected>All</option>
-                                <option value="1">Approved</option>
-                                <option value="2">Pending</option>
+                            <select class="form-control" id = "status" name = "status" >
+                                <option th:selected="${#strings.equals(status,'All')}" value="All">All</option>
+                                <option th:selected="${#strings.equals(status,'0')}" value="0">Pending</option>
+                                <option th:selected="${#strings.equals(status,'1')}" value="1">Approved</option>
+
                             </select>
                         </div>
                     </div>

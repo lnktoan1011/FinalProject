@@ -26,10 +26,12 @@ public interface OrderRepository extends JpaRepository<Orders,Long> {
                     " AND   ( UPPER(us.name) LIKE CASE WHEN :name = '' THEN UPPER(us.name) ELSE UPPER('%'||:name||'%') END)" +
                     " AND   ( UPPER(us.address) LIKE CASE WHEN :address = '' THEN UPPER(us.address) ELSE UPPER('%'||:address||'%') END)" +
                     " AND   ( os.total = CASE WHEN :total = 0 THEN os.total ELSE :total END)" +
+                    " AND   ( os.status = CASE WHEN :status = 3 THEN os.status ELSE :status END)" +
                     "ORDER BY os.id DESC"
                     ,nativeQuery = true)
     List<Orders> getOrderSearch(@Param("id") long id,
                                 @Param("name") String name,
                                 @Param("address") String address,
-                                @Param("total") long total);
+                                @Param("total") long total,
+                                @Param("status") long status);
 }

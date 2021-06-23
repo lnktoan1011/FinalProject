@@ -329,10 +329,13 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" id="label">Brand</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control">
-                                        <option selected>All</option>
-                                        <option value="1">Approved</option>
-                                        <option value="2">Pending</option>
+                                    <select class="form-control"  name = "brand">
+                                        <option selected>All</option >
+                                        <option th:each ="br: ${listBrand}"
+                                                th:value= "${br.id}"
+                                                th:text = "${br.name}"
+                                                th:selected="${#strings.equals(brand, #strings.toString(br.id))}">
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -341,10 +344,13 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" id="label">Color</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control">
+                                    <select class="form-control"  name = "color">
                                         <option selected>All</option>
-                                        <option value="1">Approved</option>
-                                        <option value="2">Pending</option>
+                                        <option th:each ="co: ${listColor}"
+                                                th:value= "${co.id}"
+                                                th:text = "${co.name}"
+                                                th:selected="${#strings.equals(color, #strings.toString(co.id))}">
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -353,10 +359,13 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" id="label">Category</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control">
+                                    <select class="form-control" name = "category">
                                         <option selected>All</option>
-                                        <option value="1">Approved</option>
-                                        <option value="2">Pending</option>
+                                        <option th:each ="cate: ${listSubcate}"
+                                                th:value= "${cate.id}"
+                                                th:text = "${cate.name}"
+                                                th:selected="${#strings.equals(category, #strings.toString(cate.id))}">
+                                        </option>
                                     </select>
                                 </div>
                             </div>

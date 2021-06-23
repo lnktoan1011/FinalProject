@@ -8,7 +8,7 @@ public interface ProductService {
     List<Product> getAllProduct();
     Product getProduct(long id);
     List<Product> searchProduct(String name);
-    List<Product> getProductSearch(String name,String price,String quantity);
+    List<Product> getProductSearch(String name,String price,String quantity,String brand,String color,String category);
     List<Product> getProductSearchMain(String name,int price_low,int price_high ,long brand);
     Product save(Product product);
     Product update(Product product);

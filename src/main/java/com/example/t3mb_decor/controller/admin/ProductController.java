@@ -103,6 +103,7 @@ public class ProductController {
         model.addAttribute("name", name);
         model.addAttribute("price", price);
         model.addAttribute("quantity", quantity);
+        model.addAttribute("display", "display");
 
 //      add new product
         model.addAttribute("product", new Product());

@@ -280,11 +280,11 @@
             </form>
         </div>
 
-        <div  id="listUser" th:style="${getTable} ? 'display:none':'display: block;'">
+        <div  id="listUser">
             <div class="card card-info " id="card_info">
-                <form action="#" th:action="@{/admins/product/searchProduct}"  method="get" id="search_form" style="display: none">
+                <form action="#" th:action="@{/admins/product/searchProduct}"  method="get" id="search_form"  th:style="${display} ? 'display:block':'display: none;'">
                     <div class="row" style="margin-top: 30px; margin-right:20px">
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" id="label">Name</label>
                                 <div class="col-sm-9">
@@ -297,7 +297,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" id="label">Price</label>
                                 <div class="col-sm-9">
@@ -310,7 +310,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" id="label">Quantity</label>
                                 <div class="col-sm-9">
@@ -323,11 +323,46 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-2">
-                            <button type="submit" class="btn btn-outline-success float-sm-right" >Search</button>
+                    </div>
+                    <div class="row" style="margin-right:20px">
+                        <div class="col-lg-4">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" id="label">Brand</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control">
+                                        <option selected>All</option>
+                                        <option value="1">Approved</option>
+                                        <option value="2">Pending</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" id="label">Color</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control">
+                                        <option selected>All</option>
+                                        <option value="1">Approved</option>
+                                        <option value="2">Pending</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" id="label">Category</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control">
+                                        <option selected>All</option>
+                                        <option value="1">Approved</option>
+                                        <option value="2">Pending</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
+                    <button type="submit" class="btn btn-outline-success float-sm-right" style="text-align: right; margin-right: 60px; margin-bottom: 20px">Search</button>
                 </form>
             </div>
             <ul th:each="pro, custStat : ${productList}">

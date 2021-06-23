@@ -73,18 +73,18 @@ p{
     outline: none;
 }
 
-select{
-    padding: 5px;
-    padding-left: 7px;
-    margin-right: 10px;
-}
-select:focus{
-    outline: none;
-}
-option{
-    color: white;
-    background: rgb(163, 163, 163);
-    padding: 3px;
-    list-style: none;
-    cursor: pointer;
-}
+/*select{*/
+/*    padding: 5px;*/
+/*    padding-left: 7px;*/
+/*    margin-right: 10px;*/
+/*}*/
+/*select:focus{*/
+/*    outline: none;*/
+/*}*/
+/*option{*/
+/*    color: white;*/
+/*    background: rgb(163, 163, 163);*/
+/*    padding: 3px;*/
+/*    list-style: none;*/
+/*    cursor: pointer;*/
+/*}*/

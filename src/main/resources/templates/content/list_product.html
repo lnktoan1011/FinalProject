@@ -10,34 +10,46 @@
 <body>
     <div layout:fragment="contents" style="margin: 50px 0 75px">
         <div class="container my-3">
-            <div class="my-0 mx-auto w-50">
+            <div class="my-0 mx-auto w-75">
                 <form action="#" th:action="@{/search}" method="get">
-                    <div class="input-group mb-3">
-                        <input type="text" name = "productSearch" th:value="${productSearch}" placeholder="Enter product" style="border-radius: 5px" class="form-control" aria-label="Text input with dropdown button">
-                        <button class="btn btn-navbar" type="submit" style="border: 0.5px solid #c9c9c9">
-                            <i class="fas fa-search"></i>
-                        </button>
-                        <div class="input-group-prepend" style="margin-left: 20px">
-                            <label>Price</label>
-                            <select class="form-select" id = "priceSearch" name = "priceSearch" aria-label="Default select example">
-                                <option th:selected="${#strings.equals(priceSearch,'All')}" >All</option>
-                                <option th:selected="${#strings.equals(priceSearch,'0-500')}" value="0-500">0-500</option>
-                                <option th:selected="${#strings.equals(priceSearch,'500-2000')}" value="500-2000">500-2000</option>
-                                <option th:selected="${#strings.equals(priceSearch,'2000-5000')}" value="2000-5000">2000-5000</option>
-                            </select>
+                        <div class="row">
+                            <div class="col-lg-5"><span>Name</span></div>
+                            <div class="col-lg-3"><span>Price</span></div>
+                            <div class="col-lg-3"><span>Brand</span></div>
                         </div>
-                        <div class="input-group-prepend" style="margin-left: 10px">
-                            <label>Brand</label>
-                            <select class="form-select" name = "brandSearch"  aria-label="Default select example">
-                                <option selected>All</option>
-                                <option th:each ="brand: ${listBrand}"
-                                        th:value= "${brand.id}"
-                                        th:text = "${brand.name}"
-                                        th:selected="${#strings.equals(brandSearch, #strings.toString(brand.id))}">
-
-                                </option>
-                            </select>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <input type="text" name = "productSearch" th:value="${productSearch}" placeholder="Enter name" style="border-radius: 5px" class="form-control">
                         </div>
+                        <div class="col-lg-3">
+                            <div class="input-group-prepend">
+                                <select class="form-control" id = "priceSearch" name = "priceSearch" aria-label="Default select example">
+<!--                                    <option disabled style="font-weight: bold;">PRICE</option>-->
+                                    <option th:selected="${#strings.equals(priceSearch,'All')}" >All</option>
+                                    <option th:selected="${#strings.equals(priceSearch,'0-500')}" value="0-500">0-500</option>
+                                    <option th:selected="${#strings.equals(priceSearch,'500-2000')}" value="500-2000">500-2000</option>
+                                    <option th:selected="${#strings.equals(priceSearch,'2000-5000')}" value="2000-5000">2000-5000</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="input-group-prepend">
+                                <select class="form-control" name = "brandSearch"  aria-label="Default select example">
+<!--                                    <option disabled style="font-weight: bold;">BRAND</option>-->
+                                    <option >All</option>
+                                    <option th:each ="brand: ${listBrand}"
+                                            th:value= "${brand.id}"
+                                            th:text = "${brand.name}"
+                                            th:selected="${#strings.equals(brandSearch, #strings.toString(brand.id))}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+<!--                        <div class="col-lg-1">-->
+                            <button class="btn btn-navbar" type="submit" style="border: 0.5px solid; background-color: white">
+                                <i class="fas fa-search"></i>
+                            </button>
+<!--                        </div>-->
                     </div>
                 </form>
             </div>

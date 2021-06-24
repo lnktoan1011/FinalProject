@@ -72,7 +72,6 @@ public class CollectionController {
     }
     @GetMapping
     public String viewCollection(Model model, Authentication authentication){
-        model.addAttribute("productSearch", new Product());
         List<Product> productList = productService.getAllProductSort();
         List<ProductFiles> productFilesList = new ArrayList<>();
         for (int i =0; i< productList.size(); i++) {
@@ -112,7 +111,7 @@ public class CollectionController {
 
     @GetMapping("/productSub/{id}")
     public String viewProductFromSub(@PathVariable("id") long id,Model model,Authentication authentication){
-        model.addAttribute("productSearch", new Product());
+
         List<Product> productList = productService.getProductBySubId(id);
         List<ProductFiles> productFilesList = new ArrayList<>();
         for (int i =0; i< productList.size(); i++) {
@@ -144,7 +143,7 @@ public class CollectionController {
     }
     @GetMapping("/productCate/{id}")
     public String viewProductFromCate(@PathVariable("id") long id,Model model,Authentication authentication){
-        model.addAttribute("productSearch", new Product());
+
         List<Long> subId = subCategoryService.getSubIdByCate(id);
         System.out.println("subId: "+subId);
         List<Product> productList = new ArrayList<>();

@@ -52,8 +52,24 @@ public class CollectionController {
         List<Category> listCate =  categoryService.getAllCategories();
         return listCate;
     }
-
-
+    //      List of categories
+    @ModelAttribute("listBrand")
+    public List<Brand> getListBrand(){
+        List<Brand> brandList =   brandService.getAllBrand();
+        return brandList;
+    }
+    @ModelAttribute("productSearch")
+    public String getListProductSearch(){
+        return "";
+    }
+    @ModelAttribute("priceSearch")
+    public String getListPriceSearch(){
+        return "All";
+    }
+    @ModelAttribute("brandSearch")
+    public String getListBrandSearch(){
+        return "All";
+    }
     @GetMapping
     public String viewCollection(Model model, Authentication authentication){
         model.addAttribute("productSearch", new Product());
@@ -66,10 +82,7 @@ public class CollectionController {
         }
         model.addAttribute("productList",productList);
         model.addAttribute("listImg", productFilesList);
-        model.addAttribute("listBrand", brandService.getAllBrand());
-        model.addAttribute("productSearch", "");
-        model.addAttribute("priceSearch", "All");
-        model.addAttribute("brandSearch", "All");
+
 
         if (authentication != null){
             String emailName = authentication.getName();

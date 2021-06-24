@@ -20,11 +20,11 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     @Query(value = "SELECT * from products where name = :name  ", nativeQuery = true)
     List<Product> searchProduct(@Param("name") String name);
 
-    @Query(value = "SELECT * FROM products WHERE subcate_id= :id ORDER BY id DESC",nativeQuery = true)
+    @Query(value = "SELECT * FROM products WHERE subcate_id= :id and status = 0 ORDER BY id DESC",nativeQuery = true)
     List<Product> findBySubId(@Param("id") long id);
 
 
-    @Query(value = "SELECT * FROM products ORDER BY id DESC LIMIT 5",nativeQuery = true)
+    @Query(value = "SELECT * FROM products WHERE status = 0 ORDER BY id DESC LIMIT 5",nativeQuery = true)
     List<Product> findByIdSortNew();
 
     @Query(value = "SELECT * from products where status = 0 ORDER BY id DESC", nativeQuery = true)
@@ -48,7 +48,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
                     "AND   ( prd.brand_id = CASE WHEN :brand = 0 THEN  prd.brand_id ELSE :brand END)" +
                     "AND   ( prd.color_id = CASE WHEN :color = 0 THEN  prd.color_id ELSE :color END)" +
                     "AND   ( prd.subcate_id = CASE WHEN :cate = 0 THEN  prd.subcate_id ELSE :cate END)" +
-                    "ORDER BY prd.id DESC"
+                    "AND prd.status = 0 ORDER BY prd.id DESC"
                     ,nativeQuery = true)
     List<Product> getProductSearch(@Param("name") String name,
                                    @Param("product_price") int product_price,

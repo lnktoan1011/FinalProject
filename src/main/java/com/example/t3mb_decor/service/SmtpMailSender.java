@@ -3,25 +3,25 @@ package com.example.t3mb_decor.service;
 import com.example.t3mb_decor.model.OrderProduct;
 import com.example.t3mb_decor.model.Orders;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.util.List;
 
-@Component
+@Service
 public class SmtpMailSender {
 
     @Autowired
     private JavaMailSender javaMailSender;
     public void send(String to,
                      Orders orders) throws MessagingException {
-        MimeMessage message = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper;
 
-        helper = new MimeMessageHelper(message, true);
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
         String subject = "You have new order - ID:" + orders.getId() ;
         StringBuilder body = new StringBuilder("Order ID:" + orders.getId() + "." + "\n");
@@ -29,7 +29,8 @@ public class SmtpMailSender {
         for(int i =0; i < orders.getOrder_product().size(); i++){
             body.append(orders.getOrder_product().get(i).getProduct_orders().getName() + ": ");
             body.append(orders.getOrder_product().get(i).getProduct_orders().getPrice() + " * ");
-            body.append(orders.getOrder_product().get(i).getQuantity() + "\n");
+            body.append(orders.getOrder_product().get(i).getQuantity() + " = ");
+            body.append(orders.getOrder_product().get(i).getQuantity() * orders.getOrder_product().get(i).getProduct_orders().getPrice() + "\n");
         }
         body.append("Subtotal: " + orders.getSubTotal() +"\n");
         if(orders.getDiscount() != null){
@@ -44,10 +45,12 @@ public class SmtpMailSender {
         System.out.println(subject);
         System.out.println(body.toString());
 
-        helper.setSubject(subject);
-        helper.setTo(to);
-        helper.setText(body.toString(),true);
 
-        javaMailSender.send(message);
+        simpleMailMessage.setFrom("t3mbdecor@gmail.com");
+        simpleMailMessage.setTo(to);
+        simpleMailMessage.setSubject(subject);
+        simpleMailMessage.setText(body.toString());
+
+        javaMailSender.send(simpleMailMessage);
     }
 }

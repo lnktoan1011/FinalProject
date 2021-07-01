@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.mail.MessagingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,8 @@ public class OrdersController {
     OrderProductService orderProductService;
     @Autowired
     ProductFileService productFileService;
+    @Autowired
+    SmtpMailSender smtpMailSender;
 
     //      Total Product in Cart
     @ModelAttribute("TotalProduct")
@@ -86,7 +89,7 @@ public class OrdersController {
     }
 
     @PostMapping
-    public String AddToOrder(@ModelAttribute("order") Orders order, Authentication authentication, Model model){
+    public String AddToOrder(@ModelAttribute("order") Orders order, Authentication authentication, Model model) throws MessagingException {
         String emailName = authentication.getName();
         User user = userService.getUserFindByEmail(emailName);
         String valueDiscount = order.getDiscount().getName();
@@ -135,6 +138,7 @@ public class OrdersController {
         }
         orderService.saveOrder(order);
         cartService.deleteExistCart(user.getId());
+        smtpMailSender.send(emailName,order);
         return "redirect:/history";
     }
 

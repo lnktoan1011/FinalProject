@@ -6,6 +6,7 @@ import com.example.t3mb_decor.model.Product;
 import com.example.t3mb_decor.model.ProductFiles;
 import com.example.t3mb_decor.service.OrderService;
 import com.example.t3mb_decor.service.ProductFileService;
+import com.example.t3mb_decor.service.SmtpMailSender;
 import com.example.t3mb_decor.service.UserService;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,8 @@ public class OrderController {
     private UserService userService;
     @Autowired
     private ProductFileService productFileService;
+    @Autowired
+    SmtpMailSender smtpMailSender;
     @ModelAttribute("first")
     public String getActive1(){
         return ".mysale_click";
@@ -98,8 +102,12 @@ public class OrderController {
     }
 
     @GetMapping("/confirm/{id}")
-    public String confirmOrderDetail(@PathVariable("id") long id){
-       orderService.confirmOrder(id);
+    public String confirmOrderDetail(@PathVariable("id") long id) throws MessagingException {
+        String status = "approved";
+        Orders orders = orderService.getOrder(id);
+        orderService.confirmOrder(id);
+        smtpMailSender.send(orders.getUser().getEmail(),orders,status);
+
         return "redirect:/admins/order/" + id ;
     }
 

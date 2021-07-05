@@ -93,6 +93,7 @@ public class OrdersController {
         String emailName = authentication.getName();
         User user = userService.getUserFindByEmail(emailName);
         String valueDiscount = order.getDiscount().getName();
+        String status = "pending";
         if(order.getSubTotal() == 0){
             model.addAttribute("errorProduct", "Please add product to Cart");
             model.addAttribute("order", order);
@@ -138,7 +139,7 @@ public class OrdersController {
         }
         orderService.saveOrder(order);
         cartService.deleteExistCart(user.getId());
-        smtpMailSender.send(emailName,order);
+        smtpMailSender.send(emailName,order,status);
         return "redirect:/history";
     }
 

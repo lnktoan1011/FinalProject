@@ -75,6 +75,7 @@ public class HeaderController {
         List<Product> productList = new ArrayList<>();
         for (int i =0; i< orderDetail.getOrder_product().size(); i++){
             productList.add(orderDetail.getOrder_product().get(i).getProduct_orders());
+
         }
         List<ProductFiles> productFilesList = new ArrayList<>();
         for (int i =0; i< productList.size(); i++){
